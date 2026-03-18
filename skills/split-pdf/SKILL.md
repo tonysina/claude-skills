@@ -12,6 +12,7 @@ description: >
   ~15 pages — read those directly.
 compatibility: Requires Bash (python, pip, curl), Read, Write, WebSearch, WebFetch
 allowed-tools: Bash(python*), Bash(pip*), Bash(curl*), Bash(wget*), Bash(mkdir*), Bash(ls*), Read, Write, Edit, WebSearch, WebFetch
+attribution: Based on https://github.com/scunning1975/MixtapeTools/tree/main/skills/split-pdf
 metadata:
   version: 1.0.0
 ---

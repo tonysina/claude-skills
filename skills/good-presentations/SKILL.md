@@ -10,6 +10,7 @@ description: >
   a deck", or any request to structure ideas into slides. Do NOT use for
   brand-specific presentations or templated sales decks with fixed formatting
   requirements.
+attribution: Loosely based on https://github.com/scunning1975/MixtapeTools/tree/main/presentations
 metadata:
   version: 1.1.0
 ---

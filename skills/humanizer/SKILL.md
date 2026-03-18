@@ -13,6 +13,7 @@ description: |
 
   Do NOT use for: general editing unrelated to AI patterns, grammar-only fixes,
   style preferences that don't involve AI detection.
+attribution: Based on https://github.com/blader/humanizer
 metadata:
   version: 1.0.0
 ---
