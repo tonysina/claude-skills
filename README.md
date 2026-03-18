@@ -55,9 +55,9 @@ Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 
 ## Building Your Own Skills
 
-- [The Complete Guide to Building Skills for Claude](https://gist.github.com/joyrexus/ff71917b4fc0a2cbc84974212da34a4a) — comprehensive walkthrough
-- [Anthropic Skill Authoring Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) — official docs
-- [`docs/skill-creation-best-practices/claude-skills-overview.md`](docs/skill-creation-best-practices/claude-skills-overview.md) — quick reference overview
+- [Skills Overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) — official Anthropic docs
+- [Skill Authoring Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) — official Anthropic docs
+- [The Complete Guide to Building Skills for Claude](https://gist.github.com/joyrexus/ff71917b4fc0a2cbc84974212da34a4a) — comprehensive community walkthrough
 
 ---
 
