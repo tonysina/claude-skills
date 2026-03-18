@@ -57,7 +57,7 @@ Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 
 See [`docs/skill-creation-best-practices/`](docs/skill-creation-best-practices/) for guides on writing, structuring, and packaging your own skills.
 
-Start with [`The-Complete-Guide-to-Building-Skills-for-Claude.md`](docs/skill-creation-best-practices/The-Complete-Guide-to-Building-Skills-for-Claude.md).
+Start with [The Complete Guide to Building Skills for Claude](https://gist.github.com/joyrexus/ff71917b4fc0a2cbc84974212da34a4a).
 
 ---
 
