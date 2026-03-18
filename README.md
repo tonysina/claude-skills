@@ -8,14 +8,10 @@ Skills extend Claude with specialized behaviors invoked via slash commands (e.g.
 
 ## Installation
 
-Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
-
 ### On the Web (claude.ai)
 
 1. Download the `.skill` file from `dist/` (e.g. [`humanizer.skill`](dist/humanizer.skill))
-2. Go to [claude.ai](https://claude.ai) → open any Project
-3. Click **"+"** → **"Upload a skill"** → select the `.skill` file
-4. Enable it via **Settings → Customize → Skills**
+2. Go to **Settings → Customize → Skills** → click **"+"** → upload the `.skill` file
 
 ### On Claude Code
 
@@ -29,6 +25,8 @@ cp -r claude-skills/skills/split-pdf ~/.claude/skills/
 
 # Restart Claude Code — skills are available immediately
 ```
+
+Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 ---
 
 ## Skills
