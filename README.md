@@ -1,6 +1,6 @@
 # Claude Skills
 
-A collection of 12 custom skills for Claude — covering writing, thinking, research, and AI design.
+A collection of custom skills for Claude — covering writing, thinking, research, and AI design.
 
 Skills extend Claude with specialized behaviors invoked via slash commands (e.g. `/humanizer`, `/split-pdf`). Most skills are pure prompting and work in both Claude Code and claude.ai. A few require Claude Code-specific tools (file system, shell) and won't work on claude.ai.
 
