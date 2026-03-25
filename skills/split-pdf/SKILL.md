@@ -11,7 +11,7 @@ description: >
   context crashes and shallow comprehension. Do NOT use for documents under
   ~15 pages — read those directly.
 compatibility: Requires Bash (python, pip, curl), Read, Write, WebSearch, WebFetch
-allowed-tools: Bash(python*), Bash(pip*), Bash(curl*), Bash(wget*), Bash(mkdir*), Bash(ls*), Read, Write, Edit, WebSearch, WebFetch
+allowed-tools: Bash(python*), Bash(pip*), Bash(curl*), Bash(wget*), Bash(mkdir*), Bash(ls*), Bash(rm*), Read, Write, Edit, WebSearch, WebFetch
 attribution: Based on https://github.com/scunning1975/MixtapeTools/tree/main/skills/split-pdf
 metadata:
   version: 1.0.0
@@ -58,11 +58,33 @@ If ambiguous, make a call and say so. The user can correct you.
 
 ---
 
-## Step 3: Split the PDF
+## Step 3: Check Text Density & Choose Reading Mode
+
+Before splitting, run this to detect whether the PDF is text-based or image-heavy:
+
+```python
+from PyPDF2 import PdfReader
+
+path = "/path/to/file.pdf"
+reader = PdfReader(path)
+total = len(reader.pages)
+sample = min(8, total)
+text = "".join(reader.pages[i].extract_text() or "" for i in range(sample))
+chars_per_page = len(text) / sample
+print(f"Total pages: {total}, avg chars/page: {chars_per_page:.0f}")
+```
+
+**If `chars_per_page >= 500` → text-based PDF:** proceed to Split Mode (Step 4a).
+
+**If `chars_per_page < 500` → image-heavy / scanned PDF:** use Direct Read Mode (Step 4b). Tell the user the PDF appears image-based and you'll read it visually without splitting.
+
+---
+
+### Split Mode (text-based PDFs only)
 
 ```python
 from PyPDF2 import PdfReader, PdfWriter
-import os
+import os, shutil
 
 def split_pdf(input_path, output_dir, pages_per_chunk=4):
     os.makedirs(output_dir, exist_ok=True)
@@ -79,25 +101,22 @@ def split_pdf(input_path, output_dir, pages_per_chunk=4):
         with open(os.path.join(output_dir, out_name), "wb") as f:
             writer.write(f)
 
-    # Copy original PDF into the split directory
-    import shutil
     shutil.copy2(input_path, os.path.join(output_dir, os.path.basename(input_path)))
-
     print(f"Split {total} pages into {-(-total // pages_per_chunk)} chunks in {output_dir}")
 ```
 
 Install PyPDF2 if needed: `pip install PyPDF2`
 
-Name the split subdirectory after the original PDF filename (without extension) — e.g., `My Paper.pdf` → `My Paper/` — placed alongside the original. After splitting, copy the original PDF into that subdirectory.
+Name the split subdirectory after the original PDF filename (without extension) — e.g., `My Paper.pdf` → `My Paper/` — placed alongside the original.
 
 ---
 
-## Step 4: Read in Batches of 3
+## Step 4a: Read in Batches of 3 (Split Mode — text PDFs)
 
 Read exactly 3 split files at a time. After each batch:
 
 1. Read the 3 splits using the Read tool
-2. Update `notes.md` in the split subdirectory
+2. Update `<pdf-name>.md` in the split subdirectory (e.g., `My Paper/My Paper.md`)
 3. Pause and tell the user:
 
 > "Finished splits [X–Y], notes updated. [N] splits remaining. Continue with the next 3?"
@@ -108,9 +127,31 @@ Do not read ahead. The pause-and-confirm protocol is mandatory.
 
 ---
 
+## Step 4b: Direct Read Mode (image-heavy / scanned PDFs)
+
+Do **not** split the file. Splitting image-heavy PDFs copies full page images into each chunk, inflating sizes and crashing the Read tool.
+
+Instead, read the original PDF in 12-page batches using the Read tool's built-in `pages` parameter:
+
+- Batch 1: `pages="1-12"`
+- Batch 2: `pages="13-24"`
+- etc. (max 20 pages per Read call)
+
+After each batch:
+
+1. Read the original PDF with `pages="X-Y"`
+2. Update `<pdf-name>.md` alongside the original (no subdirectory needed in this mode)
+3. Pause and tell the user:
+
+> "Finished pages [X–Y], notes updated. [N] pages remaining. Continue with the next batch?"
+
+4. Wait for confirmation before reading the next batch
+
+---
+
 ## Step 5: Structured Extraction
 
-Read `references/extraction-framework.md` before writing notes. It defines exactly which dimensions to capture, which are conditional on document type, and what good notes look like for each.
+Before writing notes, use the Read tool to load `references/extraction-framework.md` from this skill's base directory (shown at session start in the system-reminder as "Base directory for this skill: ..."). It defines exactly which dimensions to capture, which are conditional on document type, and what good notes look like for each.
 
 The short version:
 
@@ -139,13 +180,15 @@ Structure the file with the detected document type declared at the top, followed
 
 ## Step 6: Cleanup
 
-After all batches are read and `notes.md` is finalized, delete the split PDF chunk files (the `_pp*.pdf` files). Keep the original PDF and the notes file. Use:
+**Split Mode only:** After all batches are read and notes are finalized, delete the split chunk files. Keep the original PDF and the notes file.
 
 ```bash
 rm "<pdf-name>"/*_pp*.pdf
 ```
 
-Confirm to the user that cleanup is complete and list what remains in the folder.
+**Direct Read Mode:** No cleanup needed — no intermediate files were created.
+
+Confirm to the user that cleanup is complete and list what remains.
 
 ---
 
@@ -158,12 +201,14 @@ Confirm to the user that cleanup is complete and list what remains in the folder
 
 ## Quick Reference
 
-| Step | Action |
-|------|--------|
-| Acquire | Download or locate local file |
-| Detect | Identify document type, state it, invite override |
-| Split | 4-page chunks into `<pdf-name>/`; copy original PDF into that folder |
-| Read | 3 splits at a time, pause after each batch |
-| Extract | Update `<original-filename>.md` using the extraction framework |
-| Confirm | Ask user before continuing to next batch |
-| Cleanup | Delete all split PDF chunk files after notes are complete |
+| Step | Text PDF (≥500 chars/page) | Image PDF (<500 chars/page) |
+|------|---------------------------|------------------------------|
+| Acquire | Download or locate file | Same |
+| Detect type | Academic / analyst / whitepaper / strategic | Same |
+| Density check | PyPDF2 text extraction → ≥500 → Split Mode | <500 → Direct Read Mode |
+| Split | 4-page chunks into `<pdf-name>/` subdirectory | Skip — no splitting |
+| Read | 3 split files at a time (Read tool) | Original PDF, `pages="1-12"` etc. |
+| Notes file | `<pdf-name>/<pdf-name>.md` | `<pdf-name>.md` alongside original |
+| Extract | Update notes using extraction framework | Same |
+| Confirm | Pause and ask user after each batch | Same |
+| Cleanup | `rm "<pdf-name>"/*_pp*.pdf` | Nothing to clean up |
