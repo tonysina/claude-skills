@@ -13,9 +13,8 @@ description: |
 
   Do NOT use for: general editing unrelated to AI patterns, grammar-only fixes,
   style preferences that don't involve AI detection.
-attribution: Based on https://github.com/blader/humanizer
 metadata:
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Humanizer: Remove AI Writing Patterns
@@ -41,6 +40,8 @@ Load `references/extended-patterns.md` when you encounter technical markup (turn
 **Full rewrite:** User pastes text and says "humanize this" or "de-slop this." Scan, rewrite, and return clean text. Include a brief change summary so the user can see what was fixed.
 
 **Edit with constraints:** User says "make this less AI but keep the formal tone" or "clean up this draft but don't change the structure." Apply pattern fixes within the stated constraints. Respect the user's boundaries over the skill's defaults.
+
+**Voice calibration with sample:** User provides a sample of their own writing (inline or via file path) and asks for a humanized rewrite that matches their voice. Before rewriting, analyze the sample for sentence length patterns, word choice register (casual vs academic), paragraph openings, punctuation habits, transition style, and any recurring phrases. Then rewrite the target text using patterns drawn from the sample, not generic "human" defaults. If the sample uses short sentences, don't produce long ones. If the writer says "stuff" and "things," don't upgrade to "elements" and "components." If no sample is provided, fall back to the default behavior in "Tone awareness" below.
 
 ## Tone awareness
 
@@ -74,6 +75,8 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 ---
 
 ## HIGH-SIGNAL PATTERNS (scan first)
+
+*Pass 1 covers these. They cluster -- finding one usually means others are nearby.*
 
 ### 1. Significance inflation and promotional language
 
@@ -155,6 +158,8 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 ## STRUCTURAL PATTERNS
 
+*Pass 2 covers these. Sentence- and paragraph-level constructions LLMs reach for habitually.*
+
 ### 5. Copula avoidance
 
 **Words to watch:** serves as/stands as/marks/represents [a], boasts/features/offers [a]
@@ -166,6 +171,14 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 **After:**
 > Gallery 825 is LAAA's exhibition space for contemporary art. The gallery has four rooms.
+
+**Related: Subjectless fragments.** LLMs also drop the subject entirely with lines like "No configuration file needed" or "Results are preserved automatically." Rewrite when active voice with an explicit subject would be clearer and more direct.
+
+**Before:**
+> No configuration file needed. The results are preserved automatically.
+
+**After:**
+> You don't need a configuration file. The system preserves the results automatically.
 
 ---
 
@@ -187,6 +200,14 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 **After:**
 > The dispersal suggests an identity in flux rather than a fixed self-image.
 
+**Related: Tailing negations.** Watch for clipped negative fragments like "no guessing," "no wasted motion," or "no fuss" tacked onto the end of a sentence instead of written as a real clause. This is the negative-parallelism pattern compressed into a sentence-tail.
+
+**Before:**
+> The options come from the selected item, no guessing.
+
+**After:**
+> The options come from the selected item without forcing the user to guess.
+
 ---
 
 ### 7. Rule of three
@@ -204,8 +225,6 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 ### 8. Em dash overuse
 
 **Problem:** LLMs use em dashes more often than human writers, especially in formulaic, "punchy" ways that mimic sales writing. They use em dashes where humans would use commas, parentheses, colons, or separate sentences. Multiple em dashes in close proximity is a strong tell.
-
-**Note:** This pattern may be less common in text from late 2025 models onward. GPT-5.1 has been reported to use em dashes less frequently.
 
 **Before:**
 > The term is primarily promoted by Dutch institutions -- not by the people themselves. You don't say "Netherlands, Europe" as an address -- yet this mislabeling continues -- even in official documents.
@@ -254,9 +273,27 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
+### 12. Persuasive authority tropes
+
+**Phrases to watch:** the real question is, at its core, in reality, what really matters, fundamentally, the deeper issue, the heart of the matter, the truth is, more importantly
+
+**Problem:** LLMs use these openers to suggest they're cutting through noise to a deeper truth. The sentence that follows usually just restates an ordinary point with extra ceremony. The phrase does the rhetorical work of "I'm about to say something profound" without the profound part.
+
+**Wikipedia insight:** Related to significance inflation (#1). Both patterns puff up content by signaling depth that isn't there. The difference: significance inflation adds importance ("marks a pivotal moment"), persuasive authority tropes claim insight ("at its core, what matters is").
+
+**Before:**
+> The real question is whether teams can adapt. At its core, what really matters is organizational readiness.
+
+**After:**
+> The question is whether teams can adapt. That depends on whether the organization is ready to change its habits.
+
+---
+
 ## FORMATTING AND SURFACE PATTERNS
 
-### 12. Boldface and list formatting
+*Pass 3 covers these. Visible markup, meta-commentary residue, and chatbot artifacts.*
+
+### 13. Boldface and list formatting
 
 **Boldface:** AI chatbots emphasize phrases mechanically, often in a "key takeaways" fashion inherited from slide decks, listicles, and sales pitches.
 
@@ -272,7 +309,27 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 13. Didactic disclaimers and filler
+### 14. Fragmented headers
+
+**Pattern:** A heading followed by a one-line paragraph that simply restates the heading before the real content begins.
+
+**Problem:** LLMs add a generic warm-up sentence under headings as rhetorical scaffolding. It usually adds nothing and makes prose feel padded. The line reads as if the model needed to clear its throat before the actual paragraph.
+
+**Before:**
+> ## Performance
+>
+> Speed matters.
+>
+> When users hit a slow page, they leave.
+
+**After:**
+> ## Performance
+>
+> When users hit a slow page, they leave.
+
+---
+
+### 15. Didactic disclaimers and filler
 
 **Words to watch:** it's important/critical/crucial to note/remember/consider, worth noting, may vary, it should be noted, In summary, In conclusion, Overall, in order to, due to the fact that, at this point in time
 
@@ -292,7 +349,21 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 14. Knowledge-cutoff disclaimers and gap speculation
+### 16. Generic positive conclusions
+
+**Phrases to watch:** the future looks bright, exciting times ahead, a major step forward, on the journey to excellence, continues to thrive, represents a step in the right direction, poised for growth, the road ahead is promising
+
+**Problem:** LLMs close sections or paragraphs with vague upbeat endings that say nothing concrete. They feel like a wrap-up but contribute no information. Often paired with formulaic challenges sections (#9) -- the closer reassures the reader that things will work out, regardless of the actual content.
+
+**Before:**
+> The future looks bright for the company. Exciting times lie ahead as they continue their journey toward excellence.
+
+**After:**
+> The company plans to open two more locations next year.
+
+---
+
+### 17. Knowledge-cutoff disclaimers and gap speculation
 
 **Words to watch:** as of [date], Up to my last training update, While specific details are limited/scarce..., based on available information..., not widely documented, keeps personal details private, maintains a low profile
 
@@ -312,7 +383,21 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 15. Sycophantic tone and chatbot artifacts
+### 18. Signposting and announcements
+
+**Phrases to watch:** let's dive in, let's explore, let's break this down, here's what you need to know, now let's look at, without further ado, in this article we'll cover, you might be wondering, before we begin, first let's talk about
+
+**Problem:** LLMs announce what they're about to do instead of doing it. This meta-commentary slows the writing down and gives it a tutorial-script feel. Human writers usually start with the content, not with a tour-guide preamble. Closely related to fragmented headers (#14) -- both are rhetorical throat-clearing before the real point.
+
+**Before:**
+> Let's dive into how caching works in Next.js. Here's what you need to know.
+
+**After:**
+> Next.js caches data at multiple layers, including request memoization, the data cache, and the router cache.
+
+---
+
+### 19. Sycophantic tone and chatbot artifacts
 
 **Words to watch:** I hope this helps, Of course!, Certainly!, You're absolutely right!, Would you like..., let me know, here is a...
 
@@ -330,13 +415,15 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 When reviewing text, scan in this order (highest signal first):
 
-**Pass 1 -- Content inflation:** Look for significance claims, -ing analyses, promotional adjectives. These are the most recognizable AI tells and often cluster together.
+**Pass 1 -- Content inflation:** Look for significance claims, -ing analyses, promotional adjectives, and vague attributions. These are the most recognizable AI tells and often cluster together.
 
-**Pass 2 -- Vocabulary and structure:** Check for AI vocabulary clusters, copula avoidance, negative parallelisms, rule of three, and em dash patterns.
+**Pass 2 -- Vocabulary and structure:** Check for AI vocabulary clusters, copula avoidance (and subjectless fragments), negative parallelisms (and tailing negations), rule of three, em dash patterns, and persuasive authority tropes.
 
-**Pass 3 -- Formatting and surface:** Check for boldface overuse, inline-header lists, didactic disclaimers, filler phrases, chatbot artifacts. If you encounter technical markup or citation artifacts, load `references/extended-patterns.md`.
+**Pass 3 -- Formatting and surface:** Check for boldface overuse, inline-header lists, fragmented headers, didactic disclaimers, generic positive conclusions, knowledge-cutoff disclaimers, signposting, and chatbot artifacts. If you encounter technical markup or citation artifacts, load `references/extended-patterns.md`.
 
-**Pass 4 -- Voice check:** After removing patterns, read the result aloud. Does it sound like a person wrote it? Does it match the target context? Is sentence rhythm varied? Are there specific details rather than vague claims?
+**Pass 4 -- Voice check and self-audit:** After removing patterns, read the result aloud. Does it sound like a person wrote it? Does it match the target context? Is sentence rhythm varied? Are there specific details rather than vague claims?
+
+Then a brief honest check: would you still flag one or two tells if a stranger sent you this draft? If yes, fix them. If no, stop. Don't invent residual tells just to fill the slot -- that leads to over-correction.
 
 ## Common issues
 
@@ -350,7 +437,15 @@ When reviewing text, scan in this order (highest signal first):
 
 ## Output format
 
-Provide the rewritten text. Optionally include a brief summary of changes if the edits are substantial or if it would help the user understand what was fixed and why.
+The deliverable depends on the use case:
+
+**Review and flag:** A list of findings. Each finding names the pattern, quotes or locates the offending text, and suggests a fix. Don't rewrite the full text unless the user asks. Order findings by signal strength (high-signal first).
+
+**Full rewrite:** The rewritten text, followed by a brief change summary that names the patterns fixed. The summary helps the user see what was caught and why.
+
+**Edit with constraints:** The rewritten text honoring the stated constraints. Include a change summary on request.
+
+**Voice calibration with sample:** The rewritten text matched to the sample's voice. Optionally include a short note on which sample patterns you matched (sentence length, vocabulary register, transition style).
 
 ---
 
@@ -371,6 +466,24 @@ Provide the rewritten text. Optionally include a brief summary of changes if the
 - Removed "Industry experts believe" (vague attribution)
 - Removed "pivotal role" and "evolving landscape" (AI vocabulary)
 - Added specific features and concrete feedback
+
+---
+
+## Review-and-flag example
+
+When the user wants a diagnosis without a rewrite, return a structured findings list rather than edited text.
+
+**Input:**
+> Our new platform serves as a testament to our commitment to innovation. Additionally, it provides a seamless experience that empowers users to achieve more. Industry observers have noted its pivotal role in the evolving landscape.
+
+**Findings:**
+- **Significance inflation (Pass 1, high-signal):** "serves as a testament," "pivotal role," "evolving landscape" -- three significance-claim phrases in two sentences. Replace with what the platform actually does.
+- **Promotional language (Pass 1, high-signal):** "seamless," "empowers users to achieve more" -- generic marketing copy without specifics. Name a concrete capability instead.
+- **Vague attribution (Pass 1, high-signal):** "Industry observers have noted" -- no source named. Either name the source or remove the claim.
+- **AI vocabulary (Pass 1, high-signal):** "Additionally" opening a sentence -- common AI tic. Drop it or replace with a content connector.
+- **Copula avoidance (Pass 2, structural):** "serves as" replacing simple "is."
+
+**Suggested rewrite available on request.**
 
 ---
 
