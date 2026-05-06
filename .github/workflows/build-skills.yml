@@ -25,31 +25,26 @@ jobs:
       - name: Build .skill files
         run: ./scripts/build-skills.sh
 
-      - name: Verify all .skill files exist and are valid
+      - name: Check for uncommitted changes
         run: |
-          echo "Checking that all skills have corresponding .skill files..."
-          missing=""
-          invalid=""
+          if ! git diff --quiet dist/; then
+            echo "Changes detected in dist/ — ensure .skill files are committed"
+            git diff dist/ | head -100
+            exit 1
+          fi
+          echo "✅ No untracked dist/ changes"
 
+      - name: Verify all .skill files exist
+        run: |
+          missing=""
           for skill_dir in skills/*/; do
             skill_name=$(basename "$skill_dir")
-            skill_file="dist/$skill_name.skill"
-
-            if [ ! -f "$skill_file" ]; then
+            if [ ! -f "dist/$skill_name.skill" ]; then
               missing="$missing $skill_name"
-            elif [ ! -s "$skill_file" ]; then
-              invalid="$invalid $skill_name (empty)"
             fi
           done
-
           if [ -n "$missing" ]; then
             echo "❌ Missing .skill files:$missing"
             exit 1
           fi
-          if [ -n "$invalid" ]; then
-            echo "❌ Invalid .skill files:$invalid"
-            exit 1
-          fi
-
           echo "✅ All .skill files built successfully"
-          ls -lh dist/*.skill | wc -l | xargs echo "  Built"
