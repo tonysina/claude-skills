@@ -1,0 +1,27 @@
+name: Build Skills
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'skills/**'
+      - 'scripts/build-skills.sh'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build all skills
+        run: ./scripts/build-skills.sh
+      - name: Verify skill files
+        run: |
+          count=$(ls dist/*.skill 2>/dev/null | wc -l)
+          if [ "$count" -lt 13 ]; then
+            echo "Error: Expected at least 13 .skill files, found $count"
+            exit 1
+          fi
+          echo "Success: Found $count .skill files"
