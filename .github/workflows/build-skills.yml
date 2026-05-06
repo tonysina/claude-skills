@@ -1,0 +1,50 @@
+name: Build Skills
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'skills/**'
+      - 'scripts/build-skills.sh'
+      - '.github/workflows/build-skills.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'skills/**'
+      - 'scripts/build-skills.sh'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build .skill files
+        run: ./scripts/build-skills.sh
+
+      - name: Check for uncommitted changes
+        run: |
+          if ! git diff --quiet dist/; then
+            echo "Changes detected in dist/ — ensure .skill files are committed"
+            git diff dist/ | head -100
+            exit 1
+          fi
+          echo "✅ No untracked dist/ changes"
+
+      - name: Verify all .skill files exist
+        run: |
+          missing=""
+          for skill_dir in skills/*/; do
+            skill_name=$(basename "$skill_dir")
+            if [ ! -f "dist/$skill_name.skill" ]; then
+              missing="$missing $skill_name"
+            fi
+          done
+          if [ -n "$missing" ]; then
+            echo "❌ Missing .skill files:$missing"
+            exit 1
+          fi
+          echo "✅ All .skill files built successfully"
