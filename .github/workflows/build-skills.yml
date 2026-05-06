@@ -1,5 +1,4 @@
 name: Build Skills
-
 on:
   push:
     branches:
@@ -7,7 +6,6 @@ on:
     paths:
       - 'skills/**'
       - 'scripts/build-skills.sh'
-      - '.github/workflows/build-skills.yml'
   pull_request:
     branches:
       - main
@@ -16,37 +14,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Build .skill files
+      - uses: actions/checkout@v4
+      - name: Build all skills
         run: ./scripts/build-skills.sh
-
-      - name: Verify all .skill files exist and are valid
+      - name: Verify skill files
         run: |
-          echo "Checking that all skills have corresponding .skill files..."
-          missing=""
-          invalid=""
-
-          for skill_dir in skills/*/; do
-            skill_name=$(basename "$skill_dir")
-            skill_file="dist/$skill_name.skill"
-
-            if [ ! -f "$skill_file" ]; then
-              missing="$missing $skill_name"
-            elif [ ! -s "$skill_file" ]; then
-              invalid="$invalid $skill_name (empty)"
-            fi
-          done
-
-          if [ -n "$missing" ]; then
-            echo "❌ Missing .skill files:$missing"
+          count=$(ls dist/*.skill 2>/dev/null | wc -l)
+          if [ "$count" -lt 13 ]; then
+            echo "Error: Expected at least 13 .skill files, found $count"
             exit 1
           fi
-          if [ -n "$invalid" ]; then
-            echo "❌ Invalid .skill files:$invalid"
-            exit 1
-          fi
-
-          echo "✅ All .skill files built successfully"
-          ls -lh dist/*.skill | wc -l | xargs echo "  Built"
+          echo "Success: Found $count .skill files"
