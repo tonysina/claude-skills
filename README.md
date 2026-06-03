@@ -39,6 +39,7 @@ Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 | [farnsworth-rhetoric](skills/farnsworth-rhetoric/) | Applies classical rhetorical techniques to make writing more memorable and persuasive | ✅ | ✅ | [.skill](dist/farnsworth-rhetoric.skill) |
 | [good-presentations](skills/good-presentations/) | Creates persuasive, rhetorically structured presentations using the Rhetoric of Decks framework | ✅ | ✅ | [.skill](dist/good-presentations.skill) |
 | [great-demo](skills/great-demo/) | Apply Peter Cohan's Great Demo! method to design, critique, and qualify software demonstrations | ✅ | ⚠️ | [.skill](dist/great-demo.skill) |
+| [human-narrative](skills/human-narrative/) | Audits writing for AI-elevated narrative patterns and guides structural rewrites — temporal order, thematic restraint, subplot architecture, character interiority | ✅ | ✅ | [.skill](dist/human-narrative.skill) |
 | [humanizer](skills/humanizer/) | Removes AI writing patterns from text to make it sound more natural and human-written | ✅ | ✅ | [.skill](dist/humanizer.skill) |
 | [intelligence-flow-architecture](skills/intelligence-flow-architecture/) | Designs how humans and AI collaborate in products, workflows, and processes | ✅ | ✅ | [.skill](dist/intelligence-flow-architecture.skill) |
 | [markdown-fetch](skills/markdown-fetch/) | Fetches web content as clean markdown, reducing token usage by up to 80% | ✅ | ⚠️ | [.skill](dist/markdown-fetch.skill) |
