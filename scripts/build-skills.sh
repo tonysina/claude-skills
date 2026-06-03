@@ -35,6 +35,9 @@ for skill in $SKILLS_TO_BUILD; do
 
   echo "📦 Building $skill.skill..."
 
+  # Remove stale dist file so zip creates fresh (not appends)
+  rm -f "$DIST_DIR/$skill.skill"
+
   # Create ZIP archive containing SKILL.md and all subdirectories (assets, references, etc)
   cd "$SKILL_DIR"
   zip -q -r "$DIST_DIR/$skill.skill" SKILL.md */ 2>/dev/null || zip -q -r "$DIST_DIR/$skill.skill" SKILL.md
