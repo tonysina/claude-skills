@@ -10,7 +10,7 @@ description: >
   "evaluate this skill", "skill performance", "skill benchmark",
   or any mention of SKILL.md, skill folders, or skill development workflow.
 metadata:
-  version: 1.2.0
+  version: 1.3.0
 ---
 
 # Skill Builder
@@ -231,13 +231,9 @@ Direct the user to the resulting `.skill` file path so they can install it. If y
 
 For distribution beyond personal use: host on GitHub with a clear README (at the repo level, not inside the skill folder), include example usage and screenshots, and if the skill enhances an MCP integration, link to it from your MCP documentation. When positioning the skill, focus on outcomes ("set up project workspaces in seconds") rather than implementation details ("folder containing YAML frontmatter").
 
-### Step 9: Update Skills Inventory
+### Step 9: Update the Changelog
 
-After creating or improving any skill, update the user's skills inventory spreadsheet and the skill's changelog. These steps are required, not optional.
-
-**Update the spreadsheet** (`tonys-claude-skills.xlsx`):
-- If creating a new skill: add a new row with Skill Name, Description, Triggers, Output, Last Modified (today's date), and Version
-- If improving a skill: update the Version and Last Modified fields for that skill's row
+After creating or improving any skill, update the skill's changelog. This is required, not optional. The per-skill changelog plus the `version` field in frontmatter are the record of a skill's state, so no separate inventory file is needed.
 
 **Update the skill changelog** by appending to `references/changelog.md` inside the skill folder (create it if it doesn't exist):
 
@@ -265,8 +261,7 @@ When the user asks to improve a skill, ask:
 Then autonomously iterate using the building blocks (run, grade, compare, analyze). When improvements are finalized, you must:
 
 1. **Increment the version** in the skill's frontmatter metadata. This is required — do not finalize improvements without updating the version. Convention: patch (x.x.1) for small fixes or wording tweaks, minor (x.1.0) for new capabilities or meaningful additions, major (x.0.0) for structural rewrites.
-2. **Update `references/changelog.md`** inside the skill folder with what changed and why (create the file if it doesn't exist).
-3. **Update the skills inventory spreadsheet** (`tonys-claude-skills.xlsx`) with the new version number and today's date in the Last Modified field.
+2. **Update `references/changelog.md`** inside the skill folder with what changed and why (create the file if it doesn't exist). The changelog and version field are the skill's record of state; no separate inventory file is required.
 
 ### Writing Philosophy for Improvements
 

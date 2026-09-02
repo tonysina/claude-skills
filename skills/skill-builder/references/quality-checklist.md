@@ -45,7 +45,6 @@ Run through this checklist before finalizing a skill for upload. You can also us
 - [ ] Collected user feedback on output quality
 - [ ] Iterated on description and instructions based on feedback
 - [ ] `references/changelog.md` updated with what changed and why
-- [ ] Skills inventory spreadsheet (`tonys-claude-skills.xlsx`) updated — Version and Last Modified fields reflect current state
 
 ## Success Criteria (Aspirational Targets)
 
