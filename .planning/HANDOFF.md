@@ -320,13 +320,10 @@ missing fidelity checks) for the next run. Changelogs of all three skills carry 
 
 ### Still deferred
 
-- **Candidate patches** from the eval report (humanizer residue-authorship sentence in
-  SKILL.md; farnsworth withdraw-failing-treatment rule and single-line output shape;
-  human-narrative blocked-slot rule and the E+F-fire-by-construction problem on short
-  professional text), plus nine smaller executor suggestions collected in the report
-  (notably: farnsworth's description says "not for process instructions" while its
-  register table handles process text with diction only). Patch-level; show before
-  committing.
+- ~~Candidate patches from the eval report~~ **Applied** as `0d604c7` (humanizer 1.3.1),
+  `810507d` (farnsworth-rhetoric 1.1.1), `f0acd86` (human-narrative 1.1.1), approved
+  2026-09-02. All four candidate patches and the executor suggestions landed; each
+  changelog names the eval evidence. Not yet re-evaluated.
 - Re-run the corrected eval suite; three runs per configuration for variance.
 - LLM rubric for `human-narrative` beyond the eval expectations.
 - Thresholds unchecked on non-encyclopedic human prose.
