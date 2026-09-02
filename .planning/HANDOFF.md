@@ -2,7 +2,9 @@
 
 **Branch:** `skills/writing-triad-review` (branched from `main` @ `3d4564d`)
 **Date:** 2026-09-02
-**State:** 2 of 3 skills reviewed and revised. Third reviewed but not revised.
+**State:** 3 of 3 reviewed and revised. `humanizer` v1.3.0 committed in four commits
+(approved 2026-09-02). See "Session 2 addendum" at the end of this file. Nothing pushed,
+no PR yet.
 
 ---
 
@@ -28,9 +30,9 @@ stage → commit.** Do not commit without showing the draft first.
 |---|---|---|---|
 | `farnsworth-rhetoric` | ✅ | ✅ v1.0.0 → 1.1.0 | ✅ `c5f76c0` |
 | `human-narrative` | ✅ | ✅ v1.0.0 → 1.1.0 | ✅ `b53aa94` |
-| `humanizer` | ✅ | ❌ **not started** | — |
+| `humanizer` | ✅ | ✅ v1.2.0 → 1.3.0 | ✅ `582052b` `16fe5a6` `ab0ae2e` |
 
-Tree is clean. All three commits are on the branch, nothing pushed, no PR.
+Tree is clean after commit 4 (docs). Nothing pushed, no PR.
 
 ### Commits on the branch
 
@@ -261,3 +263,53 @@ edits are safe. The hand-derived `CONSTRUCTIONS` regexes and the `#N` labels are
    `skill-builder` eval run across all three, and the LLM rubric for human-narrative.
 4. **Open a PR** once humanizer lands. Nothing has been pushed; the branch is local only.
    Per `rules/BRANCHING-PR.md`, add a test plan section to the PR description.
+
+---
+
+## Session 2 addendum — humanizer v1.3.0 draft (2026-09-02)
+
+Everything in the v1.3.0 scope list above was executed, plus the `CONTRIBUTING.md` entry
+from the deferred list. Committed as:
+
+```
+582052b fix(humanizer): add stable pattern IDs and repair stale cross-references
+16fe5a6 feat(humanizer): add finding threshold, missing patterns, citation repairs
+ab0ae2e feat(scripts): filter quoted text and report density in scan-ai-tells
+(next)  docs: document the writing-skill test aids in CONTRIBUTING
+```
+
+Commit 1 carries IDs on the 18 original headings under the *old* numbering with no
+content change, so `git show 582052b:skills/humanizer/SKILL.md` is the v1.2.0 text plus
+IDs. The renumbering (`VAGUE-CONNECT` at #6) happens in commit 2, after the IDs exist.
+
+### Verification already run
+
+- `skills/humanizer/SKILL.md` is 467 lines (cap 500). Description 297 chars.
+- Self-scan: v1.3.0 → 0 hits. v1.2.0 under the same script → exactly 1 (the "Studies
+  have shown" self-violation). Both known-good answers hold.
+- Fixture regression: with 1.2.0 watch lists, all nine farnsworth fixtures identical
+  before/after the script change. With 1.3.0 lists, only `01-exec-summary-IN` changes
+  (+2 hits, "associated with" is now `VAGUE-CONNECT`); every OUT file still 0.
+- Cross-ref grep: only historical changelog lines carry numbers, each as "(#N at the time)"
+  next to the ID.
+- Dist rebuilt for humanizer, farnsworth-rhetoric, human-narrative.
+- Calibration numbers in the changelog and `tests/calibration/README.md` are from the
+  final run against the 1.3.0 lists.
+
+### Findings beyond the original review
+
+- The exec-summary fixture is 399 words, not 600+. The `>600` farnsworth tier is still
+  unexercised; the handoff above was wrong about that fixture.
+- Source now lists "in order to" / "the fact that" as signs of *human* writing; 1.2.0
+  flagged them as AI filler. Removed.
+- `ELEGANT-VAR` and `DIDACTIC` moved to the source's historical section. Reflected.
+- "Letter-like writing" is no longer on the source's ineffective-indicators list.
+- Scan bug: curly apostrophes defeated the `isn't just` regexes. Fixed in the script.
+
+### Still deferred
+
+- `skill-builder` eval across all three (clean-context executor; executor bias applies
+  to everything above).
+- LLM rubric for `human-narrative`.
+- Thresholds unchecked on non-encyclopedic human prose.
+- Open the PR.

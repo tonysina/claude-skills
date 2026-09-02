@@ -147,6 +147,26 @@ Any time you modify `SKILL.md` or add/remove files in `assets/` or `references/`
 
 Then commit both the source and the rebuilt `.skill` file.
 
+### Testing the writing skills
+
+`humanizer`, `farnsworth-rhetoric`, and `human-narrative` share one pipeline and reference each other by `humanizer`'s stable pattern IDs (the table at the top of `skills/humanizer/SKILL.md`). Two test aids exist:
+
+- **`scripts/scan-ai-tells.py`** — deterministic scan. Reads `humanizer`'s watch lists live from its SKILL.md, so word-list edits need no script change; the hand-derived `CONSTRUCTIONS` regexes and ID labels in the script do. Reports flag density, distinct patterns hit, em dash proximity, anaphora runs, triads, and word count against `farnsworth-rhetoric`'s figure budget. Text inside code, blockquotes, watch-list lines, and short quoted strings is ignored by default (`--keep-quotes` to include it), so a document that discusses a pattern is not scored as using it.
+- **`tests/cases/`** — smoke-test fixtures. `NN-name-IN.txt` is the input, `NN-name-OUT.txt` is the expected output. Negative cases have byte-identical IN and OUT because the correct output is no change. Not an automated suite.
+
+To re-run:
+
+```bash
+# always score the positive control first; a scan that reports clean on everything
+# is indistinguishable from a broken scan
+./scripts/scan-ai-tells.py tests/cases/00-control-v1.0.0-output.txt tests/cases/*-OUT.txt
+
+# self-check: humanizer's own prose should return 0 hits
+./scripts/scan-ai-tells.py skills/humanizer/SKILL.md
+```
+
+After editing a `humanizer` pattern, grep the branch for the pattern's ID and check the scan's `CONSTRUCTIONS` table. Never insert, merge, or renumber a pattern without keeping its ID.
+
 ### Pull requests
 
 - Keep PRs focused — one skill per PR unless they're tightly related
