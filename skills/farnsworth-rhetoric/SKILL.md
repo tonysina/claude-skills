@@ -177,7 +177,8 @@ shape*. Three is the number that resolves; two feels open, four feels like a lis
 **Load-bearing test — required.** An isocolon earns its place only if each member adds
 something the others don't. Ask: could I cut this to one member and lose information?
 If no, cut it to one. Interchangeable adjectives and padded parallel phrases are
-humanizer's decorative triad (`RULE-OF-3`), not a figure.
+humanizer's decorative triad (`RULE-OF-3`), not a figure. humanizer states the same
+load-bearing test from its side, so the two skills agree on which triads survive.
 
 Fails the test: "We value innovation, collaboration, integrity, excellence, and growth."
 (Five interchangeable abstractions. Cut to what you actually do.)

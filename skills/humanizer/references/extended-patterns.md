@@ -1,29 +1,55 @@
 # Extended Patterns: Markup, Citations, and Technical Artifacts
 
-These patterns are lower-frequency but unmistakable when present. They are drawn from the same Wikipedia "Signs of AI writing" source as the main SKILL.md patterns.
+These patterns are lower-frequency but unmistakable when present. They are drawn from the same Wikipedia "Signs of AI writing" source as the main SKILL.md patterns. Cross-references to SKILL.md use its stable pattern IDs (for example `DIDACTIC`), not display numbers, because display numbers can change between versions.
 
-## Markup artifacts
+## Model-specific markup residue
 
-### Curly quotation marks
-ChatGPT and DeepSeek typically use curly quotes ("...") instead of straight quotes ("..."). They may also use curly apostrophes ('). This is inconsistent -- sometimes mixing curly and straight in the same response. Note: Gemini and Claude typically do not use curly quotes. Also note that macOS, iOS, and Microsoft Word have "smart quotes" features that produce the same result, so curly quotes alone do not prove AI use.
+Residue is the highest-confidence evidence in this file: it is mechanical, it has no human explanation, and it identifies the tool. Search for these strings before reading for style. Finding one proves a chatbot touched the citation or paragraph it sits in; it does not by itself prove the chatbot wrote the surrounding prose (some writers use a chatbot only to find sources).
 
-### Markdown in non-Markdown contexts
-AI chatbots default to Markdown formatting: **bold** using asterisks, ## for headings, [text](url) for links. When pasted into contexts that don't render Markdown, these artifacts remain visible.
+### ChatGPT
+- **turn0search0 codes.** Since February 2025, placeholder codes like `turn0search0` (with increasing numbers) where a link was intended, surrounded by Unicode Private Use Area characters. Variants: `turn0image0`, `citeturn0news0`, `citeturn1file0`.
+- **contentReference and oaicite.** `:contentReference[oaicite:0]{index=0}` or `oai_citation:0` in place of reference links.
+- **attributableIndex.** JSON like `({"attribution":{"attributableIndex":"X-Y"}})` appended to sentences.
+- **utm_source.** `utm_source=chatgpt.com` or `utm_source=openai` on cited URLs.
 
-### turn0search0 artifacts
-Since February 2025, ChatGPT has been known to leave "turn0search0" placeholder codes (with increasing numbers) where it intended to link to external sites. The codes are surrounded by Unicode Private Use Area characters. Variations include turn0image0, citeturn0news0, and citeturn1file0.
+### Gemini
+- **[cite: N] markers.** `[cite: 1]` or `[cite: 3, 12, 13]` at the end of sentences.
+- **span markers.** `[span_1](start_span)` and `[span_1](end_span)` wrapped around sentences or titles, numbered upward through the text.
 
-### contentReference and oaicite bugs
-ChatGPT may insert `:contentReference[oaicite:0]{index=0}` or `oai_citation:0` markup in place of reference links. These are rendering bugs from the chatbot interface.
+### Grok
+- **grok-card tags.** XML-styled `<grok-card data-id="..." data-type="citation_card">` after citations.
+- **grok_render_citation_card_json.** `[](grok_render_citation_card_json={"cardIds":["..."]})` in place of a link.
+- **referrer.** `referrer=grok.com` on cited URLs.
 
-### utm_source parameters
-ChatGPT adds `utm_source=chatgpt.com` or `utm_source=openai` to URLs it cites. Microsoft Copilot uses `utm_source=copilot.com`. Grok uses `referrer=grok.com`. This definitively proves chatbot involvement in citation, though not necessarily in generating the surrounding text.
+### DeepSeek
+- **Lenticular brackets with daggers.** `【85†L261-269】` style markers, sometimes with long numeric IDs like `【854140639155648†L119-L123】`. Seen since June 2025; appears specific to DeepSeek and its derivatives.
 
-### attribution and attributableIndex
-ChatGPT may append JSON code like `({"attribution":{"attributableIndex":"X-Y"}})` at the end of sentences.
+### Perplexity
+- **attached_file and web tags.** `[attached_file:1]` or `[web:1]` at the end of sentences (seen since fall 2025).
+- **ppl-ai-file-upload.** Citations to an Amazon S3 bucket with `ppl-ai-file-upload` in the URL.
 
-### grok_card tags
-Grok may include XML-styled `<grok-card>` tags after citations.
+### Microsoft Copilot
+- **utm_source.** `utm_source=copilot.com` on cited URLs.
+
+### Unattributed
+- **:::writing blocks.** `:::writing{variant="document" id="12345"}` (random five-digit ID), often with a closing `:::`. Seen since June 2026, also in other languages (`:::écriture{variante="document" ...}`).
+
+### Not model-specific, still residue
+- **Markdown in non-Markdown contexts.** `**bold**` asterisks, `##` headings, `[text](url)` links, `---` rules, showing as literal characters where Markdown is not rendered.
+- **Curly quotation marks.** ChatGPT and DeepSeek typically produce curly quotes and apostrophes, sometimes mixed with straight ones in the same text. Gemini and Claude typically do not. macOS, iOS, Microsoft Word, and Chicago-style publishing all produce curly quotes too, so curly quotes alone do not prove AI use.
+
+---
+
+## Heading structure
+
+Structure-level tells that survive a copyedit of the prose:
+
+- **Title heading.** A heading carrying the document's own title placed above all content, because the chatbot did not picture the title as already present.
+- **Skipped levels.** Sections starting at the third level with no second level above them.
+- **Level-1 overuse.** Every section at level 1 (`# Heading` / `= Heading =`), usually from Markdown being translated into another markup.
+- **Headings containing only headings.** A heading whose entire body is more headings, with no text of its own.
+- **Thematic breaks between every section.** A horizontal rule (`---` or `----`) after each section.
+- **Title case.** All main words capitalized in headings: `## Strategic Negotiations And Global Partnerships`. Rewrite as `## Strategic negotiations and global partnerships`. (Also in SKILL.md under `BOLD-LISTS`.)
 
 ---
 
@@ -79,15 +105,6 @@ AI chatbots sometimes decorate section headings or bullet points with emoji. Thi
 
 ---
 
-## Title case in headings
-
-AI chatbots capitalize all main words in section headings (Title Case) rather than using sentence case.
-
-**Before:** `## Strategic Negotiations And Global Partnerships`
-**After:** `## Strategic negotiations and global partnerships`
-
----
-
 ## Unusual use of tables
 
 AI tends to create unnecessary small tables that would be better represented as prose.
@@ -108,19 +125,37 @@ These patterns were common in older AI models but are less frequent in 2025+ mod
 - **Abrupt cutoffs:** Text stopping mid-sentence due to token limits
 - **Didactic disclaimers:** "It's important to note..." (see main SKILL.md, `DIDACTIC`)
 - **Section summaries:** "In summary..." / "In conclusion..." (see main SKILL.md, `DIDACTIC`)
+- **Elegant variation:** synonym cycling from repetition penalties in older models (see main SKILL.md, `ELEGANT-VAR`). The source moved this to its historical section in 2026.
+- **Outdated access-dates:** citations dated well before the text was written; newer chatbots seldom do this, and copied citations produce it legitimately
+
+---
+
+## Signs of human writing (do not "fix" these)
+
+The source lists constructions that are *more* common in human-written text than in AI output. Removing them makes text read more like AI, not less:
+
+- Simple *is*/*has* phrases: "there is a," "it has a"
+- Plain verbs where a stiffer synonym exists: *wrote* (not *authored*), *moved* (not *relocated*), *used* (not *utilized*), *tried* (not *attempted*), *died* (not *passed away*)
+- Superlatives and definite statements: "one of the best," "is the only," "was the first"
+- Hedges and intensifiers: *very*, *perhaps*, *tends to*
+- Isolated wordy constructions: *as a result of*, *in order to*, *all of the*, *a part of*, *the fact that*
+
+The last item is why v1.3.0 removed *in order to* and *due to the fact that* from the `DIDACTIC` watch list: they were on it as "filler," and the source says the opposite.
 
 ---
 
 ## Ineffective indicators (do NOT flag these)
 
-Per Wikipedia's guide, these are NOT reliable signs of AI writing:
+Per Wikipedia's guide, these are NOT reliable signs of AI writing. False accusations drive writers away; check for confirmation bias before flagging:
 - Perfect grammar (many humans write well)
+- A mix of casual and formal registers, or prose that is both "clinical" and "emotional" (a technical person writing casually, a young writer, a mixed-register preference, or several authors on one page)
 - "Bland" or "robotic" prose (LLMs actually tend toward effusive and verbose prose)
-- "Fancy" or unusual words (low-frequency words are less likely in AI text, not more)
-- Letter-like writing with salutations and sign-offs (humans do this too)
-- Conjunctions like "moreover" or "furthermore" in isolation (common in human essay writing)
-- Bizarre wikitext errors (more likely from browser extensions or editing tools)
+- "Fancy," academic, or formal prose in general (the overused words are *specific words*; the correlation does not extend to all formal writing)
+- Transition words in isolation ("moreover," "furthermore," "additionally"): only a few are overused by AI, and essay-style human writing uses them too
+- Unsourced content (most unsourced text predates LLMs; modern chatbots cite, inaccurately)
+- Bizarre markup errors (more likely from browser extensions or editing tools)
+- Correct, complex markup (normal for anyone who has found the preview button)
 
 ## Source
 
-All patterns from [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), WikiProject AI Cleanup.
+All patterns from [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), WikiProject AI Cleanup. Checked against the live page on 2026-09-02.
