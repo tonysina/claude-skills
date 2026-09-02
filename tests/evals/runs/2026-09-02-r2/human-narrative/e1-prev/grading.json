@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the register as a case study and applies the short-form or case-study mode rather than the full long-form checklist",
+      "passed": true,
+      "evidence": "Output opens with '## Register' stating 'Case study / customer-facing narrative. Clusters in scope: A ... B ... E ... F ... C1' and explicitly excludes 'subplots, temporal restructuring, and the moral-ambiguity moves' as 'Out of scope for this register: ... a case study that goes deliberately non-linear or morally ambivalent stops doing its job.' Only 5 clusters are evaluated (not the full checklist), consistent with a short-form pass."
+    },
+    {
+      "text": "The response applies at most two interventions, counting every structural change actually made whether or not it is labeled, and every intervention is one of: thematic restraint (removing the stated lesson), emotional rebalance (replacing an embodied metaphor with a plain label or behavior), naming a specific reference, or reader address",
+      "passed": true,
+      "evidence": "Exactly two labeled interventions are made and no unlabeled changes are found on diff against the input: Intervention 1 deletes the stated-theme paragraph ('The lesson from the rollout is clear...') in full with nothing substituted (thematic restraint); Intervention 2 adds one sentence of direct reader address ('If you have ever kept a crew waiting...') at the end of 'The challenge'. Comparing the 'revised case study' text section-by-section against the input shows The solution and The results sections are verbatim unchanged, and Looking ahead is reduced to only the 2026 sentence -- no third, unlabeled change is present."
+    },
+    {
+      "text": "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce an unresolved thread that is not present in the input (the input's own forward-looking 2026 plan does not count)",
+      "passed": true,
+      "evidence": "No new subplot or non-chronological reordering appears in the revised text; the only structural additions are the theme-deletion and one reader-address sentence, neither of which touches event order or causal sequencing. The remaining open thread at the end is the pre-existing 2026 maintenance-scheduling plan, which the expectation explicitly excludes; the response itself notes this in 'Downstream': 'The piece now ends on the 2026 maintenance plan, which leaves a genuinely open thread.'"
+    },
+    {
+      "text": "The response invents no fact about Ridgeline: every number, name, date, quotation, event, present-state claim, and characterization of a person in the output is supported by the input; the only permitted addition is one clearly labeled outside reference (a real book, author, or event) if the response chose the naming-a-reference intervention and told the user to verify it",
+      "passed": true,
+      "evidence": "The response did not execute the naming-reference (F) intervention at all -- it explicitly flagged F as unexecutable: 'I can't execute it truthfully without a fact I don't have.' The one added sentence ('If you have ever kept a crew waiting...') is addressed to the reader in the second person and asserts no new fact, name, date, quote, or characterization of any Ridgeline person. No invented content about Ridgeline appears anywhere in the revised case study."
+    },
+    {
+      "text": "All input facts are retained: 140 vans, Pacific Northwest, three coordinators, forty minutes, six weeks, two weeks parallel, forty to six, 11 percent, twelve hours to under two, the Chen quotation, and the 2026 plan",
+      "passed": true,
+      "evidence": "The 'revised case study' section retains all listed facts verbatim: '140 delivery vans across the Pacific Northwest', 'three regional coordinators', 'vans left forty minutes late', 'six weeks, including two weeks of parallel running', 'delay fell from forty minutes to six', 'Fuel spend dropped 11 percent', 'from... twelve hours a week per person, fell to under two', the full Chen quotation, and 'extend the platform to its maintenance scheduling in 2026.'"
+    },
+    {
+      "text": "The response reports which clusters fired and which did not, and if the stated lesson at the end is removed, it is deleted rather than replaced with a summary phrase, a rhetorical question, or a new inference",
+      "passed": true,
+      "evidence": "A full cluster table reports fired/not-fired status for A, B, C1, E, F with gate and corroborator detail, and a further 'What I did not take, and why' section explains B, C1, D/G/C2. For the theme removal: 'Cut, in full: [quote] ... Nothing replaces it. \"Looking ahead\" now ends on the maintenance plan.' -- confirmed as a pure deletion, not a replacement summary, rhetorical question, or new inference."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": null,
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": null,
+    "output_chars": 8745,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "Three clusters fired (A, E, F), capping the response at two interventions",
+      "type": "process",
+      "verified": true,
+      "evidence": "The cluster table shows A, E, F firing (checkmarks) and B, C1 not firing; the rule stated is that 3+ fired clusters caps interventions at 2, consistent with the response's own governing logic and with expectation 2's outcome."
+    },
+    {
+      "claim": "F (naming a reference) could not be executed truthfully because the executor lacks a fact (the platform's real name) it would need to invent",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The response reasons concretely about why: 'the case study never names the platform... Name it... Whatever you pick has to be checkable.' This is an honest refusal to fabricate rather than an unsupported claim, and it directly serves expectation 4's no-invention requirement."
+    },
+    {
+      "claim": "Only structural (scene/section-level) changes were made; no sentence-level editing was attempted",
+      "type": "process",
+      "verified": true,
+      "evidence": "Explicitly stated in 'Downstream': 'I didn't touch sentences: this was scene- and section-level only.' Confirmed by the diff: outside the two flagged interventions, all other sentences are byte-identical to the input."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response applies at most two interventions...",
+        "reason": "This assertion is well-designed and discriminating here: it required actually diffing the 'revised case study' against the input to confirm no undisclosed third change snuck in (a run that padded extra small edits while claiming only two labeled interventions would have been easy to miss without doing that diff). Consider explicitly noting in the eval that grading requires a full text diff, not just trusting the response's own accounting, since a self-report could be inaccurate."
+      },
+      {
+        "reason": "No expectation checks whether the response accurately explains what is lost by each intervention (a 'cost' framing this response includes for both cuts). This is a genuine quality signal -- a response that silently deletes the stated lesson without flagging the tradeoff to a lead-gen use case is meaningfully worse than one that does -- but no assertion rewards or requires it."
+      }
+    ],
+    "overall": "The six assertions are solid and mostly discriminating -- especially the fact-retention and no-invention checks, which would catch a materially worse response. The main gap is that nothing checks whether the response surfaces the business tradeoffs of its cuts, which this response happens to do well."
+  }
+}

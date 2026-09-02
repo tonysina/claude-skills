@@ -1,0 +1,83 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the text as a status update (short-form register) and applies no structural interventions",
+      "passed": true,
+      "evidence": "result.md: 'At fifty words of status update, four things are in scope — a stated theme, emotion routed through the body, reader address, and a named reference.' Transcript Step 1 confirms register triage placed it in Row 4 ('status update') with clusters A, B, E, F in scope. No rewrite or structural change is applied anywhere in the output."
+    },
+    {
+      "text": "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+      "passed": true,
+      "evidence": "result.md opens: 'Nothing here reads as AI structurally, so I haven't changed anything' and closes 'Leave it.' Transcript's Final Result: 'The input file was not modified.' No rewritten version of the status update is presented."
+    },
+    {
+      "text": "The response says explicitly that zero interventions is the correct outcome, rather than listing findings and leaving the decision to the user",
+      "passed": true,
+      "evidence": "result.md states the two AI-side findings 'together they don't reach the bar for a structural change; forcing either in would make it worse,' followed by an unhedged imperative verdict, 'Leave it.' This is an affirmative call, not a list of findings handed to the user to weigh."
+    },
+    {
+      "text": "The response is proportionate to the input: under 250 words, with no cluster table or corpus statistics for a 48-word status update",
+      "passed": true,
+      "evidence": "scan.txt reports the output at 110 words, well under the 250-word ceiling, 1 paragraph, no markdown table, no per-cluster corpus percentages or gate/corroborator apparatus — matches the single-paragraph verdict the transcript describes producing after a self-correction ('the first draft ran to three paragraphs... compressed to a single paragraph, no table, no corpus percentages')."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "output_chars": 661,
+    "transcript_chars": 5600,
+    "note": "metrics.json not present in outputs/ despite transcript.md listing it as an output file; tool-call counts could not be independently confirmed beyond what the transcript narrates (Read x3, wc, grep, Write x2 — one self-correcting rewrite)."
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:57:21Z"
+  },
+  "claims": [
+    {
+      "claim": "The input is a 48-word status update",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w on inputs/status-update.txt returns 48 (transcript also states 48 correctly in its own 'Input Files' section)."
+    },
+    {
+      "claim": "'At fifty words of status update' (result.md's own stated word count)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The actual input is 48 words, not fifty. Minor inaccuracy inside the delivered response itself — the transcript correctly says 48 throughout, but the user-facing result.md rounds/misstates it as 'fifty.' Does not affect any of the four graded expectations, but is a factual slip in the final deliverable."
+    },
+    {
+      "claim": "E and F fire by construction for short professional text and are counted as one cluster",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 3 quotes the skill directly: 'Short professional text fires E and F by construction… count E and F as one cluster between them unless A or B also fires,' and applies that rule correctly (A, B not fired → E+F counted as 1 → 0-1 threshold row → zero interventions)."
+    },
+    {
+      "claim": "The executor caught and corrected an initial proportionality violation before delivering",
+      "type": "process",
+      "verified": false,
+      "evidence": "Transcript Step 6 claims: 'Write ×1 (then rewritten once — the first draft ran to three paragraphs...); compressed to a single paragraph.' Plausible and consistent with the final 110-word single-paragraph output, but the first draft itself was not preserved in outputs/, so this self-correction claim can't be directly verified — only its end state can."
+    },
+    {
+      "claim": "No sentence-level polishing was performed and the input file was not modified",
+      "type": "process",
+      "verified": true,
+      "evidence": "result.md never presents a rewritten version of the input; transcript states 'The input file was not modified.'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "The 'with' arm's result.md misstates the input length as 'fifty words' when it is actually 48 — a small but real factual slip that none of the four assertions would catch, since they check proportionality by word count of the output, not accuracy of word counts cited inside it. Not worth a new assertion on its own, but worth a note if this pattern recurs across evals."
+      }
+    ],
+    "overall": "All four assertions passed on genuine, well-evidenced grounds — the output is a single 110-word paragraph with no table, no corpus stats, and an unhedged 'leave it' verdict, matching every expectation. The assertions remain well-targeted; no changes needed beyond the minor factual-slip observation above."
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "expectations": [
+    {
+      "text": "The response contains a full rewritten text and a change summary, not just a list of findings",
+      "passed": true,
+      "evidence": "result.md has a full rewritten opening (5 short paragraphs plus a 3-item list, lines 5-17) followed by a 'What I changed' section that explains rationale in prose, plus a 'Two things worth your attention' section. This is a genuine change summary, not a bare findings list."
+    },
+    {
+      "text": "The change summary names at least three patterns using the skill's stable IDs in uppercase hyphenated form",
+      "passed": true,
+      "evidence": "The 'What I changed' section uses backticked stable IDs: `INFLATION`, `NO-COPULA`, `NEG-PARALLEL`, `AI-VOCAB`, `ING-ANALYSIS`, `VAGUE-ATTRIB`, `BOLD-LISTS`, `CHALLENGES-FORMULA`, `GENERIC-CLOSER`, `DIDACTIC` -- ten IDs, well over the three required."
+    },
+    {
+      "text": "The rewritten text contains no negative parallelism in any form: 'not just X, it's Y', 'more than just', 'not only X but Y', 'not X, but Y', or the inverted 'X, not Y' used to affirm by negation",
+      "passed": false,
+      "evidence": "The rewritten bullet list contains 'Setup takes minutes, not hours.' (line 13), which is exactly the inverted 'X, not Y' construction the expectation names as forbidden ('used to affirm by negation'). The body also uses 'in minutes rather than hours' (line 7), a milder version of the same comparative-negation shape. The rewrite eliminated the two negative parallelisms flagged in the source but introduced a new one of the same family."
+    },
+    {
+      "text": "The rewritten text contains no generic positive closer such as 'the road ahead is promising' or 'the future looks bright', and does not end on an equivalent vague upbeat sentence",
+      "passed": true,
+      "evidence": "The rewrite ends on 'our support engineers work through those with your team during implementation' -- a concrete operational statement, not a generic upbeat closer. Both source closers ('the road ahead is promising', 'the future looks bright') were removed and only referenced retrospectively in the change summary."
+    },
+    {
+      "text": "The vague attribution 'Industry reports indicate' is removed from the rewritten body, or replaced with a specific named source; a note after the body does not count, and replacing it with an unsourced specific-sounding claim does not count",
+      "passed": true,
+      "evidence": "The rewritten body (lines 5-17) contains no retention/industry-reports claim at all -- it was cut outright, not replaced with an invented statistic. The removal and the reason for it are discussed only afterward, in the 'Two things worth your attention' section, which is correctly outside the body rather than a workaround inside it."
+    },
+    {
+      "text": "The bold inline-header list (Speed/Clarity/Confidence) is converted to prose or a plain list with no bolded lead-in text of any kind",
+      "passed": true,
+      "evidence": "Lines 13-15 are a plain, unbolded bullet list ('- Setup takes minutes, not hours.' etc.) with no bold lead-in labels."
+    },
+    {
+      "text": "The rewritten text introduces no new AI-vocabulary words ... that were not already present, and reads as professional register rather than casual first-person",
+      "passed": true,
+      "evidence": "scan.txt shows zero single-word AI-VOCAB flags and zero multi-word flags inside the actual rewritten body (all 'B' and most 'A' flags in scan.txt trace to quoted source text inside the change-summary prose, not the body). The rewrite uses no first person, no jokes, and stays in third-person product-copy register throughout."
+    },
+    {
+      "text": "The rewritten text adds no fact, capability, number, or time reference that is not in the source",
+      "passed": false,
+      "evidence": "The rewrite invents specifics not present in the 171-word source: 'The platform also records where users stall or abandon the flow, step by step. That tells you which screen to fix' (source only said the platform 'leverages robust analytics to enhance visibility into user behavior' -- no stall-tracking or per-screen diagnosis is stated); 'A progress marker shows what's done and what's left' (the change summary itself admits this was invented: '\"Confidence\" ... became the progress marker that actually produces the feeling' -- a UI feature not described anywhere in the source); and 'our support engineers work through those with your team during implementation' (source only says 'our dedicated support team' -- 'engineers' and 'during implementation' are added specificity/time reference not present in the source)."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 2,
+    "total": 8,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "output_chars": 4700,
+    "transcript_chars": 9700
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:57:21Z"
+  },
+  "claims": [
+    {
+      "claim": "The draft scored well past the rewrite threshold: roughly nine watch-list hits per 100 words across eight distinct patterns",
+      "type": "quality",
+      "verified": true,
+      "evidence": "transcript.md Step 8 independently computes ~9/100 across 8 distinct patterns from Pass 1-2 alone, consistent with the summary's figure."
+    },
+    {
+      "claim": "The rewrite kept the point of the first negative parallelism (onboarding is the first impression) while cutting the second, which only repeated it",
+      "type": "process",
+      "verified": true,
+      "evidence": "Rewritten line 5 states 'Onboarding is where a customer forms their first real opinion of your product' and the closing paragraph of the source ('onboarding is more than just a process...') does not appear anywhere in the rewrite."
+    },
+    {
+      "claim": "The progress marker replacing 'Confidence' 'actually produces the feeling'",
+      "type": "quality",
+      "verified": false,
+      "evidence": "This is presented as a functional improvement but is an invented UI capability with no support in the source text -- it reads as a plausible-sounding addition rather than a verified fact, and directly conflicts with the 'no added capability' expectation above."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The rewritten text contains no negative parallelism in any form",
+        "reason": "The output passed on the two source instances of 'not just'/'more than just' but reintroduced the exact 'X, not Y' inverted form ('minutes, not hours') that the expectation's own text explicitly calls out as forbidden. Worth confirming this construction is checked in the automated scan tooling, since a human grader had to catch it manually -- scan.txt's forbidden-table check only looked for 'not just'/'more than just' literal strings and missed the inverted form entirely."
+      },
+      {
+        "reason": "No expectation checks whether the rewrite invents new specific claims to replace vague ones (a 'progress marker', 'support engineers', per-screen diagnostics). This is a real failure mode of humanization -- trading vague AI inflation for confident-sounding but unsupported specifics -- and the model's own change summary admits to it in this case ('\"Confidence\" ... became the progress marker'). Expectation 8 catches this but only because a grader read the change summary closely; a dedicated assertion naming this failure mode explicitly would make it easier to catch by automated means."
+      }
+    ],
+    "overall": "Six of eight pass with solid evidence. The two failures are genuine and non-trivial: a reintroduced negative-parallelism construction and several invented specifics presented as fact. Expectations are discriminating and well-targeted; scan.txt's automated forbidden-construction check has a gap (misses the inverted 'X, not Y' form) that a human grader had to close."
+  }
+}

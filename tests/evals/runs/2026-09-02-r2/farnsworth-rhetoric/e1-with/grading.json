@@ -1,0 +1,82 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+      "passed": true,
+      "evidence": "result.md opens: 'Before I touch it: this is a process instruction, and the rhetoric skill's register table says to stop there. Figures are the wrong tool for a runbook... So the figure budget here is zero, and I stayed inside it.'"
+    },
+    {
+      "text": "No rhetorical figure is added: no antithesis, anaphora, epistrophe, antimetabole, rhetorical question, deliberate triad, or added one-line emphasis sentence appears in the output",
+      "passed": true,
+      "evidence": "scan.txt reports 0 forbidden-construction violations, 0 hard violations, 0 triads (word- or phrase-level), and 0 weak anaphora runs -- the cleanest scan of the two arms."
+    },
+    {
+      "text": "If the text is edited at all, the edits are word-level substitutions such as 'undertake verification of' to 'verify' or 'perform a restart of' to 'restart'; no sentence is added, no sentence is split into two for effect, and no headings, numbered steps, bold warnings, or bullet forks are introduced (offering such a reformat without performing it is fine)",
+      "passed": false,
+      "evidence": "Paragraph 1 goes beyond word substitution: the source's two sentences are 'the on-call engineer should undertake verification of the replication lag prior to the initiation of any failover activity. Verification can be accomplished through execution of the replication status query documented in the operations wiki.' The revision reads 'run the replication status query from the operations wiki before you fail over. It gives you the replication lag.' -- this moves 'run the query' into the first sentence and invents a new terminal sentence ('It gives you the replication lag.') stating what the query returns, redistributing content across sentence boundaries rather than substituting words in place. Separately, paragraph 2's single compound sentence ('escalation...is required prior to promotion, as promotion under conditions of significant lag will result in data loss') is split into two ('escalate to the database team before you promote. Promoting under significant lag causes data loss.'). The arm's own footer states this was done deliberately for cadence: 'Saxon finishes on every paragraph: \"lag,\" \"loss,\" \"tier.\"' -- i.e., the model explicitly engineered which word each sentence lands on, which is itself a rhetorical/cadence technique (the same 'ear test' the skill uses to place emphasis), applied to a text that is supposed to receive zero rhetorical craft."
+    },
+    {
+      "text": "The output contains no em dashes, and every procedural condition (thirty-second lag threshold, escalation rule, connection-string update, restart) is preserved with the same logic",
+      "passed": true,
+      "evidence": "scan.txt: 'em dashes: 0 total, max 0 per paragraph'. All four conditions preserved: under-thirty -> promote; over-thirty -> escalate before promoting; update connection string in configuration service; restart application tier."
+    },
+    {
+      "text": "The source leaves 'exactly thirty seconds' undefined ('less than' promotes, 'exceeds' escalates); the response either preserves that gap unchanged or flags it for the author, and does not silently resolve it into 'under 30' / '30 or more'",
+      "passed": true,
+      "evidence": "result.md footer: 'The original leaves a gap at exactly thirty seconds (\"less than\" / \"exceeds\"). I preserved the gap with \"under\" / \"over\" rather than closing it silently. If you want the boundary defined, pick a side.'"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "note": "No metrics.json present for this arm (only present for e1-prev); tool-call and character counts are not available."
+  },
+  "timing": {
+    "note": "timing.json contains only executor_start (2026-09-02T18:57:21Z); no end timestamp or duration fields are present to compute executor/total duration."
+  },
+  "claims": [
+    {
+      "claim": "The original runbook text is 120 words ('Budget: 120 words') and the revision is 78 words ('Word count 120 -> 78')",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Direct word count of inputs/runbook.txt is exactly 120 words. The revised text between the rule markers is 76 body words; adding the 2-word heading gives 78, matching the claim exactly."
+    },
+    {
+      "claim": "'Saxon finishes on every paragraph' was applied as free diction work, not a figure",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Choosing sentence boundaries so each paragraph ends on a specific stressed monosyllable ('lag,' 'loss,' 'tier') is the same cadence-engineering technique the skill uses elsewhere to create rhetorical emphasis (the 'ear test'). Framing it as free diction work is questionable when the register calls for zero figures and the paragraph-2 sentence had to be split to achieve that ending -- this is the same evidence underlying the expectation-3 fail above."
+    },
+    {
+      "claim": "Escalation gate preserved: escalate before promoting, not instead of promoting",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Text reads 'escalate to the database team before you promote,' preserving that escalation is a precondition to promotion, not a substitute for it, matching the source's 'is required prior to promotion.'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": [],
+    "note": "No user_notes.md file exists for this arm, so no executor-flagged uncertainties are available (unlike e1-prev, which has one)."
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "If the text is edited at all, the edits are word-level substitutions...no sentence is split into two for effect",
+        "reason": "This arm's footer explicitly admits to engineering sentence-final word choice ('Saxon finishes on every paragraph') to land paragraphs on a stressed monosyllable. That is a rhetorical technique in substance even though the skill's own figure-scanner doesn't have a named category for it (it isn't antithesis/anaphora/etc.). Consider adding an explicit check for cadence/stress engineering (e.g. flag when a change-note itself describes ear-test or Saxon-finish work) for process-register outputs, since the current figure list won't catch it."
+      },
+      {
+        "reason": "The paragraph-1 restructuring (moving 'run the query' earlier and inventing a new closing sentence 'It gives you the replication lag.') is a clear case where content was redistributed across sentence boundaries rather than substituted word-for-word. This is exactly the kind of drift the expectation is meant to catch, and it did catch it here -- this is a discriminating assertion, not a weak one."
+      },
+      {
+        "reason": "The e1-prev arm shows the same paragraph-2 sentence-split pattern, so this particular defect may be a pre-existing property of the skill rather than something introduced or fixed by the patch -- worth confirming with the eval author whether the patch was expected to change this behavior."
+      }
+    ],
+    "overall": "4 of 5 expectations pass. The one fail (word-level-substitution-only) is well-supported: paragraph 1 was restructured (not just re-worded) and the footer itself describes deliberate sentence-ending cadence engineering, which functions as a rhetorical technique in a text where the register mandates zero figures."
+  }
+}

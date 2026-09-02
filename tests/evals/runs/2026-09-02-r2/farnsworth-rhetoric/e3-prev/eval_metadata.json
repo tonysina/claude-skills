@@ -1,0 +1,16 @@
+{
+  "eval_id": 3,
+  "name": "tagline-options",
+  "arm": "prev",
+  "prompt": "Sharpen this tagline.",
+  "expectations": [
+    "The response presents between three and five distinct options",
+    "Every option names the rhetorical figure it uses (or states 'no figure, diction only')",
+    "No option uses a negative parallelism ('not just X, it's Y', 'more than just', 'not only X but Y'); a plain antithesis with both poles real ('X, not Y') is allowed only if both poles are claims the input supports",
+    "Every option is shorter than the input tagline (fewer words)",
+    "No option adds a claim absent from the input: no social-proof superlative ('leading', 'the only', 'number one', 'trusted by', a customer count), no characterization of the alternative or status quo the input does not make, and no mechanism turned into a guaranteed outcome",
+    "Any candidate treatment the response's own claim check finds to add a claim is withdrawn, not presented as an option with a caveat",
+    "The response recommends one option and gives a reason"
+  ],
+  "executor_model": "opus-5"
+}

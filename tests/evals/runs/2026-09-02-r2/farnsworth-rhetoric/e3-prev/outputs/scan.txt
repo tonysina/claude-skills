@@ -1,0 +1,35 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 601   figure budget: 4   (>600 words: 1 per 150, cap 6)
+
+  [CONSTRUCTIONS] forbidden-table violations: 0
+        none
+
+  [A] humanizer multi-word flags: 0 distinct
+        none
+
+  [B] humanizer single-word flags (needs context): 0 distinct
+        none
+
+  em dashes: 18 total, max 7 per paragraph
+        FLAG humanizer EM-DASH (3+ in proximity)
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 1 word-level, 0 phrase-level
+        visualization, governance, alignment
+        -> run isocolon load-bearing test on each
+
+  density: 0 flag hits / 601 words = 0.0 per 100   distinct patterns: 1 ['EM-DASH']
+
+  HARD VIOLATIONS: 1
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     601   4     0   0   0    7   0/0   1   0.0   1     1

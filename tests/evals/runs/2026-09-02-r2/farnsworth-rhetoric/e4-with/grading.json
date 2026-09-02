@@ -1,0 +1,93 @@
+{
+  "expectations": [
+    {
+      "text": "The response applies at most three rhetorical figures and names each one with the trigger condition that licensed it",
+      "passed": true,
+      "evidence": "Change note lists exactly one applied figure: 'Applied: antithesis at the ask (paragraph 6): \"This is a request to plan, not a request to build.\" Trigger: both poles are real. The memo asks for one and explicitly defers the other to the decision gate. Swap test: reversed, the sentence is false in context, so the contrast is real.' The 'Left alone' section shows hypophora, anaphora, antimetabole, and isocolon were considered and explicitly rejected with reasons. scan.txt confirms 0 forbidden constructions and 0 triads."
+    },
+    {
+      "text": "The response reports a claim check hedge by hedge, covering at least 'potentially', 'more difficult to quantify with precision', 'has not been fully assessed', 'financial modelling indicates', and 'should not be interpreted as a recommendation', and each hedge it reports as kept is actually present in the output",
+      "passed": false,
+      "evidence": "The claim check section lists 'Hedges preserved: \"roughly $2.1M,\" \"harder to quantify with precision, but could include,\" \"early indications suggest,\" \"not yet fully assessed,\" \"has signalled it is willing,\" \"would\" on the month-26 payback.' This covers 'potentially' (via 'could include') and 'more difficult to quantify with precision' and 'has not been fully assessed', but never mentions 'financial modelling indicates' or 'should not be interpreted as a recommendation' anywhere in the claim check. Both hedges are in fact preserved in the rewritten body ('Financial modelling indicates that licensing savings...' in paragraph 3, verbatim; 'That is not a recommendation.' in paragraph 7, reworded from the source's 'This should not be interpreted as a recommendation'), but the reporting requirement is not met -- the response does not report on these two hedges hedge-by-hedge as the expectation requires."
+    },
+    {
+      "text": "Every number in the source survives unchanged: four platforms, 2021 to 2024, $2.1M, eighteen months, three teams, month twenty-six, two of four platforms undocumented, two viable targets",
+      "passed": true,
+      "evidence": "Body text: 'four separate customer data platforms', 'acquisitions made between 2021 and 2024', 'roughly $2.1M a year', 'over eighteen months', 'dedicated engineers from three separate teams', 'offset the implementation cost by month twenty-six', 'two of the four platforms are not fully documented', 'two of the four platforms would be technically viable as consolidation targets'. All eight figures present unchanged."
+    },
+    {
+      "text": "The ask ('Leadership approval is requested to proceed with a detailed planning phase, with a decision gate...') is preserved in substance",
+      "passed": true,
+      "evidence": "'We are asking leadership to approve a detailed planning phase, with a decision gate at the end of that phase before any engineering investment is committed. This is a request to plan, not a request to build.' Same request, same gate, same sequencing as the source; the appended antithesis restates rather than changes the ask."
+    },
+    {
+      "text": "The output adds no claim or commitment absent from the source, such as what the planning phase will resolve or who will own it",
+      "passed": true,
+      "evidence": "The claim check flags its own borderline restructuring: source's 'operational inefficiencies, including [X]' became 'costs us at least two things: [A] and [B]' -- the executor notes 'I wrote \"at least two things,\" which keeps that door open without inventing a third,' and separately confirms 'This is a request to plan, not a request to build... adds no new commitment.' Manual comparison of both texts confirms no new deliverable, mechanism, or ownership claim was introduced."
+    },
+    {
+      "text": "The output contains no negative parallelism and no generic positive closer ('the future is bright', 'poised for growth', 'we will lead')",
+      "passed": true,
+      "evidence": "The applied antithesis, 'a request to plan, not a request to build,' is the 'X, not Y' form with both poles real (both are claims the source supports), which the skill's own SKILL.md explicitly distinguishes from negative parallelism ('It's not just X, it's Y' asserts one pole and negates a claim nobody made). scan.txt reports 0 forbidden-table violations. The final paragraph closes on a scheduling caveat ('Any schedule will therefore have to go through account management first'), not a generic uplift closer."
+    },
+    {
+      "text": "The rewritten prose contains at most one anaphora run and no more than two em dashes in any paragraph (the change-note block is exempt)",
+      "passed": true,
+      "evidence": "scan.txt: 'anaphora: 0 strong run(s) (>=3), 1 weak (2)' (the weak pair is 'two of...', below the run threshold) and 'em dashes: 0 total, max 0 per paragraph' -- both within the stated limits."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 1,
+    "total": 7,
+    "pass_rate": 0.857
+  },
+  "execution_metrics": {
+    "output_chars": 6128,
+    "transcript_chars": null,
+    "note": "No transcript.md or metrics.json present for this arm; result.md and scan.txt were the only inspectable outputs."
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only 'executor_start' (2026-09-02T18:57:21Z); no duration fields to report."
+  },
+  "claims": [
+    {
+      "claim": "The rewrite is 401 words, giving a figure budget of 3 (length-based), halved to 1 for executive-summary register",
+      "type": "factual",
+      "verified": true,
+      "evidence": "inputs/exec-summary.txt is confirmed 401 words by word count (the rewrite itself is 951 words per scan.txt, but the budget arithmetic is stated as based on the source's 401 words, consistent with the prev arm's identical calculation). The single applied figure (antithesis) is consistent with that math."
+    },
+    {
+      "claim": "'Seven of eight [paragraphs] end on a stressed monosyllable and fit in one breath. Paragraph 1 ends on \"units\" (see above).'",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Checking all eight paragraph endings: units, moves, downstream, size, once, build, mature, first. The claim self-flags only paragraph 1 ('units', disyllabic) as the exception, but paragraph 3 ends on 'downstream' and paragraph 7 ends on 'mature' -- both disyllabic, not monosyllabic. The actual count is 5 of 8 (moves, size, once, build, first), not 7 of 8. The self-verification is overstated in a way that would not survive an independent check."
+    },
+    {
+      "claim": "Both 'financial modelling indicates' and 'should not be interpreted as a recommendation' hedges are preserved (implied by the claim check's overall 'unchanged in substance' framing, even though not itemized)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Both phrases do survive in the body: 'Financial modelling indicates that licensing savings would offset the implementation cost by month twenty-six' (verbatim) and 'That is not a recommendation' (reworded but equivalent). So the underlying substance is fine -- only the explicit claim-check reporting of these two hedges is missing, which is why expectation 2 fails on a reporting-completeness basis rather than a substance basis."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response reports a claim check hedge by hedge, covering at least 'potentially', 'more difficult to quantify with precision', 'has not been fully assessed', 'financial modelling indicates', and 'should not be interpreted as a recommendation', and each hedge it reports as kept is actually present in the output",
+        "reason": "This assertion is discriminating and caught a real difference between the two arms: the prev arm's claim check itemizes all five hedges explicitly, while the with arm's claim check consolidates them and drops two entirely from the written report, even though both survive in the actual body text. This is exactly the kind of assertion that separates genuine hedge-by-hedge diligence from a shorter summary that happens to preserve the substance anyway -- worth keeping as-is."
+      },
+      {
+        "reason": "As with the prev arm, no assertion checks the accuracy of the self-reported 'ear test' craft claim. Here the executor makes a specific, falsifiable quantitative claim ('seven of eight') that is measurably wrong (it's five of eight), which currently goes uncaught by any expectation."
+      }
+    ],
+    "overall": "Six of seven expectations pass on genuine substance. The one failure (hedge-by-hedge claim-check reporting) is a real and meaningful gap, not a technicality: the hedges themselves survived in the prose, but the response did not do the diligence of reporting on two of the five required hedges, which is precisely the discipline this assertion is designed to enforce."
+  }
+}

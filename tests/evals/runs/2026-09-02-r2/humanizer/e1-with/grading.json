@@ -1,0 +1,91 @@
+{
+  "expectations": [
+    {
+      "text": "The response contains a full rewritten text and a change summary, not just a list of findings",
+      "passed": false,
+      "evidence": "result.md contains the rewritten opening (lines 1-11) but no change summary of what was fixed. The 'Two things worth your attention before this ships' section (lines 15-19) only surfaces two unresolved items (an unsourced retention claim and a cut paragraph) -- it does not summarize the rewrite's changes (e.g. the INFLATION cuts, the CHALLENGES-FORMULA rewrite, the bold-list conversion are never mentioned). transcript.md Step 10 confirms this was deliberate: 'The \"Edit with constraints\" use case says a change summary comes on request, and none was requested, so I did not enumerate the patterns fixed.'"
+    },
+    {
+      "text": "The change summary names at least three patterns using the skill's stable IDs in uppercase hyphenated form",
+      "passed": false,
+      "evidence": "result.md contains zero pattern IDs anywhere, in any form -- not uppercase-hyphenated, not descriptive. No `INFLATION`, `AI-VOCAB`, `BOLD-LISTS`, `CHALLENGES-FORMULA`, `NO-COPULA`, etc. appear. transcript.md confirms this was intentional per the executor's reading of the skill's 'Edit with constraints' use case (summary only 'on request')."
+    },
+    {
+      "text": "The rewritten text contains no negative parallelism in any form",
+      "passed": true,
+      "evidence": "The rewritten body (lines 1-11) contains no 'not just', 'more than just', 'not only...but', 'not X but Y', or inverted 'X, not Y' constructions. 'Setup takes minutes instead of hours' (line 7) uses 'instead of', not a negation-based construction. The only occurrence of 'more than just' in the file is inside the explanatory note (line 19), quoting the deleted source sentence verbatim as a citation of what was removed -- not part of the rewritten text itself."
+    },
+    {
+      "text": "The rewritten text contains no generic positive closer",
+      "passed": true,
+      "evidence": "The rewrite ends on 'our support team handles those integrations directly rather than pointing you at documentation' (line 11) -- a concrete operational statement, not an upbeat generic closer. No 'road ahead is promising' or equivalent appears in the body."
+    },
+    {
+      "text": "The vague attribution 'Industry reports indicate' is removed from the rewritten body, or replaced with a specific named source; a note after the body does not count, and replacing it with an unsourced specific-sounding claim does not count",
+      "passed": false,
+      "evidence": "Line 3 reads: 'Companies with faster onboarding retain more customers [needs a source: the draft credited \"industry reports\" without naming one].' The underlying unsourced claim ('companies ... retain more customers') is still asserted in the body as if factual -- it was not removed, and no specific named source was substituted. Flagging it with a bracketed inline marker does not satisfy the expectation's explicit carve-out that a note does not count; here the unsourced claim and the note are fused into the same body sentence, which is the same failure mode the expectation is guarding against."
+    },
+    {
+      "text": "The bold inline-header list (Speed/Clarity/Confidence) is converted to prose or a plain list with no bolded lead-in text of any kind",
+      "passed": true,
+      "evidence": "Lines 7-9 are a plain bullet list with no bold headers: '- Setup takes minutes instead of hours.' etc."
+    },
+    {
+      "text": "The rewritten text introduces no new AI-vocabulary words ... and reads as professional register rather than casual first-person",
+      "passed": true,
+      "evidence": "scan.txt shows 0 single-word AI-VOCAB flags in the whole file. No delve/robust/leverage/seamless/tapestry/landscape appear in the rewritten body. Register is third-person and professional throughout ('Our platform is built for that first session...')."
+    },
+    {
+      "text": "The rewritten text adds no fact, capability, number, or time reference that is not in the source",
+      "passed": false,
+      "evidence": "The rewrite adds 'a setup flow people can finish without a training call' (line 1) and 'our support team handles those integrations directly rather than pointing you at documentation' (line 11) -- both introduce a specific unstated comparison/capability (an implied alternative of a 'training call' or 'documentation') that has no basis in the 171-word source, which only vaguely mentions 'intuitive design' and 'dedicated support team'."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 4,
+    "total": 8,
+    "pass_rate": 0.5
+  },
+  "execution_metrics": {
+    "output_chars": 1400,
+    "transcript_chars": 9900
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:57:21Z"
+  },
+  "claims": [
+    {
+      "claim": "No change summary was requested, so per the skill's 'Edit with constraints' use case, none was needed",
+      "type": "process",
+      "verified": true,
+      "evidence": "The current SKILL.md (skills/humanizer/SKILL.md) states under 'Edit constraints': 'Include change summary on request,' and adds a disambiguation clause not present in the prev version: 'When \"humanize\" constraint arrive together, use case wins' (i.e. Edit-with-constraints wins over Full-rewrite). This is an accurate reading of the patched skill, and it is a real, intentional behavior change from the pre-patch skill."
+    },
+    {
+      "claim": "The retention claim is flagged rather than fabricated or silently deleted, per the skill's VAGUE-ATTRIB guidance",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 8 cites the skill's VAGUE-ATTRIB instruction offering 'delete, or leave in the body with an inline marker' as the two sanctioned options, and the executor chose the marker deliberately rather than inventing a source."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "This is the most important finding from this eval: the patch that added the disambiguation clause to SKILL.md ('When \"humanize\" and a constraint arrive together, this use case wins' -- routing to Edit-with-constraints) appears to have caused a real regression for exactly this eval's prompt shape ('Humanize this ... Keep it professional'). The pre-patch skill lacked that clause, so the pre-patch executor treated the same prompt as governed by Full-rewrite's always-include-summary rule and passed expectations 1 and 2; the patched skill now explicitly withholds the change summary for this same prompt and fails both. If a user says 'humanize this' with even a mild tone constraint, they likely still want to know what changed -- the patch may have swung too far toward literal-constraint compliance at the cost of a behavior most users of this skill actually want. Worth revisiting the disambiguation rule, or at minimum reconsidering whether 'keep it professional' (a tone constraint, not a structural one) should really suppress the summary."
+      },
+      {
+        "assertion": "The vague attribution 'Industry reports indicate' is removed from the rewritten body, or replaced with a specific named source",
+        "reason": "This expectation is well-designed and caught a real, skill-endorsed failure mode: the current SKILL.md's own VAGUE-ATTRIB guidance sanctions leaving an unsourced claim in the body with an inline bracketed marker as an acceptable alternative to deletion, but the eval expectation explicitly treats that as a failure. This is a genuine conflict between the skill's documented behavior and what this eval considers correct output -- worth resolving one way or the other (either the skill's inline-marker escape hatch should be removed/narrowed, or the eval should carve out an exception for a highly visible marker attached directly to the sentence rather than a generic trailing note)."
+      },
+      {
+        "reason": "As with the 'prev' arm, the rewrite invents small plausible-sounding specifics ('training call', 'documentation') to replace vague source language. No assertion targets this pattern by name; expectation 8 catches it only incidentally. Both arms exhibit the same failure mode, suggesting it is systemic to how this skill handles INFLATION/AI-VOCAB removal (replacing vague praise with invented concrete detail) rather than an isolated slip in one run."
+      }
+    ],
+    "overall": "Four of eight pass. Two of the four failures (missing change summary, missing pattern IDs) trace directly to a specific SKILL.md patch that changed use-case routing for this exact prompt shape -- this looks like a real behavioral regression worth flagging to the skill author, not just an eval quirk. The vague-attribution failure exposes a genuine conflict between the skill's own guidance and the eval's expectation that should be reconciled."
+  }
+}

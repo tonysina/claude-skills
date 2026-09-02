@@ -1,0 +1,101 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+      "passed": true,
+      "evidence": "result.md opens: 'A failover procedure is process text. The register table in this skill stops at process text: no rhetorical figures, diction work only.'"
+    },
+    {
+      "text": "No rhetorical figure is added: no antithesis, anaphora, epistrophe, antimetabole, rhetorical question, deliberate triad, or added one-line emphasis sentence appears in the output",
+      "passed": true,
+      "evidence": "scan.txt reports 0 forbidden-construction violations and 0 hard violations. Two borderline signals, neither rising to a fail: (1) scan.txt flags one word-level triad, 'claim, threshold, and sequence' -- but this occurs only in the footer change-note ('Every claim, threshold, and sequence is unchanged'), not in the delivered runbook text itself. (2) scan.txt flags 'weak' anaphora (2x) on 'if the...' -- this mirrors the two-branch conditional already present in the source input (under-thirty / over-thirty), not an added figure."
+    },
+    {
+      "text": "If the text is edited at all, the edits are word-level substitutions such as 'undertake verification of' to 'verify' or 'perform a restart of' to 'restart'; no sentence is added, no sentence is split into two for effect, and no headings, numbered steps, bold warnings, or bullet forks are introduced (offering such a reformat without performing it is fine)",
+      "passed": true,
+      "evidence": "Comparing to inputs/runbook.txt: paragraph 1 maps sentence-for-sentence with pure diction swaps ('should undertake verification of the replication lag prior to the initiation of any failover activity' -> 'check the replication lag before you fail over'; 'Verification can be accomplished through execution of...' -> 'Run the replication status query from...'). Existing heading ('## Failover procedure') preserved, not newly introduced; no bullets/bold/numbered list added (both are offered only as out-of-scope suggestions at the end, not performed). One borderline point: the source's single compound sentence ('escalation to the database team is required prior to promotion, as promotion under conditions of significant lag will result in data loss') is split into two plain sentences ('escalate to the database team before you promote. Promoting with significant lag will lose data.'). This is a structural change beyond pure word substitution, but the result reads as flat, unadorned prose rather than dramatized emphasis, and no new content or forbidden formatting was introduced, so it does not tip this expectation to a fail."
+    },
+    {
+      "text": "The output contains no em dashes, and every procedural condition (thirty-second lag threshold, escalation rule, connection-string update, restart) is preserved with the same logic",
+      "passed": true,
+      "evidence": "scan.txt: 'em dashes: 0 total, max 0 per paragraph'. All four conditions present with unchanged logic: under-thirty -> promote; over-thirty -> escalate before promoting; update connection string in configuration service; restart application tier."
+    },
+    {
+      "text": "The source leaves 'exactly thirty seconds' undefined ('less than' promotes, 'exceeds' escalates); the response either preserves that gap unchanged or flags it for the author, and does not silently resolve it into 'under 30' / '30 or more'",
+      "passed": true,
+      "evidence": "result.md footer: 'The original also leaves exactly thirty seconds undefined (less than / exceeds); I preserved that gap rather than closing it, but the author should pick a side.' Also restated in user_notes.md under Uncertainty."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 3,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 4,
+    "total_steps": 10,
+    "errors_encountered": 0,
+    "output_chars": 15334,
+    "transcript_chars": 7456
+  },
+  "timing": {
+    "note": "timing.json contains only executor_start (2026-09-02T18:57:21Z); no end timestamp or duration fields are present to compute executor/total duration."
+  },
+  "claims": [
+    {
+      "claim": "The original runbook text is 131 words (stated in the footer's 'Budget: 131 words' line and the transcript's 'Word count dropped from 131 to 77')",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Direct word count of inputs/runbook.txt is 120 words (118 in the body, plus the 2-word heading), not 131 -- an 11-word overcount. The final revised-text claim ('77 words') is accurate (75 body words + 2 heading words = 77), so only the original-length count is wrong."
+    },
+    {
+      "claim": "Two modality shifts ('should undertake verification' / 'promotion may proceed' -> imperatives) are a small but real change from the original's hedged mood",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Original uses 'should' and 'may'; revision uses imperative 'check' and 'promote'. Correctly flagged in both the footer claim check and user_notes.md."
+    },
+    {
+      "claim": "Paragraph one ends on 'operations wiki', which fails the Saxon-finish/ear-test convention, and was left that way deliberately",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Paragraph 1 does end on '...from the operations wiki', a non-stressed polysyllabic ending; user_notes.md explicitly names this as a known deviation with a stated rationale (the reference pointer needs to stay last for the reader)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Exactly-thirty-seconds boundary left undefined by the source; preserved rather than resolved.",
+      "'Should'/'may' softened to imperative mood ('check', 'promote') -- standard runbook register but a real modality shift.",
+      "'Significant lag' kept as an unquantified term rather than replaced with a number."
+    ],
+    "needs_review": [
+      "Paragraph 1 ends on 'operations wiki', failing the Saxon-finish/ear-test check; kept deliberately because the pointer needs to be last.",
+      "The prompt ('make this land') is a strengthen trigger, but the register table forced zero figures; flagged in case the eval expected visible figure application."
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "No rhetorical figure is added: no antithesis, anaphora, epistrophe, antimetabole, rhetorical question, deliberate triad, or added one-line emphasis sentence appears in the output",
+        "reason": "scan.txt's word-level triad flag ('claim, threshold, and sequence') lands in the footer change-note, not in the delivered runbook text. The expectation doesn't say whether meta-commentary/footer text counts as part of 'the output' for figure-detection purposes -- worth clarifying scope so future grading is consistent."
+      },
+      {
+        "assertion": "If the text is edited at all, the edits are word-level substitutions...no sentence is split into two for effect",
+        "reason": "The revision splits the source's single Latinate compound sentence (escalation clause + 'as...will result in data loss' reason clause) into two plain sentences. A strictly word-substituting alternative that keeps one sentence was available (e.g. swapping 'as' for 'because' in place). The assertion's 'for effect' qualifier is doing a lot of work here and is genuinely ambiguous between 'legitimate clarity split of a run-on Latinate sentence' and 'rhetorical restructuring' -- worth tightening with a concrete example of what counts as an allowed split versus a disallowed one."
+      },
+      {
+        "reason": "Good catch: the skill's own footer states the original was 131 words, but the actual input file is 120 words -- an 11-word factual error in the model's own bookkeeping. No assertion currently checks the numeric claims the skill makes about itself (word counts, budgets), so a miscounted 'Budget' line would go undetected even though it happens to not change the outcome here (register still forces zero figures either way)."
+      }
+    ],
+    "overall": "4 of 5 expectations pass cleanly; the 5th (no sentence split) is a genuine judgment call that I resolved to pass because the output reads as plain prose rather than dramatized craft. One real factual error was found outside the predefined expectations: the skill misstated the original word count (131 vs. actual 120), which no current assertion would catch."
+  }
+}

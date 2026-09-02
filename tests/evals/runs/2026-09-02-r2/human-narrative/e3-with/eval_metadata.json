@@ -1,0 +1,17 @@
+{
+  "eval_id": 3,
+  "name": "personal-essay-long-form",
+  "arm": "with",
+  "prompt": "Why does this essay still feel AI-written even after I edited it for style? Fix it at the structure level.",
+  "expectations": [
+    "The response scores the piece cluster by cluster and reports at least three clusters as fired, naming the gate feature for each",
+    "The response applies at most three interventions, counting every structural change actually made whether or not it is labeled, and names the cluster each one belongs to",
+    "The closing paragraph's stated lesson ('What I learned is that saying no is rarely a confrontation...') is removed or substantially reduced, and the point remains inferable from the scene",
+    "If the response reports cluster B as fired, at least one embodied-emotion metaphor ('my stomach dropped', 'my chest tightened', 'heat rise up my neck') is replaced with a plain emotion label or a behavior; if B is reported as not fired, the metaphors are left alone and the response says why",
+    "The resolution is made partial, external, or left with one unresolved thread, and the resulting text is still coherent; 'everything at work got easier, and I have never gone back' does not survive unchanged",
+    "The output contains no signposting phrase such as 'you might be wondering' or 'here's what you need to know', and no forward-reference announcement to the reader",
+    "The rewrite invents no biographical fact: no new event, person, job detail, number, or characterization of Dana or the narrator that the input does not contain; any change the response describes as 'same facts' is checked against the input",
+    "If an intervention is blocked by a guardrail, the response says so and states whether the next intervention in order took its slot"
+  ],
+  "executor_model": "opus-5"
+}

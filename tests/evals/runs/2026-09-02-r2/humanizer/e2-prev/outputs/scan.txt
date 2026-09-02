@@ -1,0 +1,35 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 446   figure budget: 3   (300-600 words: 3)
+
+  [CONSTRUCTIONS] forbidden-table violations: 0
+        none
+
+  [A] humanizer multi-word flags: 1 distinct
+        x1  "boasts a"  [INFLATION]
+
+  [B] humanizer single-word flags (needs context): 2 distinct
+        x3  boasts  [AI-VOCAB]
+        x1  vibrant  [INFLATION]
+
+  em dashes: 0 total, max 0 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 0 word-level, 1 phrase-level
+        no false ranges, no challenges-and-prospects formula, no didactic disc
+        -> run isocolon load-bearing test on each
+
+  density: 5 flag hits / 446 words = 1.1 per 100   distinct patterns: 2 ['AI-VOCAB', 'INFLATION']
+
+  HARD VIOLATIONS: 0
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     446   3     0   1   4    0   0/0   1   1.1   2     0

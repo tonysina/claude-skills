@@ -1,0 +1,92 @@
+{
+  "expectations": [
+    {
+      "text": "'in order to', 'the fact that', 'very', and 'there is a' all survive verbatim in any returned text; none is cut, contracted, or replaced for any stated reason, unless the response explicitly identifies them as human markers and then keeps them",
+      "passed": true,
+      "evidence": "The quoted paragraph in result.md (line 3) is byte-identical to inputs/human-signs.txt (verified with diff, no differences). All four phrases survive intact, and the closing paragraph explicitly names them as human markers before instructing 'Leave them.'"
+    },
+    {
+      "text": "The response reports that the text has few or no AI patterns and returns it unchanged or with minor edits (a 'light pass' that rewords two or more sentences fails)",
+      "passed": true,
+      "evidence": "result.md opens: 'Your paragraph is clean. I'm returning it unchanged.' and reports 'Zero word-list hits in about 100 words, so density is 0 per 100 and spread is 0 patterns, well inside the human range.' The paragraph is quoted verbatim with no sentences reworded."
+    },
+    {
+      "text": "The plain verbs 'tried', 'moved', and 'used' are not replaced with 'attempted', 'relocated', or 'utilized'",
+      "passed": true,
+      "evidence": "The returned paragraph retains 'tried' (twice), 'moved', and 'used' verbatim. The response even calls out 'utilized' as an example of what NOT to change them to: 'If a later pass \"tightens\" those into ... \"authored,\" or \"utilized,\" the paragraph will read more like AI, not less.'"
+    },
+    {
+      "text": "The response adds no words, hedges (such as 'mostly'), or punctuation to the paragraph that were not in the original, whatever the stated reason",
+      "passed": true,
+      "evidence": "diff between inputs/human-signs.txt and the quoted paragraph in result.md (line 3) shows zero differences."
+    },
+    {
+      "text": "The response tells the user that these plain constructions are markers of human writing and that editing them would move the text toward AI, not away",
+      "passed": true,
+      "evidence": "result.md states: 'the paragraph is full of constructions that are more common in human writing than in AI output. \"In order to,\" \"the fact that,\" \"very careful,\" \"was the first,\" \"There is a,\" and the plain verbs \"wrote,\" \"moved,\" \"used,\" \"tried.\" If a later pass \"tightens\" those into ... the paragraph will read more like AI, not less. Leave them.'"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 6,
+    "total_steps": 9,
+    "errors_encountered": 0,
+    "output_chars": 3340,
+    "transcript_chars": 6419
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only an executor_start timestamp, no duration data."
+  },
+  "claims": [
+    {
+      "claim": "The paragraph scored 0 word-list hits per 100 words across 0 patterns",
+      "type": "factual",
+      "verified": true,
+      "evidence": "scan.txt confirms: 'density: 0 flag hits / 305 words = 0.0 per 100 distinct patterns: 0', 'HARD VIOLATIONS: 0', forbidden-table and A/B flag counts all 0."
+    },
+    {
+      "claim": "The final three-clause sentence was evaluated under RULE-OF-3's load-bearing test and judged narrative sequence rather than a decorative triad",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 4: 'Applied the load-bearing test: each clause carries a distinct fact; cutting any one loses information. Load-bearing, keep.' The executor's own user_notes.md flags this as a judgment call a stricter reader might contest, which is an appropriately honest self-assessment."
+    },
+    {
+      "claim": "Avoided em dashes in the executor's own prose per the skill's house style",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Visual inspection of result.md confirms no em dashes appear anywhere in the response text (transcript Step 8 explicitly states this was a deliberate choice)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Whether returning the paragraph unchanged conflicts with a prompt phrased as a full-rewrite request; the executor treated the 'Full rewrite' use case's clean-scan branch as controlling.",
+      "Whether the three-clause final sentence should be classified as a triad or narrative sequence."
+    ],
+    "needs_review": [
+      "Whether the third paragraph of the response (the human-signs warning) is welcome detail or over-explaining for a user who asked a one-line task."
+    ],
+    "workarounds": [
+      "None; the skill's instructions covered this case directly."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "No suggestions beyond what was already raised in the prev-arm grading. All five expectations are discriminating and were met through genuine task completion (verbatim preservation, correct human-signs framing, no over-editing), not superficial compliance."
+  }
+}
