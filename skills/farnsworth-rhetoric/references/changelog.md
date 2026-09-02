@@ -125,11 +125,24 @@ out of sync with the skill it is reconciling against.
   positive (`here is a` matching inside "There is also"). Without the control, the run
   would have reported a confident false pass. Always score the control first.
 
+### Evaluated
+
+Clean-context eval, 2026-09-02, four cases, `with` / `without` / `old` arms, one run per
+configuration (`tests/evals/runs/2026-09-02/REPORT.md`). With-skill pass rate 0.95 (17 of
+18 expectations) against 0.47 with no skill. The fresh executor applied the runbook hard
+stop and did diction only, returned the already-good paragraph unchanged with the budget
+stated, kept every hedge in the executive summary and reported the claim check hedge by
+hedge, and flagged rather than resolved the fixture's undefined thirty-second boundary.
+The v1.0.0 arm on the runbook added a one-word emphasis sentence, which is the dosage
+failure this version exists to prevent. The one failure: the tagline run offered an
+antithesis treatment its own claim check had found to add a characterization; the skill
+runs the check but does not say a failing treatment is withdrawn. Candidate patch recorded
+in the report.
+
 ### Untested
 
-- **Executor bias.** The smoke test was authored and executed in the same context as the
-  skill, so it shows that these outputs comply — not that the skill teaches a fresh agent
-  to comply. Needs `skill-builder` eval-mode with a clean-context executor subagent.
+- **Executor bias on the smoke tests.** `tests/cases/` was authored and executed in the
+  same context as the skill; only the eval above is clean-context.
 - **The `>600` word budget tier is unexercised** (1 figure per 150 words, cap 6). It is
   the only tier expressed as a rate rather than a flat cap, so it is the most likely of
   the three to be miscalibrated.

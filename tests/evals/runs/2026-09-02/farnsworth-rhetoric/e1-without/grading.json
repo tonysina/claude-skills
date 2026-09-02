@@ -1,0 +1,107 @@
+{
+  "arm": "without",
+  "eval_id": 1,
+  "name": "runbook-hard-stop",
+  "expectations": [
+    {
+      "text": "The response identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+      "passed": false,
+      "evidence": "result.md never names the register and never mentions rhetoric or figures. It opens \"Here is the section rewritten so someone can follow it at 3 a.m. without reading a paragraph\" and explains layout choices (warning leads, numbered steps, visible fork, imperatives). The only related statement is in the transcript, not the user-facing response: \"make it scannable and actionable under incident pressure, rather than make it persuasive or eloquent\", which is a goal statement, not a register identification or a statement that figures are inappropriate."
+    },
+    {
+      "text": "No rhetorical figure is added: no antithesis, anaphora, epistrophe, antimetabole, rhetorical question, or deliberate triad appears in the output",
+      "passed": true,
+      "evidence": "scan.txt on result.md: em dashes 0, anaphora 0 strong runs (3 weak two-item echoes in the explanatory bullets: \"add the...\", \"it is...\"), triads 0 word-level / 0 phrase-level, HARD VIOLATIONS 0. The rewritten section is a bold warning, a \"Use this when\" line, and five numbered imperative steps with a two-branch bullet. No contrast pair, no question, no reversal, no three-part construction. The data-loss warning is stated twice (top and in the escalate branch) but repetition of a warning is not one of the listed figures."
+    },
+    {
+      "text": "If the text is edited at all, the edits are limited to diction, such as turning 'undertake verification of' into 'verify' or 'perform a restart of' into 'restart'",
+      "passed": false,
+      "evidence": "The rewrite restructures the section wholesale: a bolded warning moved to the top (\"**Do not promote the standby until you have checked replication lag...**\"), a new \"**Use this when:**\" label, five numbered steps with bold lead-ins, and a two-bullet decision fork. New content was added that is not in the source: \"to point at the new primary\", \"do not promote until they say to\", \"continue to step 3\". The executor describes these as deliberate (\"Numbered steps instead of prose\", \"The warning leads\", \"The decision is a visible fork\"). Per the grading guidance, numbered steps, headings, bolding, and added warnings are not diction work."
+    },
+    {
+      "text": "The output contains no em dashes and every procedural condition (thirty-second lag threshold, escalation rule, connection-string update, restart) is preserved exactly",
+      "passed": false,
+      "evidence": "No em dashes: grep for U+2014 and U+2013 returns 0 and 0; the \"---\" lines are Markdown rules. But the threshold logic was changed. Source: \"less than thirty seconds\" -> promote; \"exceeds thirty seconds\" -> escalate; data loss under \"significant lag\". Rewrite: \"Under 30 seconds: continue\"; \"30 seconds or more: stop. Escalate\"; and the top warning asserts \"Promoting with 30 seconds or more of lag loses data\", which the source does not say. The executor acknowledges this: \"I put 30 in the escalate branch. Change it if the database team intends otherwise.\" The escalation rule also gained a condition absent from the source: \"do not promote until they say to\". Connection-string update and restart are preserved in order, but the assertion requires every condition preserved, and the threshold and escalation rule were not."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "pass_rate": 0.25
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 5,
+    "total_steps": 5,
+    "errors_encountered": 0,
+    "output_chars": 9406,
+    "transcript_chars": 3830
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "No commands or facts were added beyond the source",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Added: \"to point at the new primary\" (step 4), \"do not promote until they say to\" (escalate branch), and the assertion that 30 seconds or more of lag loses data. None of these appear in the source. No shell commands were invented, which is the narrower claim the executor probably meant."
+    },
+    {
+      "claim": "The rewritten steps preserve the original order (check lag, promote, update connection string, restart)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Steps 1 through 5 follow the source sequence."
+    },
+    {
+      "claim": "The original leaves exactly 30 seconds undefined; I assigned 30 to the escalate branch",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Source uses \"less than\" and \"exceeds\"; rewrite uses \"Under 30\" and \"30 seconds or more\". The boundary was resolved, and the executor disclosed it. Disclosed or not, it is a changed condition under expectation 4."
+    },
+    {
+      "claim": "The warning was the last clause of the second paragraph in the original",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Source paragraph 2 ends \"... will result in data loss.\""
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Exactly 30 seconds assigned to the escalate branch as the safer reading",
+      "No paging path known for \"escalate to the database team\"; phrase kept",
+      "Replication query, promote command, and verification command not invented; flagged as gaps"
+    ],
+    "needs_review": [
+      "A DBA should confirm no step is missing between promote and connection-string update",
+      "\"Restart the application tier\" kept verbatim; rolling restart or specific service unspecified"
+    ],
+    "workarounds": [
+      "None; baseline run with no skill"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "No rhetorical figure is added",
+        "reason": "This assertion passed for a response that failed the eval's actual purpose (respecting the diction-only stop). A baseline that rewrites into a numbered checklist will almost always pass it, because checklists have no room for figures. It is a necessary check but not a discriminating one on its own; the discrimination comes from expectations 1 and 3, so the three should be read together rather than counted equally."
+      },
+      {
+        "reason": "The eval's fixture happens to contain a boundary gap (exactly thirty seconds). A baseline resolved it while the skilled arm preserved and flagged it. That is a useful discriminator for the skill's claim-check rule and is worth naming as its own assertion: the response must not resolve the undefined boundary, and should call it out."
+      }
+    ],
+    "overall": "The eval correctly separates a helpful-looking runbook reformat from the skill's required behavior. Expectations 1, 3, and 4 all failed on evidence, not on ambiguity. Note the executor's answer is a reasonable runbook edit by ordinary standards; the eval is measuring restraint, not runbook quality, and the guidance supplied to the grader was needed to keep that distinction."
+  }
+}

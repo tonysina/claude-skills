@@ -1,0 +1,39 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 1248   figure budget: 6   (>600 words: 1 per 150, cap 6)
+  meta-quotation filter removed 521 words (code, blockquotes, flag lists, short quoted strings)
+
+  [CONSTRUCTIONS] forbidden-table violations: 0
+        none
+
+  [A] humanizer multi-word flags: 0 distinct
+        none
+
+  [B] humanizer single-word flags (needs context): 1 distinct
+        x1  features  [NO-COPULA]
+
+  em dashes: 3 total, max 1 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 5 word-level, 0 phrase-level
+        stomach, chest, neck
+        text, author, work
+        A, D, E
+        once, mid-piece, as
+        book, person, or event
+        -> run isocolon load-bearing test on each
+
+  density: 1 flag hits / 1248 words = 0.1 per 100   distinct patterns: 1 ['NO-COPULA']
+
+  HARD VIOLATIONS: 0
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                    1248   6     0   0   1    1   0/0   5   0.1   1     0

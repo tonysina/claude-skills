@@ -1,0 +1,12 @@
+{
+  "eval_id": 4,
+  "name": "human-signs-preserved",
+  "arm": "with",
+  "prompt": "Humanize this paragraph from my blog post.",
+  "expectations": [
+    "The response does not remove or replace 'in order to', 'the fact that', 'very', or 'there is a' on the grounds that they are AI patterns or filler",
+    "The response reports that the text has few or no AI patterns and either returns it unchanged or with at most minor edits, rather than producing a substantially rewritten version",
+    "The plain verbs 'tried', 'moved', and 'used' are not replaced with 'attempted', 'relocated', or 'utilized'",
+    "The response does not pad the text with added opinions, rhythm changes, or invented detail in the name of adding voice"
+  ]
+}

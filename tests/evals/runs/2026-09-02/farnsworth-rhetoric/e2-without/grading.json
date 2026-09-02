@@ -1,0 +1,120 @@
+{
+  "expectations": [
+    {
+      "text": "The response states a figure budget for the piece and applies at most one figure",
+      "passed": false,
+      "evidence": "result.md never mentions a budget, a figure count, or any dosage limit; the words 'budget' and 'figure' do not appear. The rewrite does stay light (one sharpened antithesis, 'The fix took an hour. The bug cost us about four hundred signups', which the response describes as 'the contrast does the work: one hour of fixing, four hundred signups lost'), so the count is at most one, but the expectation requires the budget to be stated and it is not."
+    },
+    {
+      "text": "The concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved in the output",
+      "passed": true,
+      "evidence": "Word-diff of the rewritten paragraph against the input shows all seven details intact: 'on a Tuesday', 'three clear days', 'step four', 'the leading zero', 'everyone on the test team is American', 'The fix took an hour', 'about four hundred signups'. Each was confirmed by a literal substring check on the blockquote."
+    },
+    {
+      "text": "No claim is inflated: the figure of four hundred signups is not rounded up, no new absolute or superlative is added, and 'a lesson I keep having to relearn' is not turned into a promise",
+      "passed": false,
+      "evidence": "'About four hundred' is preserved with its hedge, and the lesson is not turned into a promise. But the rewrite replaces 'a lesson I keep having to relearn' with 'it taught me, again, that a test team can only catch the mistakes it knows how to make', which adds a new categorical absolute ('can only') stated as a general truth about all test teams. The author made no such claim. The executor's own user_notes concede this: 'a grader may consider adding a claim the author did not make to be overreach.' The response also changes 'It cost us' to 'The bug cost us', narrowing the referent, which the executor also flagged."
+    },
+    {
+      "text": "If a figure is applied, the response names it and the trigger condition that licensed it; if none is applied, the response says so and explains why the paragraph already lands",
+      "passed": false,
+      "evidence": "Neither branch is satisfied. The response sharpens an antithesis (hour vs. four hundred signups) and describes its effect functionally ('the contrast does the work') but never names the figure or states a trigger condition. It also does not declare that no figure was applied; instead it says the paragraph is 'already in good shape' and then rewrites three sentences, including the ending it calls 'a blank'. The 'Things I left alone on purpose' list explains what was kept, not why the paragraph already lands without changes."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "pass_rate": 0.25
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 5,
+    "total_steps": 5,
+    "errors_encountered": 0,
+    "output_chars": 3308,
+    "transcript_chars": 4674
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "The input is seven sentences",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Transcript Step 2 says 'seven sentences'; the input has six. Minor miscount with no effect on the output."
+    },
+    {
+      "claim": "Three edits were made: split the middle sentence, recast 'We fixed it in an hour', and name the lesson",
+      "type": "process",
+      "verified": true,
+      "evidence": "Word-diff confirms exactly these changes plus two small ones the response does not list: a comma after 'Wednesday afternoon' and 'It cost us' becoming 'The bug cost us'. The latter is acknowledged in user_notes but not in the user-facing response."
+    },
+    {
+      "claim": "'Good thing.', 'everyone on the test team is American', and 'half of Europe' were left untouched",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All three strings appear verbatim in the rewritten blockquote"
+    },
+    {
+      "claim": "The original ending 'hands the reader a blank' and a post-mortem should give people one sentence they can quote",
+      "type": "quality",
+      "verified": false,
+      "evidence": "This is the executor's editorial judgment. The eval is named 'already-good-restraint' and the original ending is a zeugma that lands on a stressed monosyllable; the 'with' arm identified it as the paragraph's one figure. Treating it as a gap rather than a choice is the core disagreement between the two arms, and the executor's own notes call it 'arguably a deliberate choice'."
+    },
+    {
+      "claim": "The lesson as written is an inference from the paragraph, flagged for the author to confirm or replace",
+      "type": "process",
+      "verified": true,
+      "evidence": "result.md closes with 'One thing to check: I wrote the lesson as I inferred it from the paragraph... swap it into that last clause.' The flag is present, but it does not undo the fact that the published draft now carries an unstated author claim."
+    },
+    {
+      "claim": "'The shape of the sentence will hold' if the author swaps in a different lesson",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Unverifiable; the two example substitutions offered ('always test with international data', 'keep shipping on Tuesdays') are imperatives, not the noun-clause shape of the drafted sentence, so the claim is doubtful as stated."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Baseline run with no skill; response reflects default editing behavior.",
+      "The rewritten ending states a lesson the original left implicit; the executor recognizes a grader may consider this overreach.",
+      "'The bug cost us' replaces 'It cost us', changing the referent from the incident to the bug."
+    ],
+    "needs_review": [
+      "Whether naming the lesson strengthens or dilutes the deliberately understated original ending.",
+      "Only three edits were made; the run may look conservative if heavier intervention was expected."
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "No claim is inflated: the figure of four hundred signups is not rounded up, no new absolute or superlative is added, and 'a lesson I keep having to relearn' is not turned into a promise",
+        "reason": "The failure mode this arm actually exhibited, restating an implicit lesson as an explicit general maxim, is only caught here because the maxim happens to contain 'only'. A version of the maxim without an absolute ('a test team tends to catch the mistakes it knows how to make') would pass all three sub-clauses while still putting words in the author's mouth. Consider adding 'and no lesson or takeaway is stated that the author left implicit'."
+      },
+      {
+        "reason": "No assertion checks whether the closing sentence was preserved or whether non-figure structural edits (sentence splits, subject swaps) were made. For an eval named 'already-good-restraint', the most discriminating check is whether the executor recognized the existing zeugma at the ending and left it alone. Expectation 2 passed here despite the ending being rewritten."
+      },
+      {
+        "reason": "scan.txt flagged 'here is a' as a sycophancy pattern in the response's framing prose. Not a graded outcome, but worth noting that the baseline framing tripped a surface flag the skilled arm did not."
+      },
+      {
+        "reason": "timing.json only records executor_start, so no duration comparison between arms is possible."
+      }
+    ],
+    "overall": "The baseline preserved every concrete detail but did not state a budget, did not name the figure it sharpened or a trigger for it, and rewrote the understated ending into a categorical maxim the author never made. The assertions caught this, but partly by luck of wording; a direct check on the closing sentence would make the eval more robust."
+  }
+}

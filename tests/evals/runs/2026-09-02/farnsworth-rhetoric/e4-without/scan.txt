@@ -1,0 +1,37 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 648   figure budget: 4   (>600 words: 1 per 150, cap 6)
+  meta-quotation filter removed 19 words (code, blockquotes, flag lists, short quoted strings)
+
+  [CONSTRUCTIONS] forbidden-table violations: 0
+        none
+
+  [A] humanizer multi-word flags: 0 distinct
+        none
+
+  [B] humanizer single-word flags (needs context): 0 distinct
+        none
+
+  em dashes: 0 total, max 0 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 1 weak (2)
+        weak   "what i..." x2
+
+  triads: 2 word-level, 0 phrase-level
+        figure, risk, and caveat
+        sequencing, capacity, effort
+        -> run isocolon load-bearing test on each
+
+  density: 0 flag hits / 648 words = 0.0 per 100   distinct patterns: 0 []
+
+  HARD VIOLATIONS: 0
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     648   4     0   0   0    0   0/1   2   0.0   0     0

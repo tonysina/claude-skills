@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "name": "human-negative-review",
+  "arm": "without",
+  "prompt": "Review this for AI tells. Does it sound like AI wrote it?",
+  "expectations": [
+    "The response does not perform a rewrite of the text; it reports findings only",
+    "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human or is at most ambiguous",
+    "Any flagged words such as 'features', 'serves as', or 'offers' are described as weak or context-dependent evidence rather than as proof of AI writing",
+    "The response gives a reason for restraint, such as the low number of hits relative to length, the small number of distinct patterns, or the absence of structural tells"
+  ]
+}

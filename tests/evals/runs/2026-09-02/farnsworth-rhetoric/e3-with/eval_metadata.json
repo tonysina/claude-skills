@@ -1,0 +1,13 @@
+{
+  "eval_id": 3,
+  "name": "tagline-options",
+  "arm": "with",
+  "prompt": "Sharpen this tagline.",
+  "expectations": [
+    "The response presents between three and five distinct options and names the rhetorical figure used in each",
+    "No option uses a negative parallelism ('not just X, it's Y', 'more than just', 'not only X but Y')",
+    "Every option is shorter than the input tagline",
+    "No option adds a claim absent from the input, such as 'leading', 'the only', 'number one', 'trusted by', or a customer count",
+    "The response recommends one option and gives a reason"
+  ]
+}

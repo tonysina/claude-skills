@@ -1,0 +1,148 @@
+{
+  "eval_id": 1,
+  "name": "ai-heavy-rewrite",
+  "arm": "with",
+  "expectations": [
+    {
+      "text": "The response contains a full rewritten text and a change summary, not just a list of findings",
+      "passed": true,
+      "evidence": "outputs/result.md opens with a complete five-paragraph rewrite (180 words, all five source paragraphs covered), followed by a section headed 'What changed and why' with ten bulleted pattern entries and two pre-ship checks."
+    },
+    {
+      "text": "The change summary names at least three patterns using the skill's stable IDs (for example INFLATION, NEG-PARALLEL, BOLD-LISTS, GENERIC-CLOSER, DIDACTIC, VAGUE-ATTRIB, AI-VOCAB)",
+      "passed": true,
+      "evidence": "Change summary lists ten uppercase hyphenated IDs in backticks, each with quoted source text: INFLATION, AI-VOCAB, ING-ANALYSIS, NO-COPULA, VAGUE-ATTRIB, NEG-PARALLEL, BOLD-LISTS, CHALLENGES-FORMULA, GENERIC-CLOSER, DIDACTIC."
+    },
+    {
+      "text": "The rewritten text contains no negative parallelism: no 'not just X, it's Y', 'more than just', or 'not only X but Y' construction",
+      "passed": true,
+      "evidence": "Read the rewrite body: no 'not just', 'more than just', 'not only', or 'X, not Y' construction. Both source instances ('It's not just a form...' and 'more than just a process') became plain assertions ('Onboarding is the first thing a new customer does...'; 'Onboarding is where a customer relationship starts.'). scan.txt: forbidden-table violations 0. The only 'more ... than' is a factual comparative ('takes more work than connecting modern ones'). The change summary quotes the original constructions, but only inside the summary, not the rewrite."
+    },
+    {
+      "text": "The rewritten text contains no generic positive closer such as 'the road ahead is promising' or 'the future looks bright', and does not end on an equivalent vague upbeat sentence",
+      "passed": true,
+      "evidence": "Both source closers are absent from the rewrite (scan: 0 hits; confirmed by reading). Final sentence is 'We built this platform to get that start right.' It is a purpose statement naming the product and a concrete aim, not a forward-looking vague-optimism line. The executor itself labels it a 'mild slogan' in user_notes; it is mild and specific enough to pass, but see eval_feedback."
+    },
+    {
+      "text": "The vague attribution 'Industry reports indicate' is either removed or replaced with a specific named source, or is explicitly flagged as needing a real citation; it is not kept as-is",
+      "passed": true,
+      "evidence": "'Industry reports indicate' is gone. The rewrite body replaces it with an unsourced direct claim ('Companies that shorten onboarding tend to keep more of the customers they sign'), which alone would fail per the grading guidance. It passes on the third clause because the response explicitly flags it in the user-facing text: 'The retention claim has no source in your draft. I kept it as a plain statement, but for a one-pager you will want either a named source with a figure or to cut the sentence.' Quality caveat: the flag sits outside the rewritten body, so a reader who copies only the body ships an unsourced claim."
+    },
+    {
+      "text": "The bold inline-header list (Speed/Clarity/Confidence) is converted to prose or a plain list without bolded lead-ins followed by colons",
+      "passed": true,
+      "evidence": "Rewrite has no list at all. Paragraph 2 carries the three facts as prose: 'Setup takes minutes rather than hours. Each step comes with guidance in context... They can see where they are in the process and what is left to do.' No '**' markup in the rewrite body (rg check). The scan's one triad hit ('Speed, Clarity, Confidence') comes from the change summary's quotation of the original labels, not the rewrite."
+    },
+    {
+      "text": "The rewritten text introduces no new AI-vocabulary words (delve, robust, leverage, seamless, tapestry, landscape as abstract noun) that were not already present, and reads as professional register rather than casual first-person",
+      "passed": true,
+      "evidence": "rg over the rewrite body for robust/leverag/seamless/landscape/delve/tapestry: no matches; the source's 'robust', 'leverages', 'seamless', and 'landscape' were all removed rather than kept. scan.txt: 0 single-word and 0 multi-word humanizer flags, 0 em dashes. Register is second-person business prose with company 'we'/'our', no first-person singular, no contractions, no humor."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 6,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 6569,
+    "transcript_chars": 9232
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded."
+  },
+  "claims": [
+    {
+      "claim": "The original scored about 13 watch-list hits in 171 words (roughly 7.6 per 100) across five patterns",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Input is 171 words (wc -w). 13/171 = 7.6 per 100. The 13 is a hand count (scanner prohibited by eval rules); the transcript's itemised hits under INFLATION, ING-ANALYSIS, AI-VOCAB, VAGUE-ATTRIB, NO-COPULA are consistent with that total allowing for overlap (landscape, pivotal, testament appear under two patterns)."
+    },
+    {
+      "claim": "The rewrite keeps every claim from the original",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Traced each source claim: minutes-vs-hours, per-step guidance, progress visibility, integration with existing systems, analytics, retention claim, legacy-integration difficulty, support team, ongoing investment, onboarding as relationship start. All present. One narrowing: 'fostering a culture of continuous improvement across the organization' became 'fix those steps', which drops the organisation-wide framing. Minor and arguably an improvement."
+    },
+    {
+      "claim": "Rewrite body is 182 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Independent count of the body between the two '---' rules gives 180; difference is within tokenisation noise."
+    },
+    {
+      "claim": "Scan of the rewrite for watch-list terms, promotional adjectives (seamless, intuitive, leverage) and em dashes returned no hits",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 9 records an rg scan; the independent scan.txt reports 0 flags, 0 em dashes, 0 construction violations on result.md."
+    },
+    {
+      "claim": "'It also tracks how users move through setup, so your team can see where people slow down or drop off' faithfully renders 'leverages robust analytics to enhance visibility into user behavior'",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The rewrite is more specific than the source (step-level drop-off tracking). The executor acknowledges this in user_notes.md ('slightly more specific than the source text... If the product does not surface drop-off by step, this sentence overclaims') but does not flag it in the user-facing response, whose 'Two things to check' list covers only the retention claim and the missing figures."
+    },
+    {
+      "claim": "Sentence lengths vary (7 to 26 words)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Shortest sentence in the body: 'Setup takes minutes rather than hours.' (6 words). Longest is the analytics sentence at 26. Range as described, off by one at the low end."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Retention claim kept as an unsourced direct assertion; no real source available to substitute, and placeholders are themselves a tell",
+      "Analytics sentence ('where people slow down or drop off') is more specific than the source and may overclaim",
+      "'legacy connectivity is an active area of product investment' paraphrases 'ongoing product investment' without inventing specifics"
+    ],
+    "needs_review": [
+      "Whether the benefits block should remain bullets for one-pager layout (executor converted to prose, offered split-back)",
+      "Closing line is a mild slogan; user may prefer no closer in an opening section",
+      "Retention claim needs a real source or removal before publication"
+    ],
+    "workarounds": [
+      "Scanner script not run (prohibited by eval rules); density counted by hand"
+    ],
+    "skill_suggestions_from_executor": [
+      "Skill lacks a rule for VAGUE-ATTRIB when no source is available and the claim matters (keep-and-flag vs cut vs ask)",
+      "Promotional adjectives like 'seamless' and 'intuitive' are not on any watch list despite being INFLATION in spirit",
+      "'Edit with constraints' says change summary on request; 'Full rewrite' says always; skill should state which wins when both apply"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The vague attribution 'Industry reports indicate' is either removed or replaced with a specific named source, or is explicitly flagged as needing a real citation; it is not kept as-is",
+        "reason": "The 'explicitly flagged' clause lets a rewrite body that still contains an unsourced claim pass as long as a note follows it, which is exactly what happened here. If the intended outcome is that the deliverable text itself is clean, require the flag to be inline in the body or the claim to be absent from the body."
+      },
+      {
+        "reason": "No assertion checks fidelity: that the rewrite adds no facts not in the source. This arm made the analytics sentence more specific than the source and only disclosed it in user_notes, not to the user. The without arm invented 'this year' and 'waiting on IT'. An assertion such as 'every concrete claim in the rewrite traces to the input or is flagged in the response as an assumption' would discriminate between the two behaviours."
+      },
+      {
+        "assertion": "The rewritten text contains no negative parallelism: no 'not just X, it's Y', 'more than just', or 'not only X but Y' construction",
+        "reason": "The enumerated forms miss the inverted 'X, not Y' variant, which carries the same affirm-by-negation frame and is the most natural way a rewriter dodges the listed forms. It did not occur in this arm, but it did in the without arm's closing sentence and passed both the scan and the literal assertion."
+      },
+      {
+        "assertion": "The rewritten text contains no generic positive closer ... and does not end on an equivalent vague upbeat sentence",
+        "reason": "Both arms ended on a mild purpose-statement slogan ('We built this platform to get that start right' / 'That's the part we're trying to get right'). 'Equivalent vague upbeat sentence' is a judgment call the grader has to make; stating whether a specific, product-naming slogan is acceptable would make the assertion more consistent across graders."
+      }
+    ],
+    "overall": "Assertions 2, 3, 4, 6 discriminate well and this arm passes them on substance. Assertion 5 is satisfiable by a note outside the deliverable text, and nothing checks that the rewrite invents no facts, which is the main quality risk observed in both arms."
+  }
+}

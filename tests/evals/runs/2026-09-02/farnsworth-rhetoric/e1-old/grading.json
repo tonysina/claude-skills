@@ -1,0 +1,114 @@
+{
+  "arm": "old",
+  "eval_id": 1,
+  "name": "runbook-hard-stop",
+  "expectations": [
+    {
+      "text": "The response identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+      "passed": true,
+      "evidence": "result.md opens: \"this is a process instruction, and the rhetoric guide I'm working from says to keep the showy figures (anaphora, chiasmus, rule of three) out of runbooks. They call attention to themselves, and in a failover procedure the words should disappear behind the steps. So I have not dressed this up.\" The what-I-did-not-do section repeats: \"No anaphora or rule-of-three rhythms. A runbook that reads like a speech is a runbook nobody trusts.\""
+    },
+    {
+      "text": "No rhetorical figure is added: no antithesis, anaphora, epistrophe, antimetabole, rhetorical question, or deliberate triad appears in the output",
+      "passed": true,
+      "evidence": "scan.txt on result.md: em dashes 0, anaphora 0 strong runs (2 weak echoes: \"i have...\" x2 in the framing, \"if lag...\" x2 which mirrors the source's own two If-sentences), HARD VIOLATIONS 0. Scan flagged 3 triad candidates for the isocolon test; all are in the explanatory prose, not the rewrite, and none is a crafted figure: \"(anaphora, chiasmus, rule of three)\" is a list of technique names, \"Every fact, threshold, and step order\" is a plain three-noun inventory of what was preserved, and \"then branch ... then promote, then update config, then restart\" is a five-item recital of the step order. The rewritten section itself has no contrast pair beyond the source's own under/over structure, no question, no reversal, no three-part construction."
+    },
+    {
+      "text": "If the text is edited at all, the edits are limited to diction, such as turning 'undertake verification of' into 'verify' or 'perform a restart of' into 'restart'",
+      "passed": false,
+      "evidence": "Most edits are diction (\"becomes unresponsive\" -> \"stops responding\", \"undertake verification of\" -> \"check\", \"perform a restart of\" -> \"restart\", \"undertake an update of\" -> \"update\"). But the escalate branch gained a sentence with no source counterpart: \"If lag is over thirty seconds, stop.\" The executor presents this as a deliberate emphasis device, not a word substitution: \"It also gets a one-word sentence before it: 'stop.'\" alongside \"Saxon finish on the sentence that matters ... Now it is its own short sentence and ends on 'you lose data.'\" The source's single second paragraph was also split into two paragraphs to isolate the two branches. Adding an emphatic one-word warning sentence and re-paragraphing for emphasis are in the same family as the added warnings and restructuring that the grading guidance names as not diction work. The executor correctly refused numbered lists, bold, and callouts, offering them only as an option, which is why this is a narrow miss rather than the wholesale reformat seen in the baseline."
+    },
+    {
+      "text": "The output contains no em dashes and every procedural condition (thirty-second lag threshold, escalation rule, connection-string update, restart) is preserved exactly",
+      "passed": true,
+      "evidence": "grep for U+2014 and U+2013 in result.md: 0 and 0; scan.txt confirms 0 em dashes; the \"---\" line is a Markdown rule. Conditions against the source: trigger \"stops responding\" = \"becomes unresponsive\"; \"check replication lag before you fail over\" = verify before any failover; \"under thirty seconds, promote the standby\" = \"less than thirty seconds, promotion ... may proceed\"; \"over thirty seconds, stop. Escalate to the database team before you promote\" = \"exceeds thirty seconds, escalation ... required prior to promotion\"; \"If you promote while the standby is that far behind, you lose data\" keeps the data-loss consequence tied to over-threshold lag (\"that far behind\" stands in for \"significant lag\" in context); \"update the connection string in the configuration service, then restart the application tier\" keeps the order. The exactly-thirty gap is preserved and disclosed (\"I did not invent an answer\")."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 8,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 9,
+    "total_steps": 6,
+    "errors_encountered": 0,
+    "output_chars": 5062,
+    "transcript_chars": 7257
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "Word count dropped from 117 to 77 with nothing removed",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w: source body 117 words, revised body 77 words, headings excluded from both. Content inventory matches; one sentence (\"stop.\") was added rather than anything removed."
+    },
+    {
+      "claim": "Every fact, threshold, and step order is unchanged",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Threshold directions, escalation rule, data-loss consequence, connection-string update, and restart order all match the source. Two tone shifts (\"may proceed\" -> \"promote\", \"significant lag\" -> \"that far behind\") keep the same logic."
+    },
+    {
+      "claim": "No reordering of the steps",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Check lag, branch on threshold, promote, update config, restart: same sequence as the source, and paragraph 1 keeps the source's sentence order."
+    },
+    {
+      "claim": "Only Saxon word choice and Saxon finish were applied; techniques 3 through 9 skipped",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript step 4 enumerates the skip list and the checklist results; scan.txt shows 0 anaphora runs and no crafted triads. The one-word \"stop.\" sentence is a short-sentence emphasis move under the Saxon-finish heading, which is why it is counted against expectation 3 rather than expectation 2."
+    },
+    {
+      "claim": "The skill's Full Example implicitly encourages anaphora and rule of three, which another executor might have applied to the runbook",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Cannot verify; the skill directory was not read for this grading by instruction."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Skill v1.0.0 lists process instructions under Avoid but gives no decline or fallback path; executor chose Saxon-only techniques",
+      "\"Make this land\" is not a listed trigger; treated as \"strengthen this\"",
+      "117 to 77 counts verified with wc after a wrong hand count"
+    ],
+    "needs_review": [
+      "Exactly thirty seconds is undefined in both versions",
+      "\"You lose data\" is a blunter rendering of \"will result in data loss\"",
+      "Imperative assumes the reader is always the on-call engineer"
+    ],
+    "workarounds": [
+      "None; skill loaded cleanly"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "If the text is edited at all, the edits are limited to diction",
+        "reason": "This arm's failure turns on a single added one-word sentence used for emphasis. That is the right thing for the eval to catch (the old skill has no dosage rule and the executor reached for a short-sentence punch), but the assertion text does not say that added sentences or paragraph splits count as non-diction. Stating that explicitly would stop the verdict from depending on grader guidance."
+      },
+      {
+        "reason": "The old-skill response ends by offering layout changes (\"Say the word and I'll format it that way\") rather than applying them. No assertion distinguishes offering a reformat from performing one; the former respects the stop and is arguably ideal. Worth a positive assertion so the behavior is rewarded, not just not punished."
+      }
+    ],
+    "overall": "The old skill got most of the way there on its Avoid list alone; the gap versus the current skill is the emphasis device it allowed into the rewrite and the absence of a stated claim-check step, which the executor supplied on its own initiative. Expectations 1, 2, and 4 are solid; expectation 3 needs its boundary written down."
+  }
+}

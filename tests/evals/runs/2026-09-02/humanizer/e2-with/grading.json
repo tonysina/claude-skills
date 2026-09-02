@@ -1,0 +1,149 @@
+{
+  "eval_id": 2,
+  "name": "human-negative-review",
+  "arm": "with",
+  "skill_version": "1.3.0",
+  "ground_truth": "human (pre-2021 Wikipedia revision)",
+  "expectations": [
+    {
+      "text": "The response does not perform a rewrite of the text; it reports findings only",
+      "passed": true,
+      "evidence": "result.md is a findings list (two numbered findings with pattern IDs, quoted text, and one-clause suggested fixes such as 'The area has a sub-regional sports centre'), a density/spread reading, a clean-checks list, and human signs. No rewritten passage appears. It closes with an offer, not a rewrite: 'If you want, I can tidy the run-on and swap \"boasts\", but that is copyediting rather than de-AI-ing. I would leave everything else as it is.' Transcript Final Result confirms: 'did not rewrite, per the \"Review and flag\" use case.'"
+    },
+    {
+      "text": "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human or is at most ambiguous",
+      "passed": true,
+      "evidence": "First line of result.md: 'Short answer: no. This reads like a person wrote it, and a slightly careless one, which counts in its favour.' Restated in the density section: 'inside the human range'. Verdict is unambiguous and matches the ground truth (human)."
+    },
+    {
+      "text": "Any flagged words such as 'features', 'serves as', or 'offers' are described as weak or context-dependent evidence rather than as proof of AI writing",
+      "passed": true,
+      "evidence": "None of the listed example words occur in the input. The words actually flagged are handled as weak: finding 1 is labelled '(weak)' and says of 'boasts': 'It is one word in 135, and it was standard local-guide English long before chatbots existed.' Finding 2 says of 'world-famous' and 'premier': 'I am flagging these as puffery rather than as AI tells.' The response also explicitly notes 'No \"serves as\", \"features\", or \"represents\" substitutions.'"
+    },
+    {
+      "text": "The response gives a reason for restraint, such as the low number of hits relative to length, the small number of distinct patterns, or the absence of structural tells",
+      "passed": true,
+      "evidence": "Explicit density and spread reasoning: 'One literal watch-list hit in 135 words, about 0.7 per 100, in one pattern. The skill's calibration puts that inside the human range ... It is well below the rewrite threshold.' Plus an itemised absence of structural tells under 'What came back clean' (no -ing analyses, no vague attribution, no negative parallelism, no decorative rule-of-three, zero em dashes, no generic closer, no signposting, no style seam)."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 5,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 6,
+    "total_steps": 5,
+    "errors_encountered": 0,
+    "output_chars": 4498,
+    "transcript_chars": 6623,
+    "result_md_words": 336,
+    "scan_hard_violations": 0,
+    "scan_flag_density_per_100": 0.0
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "The response's verdict (human-written) matches the ground truth",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Ground truth supplied by the eval author: pre-2021 Wikipedia revision, human-written. Response verdict: 'This reads like a person wrote it.'"
+    },
+    {
+      "claim": "The input is 135 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w on inputs/human-2020-gillingham.txt returns 135."
+    },
+    {
+      "claim": "The text contains zero em dashes and ends on a date",
+      "type": "factual",
+      "verified": true,
+      "evidence": "grep for the em dash character returns 0; the file ends with 'in 1984.'"
+    },
+    {
+      "claim": "The text uses plain verbs (has, provides, is, was opened) with no 'serves as', 'features', or 'represents'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "None of the three substitution verbs appear in the input; 'provides', 'has', 'is', 'was officially opened' do."
+    },
+    {
+      "claim": "'boasts' is on both the AI-vocabulary list and the significance-inflation list, and also the NO-COPULA list",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Cannot verify: grader was instructed not to read the skill directory. Consistent with the eval author's note that 'boasts' is on AI watch lists."
+    },
+    {
+      "claim": "'world-famous' and 'premier' are not literally on the INFLATION watch list",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Cannot verify without reading SKILL.md. Note the eval author's ground-truth summary lists 'world-famous' and 'premier' among words on AI watch lists, which conflicts with this claim. The response's verdict does not depend on it (either reading stays within the response's own human range), but the density figure of 0.7 per 100 does."
+    },
+    {
+      "claim": "The skill's calibration puts 0.7 per 100 inside the human range; no human sample scored above 1.6 per 100",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Cannot verify without reading the skill's calibration data."
+    },
+    {
+      "claim": "All four humanizer passes were run over the text",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 4 documents pass 1 through pass 4 pattern by pattern, with the load-bearing test applied to the facility list."
+    },
+    {
+      "claim": "The first sentence is a run-on with missing punctuation",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Input paragraph 1 reads '...squash courts also in the same area is Jumpers Rebound Centre for trampolining a world-famous facility for the sport.' with no punctuation at either join."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "The input filename 'human-2020-gillingham.txt' leaks the ground-truth label; executor says the verdict was based on the text alone and did not cite the filename.",
+      "'world-famous' and 'premier' were reported as puffery, not counted as list hits; counting them would raise density to about 2.2 per 100 and flip the table verdict to 'rewrite' on word-list evidence alone, which the executor considers a false positive.",
+      "A word on three watch lists ('boasts') was counted as one hit in one pattern; the skill does not say how to handle multi-list words for the spread column."
+    ],
+    "needs_review": [],
+    "workarounds": [],
+    "suggestions_from_executor": [
+      "State how to count a word that sits on more than one watch list.",
+      "Add a note on visibly imperfect grammar and run-ons as a soft human sign.",
+      "Load-bearing test for RULE-OF-3 worked well; no change needed."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response does not conclude that the text is AI-generated",
+        "reason": "The input filename 'human-2020-gillingham.txt' is visible to the executor and encodes the answer. All three arms noted it. This weakens the discriminating power of the key assertion: a run that read the filename would pass without doing the work. Rename inputs to a neutral id (e.g. sample-b.txt) for negative-control evals."
+      },
+      {
+        "assertion": "Any flagged words such as 'features', 'serves as', or 'offers' are described as weak or context-dependent evidence",
+        "reason": "None of the three example words occur in the input text, so the assertion's examples cannot be exercised. The words actually present and on watch lists are 'boasts', 'world-famous', 'premier', 'provides', and 'officially opened'. Rewrite the assertion around those so a grader can check the specific handling."
+      },
+      {
+        "reason": "No assertion checks whether the response reports a density or hit count at all, which is the v1.3.0 feature under test (the density/spread table). This arm reported '0.7 per 100, in one pattern'; the other arms did not report a rate. An assertion such as 'the response states a hit count or rate relative to length' would separate the skill's mechanism from generic good judgement."
+      },
+      {
+        "reason": "Executor user notes across arms disagree on whether 'world-famous' and 'premier' are list hits (this arm: 1 hit; old arm: 3). The eval author's ground-truth note treats both as watch-list words. Clarifying which count is intended would let a grader check the density claim rather than mark it unverifiable."
+      }
+    ],
+    "overall": "All four expectations pass on genuine evidence. Two eval-design issues reduce confidence in what the pass proves: the filename leaks the label, and expectation 3 names words absent from the input. The density reporting that distinguishes this skill version is not asserted."
+  }
+}

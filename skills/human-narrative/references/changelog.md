@@ -144,10 +144,22 @@ attached to.
   two skills agree. `VAGUE-ATTRIB` is cited in the forbidden-constructions table as the failure mode to
   avoid when executing F, not as a conflict.
 
-### Untested
+### Evaluated
 
-- **No eval run.** 1.0.0 shipped with no test and 1.1.0 adds none. Needs `skill-builder`
-  eval-mode with a clean-context executor.
+Clean-context eval, 2026-09-02, three cases, `with` / `without` / `old` arms, one run per
+configuration (`tests/evals/runs/2026-09-02/REPORT.md`). With-skill pass rate 0.88 (12 of
+14 expectations) against 0.56 with no skill. The fresh executor scored clusters with gate
+and corroborator named, held to the cap of 2 on the case study, kept every Ridgeline fact,
+and pointed the user to `source-check` for the one outside reference it added. The v1.0.0
+arm applied four changes and asserted a present-state fact the input never makes, which is
+what the truth constraint exists to prevent. Both with-skill failures were eval defects
+(an expectation that forbade what the F intervention adds by design; a fixture whose
+embodied-emotion share sat under the skill's own 60% rule). Two observations for the next
+revision: a 48-word status update drew a 508-word audit, since status updates sit in the
+short-form row rather than the hard-stop row; and the skill does not say whether a
+guardrail-blocked intervention frees its cap slot.
+
+### Untested
 - **`scripts/scan-ai-tells.py` cannot cover this skill.** These features are structural and
   not regex-detectable, unlike `humanizer`'s lexical patterns. Grading needs an LLM with a
   rubric built from the response-option sets in `references/features.md`. The negative cases
