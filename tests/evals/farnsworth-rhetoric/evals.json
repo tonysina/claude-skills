@@ -1,0 +1,65 @@
+{
+  "skill_name": "farnsworth-rhetoric",
+  "evals": [
+    {
+      "id": 1,
+      "name": "runbook-hard-stop",
+      "prompt": "Make this land. It's the failover section of our on-call runbook and nobody reads it.",
+      "files": ["files/runbook.txt"],
+      "expected_output": "Register identified as technical/process; no rhetorical figures applied. At most, diction work (word-level substitution, nominalizations back to verbs). The response says explicitly that figures are not appropriate here. The fixture's undefined boundary (exactly thirty seconds) is preserved or flagged, not silently resolved. Offering a layout change without performing it is acceptable.",
+      "expectations": [
+        "The response identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+        "No rhetorical figure is added: no antithesis, anaphora, epistrophe, antimetabole, rhetorical question, deliberate triad, or added one-line emphasis sentence appears in the output",
+        "If the text is edited at all, the edits are word-level substitutions such as 'undertake verification of' to 'verify' or 'perform a restart of' to 'restart'; no sentence is added, no sentence is split into two for effect, and no headings, numbered steps, bold warnings, or bullet forks are introduced (offering such a reformat without performing it is fine)",
+        "The output contains no em dashes, and every procedural condition (thirty-second lag threshold, escalation rule, connection-string update, restart) is preserved with the same logic",
+        "The source leaves 'exactly thirty seconds' undefined ('less than' promotes, 'exceeds' escalates); the response either preserves that gap unchanged or flags it for the author, and does not silently resolve it into 'under 30' / '30 or more'"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "already-good-restraint",
+      "prompt": "Strengthen this. It's a paragraph from a post-mortem I'm publishing on our engineering blog.",
+      "files": ["files/already-good.txt"],
+      "expected_output": "Zero or one figure applied, with the budget stated. The concrete details are preserved, no claim is inflated, and non-figure edits are also restrained. Zero changes is an acceptable answer.",
+      "expectations": [
+        "The response states a figure budget for the piece and adds at most one figure the author did not already have",
+        "The concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved in the output",
+        "No claim is inflated or generalized: 'about four hundred' keeps its hedge, no new absolute, superlative, or general maxim about all teams is added, and 'a lesson I keep having to relearn' is neither turned into a promise nor restated as an explicit moral",
+        "If a figure is applied, the response names it and the trigger condition that licensed it; if none is applied, the response says so and explains why the paragraph already lands",
+        "Non-figure edits are also restrained: the closing sentence is preserved, and no more than one sentence is split, merged, or given a new subject"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "tagline-options",
+      "prompt": "Sharpen this tagline.",
+      "files": ["files/tagline.txt"],
+      "expected_output": "Three to five distinct treatments, each with its figure named, all shorter than the input, none using negative parallelism, none adding a claim the input does not make, with one recommended. Any treatment that fails the claim check is withdrawn rather than offered. Note for graders: the deterministic scan strips blockquotes, so if options are blockquoted, scan a flattened copy or read the options directly.",
+      "expectations": [
+        "The response presents between three and five distinct options",
+        "Every option names the rhetorical figure it uses (or states 'no figure, diction only')",
+        "No option uses a negative parallelism ('not just X, it's Y', 'more than just', 'not only X but Y'); a plain antithesis with both poles real ('X, not Y') is allowed only if both poles are claims the input supports",
+        "Every option is shorter than the input tagline (fewer words)",
+        "No option adds a claim absent from the input: no social-proof superlative ('leading', 'the only', 'number one', 'trusted by', a customer count), no characterization of the alternative or status quo the input does not make, and no mechanism turned into a guaranteed outcome",
+        "Any candidate treatment the response's own claim check finds to add a claim is withdrawn, not presented as an option with a caveat",
+        "The response recommends one option and gives a reason"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "exec-summary-budget",
+      "prompt": "This executive summary is going to the leadership team on Friday. Make it land without changing what it asks for.",
+      "files": ["files/exec-summary.txt"],
+      "expected_output": "At most three figures, each named with its trigger; the claim check reported hedge by hedge; every number retained; the ask preserved; no commitment added; no negative parallelism or generic closer introduced.",
+      "expectations": [
+        "The response applies at most three rhetorical figures and names each one with the trigger condition that licensed it",
+        "The response reports a claim check hedge by hedge, covering at least 'potentially', 'more difficult to quantify with precision', 'has not been fully assessed', 'financial modelling indicates', and 'should not be interpreted as a recommendation', and each hedge it reports as kept is actually present in the output",
+        "Every number in the source survives unchanged: four platforms, 2021 to 2024, $2.1M, eighteen months, three teams, month twenty-six, two of four platforms undocumented, two viable targets",
+        "The ask ('Leadership approval is requested to proceed with a detailed planning phase, with a decision gate...') is preserved in substance",
+        "The output adds no claim or commitment absent from the source, such as what the planning phase will resolve or who will own it",
+        "The output contains no negative parallelism and no generic positive closer ('the future is bright', 'poised for growth', 'we will lead')",
+        "The rewritten prose contains at most one anaphora run and no more than two em dashes in any paragraph (the change-note block is exempt)"
+      ]
+    }
+  ]
+}

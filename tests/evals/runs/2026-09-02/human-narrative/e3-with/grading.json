@@ -1,0 +1,141 @@
+{
+  "eval_id": 3,
+  "name": "personal-essay-long-form",
+  "arm": "with",
+  "expectations": [
+    {
+      "text": "The response scores the piece cluster by cluster and reports at least three clusters as fired, naming the gate feature for each",
+      "passed": true,
+      "evidence": "result.md has a seven-row 'Cluster scan' table (A through G) with a Gate column naming the gate feature and its value for every cluster: A 'Narrator states the theme: yes', B 'Dominant mode: mixed', C 'Resolved internally', D 'Chronological discontinuity 2 on 1-5', E 'Direct reader address: never', F 'Reference explicitness: none', G 'Moral polarity toward protagonist: clearly positive'. Corroborators are listed per row. Six clusters are marked fired (all but B), followed by 'Verdict: 6 clusters fired -> systematic AI-side clustering. Cap: 3 interventions.' The gate calls are each backed by a quote or count from the input essay, so this is substantive scoring, not a label."
+    },
+    {
+      "text": "The response applies at most three interventions and names the cluster each one belongs to",
+      "passed": true,
+      "evidence": "Three headed sections: 'Intervention 1 - A: thematic restraint' (delete final paragraph), 'Intervention 2 - D: open at the charged moment, delay the explanation' (in-medias-res reorder, frame line moved, explanatory line withheld, two connective phrases added), 'Intervention 3 - E: one reader address' (one added sentence). I counted every structural change actually made to the rewrite text against the input: the deletion, the reorder with its connective phrases, and the added sentence. The removal of the internal-understanding closer is part of the same paragraph deletion, and the response correctly attributes it as a side effect of A rather than a fourth change. F, C1, and G are explicitly listed under 'Not taken, and why'. Total structural changes: 3, each labeled with its cluster."
+    },
+    {
+      "text": "The closing paragraph's stated lesson ('What I learned is that saying no is rarely a confrontation...') is removed or substantially reduced, and the point remains inferable from the scene",
+      "passed": true,
+      "evidence": "The rewrite ends on '...which made me laugh, because all I had done was ask a question.' The entire final paragraph of the input, including 'What I learned is that saying no is rarely a confrontation', is absent from the rewrite text. The point remains inferable from the retained lines 'She had never wanted me to do both; she had just never been told I couldn't' and 'all I had done was ask a question', which the response cites under 'Why the point survives'."
+    },
+    {
+      "text": "At least one embodied-emotion metaphor ('my stomach dropped', 'my chest tightened', 'heat rise up my neck') is replaced with a plain emotion label or a behavior, and the response notes that this runs against usual 'show, don't tell' advice",
+      "passed": false,
+      "evidence": "All three embodied metaphors survive verbatim in the rewrite: 'My stomach dropped.' and 'My chest tightened as she walked away' (rewrite paragraph 4) and 'I felt the familiar heat rise up my neck.' (rewrite paragraph 6). The response scored cluster B as not fired ('Embodied share ~33%, under the 60% rule') and deliberately made no change, handing the phrases to a later humanizer pass: 'That is a sentence-level pattern, not a structural one... It belongs to the humanizer pass.' There is no mention of 'show, don't tell' anywhere in result.md. Neither half of the expectation is met."
+    },
+    {
+      "text": "The resolution is made partial, external, or left with one unresolved thread, and the resulting text is still coherent; 'everything at work got easier, and I have never gone back' does not survive unchanged",
+      "passed": true,
+      "evidence": "'Once I understood that, everything at work got easier, and I have never gone back' is deleted entirely. The rewrite now resolves on an external event, Dana's written review, and the 'Nobody said anything about the pipeline, which was somehow worse' thread is retained without closure. I read the reordered rewrite end to end: it opens on the Thursday exchange, gives the frame ('That was the first time I said no to my manager'), flashes back to the Monday 'three weeks earlier', runs forward to 'Then, on the Thursday, Dana came back... What came out was the question', and returns to 'That was it. No argument, no consequence.' The timeline is consistent and nothing in the ending contradicts the scene. The ending is still upbeat, but the expectation's disjunction is satisfied by the external resolution."
+    },
+    {
+      "text": "The output contains no signposting phrase such as 'you might be wondering' or 'here's what you need to know', and no forward-reference announcement to the reader",
+      "passed": true,
+      "evidence": "scan.txt section '[A] humanizer multi-word flags: 0 distinct / none' and 'HARD VIOLATIONS: 0'. Manual read of result.md: no 'you might be wondering', 'here's what you need to know', 'let me', 'as we'll see', or 'in what follows'. The added reader-address sentence in the rewrite, 'You have probably said that yes yourself.', is a claim about the reader, not an announcement of structure. One borderline item: the parenthetical cross-reference '(see \"Not taken\")' at the verdict line. I judged it an ordinary editorial pointer to a section, not a forward-reference announcement of the kind the expectation targets."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 1,
+    "total": 6,
+    "pass_rate": 0.83
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 5,
+    "total_steps": 6,
+    "errors_encountered": 0,
+    "output_chars": 14272,
+    "transcript_chars": 6376
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "Six of the seven structural clusters fired (all but B)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Cluster table shows fired marks on A, C, D, E, F, G and a not-fired mark on B; each gate call is backed by a quote or count from the input."
+    },
+    {
+      "claim": "Embodied beats are about 3 of 9 emotional beats (~33%)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Input essay: embodied (stomach, chest, neck) = 3; behavioral (stared at calendar, opened mouth, laughed) = 3; explicit ('did not believe it', 'somehow worse', 'the fear I carried') = 3. Count is defensible, though the executor's own user_notes call the B gate a close call."
+    },
+    {
+      "claim": "Every sentence is yours except the one reader-address line and two connective phrases",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Beyond the three admitted additions, at least two original sentences were rewritten: 'The first time I said no to my manager, I was twenty-six and...' became 'That was the first time I said no to my manager. I was twenty-six and...', and 'Then, on a Thursday in the third week, Dana came back' became 'Then, on the Thursday, Dana came back'. Also 'I opened my mouth to say yes. Instead I said, \"I can do that...\"' became 'I opened my mouth to say yes. What came out was the question.' The changes are small and required by the reorder, but the claim is overstated."
+    },
+    {
+      "claim": "Rewrite is ~300 words vs 377 original",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w on the input gives 377; the blockquoted rewrite is 325 words. '~300' is a reasonable approximation."
+    },
+    {
+      "claim": "Paper statistics: narratorial theme statement 77% AI vs 52% human; no-subplot 79% vs 57%; internal-understanding resolution 47% vs 27%; explicit named reference 24% AI vs 47% human; every cluster D gap is 0.34 or less",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Unverifiable within this grading: the figures presumably come from the skill's references, which I was instructed not to read. Flagged, not contradicted."
+    },
+    {
+      "claim": "F is blocked by the truth guardrail because inserting a reference into a personal essay invents a fact about the author",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 4 documents the reasoning and result.md 'Not taken' repeats it. The rewrite contains no invented reference, consistent with the claim."
+    },
+    {
+      "claim": "No facts were invented in the rewrite",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Diffed the rewrite against the input by eye: all events, names, timings, and quotes match the original. Only additions are the generic reader-address line and two connective phrases."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Cluster B was a close call: the three embodied beats land on the three charged moments, but by count they are ~33% of beats, under the skill's 60% rule; executor scored B as not fired rather than hunting for a gate",
+      "Depth of interior access scored 3; could arguably be 4 for a first-person confessional",
+      "D intervention taken per the stated order even though the skill describes D as weakest-evidence and highest-cost"
+    ],
+    "needs_review": [
+      "Whether the author wants the explicit lesson paragraph deleted at all",
+      "F flagged rather than executed; author must supply any real source or name",
+      "G flagged with a truth caveat"
+    ],
+    "workarounds": [
+      "Skipped down the intervention order from guardrail-blocked F to D and E; assumed a blocked intervention frees its cap slot",
+      "humanizer and source-check not run per team-lead instructions"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "At least one embodied-emotion metaphor is replaced with a plain emotion label or a behavior, and the response notes that this runs against usual 'show, don't tell' advice",
+        "reason": "This expectation presupposes that cluster B fires on this input. The skill-following run scored B as not fired using the skill's own 60% rule (3 of ~9 beats embodied) and so, correctly by its own logic, made no B change. Either the fixture should be tuned so B fires unambiguously (more embodied beats, or embodied as the clear dominant mode), or the expectation should be reworded so a principled 'B did not fire, handed to humanizer' outcome is acceptable. As written, it penalizes the skill for honoring its own threshold. The executor's user_notes raise the same tie-break issue."
+      },
+      {
+        "assertion": "The response applies at most three interventions and names the cluster each one belongs to",
+        "reason": "The cap check is doing real work here (the no-skill arm made nine changes), but it does not verify that the three chosen follow the skill's stated long-form order or that a guardrail-blocked cluster is handled correctly. This run had to improvise when F was blocked. An assertion about how a blocked slot is handled would catch order violations."
+      },
+      {
+        "reason": "No assertion checks that the rewrite invents no facts. This run kept the fiction-free guardrail, but the no-skill arm added three invented biographical details while claiming 'same facts'. A truth-preservation assertion would be highly discriminating for a personal-essay fixture."
+      }
+    ],
+    "overall": "Expectations 1, 2, 3, and 5 discriminate well. Expectation 4 is mis-specified for this fixture because the skill's own B gate does not fire on it. A truth-preservation check is the biggest missing assertion."
+  }
+}

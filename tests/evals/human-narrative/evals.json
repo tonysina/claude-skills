@@ -1,0 +1,50 @@
+{
+  "skill_name": "human-narrative",
+  "evals": [
+    {
+      "id": 1,
+      "name": "case-study-short-form",
+      "prompt": "This customer case study feels too neat. Can you make it read more human at the structural level?",
+      "files": ["files/case-study-ridgeline.txt"],
+      "expected_output": "Register identified as case study. Clusters scored with gate and corroborator named. At most two interventions, drawn only from thematic restraint, emotional rebalance, naming a reference, or reader address. No invented facts about Ridgeline. One labeled outside reference is permitted because the skill's F intervention adds one by design.",
+      "expectations": [
+        "The response identifies the register as a case study and applies the short-form or case-study mode rather than the full long-form checklist",
+        "The response applies at most two interventions, counting every structural change actually made whether or not it is labeled, and every intervention is one of: thematic restraint (removing the stated lesson), emotional rebalance (replacing an embodied metaphor with a plain label or behavior), naming a specific reference, or reader address",
+        "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce an unresolved thread that is not present in the input (the input's own forward-looking 2026 plan does not count)",
+        "The response invents no fact about Ridgeline: every number, name, date, quotation, event, present-state claim, and characterization of a person in the output is supported by the input; the only permitted addition is one clearly labeled outside reference (a real book, author, or event) if the response chose the naming-a-reference intervention and told the user to verify it",
+        "All input facts are retained: 140 vans, Pacific Northwest, three coordinators, forty minutes, six weeks, two weeks parallel, forty to six, 11 percent, twelve hours to under two, the Chen quotation, and the 2026 plan",
+        "The response reports which clusters fired and which did not, and if the stated lesson at the end is removed, it is deleted rather than replaced with a summary phrase, a rhetorical question, or a new inference"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "short-form-proportionality",
+      "prompt": "Audit the narrative structure of this and fix anything that reads as AI.",
+      "files": ["files/status-update.txt"],
+      "expected_output": "A five-sentence status update is in the skill's short-form row (A, B, E, F in scope), not a hard stop. The correct outcome is zero interventions, stated explicitly, in a response proportionate to a 48-word input. The text is returned unchanged or declared unchanged.",
+      "expectations": [
+        "The response identifies the text as a status update (short-form register) and applies no structural interventions",
+        "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+        "The response says explicitly that zero interventions is the correct outcome, rather than listing findings and leaving the decision to the user",
+        "The response is proportionate to the input: under 250 words, with no cluster table or corpus statistics for a 48-word status update"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "personal-essay-long-form",
+      "prompt": "Why does this essay still feel AI-written even after I edited it for style? Fix it at the structure level.",
+      "files": ["files/essay-saying-no.txt"],
+      "expected_output": "At least three clusters scored as fired with gate and corroborator named. At most three interventions, named by cluster and described structurally, taken in the skill's long-form order. The stated moral is cut or reduced, the resolution is loosened without incoherence, and no biographical fact is invented. Fixture note: the essay has three embodied-emotion beats among roughly nine emotional beats, so cluster B sits under the skill's 60% rule and may correctly not fire; the embodied-metaphor expectation is conditional on B firing.",
+      "expectations": [
+        "The response scores the piece cluster by cluster and reports at least three clusters as fired, naming the gate feature for each",
+        "The response applies at most three interventions, counting every structural change actually made whether or not it is labeled, and names the cluster each one belongs to",
+        "The closing paragraph's stated lesson ('What I learned is that saying no is rarely a confrontation...') is removed or substantially reduced, and the point remains inferable from the scene",
+        "If the response reports cluster B as fired, at least one embodied-emotion metaphor ('my stomach dropped', 'my chest tightened', 'heat rise up my neck') is replaced with a plain emotion label or a behavior; if B is reported as not fired, the metaphors are left alone and the response says why",
+        "The resolution is made partial, external, or left with one unresolved thread, and the resulting text is still coherent; 'everything at work got easier, and I have never gone back' does not survive unchanged",
+        "The output contains no signposting phrase such as 'you might be wondering' or 'here's what you need to know', and no forward-reference announcement to the reader",
+        "The rewrite invents no biographical fact: no new event, person, job detail, number, or characterization of Dana or the narrator that the input does not contain; any change the response describes as 'same facts' is checked against the input",
+        "If an intervention is blocked by a guardrail, the response says so and states whether the next intervention in order took its slot"
+      ]
+    }
+  ]
+}

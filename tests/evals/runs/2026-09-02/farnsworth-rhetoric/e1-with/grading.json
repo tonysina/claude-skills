@@ -1,0 +1,120 @@
+{
+  "arm": "with",
+  "eval_id": 1,
+  "name": "runbook-hard-stop",
+  "expectations": [
+    {
+      "text": "The response identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+      "passed": true,
+      "evidence": "result.md opens: \"This is a process instruction, and the register table for this skill says stop: diction work only, no figures.\" It then gives the reason: \"A rhetorical figure in a failover runbook would draw the on-call engineer's attention to the sentence at the moment they need it on the database.\" Change note repeats \"Applied: none. Register table says technical/process text takes diction work only.\""
+    },
+    {
+      "text": "No rhetorical figure is added: no antithesis, anaphora, epistrophe, antimetabole, rhetorical question, or deliberate triad appears in the output",
+      "passed": true,
+      "evidence": "scan.txt on result.md: em dashes 0, anaphora 0 strong / 0 weak, triads 0 word-level / 0 phrase-level, HARD VIOLATIONS 0. Revised text read line by line: the two \"If the lag is under / If it is over\" sentences mirror the source's own \"If the replication lag is determined to be less than / If the replication lag exceeds\" pair, so no contrast was added. No question, no reversal, no three-part construction. Change note explicitly declines antithesis and hypophora even though their triggers fired. The framing prose contains a three-item list of quoted source nominalizations, which is evidence citation, not a crafted triad."
+    },
+    {
+      "text": "If the text is edited at all, the edits are limited to diction, such as turning 'undertake verification of' into 'verify' or 'perform a restart of' into 'restart'",
+      "passed": true,
+      "evidence": "Every sentence in the revised text maps to a source sentence with words replaced and nothing added: \"undertake verification of\" -> \"check\", \"initiation of any failover activity\" -> \"take any failover step\", \"escalation ... is required prior to promotion\" -> \"escalate ... before you promote\", \"undertake an update of\" -> \"update\", \"perform a restart of\" -> \"restart\", \"In the event that\" -> \"If\", \"Following ... subsequently\" -> \"After ..., then\". Heading, three-paragraph structure, and sentence count preserved. No numbered steps, no bolding, no added warning, no added condition. Borderline item noted: the two sentences of paragraph 1 were swapped (query first, then the check) for a Saxon finish; since the query is the check and no content was added or lost, this was judged within diction-level editing, and the executor flagged it for review in user_notes.md."
+    },
+    {
+      "text": "The output contains no em dashes and every procedural condition (thirty-second lag threshold, escalation rule, connection-string update, restart) is preserved exactly",
+      "passed": true,
+      "evidence": "grep for U+2014 and U+2013 in result.md: 0 and 0; scan.txt confirms 0 em dashes. Conditions checked against the source: trigger \"stops responding\" = \"becomes unresponsive\"; lag check before any failover step preserved; \"under thirty seconds -> clear to promote\" matches \"less than thirty seconds -> may proceed\" (permission kept as permission); \"over thirty seconds -> escalate to the database team before you promote\" matches \"exceeds thirty seconds -> escalation required prior to promotion\"; \"You will lose data if you promote with significant lag\" keeps both the certainty and the \"significant lag\" wording; \"update the connection string in the configuration service, then restart the application tier\" keeps the post-promotion order. The undefined exactly-thirty case is left undefined, as in the source, and called out to the user rather than resolved."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 6,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 7,
+    "total_steps": 6,
+    "errors_encountered": 0,
+    "output_chars": 13909,
+    "transcript_chars": 5959
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "120 words -> 82 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w: source body 117 words (120 with the heading), revised body 79 words (82 with the heading). Counts match when the heading is included in both."
+    },
+    {
+      "claim": "Saxon finishes on every paragraph: step, lag, tier",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Revised paragraphs end \"any failover step.\", \"with significant lag.\", \"the application tier.\""
+    },
+    {
+      "claim": "Threshold preserved (thirty seconds, both directions); may proceed kept as permission; will result in data loss kept as certainty",
+      "type": "quality",
+      "verified": true,
+      "evidence": "\"under thirty seconds, you are clear to promote\" / \"over thirty seconds, escalate ... before you promote\" / \"You will lose data if you promote with significant lag\" all match the source logic."
+    },
+    {
+      "claim": "No figures applied; budget 0 against 0",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript step 4 lists four candidate figures considered and rejected; scan.txt shows 0 anaphora runs and 0 triads."
+    },
+    {
+      "claim": "The original never says what to do when lag is exactly thirty seconds",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Source uses \"less than thirty seconds\" and \"exceeds thirty seconds\", leaving exactly thirty undefined."
+    },
+    {
+      "claim": "Reordering paragraph 1's two sentences does not change the procedure",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Source: verify lag before failover; verification is done via the status query. Rewrite: run the status query; check lag before any failover step. Same single action, same precondition. Executor flagged it for human confirmation."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Skill description lists process instructions under Do NOT use, while the body's register table handles them with diction-only work; executor followed the register table rather than declining",
+      "\"Significant lag\" kept verbatim rather than tied to the thirty-second figure",
+      "Imperative mood flattens the source's should / may / must distinctions; \"may proceed\" was preserved as permission"
+    ],
+    "needs_review": [
+      "Dropping \"the on-call engineer\" for the implied second person",
+      "Exactly-thirty-seconds boundary is inherited from the source and left unresolved",
+      "Sentence reorder in paragraph 1 (query before check)"
+    ],
+    "workarounds": [
+      "None; references/figures.md and references/changelog.md not loaded because the budget was zero and nothing pointed to them"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "If the text is edited at all, the edits are limited to diction",
+        "reason": "The boundary of \"diction\" is underspecified for sentence-level moves that add no content: swapping two sentences in a paragraph, splitting one sentence into two, or shifting to the imperative. This run did the first two and was passed because nothing was added; a stricter reader could fail it. Naming what is allowed (word substitution, sentence splitting, mood) and what is not (reordering, added sentences, formatting) would make the assertion discriminating rather than judgment-dependent."
+      },
+      {
+        "reason": "No assertion checks that the response does not silently resolve the undefined exactly-thirty-seconds boundary. This run preserved the gap and called it out, which is the right behavior for a claim-check rule, and it is currently only caught indirectly under \"preserved exactly\" in expectation 4."
+      }
+    ],
+    "overall": "Expectations 1, 2, and 4 are discriminating and verifiable from result.md plus scan.txt. Expectation 3 hinges on an unstated definition of diction work; the guidance supplied to the grader (structure, headings, bold, warnings fail) resolved this run cleanly but should live in the eval itself."
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "eval_id": 3,
+  "name": "gemini-residue",
+  "arm": "with",
+  "expectations": [
+    {
+      "text": "The response identifies the [cite: N] markers and the [span_2](start_span)/(end_span) markers as chatbot markup residue",
+      "passed": true,
+      "evidence": "result.md, 'What I changed': \"The draft had Gemini's citation residue in it: three `[cite: N]` markers and a `[span_2](start_span)` / `[span_2](end_span)` pair wrapped around the third sentence. Those are internal pointers to sources Gemini was reading...\" Both marker types are named and explicitly identified as chatbot citation residue, not as generic brackets or formatting artifacts."
+    },
+    {
+      "text": "The response names Gemini as the likely source of the markers",
+      "passed": true,
+      "evidence": "result.md names Gemini twice: \"The draft had Gemini's citation residue in it\" and \"internal pointers to sources Gemini was reading\"."
+    },
+    {
+      "text": "All bracketed markers are removed from the output text",
+      "passed": true,
+      "evidence": "Mechanically verified: regex-stripping all [cite: ...] and [span_N](start_span|end_span) markers from the input yields a string byte-identical to the cleaned paragraph in result.md. The only bracket strings in the whole response are the backticked marker names in the change summary, which is the explanation, not the output text."
+    },
+    {
+      "text": "The surrounding prose is preserved essentially unchanged: the facts (Leeds, 2011, 38 staff, two presses, 2023 employee trust) are all still present and the sentences are not restyled",
+      "passed": true,
+      "evidence": "Sentence-by-sentence diff against the marker-stripped input shows zero differences; all four sentences are verbatim. Leeds, 2011, 38 staff, two presses, 2023, and employee trust all present. result.md states \"The prose itself I left alone.\""
+    },
+    {
+      "text": "The response does not claim the markers prove the prose itself was AI-written; it either says residue proves a chatbot touched the citations or avoids claiming authorship",
+      "passed": false,
+      "evidence": "result.md: \"Those are internal pointers to sources Gemini was reading when it drafted the paragraph.\" The phrase 'when it drafted the paragraph' asserts, as fact, that Gemini authored the prose. The response neither confines the claim to the citations nor avoids claiming authorship, so it fits neither acceptable form in the expectation. It also sits awkwardly next to the response's own finding that the prose 'doesn't trip any of the usual AI-writing checks'. The transcript (Step 3) shows the executor knew the rule ('residue proves a chatbot touched the paragraph but does not by itself prove it wrote the prose') but the user-facing text did not honour it. Single-phrase slip, but the expectation is pass/fail and the burden is on the response."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "tool_calls": {"Read": 2, "Write": 0, "Bash": 3, "Edit": 0, "Glob": 0, "Grep": 0},
+    "total_tool_calls": 5,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 3324,
+    "transcript_chars": 6785
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "The only edits were removing leftover markup",
+      "type": "process",
+      "verified": true,
+      "evidence": "Cleaned paragraph is byte-identical to the marker-stripped input."
+    },
+    {
+      "claim": "Three [cite: N] markers and one [span_2] start/end pair were present",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Input contains [cite: 4], [cite: 5, 6], [cite: 9] and one [span_2](start_span)/[span_2](end_span) pair."
+    },
+    {
+      "claim": "The span pair wrapped the third sentence",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Input: '[span_2](start_span)By 2019 it had 38 staff ... turnover[span_2](end_span).'"
+    },
+    {
+      "claim": "The prose doesn't trip any of the usual AI-writing checks",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Transcript Steps 4-8 walk all four passes with zero hits; scan.txt on result.md shows 0 flag hits. The paragraph is plain, specific, and uses 'was started'."
+    },
+    {
+      "claim": "Those sources are what backed the 2011, 38-staff, 2019, and 2023 figures",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Unverifiable. The citation numbers point to a source list not supplied; which figure each citation backed is an inference. Reasonable, but stated more firmly than the evidence supports."
+    },
+    {
+      "claim": "Gemini drafted the paragraph",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Unverifiable from the markers alone; residue shows a chatbot handled the citations, not that it wrote the prose. This is the basis of the expectation 5 failure."
+    },
+    {
+      "claim": "The response avoids em dashes and decorative triads so it passes the skill's own checks",
+      "type": "quality",
+      "verified": true,
+      "evidence": "scan.txt: 0 em dashes, 0 hard violations; one word-level triad ('places, dates, headcounts') flagged for isocolon test but it is a literal list of what the prose contains, not decorative."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Read 'clean this up' as the skill's full-rewrite use case, then applied the already-good-text edge case; no prose rewrite warranted at 0 hits in 76 words.",
+      "Assumed professional/business register for a company history page."
+    ],
+    "needs_review": [
+      "Removed citations were the only sourcing for the factual claims; response tells the user to verify against records.",
+      "Gemini attribution comes from the skill's extended-patterns reference; the user never said which tool produced the draft."
+    ],
+    "workarounds": [],
+    "suggestions_from_executor": [
+      "Skill could instruct: when removing citation residue, tell the user the facts are now unsourced.",
+      "Skill could say whether to name the model in the change summary for residue-only cases."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response does not claim the markers prove the prose itself was AI-written; it either says residue proves a chatbot touched the citations or avoids claiming authorship",
+        "reason": "This is the discriminating assertion in the set and it caught a real slip: the skill's own reference states the rule, yet the response wrote 'when it drafted the paragraph'. Worth keeping and worth making the wording of the pass condition explicit, e.g. 'does not state or imply that the named model wrote the prose', so graders apply it the same way."
+      },
+      {
+        "reason": "No assertion covers the sourcing caveat. Removing [cite: N] markers deletes the only provenance for the dates and headcounts on a page that will be published. Both arms volunteered a verify-the-figures note unprompted; an assertion like 'the response warns that the removed citations leave the figures unsourced' would test something the user actually needs and is not trivially satisfied."
+      },
+      {
+        "assertion": "All bracketed markers are removed from the output text",
+        "reason": "Passes trivially if the grader reads the whole response rather than the cleaned paragraph, because both arms legitimately quote the marker names in their explanation. Clarify that 'output text' means the cleaned paragraph, or the assertion will produce inconsistent verdicts across graders."
+      }
+    ],
+    "overall": "Assertions are well targeted for this eval. Expectations 1, 2 and 5 separate the arms cleanly; 4 is verifiable by diff and discriminated here. Two gaps: no check on the unsourced-figures warning, and 'output text' in expectation 3 needs a scope note."
+  }
+}

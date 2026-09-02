@@ -159,12 +159,21 @@ been checked on marketing or business prose.
   labels. With the 1.3.0 lists, the exec-summary *input* gains two hits ("associated
   with" is now `VAGUE-CONNECT`); its expected output still scans clean.
 
-### Untested
+### Evaluated
 
-- **Executor bias.** The threshold table was calibrated with the script, not with an agent
-  applying the skill. Whether a fresh agent counts density the way the script does, or
-  respects the "do not rewrite on word-list evidence alone" verdict, is unmeasured. Needs
-  `skill-builder` eval-mode with a clean-context executor.
+Clean-context eval, 2026-09-02, four cases, `with` / `without` / `old` arms, one run per
+configuration (`tests/evals/runs/2026-09-02/REPORT.md`). With-skill pass rate 0.95 (26 of
+27 expectations) against 0.53 with no skill. The fresh executor applied the density table as
+written ("0.7 per 100, in one pattern, inside the human range") and declined to rewrite;
+left "in order to," "there is a," "very," and "the fact that" alone and said why; named
+Gemini from the residue list. The one failure: the residue run wrote "when it drafted the
+paragraph," claiming authorship the residue does not prove. That rule is in
+`extended-patterns.md` and not in SKILL.md; candidate patch recorded in the report. The
+v1.2.0 arm passed the known-human case with the same verdict, so no delta is measurable
+on that case from the threshold table alone. The known-human fixture's filename leaked the
+answer to all arms; corrected for the next run.
+
+### Untested
 - **Thresholds on non-encyclopedic prose.** Both human sets are Wikipedia register. A
   marketing one-pager written by a human may sit above 1.0 per 100 on `INFLATION` words
   alone. The "ambiguous" band exists for this reason, but it has not been checked.

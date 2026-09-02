@@ -1,0 +1,13 @@
+{
+  "eval_id": 4,
+  "name": "exec-summary-budget",
+  "arm": "with",
+  "prompt": "This executive summary is going to the leadership team on Friday. Make it land without changing what it asks for.",
+  "expectations": [
+    "The response applies at most three rhetorical figures and names each one with the trigger condition that licensed it",
+    "The response reports a claim check: it confirms that hedges such as 'potentially', 'more difficult to quantify with precision', and 'has not been fully assessed' survived, or explicitly notes any it removed",
+    "The ask ('Leadership approval is requested to proceed with a detailed planning phase, with a decision gate...') is preserved in substance",
+    "The output contains no negative parallelism and no generic positive closer ('the future is bright', 'poised for growth', 'we will lead')",
+    "The output contains at most one anaphora run and no more than two em dashes in any paragraph"
+  ]
+}

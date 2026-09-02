@@ -1,0 +1,117 @@
+{
+  "arm": "old",
+  "eval_id": 1,
+  "name": "case-study-short-form",
+  "expectations": [
+    {
+      "text": "The response identifies the register as a case study and applies the short-form or case-study mode rather than the full long-form checklist",
+      "passed": true,
+      "evidence": "result.md 'Mode' section: 'At 267 words this is short-form work collateral, so I applied the lighter-touch rules: thematic restraint, resolution mode, and emotional expression. I skipped temporal reordering and subplots ... The case-study section skeleton (challenge, solution, results, looking ahead) is a genre convention, so I kept it.' Transcript Step 3 documents the same choice and notes the skill's own ambiguity (case studies listed under long-form), resolved toward short-form."
+    },
+    {
+      "text": "The response applies at most two interventions, and every intervention is one of: thematic restraint (removing the stated lesson), emotional rebalance (replacing an embodied metaphor with a plain label or behavior), naming a specific reference, or reader address",
+      "passed": false,
+      "evidence": "The response labels three interventions and the diff shows four structural changes: (1) 'felt the frustration in her chest' → 'was frustrated' (emotional rebalance, allowed); (2) 'including two weeks of parallel running' → 'For two of those weeks the coordinators kept the old spreadsheets running alongside the new board, which meant maintaining both' (surfaces a cost; not in the allowed set); (3) 'Looking ahead' rewritten to 'Maintenance scheduling still runs on spreadsheets. Ridgeline plans to move it onto the platform in 2026' (opens a thread; not in the allowed set); (4) deletion of the stated lesson (thematic restraint, allowed). The response itself names item 2+3 as 'Intervention 2: opened one thread and surfaced one cost', a resolution-mode move that the expectation does not permit. Count exceeds two."
+    },
+    {
+      "text": "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce a new unresolved thread",
+      "passed": true,
+      "evidence": "Section order and event chronology are unchanged; the only reorder is two sentences within 'Looking ahead', both present/future state, so no event sequence is inverted. No subplot is added and no causal link is broken. The thread the rewrite ends on (maintenance scheduling moving to the platform in 2026) is already in the input's final section; the response reframes it as unfinished but does not introduce a thread absent from the input. The added cost clause ('which meant maintaining both') describes a completed period, not an open thread."
+    },
+    {
+      "text": "The response invents no facts: every number, name, date, and quotation in the output appears in the input",
+      "passed": false,
+      "evidence": "All numbers, names, dates, and the quotation are preserved (diff shows no new numbers, names, or quotes). But the rewrite asserts 'Maintenance scheduling still runs on spreadsheets', a present-state claim about the customer that the input does not make (it says only that Ridgeline plans to extend the platform to maintenance scheduling in 2026). The executor's own user_notes call this and 'which meant maintaining both' 'inferred from the source rather than stated in it ... not confirmed facts', and the result asks the user to 'Confirm both with Ridgeline before publishing.' 'Maintaining both' is a fair gloss of parallel running; 'still runs on spreadsheets' is a new fact. The headline test ('invents no facts') is failed."
+    },
+    {
+      "text": "The response reports which clusters fired and which did not, and if the stated lesson at the end is removed, it is deleted rather than replaced with a summary phrase such as 'In summary' or 'The takeaway is'",
+      "passed": true,
+      "evidence": "The 'Findings' section lists four patterns found (explicit lesson, nothing unresolved, embodied emotion, total thematic unity) and states what was checked and absent: 'Human-elevated signals that are absent: no reader address, no moral ambiguity', plus the Mode section records temporal reordering and subplots as skipped. This is the previous skill version's equivalent of a fired / not-fired report. The stated lesson is deleted: the rewrite ends 'Ridgeline plans to move it onto the platform in 2026.' with no summary phrase, and the response explains 'The final paragraph no longer tells the reader what the story means.'"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 2,
+    "total": 5,
+    "pass_rate": 0.6
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 7,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 8,
+    "total_steps": 6,
+    "errors_encountered": 0,
+    "output_chars": 16580,
+    "transcript_chars": 7073
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "Left everything else, including the title, the section headings, all metrics, and Chen's quote, unchanged. No sentence polishing.",
+      "type": "process",
+      "verified": true,
+      "evidence": "Diff confirms the only changes are the four listed in expectation 2; title, headings, metrics, and quotation are byte-identical to the input. Rewrite is 233 words versus 267."
+    },
+    {
+      "claim": "Both [added clauses] are derived from facts already in the source. Neither is editorialized.",
+      "type": "quality",
+      "verified": false,
+      "evidence": "'Which meant maintaining both' follows from 'parallel running with the old spreadsheets'. 'Maintenance scheduling still runs on spreadsheets' does not follow: the input never says what maintenance scheduling currently runs on. The response's own 'Downstream effects' section contradicts the 'derived' framing by asking the user to confirm both with Ridgeline."
+    },
+    {
+      "claim": "The piece now has one direct label (Chen's frustration) and one behavioral cue (drivers asking why this took so long)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Rewrite contains 'was frustrated' and the unchanged drivers quote; no embodied emotion remains."
+    },
+    {
+      "claim": "Statistical figures cited (77% vs 52%, 3.94 vs 3.28, 81% vs 38%, 59% vs 38%, 4.74 vs 4.41, 0.28 vs 0.07)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Unverifiable in this grading run (skill directory not read). Figures shared with the 'with' arm (77/52, 4.74/4.41, 28/7) match, which suggests they were copied from the skill rather than invented."
+    },
+    {
+      "claim": "Applied three structural interventions in short-form mode",
+      "type": "process",
+      "verified": true,
+      "evidence": "Result and transcript both describe three, and the diff shows the three labelled changes (one of which comprises two edits). This is accurate self-reporting but exceeds the expectation's cap of two."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Mode choice: skill lists case studies under long-form but attaches the word threshold only to LinkedIn articles; treated 267 words as short-form",
+      "Two additions ('meant maintaining both', 'still runs on spreadsheets') are inferred, not confirmed"
+    ],
+    "needs_review": [
+      "Whether the removed closing lesson is a marketing requirement",
+      "Whether a real unimproved metric exists that could be added",
+      "Whether the title is template-locked"
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response applies at most two interventions, and every intervention is one of: thematic restraint, emotional rebalance, naming a specific reference, or reader address",
+        "reason": "This assertion did its job: it caught the old skill applying a resolution-mode intervention (open a thread, surface a cost) that leads directly to the invented 'still runs on spreadsheets' fact. It is the most discriminating assertion in the set between the old and current skill versions."
+      },
+      {
+        "assertion": "The response invents no facts: every number, name, date, and quotation in the output appears in the input",
+        "reason": "The enumerated test (numbers, names, dates, quotations) passes for this arm; only the headline 'invents no facts' fails, on a present-state claim about the customer. Extend the enumeration to events and states so the letter and the intent agree."
+      }
+    ],
+    "overall": "The old skill gets the register and mode right and reports its findings, but its intervention set includes a resolution-mode move that the case-study register cannot execute without inference. Expectations 2 and 4 caught exactly that; expectation 4's wording should be tightened so it fails on the enumerated test rather than only on the headline."
+  }
+}

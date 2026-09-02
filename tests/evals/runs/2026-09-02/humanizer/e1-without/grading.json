@@ -1,0 +1,141 @@
+{
+  "eval_id": 1,
+  "name": "ai-heavy-rewrite",
+  "arm": "without",
+  "expectations": [
+    {
+      "text": "The response contains a full rewritten text and a change summary, not just a list of findings",
+      "passed": true,
+      "evidence": "outputs/result.md opens with a complete rewrite (182 words, covering all five source paragraphs and the benefits list), followed by a section headed 'What I changed and why' with six bullets and a note on two placeholder details."
+    },
+    {
+      "text": "The change summary names at least three patterns using the skill's stable IDs (for example INFLATION, NEG-PARALLEL, BOLD-LISTS, GENERIC-CLOSER, DIDACTIC, VAGUE-ATTRIB, AI-VOCAB)",
+      "passed": false,
+      "evidence": "The change summary contains no uppercase hyphenated IDs. Patterns are described only in prose: 'stock phrases', 'unsourced statistic', 'abstract claims', '\"In conclusion\" and \"It's not just X; it's Y\" constructions', 'tells of templated writing'. Per the grading guidance, descriptive names do not satisfy this expectation. Expected for a no-skill baseline."
+    },
+    {
+      "text": "The rewritten text contains no negative parallelism: no 'not just X, it's Y', 'more than just', or 'not only X but Y' construction",
+      "passed": true,
+      "evidence": "Read the rewrite body: none of the three enumerated forms appear, and scan.txt reports 0 forbidden-table violations. Observation: the closing sentence 'Good onboarding is the start of a customer relationship, not paperwork on the way to one' is an inverted 'X, not Y' antithesis that keeps the source's 'more than just a process. It's the foundation...' frame in a different word order. It is outside the forms the assertion enumerates, so it passes; flagged in eval_feedback. 'Setup takes minutes, not hours' is a factual contrast, not the pattern."
+    },
+    {
+      "text": "The rewritten text contains no generic positive closer such as 'the road ahead is promising' or 'the future looks bright', and does not end on an equivalent vague upbeat sentence",
+      "passed": true,
+      "evidence": "Both source closers are absent (scan: 0 hits; confirmed by reading). The rewrite ends 'That's the part we're trying to get right.' It is a mild purpose-statement slogan, not vague forward-looking optimism, and is the same kind of closer the with arm used; graded the same way. The executor notes it is 'slightly informal for some brand voices'."
+    },
+    {
+      "text": "The vague attribution 'Industry reports indicate' is either removed or replaced with a specific named source, or is explicitly flagged as needing a real citation; it is not kept as-is",
+      "passed": true,
+      "evidence": "The sentence is removed from the rewrite entirely, and the change summary says: 'Cut the \"industry reports indicate\" line. An unsourced statistic reads weaker than no statistic. If you have a real number and a source, put it back in with the citation.' This is the cleanest of the three allowed outcomes: the body carries no unsourced claim."
+    },
+    {
+      "text": "The bold inline-header list (Speed/Clarity/Confidence) is converted to prose or a plain list without bolded lead-ins followed by colons",
+      "passed": false,
+      "evidence": "The list survives with bolded lead-ins intact; only the colon was swapped for a period: '- **Speed.** Setup takes minutes, not hours. / - **Clarity.** Each step explains itself... / - **Confidence.** People always know where they are and what's left.' This is neither prose nor a plain list. The bold inline-header structure the assertion targets is unchanged, so the colon-to-period swap is surface compliance at best. The transcript confirms the intent: 'Kept the three benefits, tightened each to one line.'"
+    },
+    {
+      "text": "The rewritten text introduces no new AI-vocabulary words (delve, robust, leverage, seamless, tapestry, landscape as abstract noun) that were not already present, and reads as professional register rather than casual first-person",
+      "passed": true,
+      "evidence": "rg over the rewrite body for robust/leverag/seamless/landscape/delve/tapestry: no matches; the source's 'robust', 'leverages', 'seamless', 'landscape' were all removed. scan.txt: 0 humanizer flags, 0 em dashes. Register: company 'we'/'our' voice, no first-person singular, no anecdote. It is noticeably more conversational than the with arm (contractions throughout: 'aren't', 'it's', 'what's', 'we're', 'That's'; 'One honest caveat:'; 'quietly give up'; 'the bulk of'), which the executor itself notes, but it stays within plausible professional one-pager voice and does not tip into casual first-person."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 2,
+    "total": 7,
+    "pass_rate": 0.71
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 5,
+    "total_steps": 4,
+    "errors_encountered": 0,
+    "output_chars": 3924,
+    "transcript_chars": 3478
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded."
+  },
+  "claims": [
+    {
+      "claim": "I kept the structure (intro, benefits, honest caveat, close)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Rewrite has an intro paragraph, a product paragraph, a three-item benefits list, a caveat paragraph, and a two-sentence close, mirroring the source."
+    },
+    {
+      "claim": "Removed 'In conclusion' and 'It's not just X; it's Y' constructions",
+      "type": "factual",
+      "verified": true,
+      "evidence": "'In conclusion' is gone. Neither 'not just' instance survives in that form. Caveat: the closing sentence re-expresses the second one as 'X, not Y' ('the start of a customer relationship, not paperwork on the way to one'), so the underlying frame was inverted rather than removed."
+    },
+    {
+      "claim": "The original had almost every sentence at the same medium length",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Measured source sentence lengths: 17, 16, 22, 21, 13, 13, 10, 12, 12, 15, 9, 7, 4 words. The last three sentences are short (9, 7, 4). The claim is overstated; the middle of the piece is uniform but the ending is not."
+    },
+    {
+      "claim": "Two invented specifics ('this year', 'waiting on IT') were introduced and explicitly flagged to the user",
+      "type": "process",
+      "verified": true,
+      "evidence": "Neither phrase is in the input. The response's final paragraph says: 'I wrote \"this year\" for the product investment line, and \"waiting on IT\" as the integration pain point. Swap those for whatever's actually true.' The disclosure is honest, but the deliverable still contains fabricated facts, and a third unflagged addition ('quietly give up before they see any value', 'so customers aren't re-entering data') also goes beyond the source."
+    },
+    {
+      "claim": "Cut the filler and the stock phrases",
+      "type": "quality",
+      "verified": true,
+      "evidence": "All quoted stock phrases (rapidly evolving digital landscape, stands as a testament, fostering a culture, road ahead is promising, future looks bright) are absent from the rewrite; scan reports 0 flags."
+    },
+    {
+      "claim": "Did not perform any systematic pattern inventory before rewriting, and did not check its own output for reintroduced tells (user_notes)",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript has four steps: read executor spec, read input, rewrite in one Bash heredoc, write outputs. No scan or self-check step. This is consistent with the surviving bold inline-header list, which a pattern inventory would have caught."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Introduced 'this year' and 'waiting on IT', both absent from the source; flagged in the response",
+      "Removed the 'industry reports' sentence rather than rewording it; user may have wanted it kept",
+      "'Keep it professional' interpreted as plain business prose; a warmer or more marketing-forward reading is possible"
+    ],
+    "needs_review": [
+      "Whether concrete phrasing (drop-off tracking, integrations, support handling legacy) overstates actual product capabilities",
+      "Final line 'That's the part we're trying to get right' is slightly informal for some brand voices"
+    ],
+    "workarounds": [
+      "None; baseline run with no skill"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The bold inline-header list (Speed/Clarity/Confidence) is converted to prose or a plain list without bolded lead-ins followed by colons",
+        "reason": "The phrase 'followed by colons' invites a literal reading under which '**Speed.** ...' (period instead of colon) squeaks through. I failed it on substance, but tightening to 'no bolded lead-in text of any kind in the list' removes the ambiguity."
+      },
+      {
+        "assertion": "The rewritten text contains no negative parallelism: no 'not just X, it's Y', 'more than just', or 'not only X but Y' construction",
+        "reason": "This arm's closing sentence uses the inverted 'X, not Y' form ('the start of a customer relationship, not paperwork on the way to one'), which preserves the source's affirm-by-negation frame and slipped past both the scan and the enumerated forms. Add 'X, not Y' / 'not X but Y' to the list, or phrase the assertion around the frame rather than the surface forms."
+      },
+      {
+        "reason": "No assertion checks fidelity to the source. This arm fabricated 'this year' and 'waiting on IT' (disclosed) and added 'aren't re-entering data' and 'quietly give up before they see any value' (not disclosed). A humanizer that invents product facts is a worse outcome than one that leaves a tell in, and nothing here catches it."
+      },
+      {
+        "reason": "Assertion 7's 'professional register rather than casual first-person' is doing two jobs. This arm is clearly more informal than the with arm (contractions, 'One honest caveat:', 'the bulk of') yet passes because it avoids first-person singular. If register difference is something the skill is meant to control, a separate assertion with a concrete test (e.g. no contractions, no colloquial asides) would separate the arms."
+      }
+    ],
+    "overall": "Assertions 2 and 6 cleanly separate the arms here. Assertions 3 and 7 pass this arm on the letter while the substance is weaker than the with arm, and no assertion covers fabricated facts, which is the most consequential difference observed between the two runs."
+  }
+}

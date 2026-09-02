@@ -1,0 +1,65 @@
+{
+  "skill_name": "humanizer",
+  "evals": [
+    {
+      "id": 1,
+      "name": "ai-heavy-rewrite",
+      "prompt": "Humanize this. It's the opening of a product one-pager for our onboarding platform. Keep it professional.",
+      "files": ["files/ai-heavy-onboarding.txt"],
+      "expected_output": "A rewritten one-pager opening with the inflation, negative parallelism, bold inline-header list, vague attribution, challenges formula, and generic closers removed, followed by a change summary naming the patterns by ID. No facts added.",
+      "expectations": [
+        "The response contains a full rewritten text and a change summary, not just a list of findings",
+        "The change summary names at least three patterns using the skill's stable IDs in uppercase hyphenated form (for example INFLATION, NEG-PARALLEL, BOLD-LISTS, GENERIC-CLOSER, DIDACTIC, VAGUE-ATTRIB, AI-VOCAB); descriptive names alone do not satisfy this",
+        "The rewritten text contains no negative parallelism in any form: 'not just X, it's Y', 'more than just', 'not only X but Y', 'not X, but Y', or the inverted 'X, not Y' used to affirm by negation",
+        "The rewritten text contains no generic positive closer such as 'the road ahead is promising' or 'the future looks bright', and does not end on an equivalent vague upbeat sentence",
+        "The vague attribution 'Industry reports indicate' is removed from the rewritten body, or replaced with a specific named source; a note after the body does not count, and replacing it with an unsourced specific-sounding claim does not count",
+        "The bold inline-header list (Speed/Clarity/Confidence) is converted to prose or a plain list with no bolded lead-in text of any kind",
+        "The rewritten text introduces no new AI-vocabulary words (delve, robust, leverage, seamless, tapestry, landscape as abstract noun) that were not already present, and reads as professional register rather than casual first-person",
+        "The rewritten text adds no fact, capability, number, or time reference that is not in the source (for example 'this year', 'waiting on IT', a specific integration, a named metric)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "human-negative-review",
+      "prompt": "Review this for AI tells. Does it sound like AI wrote it?",
+      "files": ["files/sample-b.txt"],
+      "expected_output": "A findings report that concludes the text reads within human range (or at most ambiguous), performs no rewrite, states a hit count or rate relative to length, and treats the watch-list words present ('boasts', 'world-famous', 'premier', 'provides', 'officially opened') as weak evidence. Ground truth: pre-2021 Wikipedia text, human-written. The filename is neutral on purpose; do not rename it to anything that hints at the answer.",
+      "expectations": [
+        "The response does not perform a rewrite of the text, in full or of any paragraph, even as an optional extra; it reports findings only, with at most a one-clause fix suggestion per finding",
+        "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human or is at most ambiguous leaning human",
+        "The words actually present that sit on watch lists ('boasts', 'world-famous', 'premier', 'provides', 'officially opened') are, where flagged, described as weak or context-dependent evidence rather than as proof of AI writing",
+        "The response gives a reason for restraint, such as the low number of hits relative to length, the small number of distinct patterns, or the absence of structural tells",
+        "The response states a hit count or a rate relative to the text's length (for example 'one hit in 135 words' or 'under 1 per 100')"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "gemini-residue",
+      "prompt": "Can you clean this up? It's going into our company history page.",
+      "files": ["files/gemini-residue.txt"],
+      "expected_output": "The [cite: N] and [span_N](start_span)/(end_span) markers identified as Gemini chatbot residue and removed; the surrounding sentences left as they are; a warning that the removed markers were the only sourcing for the figures; no claim that the prose itself was AI-written.",
+      "expectations": [
+        "The response commits to the [cite: N] markers and the [span_2](start_span)/(end_span) markers being chatbot or LLM citation residue, without offering a non-AI explanation as equally likely",
+        "The response names Gemini as the likely source of the markers",
+        "All bracketed markers are removed from the cleaned paragraph (the paragraph delivered to the user, not the response's explanation, which may quote the marker names)",
+        "The cleaned paragraph preserves the prose essentially unchanged: the facts (Leeds, 2011, 38 staff, two presses, 2023 employee trust) are all still present and no sentence is reworded beyond punctuation",
+        "The response does not state or imply that Gemini or any model wrote the prose; it either says residue proves a chatbot touched the citations or paragraph, or avoids claiming authorship",
+        "The response warns that the removed markers were the only sourcing for the dates and headcount, and that the figures should be verified before publication"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "human-signs-preserved",
+      "prompt": "Humanize this paragraph from my blog post.",
+      "files": ["files/human-signs.txt"],
+      "expected_output": "Little or no change. The text is human-written and its plain constructions (in order to, there is a, very, the fact that, tried, moved, used) are signs of human writing, not AI tells. The response says so.",
+      "expectations": [
+        "'in order to', 'the fact that', 'very', and 'there is a' all survive verbatim in any returned text; none is cut, contracted, or replaced for any stated reason, unless the response explicitly identifies them as human markers and then keeps them",
+        "The response reports that the text has few or no AI patterns and returns it unchanged or with minor edits, where minor means punctuation or a single word and at most one sentence touched; a 'light pass' that rewords two or more sentences fails, even if labeled optional",
+        "The plain verbs 'tried', 'moved', and 'used' are not replaced with 'attempted', 'relocated', or 'utilized'",
+        "The response adds no words, hedges (such as 'mostly'), or punctuation to the paragraph that were not in the original, whatever the stated reason",
+        "The response tells the user that these plain constructions are markers of human writing and that editing them would move the text toward AI, not away from it"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+Executive Summary: Platform Consolidation Initiative
+
+The organization currently maintains four separate customer data platforms as a consequence of acquisition activity undertaken between 2021 and 2024. This fragmentation results in significant operational inefficiencies, including duplicated licensing expenditure of approximately $2.1M annually and an inability to produce unified customer reporting across business units.
+
+The proposed consolidation initiative would migrate all customer data to a single platform over an eighteen-month period. Implementation would require dedicated engineering resources from three separate teams, as well as substantial coordination with the commercial organization to ensure continuity of customer-facing operations during transition periods.
+
+Financial modelling indicates that licensing savings would offset implementation costs by month twenty-six. Additional benefits, while more difficult to quantify with precision, would potentially include accelerated reporting cycles and improved data quality for downstream analytics functions.
+
+There are material risks associated with this initiative. The migration would touch billing systems during a period in which the finance organization is also implementing a new revenue recognition process. Sequencing considerations are therefore critical. Additionally, two of the four platforms lack comprehensive documentation, which introduces uncertainty into effort estimation.
+
+A further consideration relates to organizational capacity. The engineering teams identified for this initiative are concurrently committed to the regulatory reporting programme, and the extent to which these commitments can be accommodated in parallel has not been fully assessed at this stage.
+
+Leadership approval is requested to proceed with a detailed planning phase, with a decision gate at the conclusion of that phase prior to any committed engineering investment.
+
+With respect to vendor considerations, the incumbent provider of the largest of the four platforms has indicated a willingness to discuss enterprise pricing in the event that consolidation proceeds onto their platform. This should not be interpreted as a recommendation, as platform selection has not yet been undertaken and the evaluation criteria have not been agreed with stakeholders. Preliminary indications suggest that two of the four platforms would be technically viable as consolidation targets, with the remaining two presenting substantial limitations relating to data model extensibility and integration tooling maturity.
+
+Finally, it should be noted that customer communication requirements have not yet been scoped. Any migration affecting customer-facing reporting will necessitate advance notification to affected accounts, and the commercial organization has previously expressed concerns regarding the volume of change notifications issued to strategic accounts during the current fiscal year. Coordination with account management will therefore be a prerequisite for scheduling.

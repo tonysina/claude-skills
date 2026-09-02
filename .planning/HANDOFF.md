@@ -306,10 +306,24 @@ IDs. The renumbering (`VAGUE-CONNECT` at #6) happens in commit 2, after the IDs 
 - "Letter-like writing" is no longer on the source's ineffective-indicators list.
 - Scan bug: curly apostrophes defeated the `isn't just` regexes. Fixed in the script.
 
+### Eval run (2026-09-02, later the same session)
+
+`tests/evals/` now holds the clean-context eval suite and its first run. 25 executor
+subagents (11 with skill, 11 without, 3 previous-version), 11 grader subagents, 106
+graded expectations. With-skill mean pass rates: farnsworth 0.95, human-narrative 0.88,
+humanizer 0.95; no-skill 0.47 / 0.56 / 0.53. Full findings, four with-skill failures
+triaged (two skill, two eval), and four candidate patches in
+`tests/evals/runs/2026-09-02/REPORT.md`. The `evals.json` files were corrected per the
+graders' critiques (filename leak, undefined thresholds, contradictory expectations,
+missing fidelity checks) for the next run. Changelogs of all three skills carry an
+"Evaluated" section.
+
 ### Still deferred
 
-- `skill-builder` eval across all three (clean-context executor; executor bias applies
-  to everything above).
-- LLM rubric for `human-narrative`.
+- **Candidate patches** from the eval report (humanizer residue-authorship sentence in
+  SKILL.md; farnsworth withdraw-failing-treatment rule and single-line output shape;
+  human-narrative blocked-slot rule and short-form length floor). Patch-level; show
+  before committing.
+- Re-run the corrected eval suite; three runs per configuration for variance.
+- LLM rubric for `human-narrative` beyond the eval expectations.
 - Thresholds unchecked on non-encyclopedic human prose.
-- Open the PR.

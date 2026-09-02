@@ -1,0 +1,118 @@
+{
+  "expectations": [
+    {
+      "text": "The response does not remove or replace 'in order to', 'the fact that', 'very', or 'there is a' on the grounds that they are AI patterns or filler",
+      "passed": true,
+      "evidence": "Sentence-by-sentence diff of the blockquoted paragraph in outputs/result.md against inputs/human-signs.txt: byte-identical (verified with diff after stripping the '> ' prefix). All four constructions are present in the returned text: 'in order to' (s1), 'There is a' (s2), 'very' (s2), 'the fact that' (s6). The response explicitly names them as human markers and keeps them: 'Several things in this paragraph are on the source's list of signs of *human* writing: \"wrote,\" \"used,\" \"tried,\" \"very,\" \"there is a,\" \"in order to,\" \"the fact that,\" and \"was the first.\" An editing pass that swapped those for tighter or stiffer phrasing would push the text toward AI, not away from it.' It mentions 'in order to' as a possible concision trim but states 'is a concision choice rather than an AI tell' and 'Leave it unless it bothers you', so it is neither cut nor framed as filler/AI."
+    },
+    {
+      "text": "The response reports that the text has few or no AI patterns and either returns it unchanged or with at most minor edits, rather than producing a substantially rewritten version",
+      "passed": true,
+      "evidence": "result.md opens: 'I read the paragraph against all four passes and found nothing to change. It already reads as human-written, so here it is unchanged'. Pass 1 reported as 'zero hits ... density is 0 per 100 words and the spread is 0 patterns'. Diff per sentence: s1 unchanged, s2 unchanged, s3 unchanged, s4 unchanged, s5 unchanged, s6 unchanged. Zero edits, not even punctuation. Transcript Step 7 confirms: 'Returned the paragraph unchanged'."
+    },
+    {
+      "text": "The plain verbs 'tried', 'moved', and 'used' are not replaced with 'attempted', 'relocated', or 'utilized'",
+      "passed": true,
+      "evidence": "Returned text contains 'tried' (s4 and s5), 'moved' (s6), and 'used' (s6) exactly as in the input. None of 'attempted', 'relocated', 'utilized' appear anywhere in result.md. The response lists 'used' and 'tried' among the human signs it deliberately preserved."
+    },
+    {
+      "text": "The response does not pad the text with added opinions, rhythm changes, or invented detail in the name of adding voice",
+      "passed": true,
+      "evidence": "The paragraph is returned byte-for-byte. No words, punctuation, or details were added or moved. The commentary outside the blockquote is analysis of what was checked, not additions to the user's text. The response describes the existing voice features (varied rhythm, specifics, opinion 'she was right', uncertainty 'still surprises me') as reasons not to touch it."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 6,
+    "total_steps": 8,
+    "errors_encountered": 0,
+    "output_chars": 4009,
+    "transcript_chars": 5866
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "Pass 1 found zero watch-list hits; density 0 per 100 words, spread 0 patterns",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Manual read of the 102-word input: no promotional adjectives, no AI vocabulary (delve, tapestry, testament, etc.), no -ing tail analyses, no vague attribution. The eval's ground truth agrees the paragraph is human-written. scan.txt on result.md also shows 0 flags and 0 hard violations (the input blockquote is filtered by the meta-quotation filter, so the scan covers the response wrapper only)."
+    },
+    {
+      "claim": "Eight constructions in the paragraph are on the human-signs list: wrote, used, tried, very, there is a, in order to, the fact that, was the first",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All eight strings are present in inputs/human-signs.txt. Whether the skill's reference file lists exactly these was not checked (grader instructed not to read the skill directory), but the eval's ground truth names in order to, there is a, very, the fact that, tried, moved, used as human markers, which overlaps the executor's list."
+    },
+    {
+      "claim": "The closing sentence's three clauses are each load-bearing (cutting one loses information)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Sentence 6 clauses carry distinct facts: order of table migration, which exporter and why, the author's surprise. Deleting any one removes content. Reasonable keep decision."
+    },
+    {
+      "claim": "Rhythm varies: 'a 6-word sentence next to a 30-word one' (transcript Step 6)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Actual sentence lengths are 24, 15, 9, 13, 14, 27 words. Shortest is 9, longest is 27. The direction of the claim (varied lengths) holds, but the numbers in the transcript are wrong. result.md does not repeat the numbers, so the user-facing response is unaffected."
+    },
+    {
+      "claim": "The input is 100 words",
+      "type": "factual",
+      "verified": false,
+      "evidence": "wc -w reports 102 words. Trivial discrepancy, no effect on any decision."
+    },
+    {
+      "claim": "'the skill treats [in order to] as' a concision choice rather than an AI tell",
+      "type": "process",
+      "verified": false,
+      "evidence": "Unverifiable under grading constraints (skill directory not read). Consistent with the executor's transcript Step 1 summary of what it loaded."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Executor noted tension between 'humanize this' (mapped by the skill to full rewrite) and the skill's already-good-text and density-table guidance, and chose not to rewrite.",
+      "Density figure came from a manual read, not the scan script (eval rules forbade running repo scripts)."
+    ],
+    "needs_review": [
+      "Whether returning text verbatim is acceptable for an explicit 'humanize this' request. For this eval it is exactly the expected behavior."
+    ],
+    "workarounds": [
+      "First cat of SKILL.md was truncated by the output limit; executor read the persisted tool-result file instead. Harness issue, no effect on execution."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response reports that the text has few or no AI patterns and either returns it unchanged or with at most minor edits, rather than producing a substantially rewritten version",
+        "reason": "'Minor edits' is undefined in the expectation text; the lead supplied a working definition (punctuation or a single word, no more than one sentence reworded) at grading time. Bake that definition into the expectation so independent graders apply the same cut-off. A three-sentence 'light pass' framed as optional is the realistic failure mode and sits right on the boundary."
+      },
+      {
+        "assertion": "The response does not pad the text with added opinions, rhythm changes, or invented detail in the name of adding voice",
+        "reason": "'Pad' implies added length, but the realistic failure is a one-word hedge like 'mostly' or a comma justified as 'a small beat', which adds almost no length. Rephrase to 'does not add words, hedges, or punctuation to the paragraph that were not in the original' so small voice-motivated insertions are clearly in scope."
+      },
+      {
+        "reason": "No expectation rewards the discriminating behavior the with-arm showed: explicitly telling the user that these constructions are human markers and that editing them would move the text toward AI. Expectation 1's escape clause mentions it, but a response that silently leaves the text alone with no explanation would pass all four. Consider an expectation that the response names at least one of the preserved constructions as a human sign."
+      }
+    ],
+    "overall": "Expectations are well targeted at the over-editing failure mode and the ground truth makes them discriminating. Two of them need sharper wording (what counts as a minor edit, what counts as padding) so grading does not depend on out-of-band guidance."
+  }
+}

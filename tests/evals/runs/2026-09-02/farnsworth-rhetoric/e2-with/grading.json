@@ -1,0 +1,127 @@
+{
+  "expectations": [
+    {
+      "text": "The response states a figure budget for the piece and applies at most one figure",
+      "passed": true,
+      "evidence": "result.md change note opens with 'Budget: 91 words, engineering-blog post-mortem (narrative, first person) → 1 figure' and then 'Applied: none.' The quoted paragraph was compared programmatically against inputs/already-good.txt and is identical, so zero figures were added. scan.txt confirms: 0 anaphora runs, 0 constructions, the one word-level triad ('text, unchanged, followed') is in the response's framing prose, not the paragraph."
+    },
+    {
+      "text": "The concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved in the output",
+      "passed": true,
+      "evidence": "The returned paragraph is byte-for-byte the input text (verified by string comparison of the blockquote against inputs/already-good.txt). All seven details are present verbatim: 'on a Tuesday', 'three clear days', 'step four', 'the leading zero', 'everyone on the test team is American', 'in an hour', 'about four hundred signups'."
+    },
+    {
+      "text": "No claim is inflated: the figure of four hundred signups is not rounded up, no new absolute or superlative is added, and 'a lesson I keep having to relearn' is not turned into a promise",
+      "passed": true,
+      "evidence": "Text unchanged, so 'about four hundred signups' keeps its hedge and 'a lesson I keep having to relearn' stands as written. The change note states 'Claim check: clean. \"About four hundred\" is hedged and stays hedged.' The only claim-related remark is a flag on the author's own 'half of Europe', explicitly deferred as 'a fact question for you, not a rhetoric edit' rather than edited."
+    },
+    {
+      "text": "If a figure is applied, the response names it and the trigger condition that licensed it; if none is applied, the response says so and explains why the paragraph already lands",
+      "passed": true,
+      "evidence": "Zero-figure branch. result.md says 'Applied: none' and explains why: 'The paragraph already spends its one figure: the closing zeugma, \"It cost us about four hundred signups and a lesson I keep having to relearn,\" where one verb governs a number and an abstraction... at the ending, and it lands.' It further explains the existing contrast work of 'Good thing.', the colon doing hypophora's job, and the stressed Saxon finish on 'relearn'. Four candidate figures (antithesis, hypophora, Saxon-finish rebuild, isocolon) are each named with a reason for leaving them alone. Closing paragraph: 'this paragraph already does what the skill would try to do to it.'"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 3,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 4,
+    "total_steps": 8,
+    "errors_encountered": 0,
+    "output_chars": 5620,
+    "transcript_chars": 6841
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "The paragraph is 91 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w on inputs/already-good.txt returns 91"
+    },
+    {
+      "claim": "The paragraph is six sentences",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted six terminal periods in the input"
+    },
+    {
+      "claim": "The closing sentence is a zeugma (one verb governing a number and an abstraction)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "'cost us about four hundred signups and a lesson' — 'cost' governs a literal count and an abstract noun; this is the standard definition of zeugma/syllepsis. The executor's own notes acknowledge the label came from general knowledge, not the skill's core list, but the label is correct."
+    },
+    {
+      "claim": "Last five words are 'I keep having to relearn', final stress on 'learn', one breath",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Programmatic split of the input confirms the last five words; 'relearn' stresses the final syllable"
+    },
+    {
+      "claim": "The prose is Saxon throughout with no Latinate pileups",
+      "type": "quality",
+      "verified": true,
+      "evidence": "A few Latinate words exist ('rejected', 'default', 'American', 'onboarding') but none cluster and none end a sentence except 'American', which the note addresses separately. 'No Latinate pileups' holds; 'Saxon throughout' is a mild overstatement that does not affect any verdict."
+    },
+    {
+      "claim": "'Most of Europe' would be closer to the truth than 'half of Europe' for trunk-prefix dialing",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Plausible (a trunk prefix 0 is used in the UK, Germany, France, Netherlands, and many others, but not in Spain, Denmark, Norway, Portugal, or Poland), but not verifiable from the run's outputs. Correctly framed by the response as a question for the author rather than an edit."
+    },
+    {
+      "claim": "Skill workflow was followed: triage, endings-first diagnosis, trigger check, claim check, ear test",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Steps 3 through 6 document each stage with results; the change note in result.md carries Budget / Applied / Free / Left alone / Claim check / Ear test lines"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Register table has no row for an engineering-blog post-mortem; executor chose 'thought leadership' (half budget) over 'technical' (stop). Budget outcome identical either way for 91 words.",
+      "'Zeugma' label is not in the skill's core figures list and references/figures.md was not loaded, so the label came from general rhetoric knowledge."
+    ],
+    "needs_review": [
+      "Whether flagging the author's 'half of Europe' claim was in scope for a rhetoric pass.",
+      "The response returns the text unchanged; executor believes null is correct per 'Zero figures is a real answer'."
+    ],
+    "workarounds": [],
+    "skill_suggestions": [
+      "Add a register-table row for narrative blog post / post-mortem / personal essay.",
+      "Add an 'Ear test:' line to the output template since the guardrail is mandatory.",
+      "Give the template a canonical phrasing for the zero-figure 'Applied:' case."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response states a figure budget for the piece and applies at most one figure",
+        "reason": "For this eval the 'at most one figure' half is satisfied trivially by returning the text unchanged. That is the intended outcome, so it is fine here, but the assertion could be tightened to 'and does not add a figure the author did not already have', which would separate genuine restraint from an executor that merely did nothing."
+      },
+      {
+        "reason": "No assertion checks that non-figure edits are also restrained. An executor could split sentences, swap 'We fixed it' for 'The fix took', or restate the closing lesson as an explicit maxim without touching any of the listed figures, and every assertion would still pass on the detail and inflation checks. The 'without' arm did exactly this. An assertion such as 'the closing sentence is preserved verbatim or the response justifies changing it against the author's understated ending' would be discriminating."
+      },
+      {
+        "reason": "timing.json only records executor_start, so no duration comparison between arms is possible."
+      }
+    ],
+    "overall": "All four expectations pass on genuine evidence: the executor stated the budget, returned the text unchanged, and explained the restraint in the skill's format. The assertions are sound for the zero-figure outcome but do not guard against non-figure rewrites of the ending."
+  }
+}

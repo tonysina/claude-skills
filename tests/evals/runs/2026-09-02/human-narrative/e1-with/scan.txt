@@ -1,0 +1,42 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 1021   figure budget: 6   (>600 words: 1 per 150, cap 6)
+  meta-quotation filter removed 156 words (code, blockquotes, flag lists, short quoted strings)
+
+  [CONSTRUCTIONS] forbidden-table violations: 1
+        FLAG NEG-PARALLEL: "not just its"
+
+  [A] humanizer multi-word flags: 0 distinct
+        none
+
+  [B] humanizer single-word flags (needs context): 0 distinct
+        none
+
+  em dashes: 7 total, max 5 per paragraph
+        FLAG humanizer EM-DASH (3+ in proximity)
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 7 word-level, 0 phrase-level
+        A, B, E
+        C2, D, G
+        internally, externally, or unresolved
+        Ridgeline, Chen, March
+        text, author, work
+        A, E, F
+        C2, D, G
+        -> run isocolon load-bearing test on each
+
+  density: 1 flag hits / 1021 words = 0.1 per 100   distinct patterns: 2 ['EM-DASH', 'NEG-PARALLEL']
+
+  HARD VIOLATIONS: 2
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                    1021   6     1   0   0    5   0/0   7   0.1   2     2

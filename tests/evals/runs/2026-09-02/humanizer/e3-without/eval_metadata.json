@@ -1,0 +1,13 @@
+{
+  "eval_id": 3,
+  "name": "gemini-residue",
+  "arm": "without",
+  "prompt": "Can you clean this up? It's going into our company history page.",
+  "expectations": [
+    "The response identifies the [cite: N] markers and the [span_2](start_span)/(end_span) markers as chatbot markup residue",
+    "The response names Gemini as the likely source of the markers",
+    "All bracketed markers are removed from the output text",
+    "The surrounding prose is preserved essentially unchanged: the facts (Leeds, 2011, 38 staff, two presses, 2023 employee trust) are all still present and the sentences are not restyled",
+    "The response does not claim the markers prove the prose itself was AI-written; it either says residue proves a chatbot touched the citations or avoids claiming authorship"
+  ]
+}
