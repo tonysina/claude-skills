@@ -40,7 +40,7 @@ Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 | [good-presentations](skills/good-presentations/) | Creates persuasive, rhetorically structured presentations using the Rhetoric of Decks framework | ✅ | ✅ | [.skill](dist/good-presentations.skill) |
 | [great-demo](skills/great-demo/) | Apply Peter Cohan's Great Demo! method to design, critique, and qualify software demonstrations | ✅ | ⚠️ | [.skill](dist/great-demo.skill) |
 | [human-narrative](skills/human-narrative/) | Audits narrative structure for AI patterns that survive surface editing — thematic over-explanation, embodied emotion, tidy resolution, linear time | ✅ | ✅ | [.skill](dist/human-narrative.skill) |
-| [humanizer](skills/humanizer/) | Removes AI writing patterns from text to make it sound more natural and human-written | ✅ | ✅ | [.skill](dist/humanizer.skill) |
+| [humanizer](skills/humanizer/) | Removes AI writing patterns from text — 20 source-checked patterns with stable IDs, a measured finding threshold, and model-residue detection | ✅ | ✅ | [.skill](dist/humanizer.skill) |
 | [intelligence-flow-architecture](skills/intelligence-flow-architecture/) | Designs how humans and AI collaborate in products, workflows, and processes | ✅ | ✅ | [.skill](dist/intelligence-flow-architecture.skill) |
 | [markdown-fetch](skills/markdown-fetch/) | Fetches web content as clean markdown, reducing token usage by up to 80% | ✅ | ⚠️ | [.skill](dist/markdown-fetch.skill) |
 | [skill-builder](skills/skill-builder/) | Creates and improves skills — turns conversations or existing prompts into reusable skills | ✅ | ✅ | [.skill](dist/skill-builder.skill) |
