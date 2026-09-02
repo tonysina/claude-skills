@@ -15,7 +15,7 @@ description: |
   (use farnsworth-rhetoric), grammar or style-only fixes, technical documentation,
   runbooks, process instructions, data reporting, legal language, or RFP answers.
 metadata:
-  version: 1.1.0
+  version: 1.1.1
 ---
 
 # Human-Narrative: Structural AI Pattern Removal
@@ -254,6 +254,16 @@ have already stopped modelling accurately.
 professional writing.** Say the piece reads within human range and stop. Do not manufacture
 findings to fill a report.
 
+**Short professional text fires E and F by construction.** A status update, an email, or
+slide copy never addresses the reader and never names a book, so in the under-600-word row
+E and F come out AI-side on almost every piece. Together they do not reach the intervention
+bar on their own: for the threshold, count E and F as one cluster between them unless A or
+B also fires. Then a status update with only E and F scores 1, which is "within human
+range," which is the answer the paragraph above already gives.
+
+**Report in proportion to the input.** Under 100 words, a one-paragraph verdict with the
+clusters named in a sentence. No table, no corpus percentages.
+
 ---
 
 ## Step 4 — Intervention order
@@ -290,7 +300,8 @@ Before accepting any rewrite, check:
    to a different writer, stop and hand the finding back.
 
 **When a guardrail and an intervention conflict, the intervention loses.** Report the finding
-and say why you didn't act on it.
+and say why you didn't act on it. A blocked intervention is reported, not counted: the next
+intervention in order takes its slot, still under the Step 3 cap.
 
 ---
 
