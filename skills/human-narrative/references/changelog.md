@@ -131,17 +131,17 @@ attached to.
 - Feature-count arithmetic reconciled: Table 14 (20) + Table 15 (13) = 33 rows over 30
   distinct features, with three features double-listed. Matches the paper's "30 core
   features."
-- Cross-skill collision with `humanizer` #17 confirmed and fixed. 1.0.0's model direct-address
+- Cross-skill collision with `humanizer` `SIGNPOSTING` (#17 at the time) confirmed and fixed. 1.0.0's model direct-address
   intervention was *"you'll understand why this matters in a moment"* — a forward-reference
-  announcement, which is what #17 exists to delete ("LLMs announce what they're about to do
+  announcement, which is what `SIGNPOSTING` exists to delete ("LLMs announce what they're about to do
   instead of doing it"; watch list includes "you might be wondering," "here's what you need
   to know"). Since the declared pipeline runs `humanizer` after this skill, `humanizer` would
   have stripped the intervention this skill had just made. Replaced with a second-person
   claim or an aside, with the anti-pattern named.
 - Checked and cleared: cluster F's "name a specific work" does **not** conflict with
-  `humanizer` #4 (vague attributions and notability name-dropping). #4 targets unnamed
+  `humanizer` `VAGUE-ATTRIB` (#4 at the time; vague attributions and notability name-dropping). It targets unnamed
   authorities and inflated source counts; its own corrected examples add named specifics. The
-  two skills agree. #4 is cited in the forbidden-constructions table as the failure mode to
+  two skills agree. `VAGUE-ATTRIB` is cited in the forbidden-constructions table as the failure mode to
   avoid when executing F, not as a conflict.
 
 ### Untested

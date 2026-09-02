@@ -21,7 +21,9 @@ knowledge in 1.0.0 was sound; what was missing was the operational layer that de
   because they were on the list. Every figure now has a detectable trigger, and "don't
   hunt for triggers" is stated explicitly in Common issues.
 - **Forbidden constructions table** mapping each default-mode construction to the
-  humanizer pattern number it violates, with a replacement for each.
+  humanizer pattern it violates, with a replacement for each. (Referenced by display
+  number at the time; switched to humanizer's stable IDs when those landed in humanizer
+  1.3.0.)
 - **Claim check guardrail.** Figures compress and compression eats qualifiers. Four-point
   check for hedges becoming promises, vanished qualifiers, dropped numbers, and lost
   attributions — with instructions to keep the claim and drop the figure when they
@@ -46,7 +48,7 @@ knowledge in 1.0.0 was sound; what was missing was the operational layer that de
 ### Changed
 
 - **"Rule of three" replaced by isocolon** with a mandatory load-bearing test. This was a
-  direct contradiction with `humanizer`: humanizer pattern #7 is titled "Rule of three"
+  direct contradiction with `humanizer`: humanizer pattern `RULE-OF-3` (#7 at the time) is titled "Rule of three"
   and instructs removal of decorative triads, while 1.0.0 Technique 8 instructed adding
   them. Resolved by distinguishing load-bearing parallel members (each carries
   information the others don't — keep) from decorative triads (members interchangeable —
@@ -74,8 +76,8 @@ knowledge in 1.0.0 was sound; what was missing was the operational layer that de
 ### Fixed
 
 - **The Full Example.** 1.0.0's flagship output ("...we will not just compete. We will
-  lead.") contained a negative parallelism (humanizer #6), two anaphora runs, a generic
-  positive closer (humanizer #15), and an em dash — and it upgraded the source's hedged
+  lead.") contained a negative parallelism (humanizer `NEG-PARALLEL`), two anaphora runs, a generic
+  positive closer (humanizer `GENERIC-CLOSER`), and an em dash — and it upgraded the source's hedged
   "an opportunity to enhance our competitive positioning" into the unqualified promise
   "we will lead." The skill's most-anchored-on artifact was a specimen of what the
   adjacent skill exists to delete. It is now retained as a labeled **overcooked
@@ -86,7 +88,7 @@ knowledge in 1.0.0 was sound; what was missing was the operational layer that de
   contrast, only plain-language deletion. Rewritten as a nominalization-to-verb move with
   the contrast claim removed.
 - **"Put simply:" removed** from the say-it-twice example. It belongs to humanizer's
-  didactic-filler list (#14). Restated as: juxtapose the two sentences with no transition,
+  didactic-filler list (`DIDACTIC`). Restated as: juxtapose the two sentences with no transition,
   and the anti-pattern is now named.
 - **Churchill's active-voice line labeled as hypothetical.** It is Farnsworth's own
   teaching foil, not a line Churchill wrote. 1.0.0 presented it unlabeled beside the real
@@ -117,7 +119,7 @@ out of sync with the skill it is reconciling against.
 - humanizer flag reduction on the exec-summary case: 2 flags in, 0 out.
 - Note for future runs: the positive control returned *clean* on the scan's first
   execution, missing all three known violations. Two scan bugs caused it — humanizer
-  states pattern #6 as templates with `X`/`Y` placeholders that cannot be literal-matched,
+  states `NEG-PARALLEL` as templates with `X`/`Y` placeholders that cannot be literal-matched,
   and the anaphora detector did not skip leading conjunctions, so `But if we commit / if
   we collaborate / if we follow through` read as a run of 2. A third bug produced a false
   positive (`here is a` matching inside "There is also"). Without the control, the run
@@ -134,7 +136,7 @@ out of sync with the skill it is reconciling against.
 - **Claim drift is unmeasured.** The scan cannot check it, and it is the guardrail with
   the least evidence behind it. Needs the LLM grader.
 - Antithesis and hypophora are not regex-detectable, so scanned figure counts are a floor
-  rather than a total. `#15 generic positive conclusions` is an open category in
+  rather than a total. `GENERIC-CLOSER` is an open category in
   humanizer, so only listed literals are caught.
 - Cases are synthetic. A real corpus should be drawn from live collateral.
 

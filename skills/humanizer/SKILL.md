@@ -34,9 +34,34 @@ When given text to humanize:
 
 Load `references/extended-patterns.md` when you encounter technical markup (turn0search0, contentReference, utm_source), citation problems (hallucinated DOIs, source-to-text mismatches), or need to check whether a suspected indicator is on the "ineffective indicators" list (patterns that are NOT reliable signs of AI writing).
 
+### Pattern IDs
+
+Every pattern has a stable ID and a display number. **Cross-reference by ID.** Display numbers are for reading order and may change between versions; IDs do not. Other skills in this repo (`farnsworth-rhetoric`, `human-narrative`) and `scripts/scan-ai-tells.py` reference these IDs.
+
+| # | ID | Pattern | Pass |
+|---|---|---|---|
+| 1 | `INFLATION` | Significance inflation, promotional language, and persuasive authority tropes | 1 |
+| 2 | `ING-ANALYSIS` | Superficial -ing analyses | 1 |
+| 3 | `AI-VOCAB` | AI vocabulary words | 1 |
+| 4 | `VAGUE-ATTRIB` | Vague attributions, overgeneralization, and notability name-dropping | 1 |
+| 5 | `NO-COPULA` | Copula avoidance | 2 |
+| 6 | `NEG-PARALLEL` | Negative parallelisms | 2 |
+| 7 | `RULE-OF-3` | Rule of three | 2 |
+| 8 | `EM-DASH` | Em dash overuse | 2 |
+| 9 | `CHALLENGES-FORMULA` | Formulaic sections | 2 |
+| 10 | `ELEGANT-VAR` | Elegant variation (synonym cycling) | 2 |
+| 11 | `FALSE-RANGE` | False ranges | 2 |
+| 12 | `BOLD-LISTS` | Boldface, list formatting, and title-case headings | 3 |
+| 13 | `FRAG-HEADER` | Fragmented headers | 3 |
+| 14 | `DIDACTIC` | Didactic disclaimers and filler | 3 |
+| 15 | `GENERIC-CLOSER` | Generic positive conclusions | 3 |
+| 16 | `GAP-SPECULATION` | Knowledge-cutoff disclaimers and gap speculation | 3 |
+| 17 | `SIGNPOSTING` | Signposting and announcements | 3 |
+| 18 | `SYCOPHANCY` | Sycophantic tone and chatbot artifacts | 3 |
+
 ### Use cases
 
-**Review and flag:** User pastes text and asks "does this sound like AI?" or "review for AI tells." Scan for patterns, report what you found with pattern names, and offer to rewrite. Don't rewrite automatically -- the user wants a diagnosis first. Return a findings list ordered by signal strength; each finding names the pattern, quotes the offending text, and suggests a fix.
+**Review and flag:** User pastes text and asks "does this sound like AI?" or "review for AI tells." Scan for patterns, report what you found with pattern IDs, and offer to rewrite. Don't rewrite automatically -- the user wants a diagnosis first. Return a findings list ordered by signal strength; each finding names the pattern, quotes the offending text, and suggests a fix.
 
 **Full rewrite:** User pastes text and says "humanize this" or "de-slop this." Scan, rewrite, and return clean text followed by a brief change summary naming the patterns fixed.
 
@@ -79,7 +104,7 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 *Pass 1 covers these. They cluster -- finding one usually means others are nearby.*
 
-### 1. Significance inflation, promotional language, and persuasive authority tropes
+### 1. INFLATION -- Significance inflation, promotional language, and persuasive authority tropes
 
 **Words to watch:** stands/serves as, is a testament/reminder, vital/significant/crucial/pivotal/key role/moment, underscores/highlights its importance/significance, reflects broader, symbolizing ongoing/enduring/lasting, setting the stage for, marks a shift, key turning point, evolving landscape, focal point, indelible mark, deeply rooted, boasts a, vibrant, rich (figurative), profound, showcasing, exemplifies, commitment to, natural beauty, nestled, in the heart of, groundbreaking (figurative), renowned, breathtaking
 
@@ -103,7 +128,7 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 ---
 
-### 2. Superficial -ing analyses
+### 2. ING-ANALYSIS -- Superficial -ing analyses
 
 **Words to watch:** highlighting/underscoring/emphasizing..., ensuring..., reflecting/symbolizing..., contributing to..., cultivating/fostering (figurative)..., encompassing..., showcasing...
 
@@ -117,7 +142,7 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 ---
 
-### 3. AI vocabulary words
+### 3. AI-VOCAB -- AI vocabulary words
 
 **Key words:** Additionally (especially starting a sentence), align with, crucial, delve (pre-2025), emphasizing, enduring, enhance, fostering, garner, highlight (verb), interplay, intricate/intricacies, key (adjective), landscape (abstract noun), pivotal, showcase, tapestry (abstract noun), testament, underscore (verb), valuable, vibrant
 
@@ -133,7 +158,7 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 ---
 
-### 4. Vague attributions, overgeneralization, and notability name-dropping
+### 4. VAGUE-ATTRIB -- Vague attributions, overgeneralization, and notability name-dropping
 
 **Words to watch:** Industry reports, Observers have cited, Experts argue, Some critics argue, several sources/publications (when few are cited), has been described as, studies have shown (without citation)
 
@@ -159,7 +184,7 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 *Pass 2 covers these. Sentence- and paragraph-level constructions LLMs reach for habitually.*
 
-### 5. Copula avoidance
+### 5. NO-COPULA -- Copula avoidance
 
 **Words to watch:** serves as/stands as/marks/represents [a], boasts/features/offers [a]
 
@@ -175,7 +200,7 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 ---
 
-### 6. Negative parallelisms
+### 6. NEG-PARALLEL -- Negative parallelisms
 
 **Patterns to watch:** "It's not just X, it's Y" / "Not only X, but Y" / "X is more than just Y. It's Z." / "Not X, it's Y" / "No X, no Y, just Z"
 
@@ -197,7 +222,7 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 ---
 
-### 7. Rule of three
+### 7. RULE-OF-3 -- Rule of three
 
 **Problem:** LLMs overuse groups of three ("adjective, adjective, adjective" or "short phrase, short phrase, and short phrase") to make superficial analyses appear comprehensive.
 
@@ -209,7 +234,7 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 ---
 
-### 8. Em dash overuse
+### 8. EM-DASH -- Em dash overuse
 
 **Problem:** LLMs use em dashes more often than human writers, especially in formulaic, "punchy" ways that mimic sales writing. Multiple em dashes in close proximity is a strong tell.
 
@@ -223,7 +248,7 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 ---
 
-### 9. Formulaic sections
+### 9. CHALLENGES-FORMULA -- Formulaic sections
 
 **"Challenges and future prospects" formula:**
 Watch for "Despite its [positive words], [subject] faces challenges..." followed by vague optimism. This rigid formula, often with a separate "Future Outlook" section, is a strong AI tell. The problem is the formula, not simply mentioning challenges.
@@ -236,7 +261,7 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 10. Elegant variation (synonym cycling)
+### 10. ELEGANT-VAR -- Elegant variation (synonym cycling)
 
 **Problem:** AI uses repetition-penalty mechanisms, causing excessive synonym substitution for the same referent (e.g., "the protagonist" then "the main character" then "the central figure" then "the hero").
 
@@ -248,7 +273,7 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 11. False ranges
+### 11. FALSE-RANGE -- False ranges
 
 **Problem:** LLMs use "from X to Y" constructions where X and Y aren't on a meaningful scale. If no coherent middle ground exists between the endpoints, it's a false range.
 
@@ -264,7 +289,7 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 *Pass 3 covers these. Visible markup, meta-commentary residue, and chatbot artifacts.*
 
-### 12. Boldface, list formatting, and title-case headings
+### 12. BOLD-LISTS -- Boldface, list formatting, and title-case headings
 
 **Boldface:** AI chatbots emphasize phrases mechanically, often in a "key takeaways" fashion inherited from slide decks, listicles, and sales pitches.
 
@@ -282,7 +307,7 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 13. Fragmented headers
+### 13. FRAG-HEADER -- Fragmented headers
 
 **Pattern:** A heading followed by a one-line paragraph that simply restates the heading before the real content begins.
 
@@ -302,7 +327,7 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 14. Didactic disclaimers and filler
+### 14. DIDACTIC -- Didactic disclaimers and filler
 
 **Words to watch:** it's important/critical/crucial to note/remember/consider, worth noting, may vary, it should be noted, In summary, In conclusion, Overall, in order to, due to the fact that, at this point in time
 
@@ -316,11 +341,11 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 15. Generic positive conclusions
+### 15. GENERIC-CLOSER -- Generic positive conclusions
 
 **Phrases to watch:** the future looks bright, exciting times ahead, a major step forward, on the journey to excellence, continues to thrive, represents a step in the right direction, poised for growth, the road ahead is promising
 
-**Problem:** LLMs close sections or paragraphs with vague upbeat endings that say nothing concrete. Often paired with formulaic challenges sections (#9) -- the closer reassures the reader that things will work out, regardless of the actual content.
+**Problem:** LLMs close sections or paragraphs with vague upbeat endings that say nothing concrete. Often paired with `CHALLENGES-FORMULA` -- the closer reassures the reader that things will work out, regardless of the actual content.
 
 **Before:**
 > The future looks bright for the company. Exciting times lie ahead as they continue their journey toward excellence.
@@ -330,7 +355,7 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 16. Knowledge-cutoff disclaimers and gap speculation
+### 16. GAP-SPECULATION -- Knowledge-cutoff disclaimers and gap speculation
 
 **Words to watch:** as of [date], Up to my last training update, While specific details are limited/scarce..., based on available information..., not widely documented, keeps personal details private, maintains a low profile
 
@@ -344,11 +369,11 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 17. Signposting and announcements
+### 17. SIGNPOSTING -- Signposting and announcements
 
 **Phrases to watch:** let's dive in, let's explore, let's break this down, here's what you need to know, now let's look at, without further ado, in this article we'll cover, you might be wondering, before we begin, first let's talk about
 
-**Problem:** LLMs announce what they're about to do instead of doing it. This meta-commentary slows the writing down and gives it a tutorial-script feel. Closely related to fragmented headers (#13) -- both are rhetorical throat-clearing before the real point.
+**Problem:** LLMs announce what they're about to do instead of doing it. This meta-commentary slows the writing down and gives it a tutorial-script feel. Closely related to `FRAG-HEADER` -- both are rhetorical throat-clearing before the real point.
 
 **Before:**
 > Let's dive into how caching works in Next.js. Here's what you need to know.
@@ -358,7 +383,7 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ---
 
-### 18. Sycophantic tone and chatbot artifacts
+### 18. SYCOPHANCY -- Sycophantic tone and chatbot artifacts
 
 **Words to watch:** I hope this helps, Of course!, Certainly!, You're absolutely right!, Would you like..., let me know, here is a...
 

@@ -191,8 +191,8 @@ ordinal. AI-side: lowest.
 acknowledges the telling.
 
 > **Do not use a forward-reference announcement.** "You'll understand why this matters in a
-> moment," "you might be wondering," "here's what you need to know" are `humanizer` #17
-> (signposting), and `humanizer` runs after this skill and will delete them. Address the
+> moment," "you might be wondering," "here's what you need to know" are `humanizer`
+> `SIGNPOSTING`, and `humanizer` runs after this skill and will delete them. Address the
 > reader about something, don't announce structure.
 
 ---
@@ -214,7 +214,7 @@ it works at any length, and it improves the piece independent of any distributio
 
 > Two constraints. Naming a real source means the claim about it must be right — run
 > `source-check` before publishing. And do not substitute "industry reports," "experts
-> argue," or "several publications," which is `humanizer` #4.
+> argue," or "several publications," which is `humanizer` `VAGUE-ATTRIB`.
 
 ---
 
@@ -300,11 +300,13 @@ Default forms of these moves collide with `humanizer`, which runs after this ski
 
 | Move | Do not produce | Violates | Use instead |
 |---|---|---|---|
-| Reader address | "you'll understand why this matters in a moment", "you might be wondering" | #17 signposting | A second-person claim, or an aside acknowledging the telling |
-| Naming a reference | "industry reports", "experts argue", "several publications" | #4 vague attribution | The work, the author, the year |
-| Thematic restraint | replacing the moral with "In summary" / "In conclusion" | #14 didactic filler | Delete it. Add nothing. |
-| Unresolved ending | "the road ahead is promising", "exciting times ahead" | #15 generic positive closer | End on the concrete unresolved fact |
-| Emotion label | "It's important to note that she felt afraid" | #14 | "She was afraid." |
+| Reader address | "you'll understand why this matters in a moment", "you might be wondering" | `SIGNPOSTING` | A second-person claim, or an aside acknowledging the telling |
+| Naming a reference | "industry reports", "experts argue", "several publications" | `VAGUE-ATTRIB` | The work, the author, the year |
+| Thematic restraint | replacing the moral with "In summary" / "In conclusion" | `DIDACTIC` | Delete it. Add nothing. |
+| Unresolved ending | "the road ahead is promising", "exciting times ahead" | `GENERIC-CLOSER` | End on the concrete unresolved fact |
+| Emotion label | "It's important to note that she felt afraid" | `DIDACTIC` | "She was afraid." |
+
+The "Violates" column uses `humanizer`'s stable pattern IDs, not its display numbers.
 
 If `humanizer` runs afterward and deletes something this skill added, `humanizer` is right.
 Do not re-add it.
