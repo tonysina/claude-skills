@@ -1,0 +1,17 @@
+Executive summary: platform consolidation
+
+Four separate customer data platforms came with the companies we bought between 2021 and 2024. We still run all four. That costs $2.1M a year in duplicate licences, and it means nobody can answer a question about a customer across business units without stitching four reports together by hand.
+
+Moving onto one platform would take eighteen months and engineers from three teams. It would also need the commercial org in the room the whole way, because customer-facing systems cannot go dark mid-migration.
+
+Licence savings pay back the build by month twenty-six. The softer gains, faster reporting and cleaner data for analytics, are real but we cannot size them yet, so the case should not rest on them.
+
+Two risks matter. The migration touches billing in the same window that finance stands up new revenue recognition. Get the sequencing right and the two programmes share one freeze calendar. Get it wrong and we break the close. Separately, two of the four platforms have no usable documentation, so any number we give you today carries real uncertainty.
+
+There is also a capacity question we have not answered. The same engineers are committed to the regulatory reporting programme, and we have not tested whether both can run at once.
+
+We are asking approval for a planning phase only, with a decision gate at the end of it before we commit engineering time.
+
+On vendors: the provider behind the largest of the four platforms has hinted at enterprise pricing if we consolidate onto them. Read nothing into that. We have not picked a platform, and we have not agreed the criteria we would pick one on. Early reading is that two of the four could carry the whole estate; the other two cannot stretch far enough on data model or integration tooling.
+
+One gap we have not scoped at all: what we tell customers. Any migration that touches customer-facing reporting means telling those accounts first, and account management has already pushed back on how many change notices strategic accounts got this year. We will need them bought in before we can schedule anything.
