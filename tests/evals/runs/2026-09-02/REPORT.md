@@ -148,9 +148,45 @@ The graders' `eval_feedback` sections were the most useful product of the run. A
    uses. Evidence: e3-with. Patch level.
 3. **human-narrative, Step 5:** when a guardrail blocks an intervention, the next in order
    takes its slot (or does not; pick one). Evidence: e3-with executor note. Patch level.
-4. **human-narrative, Step 1:** consider a length floor for the short-form row, or a
-   "report in proportion to the input" rule. Evidence: e2-with. Design question, not a
-   patch.
+4. **human-narrative, Step 1 / Step 3:** on short professional text, clusters E (reader
+   address) and F (intertextual reference) fire by construction, since a status update
+   never addresses the reader and never names a book. The threshold table then reports
+   "some AI-side clustering" on a piece the skill's own prose says should be zero, and the
+   executor reconciles it by hand. Either drop E from the short-form row, or state in
+   Step 3 that E+F alone do not reach the intervention bar below 600 words, and add a
+   "report in proportion to the input" rule. Evidence: e2-with executor notes. Design
+   question, not a patch.
+
+### Executor suggestions collected from `user_notes.md`
+
+Smaller items the fresh executors raised while following the skills. Each is in the
+named run's `outputs/user_notes.md`.
+
+- **farnsworth description contradicts its body** (e1-with). The frontmatter says "Do
+  NOT use for ... process instructions"; the register table handles process text with
+  "diction work only." The executor followed the table. Pick one: either the description
+  says "process text gets diction only, no figures," or the table row says decline.
+- **farnsworth register table has no row for a blog post-mortem** (e2-with). Treated as
+  thought leadership; budget was 1 either way. Add "engineering blog, post-mortem" to
+  the thought-leadership row.
+- **Both farnsworth executors miscounted the 19-word tagline as 22** (e3, grader note).
+  The budget arithmetic was wrong but the verdict unchanged. A "count the words" line in
+  Step 1 is cheap.
+- **humanizer "Full rewrite" should say what to do when the scan is clean** (e4-with).
+  "Return the text unchanged" is currently inferable from three separate sections.
+- **humanizer has no guidance for `VAGUE-ATTRIB` when no real source exists** (e1-with).
+  The fix says "name a source"; the executor kept the claim and flagged it. State the
+  fallback: delete the claim or flag it inline.
+- **humanizer `INFLATION` list misses marketing adjectives like "seamless"** (e1-with).
+  The executor caught it anyway. Consider adding *seamless*, *effortless*, *powerful*
+  (figurative) to the watch list, or a note that the list is not exhaustive.
+- **humanizer says nothing about warning the user that stripped residue was the only
+  sourcing** (e3-with), or whether to name the model in the change summary. Both
+  executors volunteered the warning; make it a rule.
+- **humanizer review-and-flag mode has no verdict line** (e2-old, e2-with). Both arms
+  invented one. Add "open with a one-line verdict and confidence" to the use case.
+- **human-narrative Step 5 does not say whether a blocked intervention frees its slot**
+  (e3-with). Already patch 3 above.
 
 ## Limits
 
