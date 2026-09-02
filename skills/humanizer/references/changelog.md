@@ -1,5 +1,38 @@
 # Changelog
 
+## [1.3.1] - 2026-09-02
+
+Patches from the first clean-context eval (`tests/evals/runs/2026-09-02/REPORT.md`). No
+pattern content or watch-list changes; the calibration in 1.3.0 still applies.
+
+### Fixed
+
+- **Residue does not prove authorship.** The eval's residue run wrote "sources Gemini was
+  reading when it drafted the paragraph." The rule that residue proves a chatbot touched
+  the citation, not that it wrote the prose, was only in `extended-patterns.md`. Now in
+  SKILL.md under "What residue proves," with two additions the executors volunteered on
+  their own: name the model the marker belongs to, and warn the user when stripped markers
+  were the text's only sourcing.
+- **"Humanize this" on clean text.** The executor asked whether returning the paragraph
+  unchanged was acceptable for an explicit rewrite request; the answer was inferable from
+  three sections and stated in none. "Full rewrite" now says: clean scan, return unchanged,
+  say so. Also states that "Edit with constraints" wins when a constraint co-occurs.
+- **`VAGUE-ATTRIB` with no source to name.** The fix said "name a source"; the eval's
+  rewrite kept the unsourced claim with a note underneath because none existed. Added the
+  fallback: delete it, or mark it inline. Swapping it for an unsourced specific-sounding
+  claim is named as the wrong move.
+
+### Added
+
+- **Review-and-flag opens with a verdict.** Both eval arms invented a verdict line because
+  the use case did not ask for one. Now it does, with confidence stated. Also states that
+  a one-clause fix per finding is fine and a rewritten paragraph is not, which is the line
+  the no-skill baseline crossed.
+- **`INFLATION` non-exhaustiveness note.** The eval's rewrite caught "seamless," which is
+  not on the list. The note says unlisted promotional adjectives count when they cluster
+  with listed ones, and that the scan cannot see them. Kept as prose rather than watch-list
+  entries so the calibrated lists stay source-faithful and the scan's flag set unchanged.
+
 ## [1.3.0] - 2026-09-02
 
 Gave the patterns stable IDs, measured the finding threshold instead of arguing it, closed
