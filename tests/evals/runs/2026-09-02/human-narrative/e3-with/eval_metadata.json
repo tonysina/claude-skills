@@ -1,0 +1,14 @@
+{
+  "eval_id": 3,
+  "name": "personal-essay-long-form",
+  "arm": "with",
+  "prompt": "Why does this essay still feel AI-written even after I edited it for style? Fix it at the structure level.",
+  "expectations": [
+    "The response scores the piece cluster by cluster and reports at least three clusters as fired, naming the gate feature for each",
+    "The response applies at most three interventions and names the cluster each one belongs to",
+    "The closing paragraph's stated lesson ('What I learned is that saying no is rarely a confrontation...') is removed or substantially reduced, and the point remains inferable from the scene",
+    "At least one embodied-emotion metaphor ('my stomach dropped', 'my chest tightened', 'heat rise up my neck') is replaced with a plain emotion label or a behavior, and the response notes that this runs against usual 'show, don't tell' advice",
+    "The resolution is made partial, external, or left with one unresolved thread, and the resulting text is still coherent; 'everything at work got easier, and I have never gone back' does not survive unchanged",
+    "The output contains no signposting phrase such as 'you might be wondering' or 'here's what you need to know', and no forward-reference announcement to the reader"
+  ]
+}

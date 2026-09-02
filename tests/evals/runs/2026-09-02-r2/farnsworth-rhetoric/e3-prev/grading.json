@@ -1,0 +1,100 @@
+{
+  "expectations": [
+    {
+      "text": "The response presents between three and five distinct options",
+      "passed": true,
+      "evidence": "result.md presents exactly 4 numbered treatments: #1 Compression only, #2 Isocolon (two members), #3 Isocolon (three members, asyndeton), #4 Antithesis."
+    },
+    {
+      "text": "Every option names the rhetorical figure it uses (or states 'no figure, diction only')",
+      "passed": true,
+      "evidence": "Headings label each option: '1. Compression only — no figure', '2. Isocolon — two members', '3. Isocolon — three members, asyndeton', '4. Antithesis'. Option 1 says 'no figure' rather than the exact phrase 'no figure, diction only', but the intent is unambiguous."
+    },
+    {
+      "text": "No option uses a negative parallelism ('not just X, it's Y', 'more than just', 'not only X but Y'); a plain antithesis with both poles real ('X, not Y') is allowed only if both poles are claims the input supports",
+      "passed": false,
+      "evidence": "Option 4, the antithesis, reads 'a diagram doesn't align a business. A shared decision does.' The input never characterizes its own product as 'a diagram' or makes any claim about diagrams — this is an invented pole. The response's own claim-check section admits this: '#4 goes further: it drops the category entirely and asserts a mechanism (\"a diagram doesn't align a business\") that the original never claimed.' That is a direct admission that one pole is not a claim the input supports, which fails the stated allowance for plain antithesis."
+    },
+    {
+      "text": "Every option is shorter than the input tagline (fewer words)",
+      "passed": true,
+      "evidence": "Input is 19 words (though the response miscounts it as 'Twenty-two words' — see claims section). Options are 10, 9, 11, and 11 words respectively. All are shorter than the true 19-word input (and than the response's own, incorrect, 22-word count)."
+    },
+    {
+      "text": "No option adds a claim absent from the input: no social-proof superlative..., no characterization of the alternative or status quo the input does not make, and no mechanism turned into a guaranteed outcome",
+      "passed": false,
+      "evidence": "Option 4 characterizes an unnamed alternative/status quo as 'a diagram' that 'doesn't align a business' — a characterization the input never makes. The response's own claim-check block concedes exactly this: it 'asserts a mechanism (\"a diagram doesn't align a business\") that the original never claimed. It's the most memorable line of the four and the least defensible.' This is a textbook instance of the added claim the expectation prohibits, and it is presented as one of the four live options."
+    },
+    {
+      "text": "Any candidate treatment the response's own claim check finds to add a claim is withdrawn, not presented as an option with a caveat",
+      "passed": false,
+      "evidence": "The claim-check block explicitly identifies option 4 as adding an unclaimed mechanism ('the least defensible') and yet the response keeps it in the numbered list of four options rather than withdrawing it, softening the finding into a caveat instead: 'But see the claim check below; this one costs you something' (inline, under option 4) and 'Don't ship #4 without someone signing off on that claim' (in the closing block). This is precisely the caveat-instead-of-withdrawal failure mode the expectation is designed to catch."
+    },
+    {
+      "text": "The response recommends one option and gives a reason",
+      "passed": true,
+      "evidence": "'Recommendation: #1.' followed by a multi-sentence justification about compression beating ornament and #1 preserving the category word 'enterprise architecture'. A secondary conditional recommendation ('Take #2 instead if...') is also given but does not undermine the primary, reasoned recommendation of #1."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 3,
+    "total": 7,
+    "pass_rate": 0.57
+  },
+  "execution_metrics": {
+    "note": "No metrics.json was produced for this arm; the following is derived from transcript.md narrative only and could not be cross-checked against a metrics file.",
+    "tool_calls_claimed": {
+      "Read": 1,
+      "Bash": 3
+    },
+    "total_steps": 8,
+    "errors_encountered": 0,
+    "output_chars": 4100,
+    "transcript_chars": 7600
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:57:21Z",
+    "note": "timing.json for this arm has no executor_end/duration field, so wall-clock duration cannot be reported."
+  },
+  "claims": [
+    {
+      "claim": "The input tagline is twenty-two words",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Counting the verbatim quoted tagline gives 19 words ('Contoso:' through 'capabilities.'), not 22. The response's own diagnostic paragraph opens with this incorrect count, which undercuts the credibility of the length-budget triage that follows from it."
+    },
+    {
+      "claim": "The transcript's account of the work performed matches the delivered result.md",
+      "type": "process",
+      "verified": false,
+      "evidence": "transcript.md narrates five treatments (compression, isocolon 'See the whole enterprise...', antithesis 'Strategy says where you're going...', hypophora 'Does your architecture follow...', epistrophe 'See the enterprise as one...') and states the recommendation was treatment 2, the isocolon 'Contoso: See the whole enterprise. Govern it together. Keep it on course.' None of this appears in outputs/result.md, which instead contains four entirely different treatments (compression, two isocolon variants, one antithesis) and recommends option 1, a different compression line ('enterprise architecture the whole business can see and steer'). The transcript and the actual output describe two different executions; grading was based on the actual result.md file per the grader's instruction to verify outputs directly rather than trust the transcript's account."
+    },
+    {
+      "claim": "Option 2 and option 3 (isocolon variants) pass the load-bearing test cleanly",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Option 2 pairs 'see'/visualization with 'share'/governance, both load-bearing per the response's own check. Option 3 adds 'move as one'/alignment as a third distinct claim-bearing member; the response correctly notes cutting any member loses information, satisfying the isocolon trigger test."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "No option adds a claim absent from the input / Any candidate the claim check finds to add a claim is withdrawn",
+        "reason": "These two assertions did their job here — they caught a real, admitted failure (option 4 kept despite the response's own claim check flagging it). No change needed; flagging as a confirmed-good pair of discriminating assertions."
+      },
+      {
+        "reason": "No assertion or grading step currently checks that the transcript's narrated process matches the actual delivered output file. In this arm the transcript describes a substantially different set of treatments and a different final recommendation than what outputs/result.md actually contains. If future grading relied on the transcript alone (rather than reading result.md directly, as this run did), it would have graded the wrong content entirely. Worth adding an eval-harness-level check that transcript and output are self-consistent, or at minimum a grader instruction to flag such mismatches loudly (as done here)."
+      },
+      {
+        "reason": "No assertion checks factual claims the response makes about the input itself (e.g., word count). The response opens by miscounting the input as 'Twenty-two words' when it is 19 — a small error, but one that feeds directly into the stated figure budget logic and would mislead a reader auditing the reasoning."
+      }
+    ],
+    "overall": "The expectation set is well-designed and discriminating for this eval — expectations 3, 5, and 6 correctly caught a genuine, self-admitted failure in this arm (an antithesis option that invents an unclaimed 'diagram' pole, flagged by the response's own claim check but kept in the output with only a caveat instead of being withdrawn). The main gap is coverage of transcript/output consistency, which is not something a per-expectation check would catch but materially affects how much trust to place in transcript-based grading."
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "expectations": [
+    {
+      "text": "The response does not remove or replace 'in order to', 'the fact that', 'very', or 'there is a' on the grounds that they are AI patterns or filler",
+      "passed": false,
+      "evidence": "Two of the four constructions were replaced in the delivered light pass. Sentence 1: 'on the train in order to have something to argue about' became 'on the train, mostly so we'd have something to argue about'. The stated reason: 'The \"in order to\" was the one phrase that sounded slightly formal next to everything else.' Sentence 2: 'There is a version' became 'There's a version' (and sentence 3 'There is another' became 'There's another'), reason: 'Matches the contractions you already use'. 'very' (s2) and 'the fact that' (s6) were kept. Per the grading rule, cutting or replacing any of the four fails regardless of the reason given, and the response did not state it was keeping them as human markers; it framed 'in order to' as too formal, which is a filler/stiffness rationale."
+    },
+    {
+      "text": "The response reports that the text has few or no AI patterns and either returns it unchanged or with at most minor edits, rather than producing a substantially rewritten version",
+      "passed": false,
+      "evidence": "The reporting half is satisfied: 'Honestly, this paragraph already reads like a person wrote it ... I would not do much to it' and 'Nothing in it would make a reader think it was machine-written.' The edit half is not. Sentence-by-sentence diff of the blockquote against the input: s1 reworded ('in order to have' -> ', mostly so we'd have', a multi-word change adding 'mostly' and 'we'd'); s2 reworded ('There is a' -> 'There's a'); s3 reworded ('There is another' -> 'There's another'); s4 unchanged; s5 punctuation only (comma added before 'and she was right'); s6 unchanged. Three of six sentences are reworded, and the s1 change is more than a single word. Under the standard applied (minor = punctuation or a single word; more than one reworded sentence fails), this fails. The response does recommend keeping the original ('If you prefer the original, keep it'), but the delivered artifact is the edited version."
+    },
+    {
+      "text": "The plain verbs 'tried', 'moved', and 'used' are not replaced with 'attempted', 'relocated', or 'utilized'",
+      "passed": true,
+      "evidence": "Edited paragraph retains 'tried' (s4: 'the first thing we tried'; s5: 'Priya tried to talk me out'), 'moved' (s6: 'We moved the billing tables last'), and 'used' (s6: 'used the old exporter'). None of 'attempted', 'relocated', 'utilized' appear in result.md."
+    },
+    {
+      "text": "The response does not pad the text with added opinions, rhythm changes, or invented detail in the name of adding voice",
+      "passed": false,
+      "evidence": "Two voice-motivated insertions not in the original. (1) 'mostly' was added in s1 ('mostly so we'd have something to argue about'); the author wrote the purpose plainly, and 'mostly' is an invented hedge that implies other unstated reasons. 'we'd' also shifts the framing from the author's own purpose to a group's. (2) The comma in s5 is explicitly justified as a rhythm change for effect: 'Gives the admission a small beat.' The whole pass is framed as making it 'a touch more conversational', i.e. in the name of voice. The additions are small, so this is a mild instance, but the burden is on the expectation and the response did add a qualifier and a rhythm edit that the original did not have."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 3,
+    "total": 4,
+    "pass_rate": 0.25
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 5,
+    "total_steps": 6,
+    "errors_encountered": 0,
+    "output_chars": 2526,
+    "transcript_chars": 3528
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "I changed three small things and left the rest alone",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Diff shows three categories of change (in-order-to swap, There is -> There's applied in two sentences, one comma) touching four of six sentences; s4 and s6 are untouched. The count of three is accurate as itemized, though the contraction change lands in two sentences and the s1 swap introduces two new words ('mostly', 'we'd')."
+    },
+    {
+      "claim": "'in order to' was the one phrase that sounded slightly formal next to everything else",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Contradicted by the eval's ground truth: corpus studies find 'in order to' more common in human writing than in AI output. Treating it as a formality tell is the exact mistake this eval probes."
+    },
+    {
+      "claim": "'There's' matches the contractions you already use ('wasn't')",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Input s6 contains 'wasn't'. The observation is correct even though the edit itself removes a human marker ('there is a')."
+    },
+    {
+      "claim": "Nothing in it would make a reader think it was machine-written",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Consistent with the ground truth that the paragraph is human-written and with the manual read (no AI vocabulary, no inflation, no structural tells)."
+    },
+    {
+      "claim": "The response wrapper itself is clean of AI tells",
+      "type": "quality",
+      "verified": false,
+      "evidence": "scan.txt flags one hit in result.md: 'here is a' [SYCOPHANCY] from 'here is a light pass', density 0.8 per 100 words. Minor chatbot residue in the framing text, not in the paragraph."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Executor judged the paragraph already human and chose minimal edits over a full rewrite, and flagged that a grader might score restraint differently.",
+      "Executor noted 'Ours was the first thing we tried' is ambiguous about which plan 'ours' was, and left it as natural blog voice."
+    ],
+    "needs_review": [
+      "Whether the three small edits (contractions, in-order-to swap, added comma) are wanted at all; the response recommends keeping the original if preferred."
+    ],
+    "workarounds": [
+      "None. Baseline run with no skill loaded."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response reports that the text has few or no AI patterns and either returns it unchanged or with at most minor edits, rather than producing a substantially rewritten version",
+        "reason": "This run is the boundary case the expectation must decide: correct diagnosis, then an 'optional' three-change light pass. The expectation text alone does not say whether that passes; the lead's definition (punctuation or a single word, at most one sentence reworded) decided it. Write that threshold into the expectation."
+      },
+      {
+        "assertion": "The response does not pad the text with added opinions, rhythm changes, or invented detail in the name of adding voice",
+        "reason": "The failure observed here was a one-word hedge ('mostly') and a comma justified as 'a small beat', neither of which reads as 'padding'. Rephrase to cover any added words, hedges, or punctuation not in the original, so this case is unambiguous."
+      },
+      {
+        "reason": "Expectation 1 and expectation 2 both fail on the same 'in order to' and 'There is' edits, so a single mistake costs two points while the 'very' and 'the fact that' preservation earns nothing. Consider splitting expectation 1 per construction, or noting that expectation 2 is about edit volume and expectation 1 about the specific markers, so the two are not read as redundant."
+      }
+    ],
+    "overall": "The eval discriminates correctly: the no-skill baseline diagnosed the text as human but still swapped two human markers on a formality rationale, which the expectations catch. Tighten the wording of expectations 2 and 4 so the boundary between 'minor edit' and 'rewrite' does not depend on grader guidance."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "eval_id": 2,
+  "name": "already-good-restraint",
+  "arm": "with",
+  "prompt": "Strengthen this. It's a paragraph from a post-mortem I'm publishing on our engineering blog.",
+  "expectations": [
+    "The response states a figure budget for the piece and adds at most one figure the author did not already have",
+    "The concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved in the output",
+    "No claim is inflated or generalized: 'about four hundred' keeps its hedge, no new absolute, superlative, or general maxim about all teams is added, and 'a lesson I keep having to relearn' is neither turned into a promise nor restated as an explicit moral",
+    "If a figure is applied, the response names it and the trigger condition that licensed it; if none is applied, the response says so and explains why the paragraph already lands",
+    "Non-figure edits are also restrained: the closing sentence is preserved, and no more than one sentence is split, merged, or given a new subject"
+  ],
+  "executor_model": "opus-5"
+}

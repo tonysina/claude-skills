@@ -1,0 +1,162 @@
+{
+  "arm": "with",
+  "eval_id": 3,
+  "name": "tagline-options",
+  "input_word_count": 19,
+  "expectations": [
+    {
+      "text": "The response presents between three and five distinct options and names the rhetorical figure used in each",
+      "passed": true,
+      "evidence": "result.md 'Treatments' section presents four distinct lines, each under a labeled heading: '1. Zero figures (diction only)', '2. Isocolon, three members', '3. Hypophora', '4. Antithesis'. Three options name a classical figure; the fourth explicitly declares it uses none ('compression, no ornament'), which is an honest labeling rather than an omission. The lines are structurally different (plain declarative, three-member isocolon, question-and-answer, contrastive antithesis), not variants of one draft. Count is 4, within 3-5."
+    },
+    {
+      "text": "No option uses a negative parallelism ('not just X, it's Y', 'more than just', 'not only X but Y')",
+      "passed": true,
+      "evidence": "None of the four option lines contains 'not just', 'more than just', 'not only', or 'it's not X, it's Y'. scan.txt reports one NEG-PARALLEL hit ('tailing negation: \", no ornament. \"'), but that string is in the commentary under Treatment 1 ('compression, no ornament'), not in an option line. CAVEAT: scan.txt is weak evidence for this expectation because its meta-quotation filter stripped all blockquotes (274 of 299 words removed), so the option lines themselves were never scanned. Treatment 4 ('...lives in the business, not on a shelf.') is an 'X, not Y' tailing negation; it is a classical antithesis form and does not match any of the three listed constructions, and the executor documented checking it against NEG-PARALLEL (transcript Step 5). Passed on the expectation as written; see eval_feedback for the ambiguity."
+    },
+    {
+      "text": "Every option is shorter than the input tagline",
+      "passed": true,
+      "evidence": "Input tagline is 19 words (wc -w on inputs/tagline.txt; both executors mis-stated it as 22). Option word counts: T1 'Contoso: enterprise architecture the whole business can see and steer.' = 10; T2 'Contoso: See the whole architecture. Steer it together. Stay aligned.' = 10; T3 'Contoso: Does the architecture still match the strategy? Now the whole business can see.' = 14; T4 'Contoso: enterprise architecture that lives in the business, not on a shelf.' = 12. All four are shorter than 19."
+    },
+    {
+      "text": "No option adds a claim absent from the input, such as 'leading', 'the only', 'number one', 'trusted by', or a customer count",
+      "passed": false,
+      "evidence": "Treatment 4, 'Contoso: enterprise architecture that lives in the business, not on a shelf.', asserts a characterization of the alternative (architecture that sits unused on a shelf) that the input never makes. The executor concedes this in the option's own note: 'adds a characterization of the alternative that the original never makes', and again in user_notes.md under Needs Human Review: 'introduces \"not on a shelf,\" a characterization of the status quo the original never states.' The expectation covers every option, not only the recommended one, and the grading definition counts any evaluative assertion absent from the input. The recommended option (T2) and T1 add nothing; T3's 'Now the whole business can see' carries a mild before/after presupposition but is a question-and-answer restatement of visualization and would not fail on its own. None of the options add 'leading', 'the only', 'number one', 'trusted by', or a customer count."
+    },
+    {
+      "text": "The response recommends one option and gives a reason",
+      "passed": true,
+      "evidence": "result.md 'Recommendation' section: 'Treatment 2. It is the only line that keeps all three mechanism-and-outcome claims inside a single figure and still ends on a stressed syllable.' One option is recommended with a specific reason, and a fallback condition is named for Treatment 1."
+    }
+  ],
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 5,
+    "total_steps": 7,
+    "files_created": [
+      "outputs/result.md",
+      "outputs/user_notes.md",
+      "outputs/metrics.json",
+      "transcript.md"
+    ],
+    "errors_encountered": 0,
+    "output_chars": 6554,
+    "transcript_chars": 6863
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "The line is 22 words",
+      "type": "factual",
+      "verified": false,
+      "evidence": "inputs/tagline.txt is 19 words by whitespace split (wc -w = 19). Stated as 22 in Triage, the change note ('Budget: 22 words'), and transcript Step 4. Does not change any verdict since every option is well under 19, but the budget arithmetic in the change note is wrong."
+    },
+    {
+      "claim": "It carries 14 Latinate polysyllables",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript Step 4 lists them: comprehensive, enterprise, architecture, platform, enabling, organizations, achieve, strategic, alignment, integrated, visualization, collaborative, governance, capabilities. 14 items, all present in the input."
+    },
+    {
+      "claim": "Four nominalizations (alignment, visualization, governance, capabilities)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All four appear in the input; each is a noun formed from a verb or adjective."
+    },
+    {
+      "claim": "Free: 14 Latinate polysyllables cut to 2 ('architecture,' 'aligned')",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Recommended line 'See the whole architecture. Steer it together. Stay aligned.' contains 'architecture' and 'aligned' as its only Latinate polysyllables ('together' is Germanic)."
+    },
+    {
+      "claim": "Isocolon load-bearing test passes: see = visualization, steer it together = collaborative governance, stay aligned = strategic alignment",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Each of the three members maps to one distinct input claim; removing any member drops a claim. Members are 4-3-2 words as stated."
+    },
+    {
+      "claim": "Forbidden constructions: none. No 'not just.'",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Transcript Step 6 says the guardrail check found no forbidden constructions, yet scan.txt reports one NEG-PARALLEL hit (', no ornament.') in the response prose. The check was run on the recommended treatment; the surrounding commentary was not checked. Minor, but the claim as stated is inaccurate."
+    },
+    {
+      "claim": "Nothing added. No numbers, dates, or attributions in the original to lose.",
+      "type": "quality",
+      "verified": false,
+      "evidence": "True for the recommended line (T2). False for the response as a whole: Treatment 4 adds 'not on a shelf', which the executor itself labels as a characterization the original never makes. The change-note claim check covers only the recommended treatment, which is why expectation 4 fails while the executor's own check reports clean."
+    },
+    {
+      "claim": "Ends on a stressed syllable ('aligned')",
+      "type": "factual",
+      "verified": true,
+      "evidence": "'aligned' is stressed on the second syllable (a-LIGNED)."
+    },
+    {
+      "claim": "beyond-obvious was not loaded; equivalent reasoning applied inline",
+      "type": "process",
+      "verified": true,
+      "evidence": "metrics.json shows 1 Read and 4 Bash calls, no Skill invocation. Transcript Step 2 and user_notes.md both record the skip and the substitute reasoning."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "beyond-obvious chain skipped per run rules; spread of treatments generated inline instead",
+      "'strategic alignment' compressed to 'Stay aligned'; variant 'Stay on strategy' offered if the word must stay",
+      "'comprehensive' treated as an unsupported scope claim and mapped to 'whole'"
+    ],
+    "needs_review": [
+      "Treatment 4 introduces 'not on a shelf', a status-quo characterization not in the original (executor flagged this itself; it is the basis for the expectation 4 fail)",
+      "Recommended isocolon alliterates S/S/S (See/Steer/Stay), may read sing-songy for an enterprise brand",
+      "Whether 'enterprise architecture platform' must survive in the tagline is a brand decision"
+    ],
+    "workarounds": [
+      "Produced both the single-line treatments format and a strengthen-style change note, since the skill asks for both in different places",
+      "Replaced em dashes in the change-note template with colons and periods to stay clean for the humanizer EM-DASH check"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "No option uses a negative parallelism ('not just X, it's Y', 'more than just', 'not only X but Y')",
+        "reason": "scan.txt cannot serve as evidence for this assertion as configured: its meta-quotation filter strips blockquotes, and this executor put every option in a blockquote, so zero option text was scanned (274 of 299 words removed). The one hit it did report was in commentary. Either scan a flattened copy of the options, or have the grader check options by hand as done here."
+      },
+      {
+        "assertion": "No option uses a negative parallelism ('not just X, it's Y', 'more than just', 'not only X but Y')",
+        "reason": "Treatment 4 uses 'X, not Y' (a tailing negation). The skill's own scanner labels tailing negation as NEG-PARALLEL, but the assertion's listed forms are all 'not just / not only / more than just' escalations. State explicitly whether plain 'X, not Y' antithesis counts, otherwise a with-skill run that follows the skill's antithesis guidance can pass or fail on grader interpretation."
+      },
+      {
+        "assertion": "No option adds a claim absent from the input, such as 'leading', 'the only', 'number one', 'trusted by', or a customer count",
+        "reason": "The listed examples (leading, the only, number one, trusted by, customer count) are all social-proof superlatives. The actual failure here was a status-quo characterization ('not on a shelf'), which the executor caught in its own note but shipped anyway as a non-recommended option. Consider adding 'characterizations of competitors or the status quo' to the examples so the executor's own claim check is applied to every option, not only the recommended one."
+      },
+      {
+        "reason": "Both executors claimed the input is 22 words; it is 19. No assertion checks the accuracy of the budget arithmetic the skill's change note reports. If the dosage budget is a load-bearing part of the skill, an assertion that the stated word count matches the input would catch this."
+      },
+      {
+        "reason": "No assertion checks that each named figure is actually the figure used (e.g., that the line labeled isocolon has parallel members of similar length). Expectation 1 passes on the label alone; a mislabeled figure would also pass."
+      }
+    ],
+    "overall": "Assertions 1, 3 and 5 are discriminating and separated the arms cleanly. Assertion 2 is currently graded by hand because the scan filter excludes blockquoted options, and its definition of negative parallelism is narrower than the skill's own NEG-PARALLEL label. Assertion 4 caught a real added claim, but its examples point at a different failure class than the one that occurred."
+  },
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "eval_id": 2,
+  "name": "human-negative-review",
+  "arm": "old",
+  "skill_version": "1.2.0",
+  "ground_truth": "human (pre-2021 Wikipedia revision)",
+  "expectations": [
+    {
+      "text": "The response does not perform a rewrite of the text; it reports findings only",
+      "passed": true,
+      "evidence": "result.md is a verdict line, three numbered findings each with a pattern name, quoted text, and a one-clause 'Fix:' suggestion (e.g. 'The area has a sub-regional sports centre'), a 'Considered and not flagged' list, and a 'Why it reads as human' list. No rewritten passage appears. It closes with an offer: 'If you want, I can do a light edit that removes the three promotional phrases and fixes the run-on without touching anything else.' Transcript Issues: 'no rewritten text was produced; the response ends with an offer instead.'"
+    },
+    {
+      "text": "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human or is at most ambiguous",
+      "passed": true,
+      "evidence": "First line of result.md: '**Verdict: this reads as human-written.** The few tells present are the promotional vocabulary of a local tourism guide, not the patterns that cluster in language-model output.' Verdict is unambiguous and matches the ground truth (human)."
+    },
+    {
+      "text": "Any flagged words such as 'features', 'serves as', or 'offers' are described as weak or context-dependent evidence rather than as proof of AI writing",
+      "passed": true,
+      "evidence": "None of the listed example words occur in the input. The words actually flagged are qualified: finding 1 on 'boasts a': 'On its own it is weak evidence, since British local-guide prose has used \"boasts\" for decades.' Finding 2 on 'world-famous': 'the kind of superlative that both models and tourist boards reach for.' The closing paragraph covers all three: 'Three promotional words in about 140 words is a thin cluster, and all three belong to the same tourism-copy register, which predates language models by a long way.' Finding 3 ('premier') is not individually softened, but the opening and closing frame all three as register, not AI evidence."
+    },
+    {
+      "text": "The response gives a reason for restraint, such as the low number of hits relative to length, the small number of distinct patterns, or the absence of structural tells",
+      "passed": true,
+      "evidence": "Hits relative to length: 'Three promotional words in about 140 words is a thin cluster'. Absence of structural tells: 'None of the high-frequency model patterns appear. There are no trailing -ing phrases, no em dashes, no \"not just X but Y\", no signposting, no upbeat closing sentence, and no vague appeals to experts or observers.' Also a 'Considered and not flagged' section explaining why four candidate tells were rejected."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 5,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 6,
+    "total_steps": 7,
+    "errors_encountered": 0,
+    "output_chars": 5828,
+    "transcript_chars": 10118,
+    "result_md_words": 428,
+    "scan_hard_violations": 0,
+    "scan_flag_density_per_100": 0.2
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "The response's verdict (human-written) matches the ground truth",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Ground truth: pre-2021 Wikipedia revision, human-written. Response: 'Verdict: this reads as human-written.'"
+    },
+    {
+      "claim": "The text is about 140 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w returns 135; 'about 140' is a fair approximation."
+    },
+    {
+      "claim": "The first sentence is a run-on with no punctuation between 'squash courts' and 'also in the same area', and again before 'a world-famous facility'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Both joins are unpunctuated in the input."
+    },
+    {
+      "claim": "'outdoors sporting centre' appears in the text as an awkward adjective form",
+      "type": "factual",
+      "verified": true,
+      "evidence": "String found verbatim in input paragraph 2."
+    },
+    {
+      "claim": "Referents are stable: 'the Ice Bowl' is repeated rather than varied",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Input uses 'Gillingham Ice Bowl' then 'The Ice Bowl'; no elegant-variation synonym."
+    },
+    {
+      "claim": "No em dashes, no 'not just X but Y', no signposting, no upbeat closing sentence in the text",
+      "type": "factual",
+      "verified": true,
+      "evidence": "grep for the em dash returns 0; the text ends on 'in 1984.'; no negative-parallel or signposting constructions present."
+    },
+    {
+      "claim": "'Boasts a' is on the watch list twice (promotional word and copula substitute)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Cannot verify: grader was instructed not to read the skill directory. Consistent with the with-arm executor's note that 'boasts' sits on multiple lists."
+    },
+    {
+      "claim": "'Officially established' appears in one of the skill's significance-inflation examples",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Cannot verify without reading SKILL.md v1.2.0."
+    },
+    {
+      "claim": "The three-pass scan (high-signal, structural, formatting) plus voice check was run",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Steps 4 through 6 document each pattern (1 through 18) with a result."
+    },
+    {
+      "claim": "Language models almost never produce ungrammatical run-ons; a model would have split the first sentence",
+      "type": "quality",
+      "verified": false,
+      "evidence": "A generalisation offered as the strongest counter-evidence. The executor's user notes concede this inference 'is mine, not the skill's'. Plausible, not verifiable from run materials."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Input filename 'human-2020-gillingham.txt' reveals the label, and the executor listed the inputs directory before reading the text, so the label was seen before judgement formed.",
+      "'World-famous' may be defensible in trampolining circles; flagged as unsupported, not false.",
+      "'Boasts a' is on the watch list but is ordinary British local-guide vocabulary; another executor might not flag it."
+    ],
+    "needs_review": [
+      "The verdict hinges on grammar errors as human counter-signals, which the v1.2.0 skill does not list; the inference is the executor's own.",
+      "The fix for 'premier' ('name the league') assumes the writer knows it."
+    ],
+    "workarounds": [
+      "Transcript at run root and outputs under outputs/, so output_chars covers outputs/ minus metrics.json.",
+      "No rewrite produced because the eval is autonomous and the skill says to offer rather than perform; by design."
+    ],
+    "suggestions_from_executor": [
+      "Review-and-flag use case should ask for an explicit verdict line with confidence.",
+      "Skill lists AI tells but no human counter-signals (typos, run-ons, dense local specifics, dated register); those carried most of the weight here.",
+      "Watch-list entry for 'boasts a' could note it is common in pre-LLM tourism writing."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response does not conclude that the text is AI-generated",
+        "reason": "The input filename 'human-2020-gillingham.txt' encodes the answer. This executor explicitly reports seeing it before analysing the text. A neutral filename is needed before this assertion can be trusted to discriminate."
+      },
+      {
+        "assertion": "Any flagged words such as 'features', 'serves as', or 'offers' are described as weak or context-dependent evidence",
+        "reason": "None of the named example words occur in the input. Name the words actually present ('boasts', 'world-famous', 'premier') so graders check the same thing."
+      },
+      {
+        "reason": "This arm counted three promotional hits where the v1.3.0 arm counted one literal hit, yet both passed every assertion with the same verdict. If the point of the v1.3.0 density table is to standardise counting, an assertion on the reported hit count or rate would expose that difference; the current set does not."
+      },
+      {
+        "reason": "Observed but unasserted: this arm's 'Considered and not flagged' section (four candidate tells rejected with reasons) is a useful behaviour for a negative-control eval. An assertion that the response names at least one candidate tell it chose not to flag would reward calibrated restraint over silence."
+      }
+    ],
+    "overall": "All four expectations pass on genuine evidence. The old skill version produced a verdict, reasoning, and restraint equivalent to v1.3.0 on this eval, so the assertion set does not separate the two versions. The filename leak and the absent example words in expectation 3 are the main design gaps."
+  }
+}

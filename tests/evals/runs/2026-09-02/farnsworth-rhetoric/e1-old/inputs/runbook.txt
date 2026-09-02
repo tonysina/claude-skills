@@ -1,0 +1,7 @@
+## Failover procedure
+
+In the event that the primary database instance becomes unresponsive, the on-call engineer should undertake verification of the replication lag prior to the initiation of any failover activity. Verification can be accomplished through execution of the replication status query documented in the operations wiki.
+
+If the replication lag is determined to be less than thirty seconds, promotion of the standby instance may proceed. If the replication lag exceeds thirty seconds, escalation to the database team is required prior to promotion, as promotion under conditions of significant lag will result in data loss.
+
+Following promotion, the engineer must undertake an update of the connection string in the configuration service and subsequently perform a restart of the application tier.

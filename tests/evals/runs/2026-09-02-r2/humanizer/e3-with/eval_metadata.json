@@ -1,0 +1,15 @@
+{
+  "eval_id": 3,
+  "name": "gemini-residue",
+  "arm": "with",
+  "prompt": "Can you clean this up? It's going into our company history page.",
+  "expectations": [
+    "The response commits to the [cite: N] markers and the [span_2](start_span)/(end_span) markers being chatbot or LLM citation residue, without offering a non-AI explanation as equally likely",
+    "The response names Gemini as the likely source of the markers",
+    "All bracketed markers are removed from the cleaned paragraph (the paragraph delivered to the user, not the response's explanation, which may quote the marker names)",
+    "The cleaned paragraph preserves the prose essentially unchanged: the facts (Leeds, 2011, 38 staff, two presses, 2023 employee trust) are all still present and no sentence is reworded beyond punctuation",
+    "The response does not state or imply that Gemini or any model wrote the prose; it either says residue proves a chatbot touched the citations or paragraph, or avoids claiming authorship",
+    "The response warns that the removed markers were the only sourcing for the dates and headcount, and that the figures should be verified before publication"
+  ],
+  "executor_model": "fable-5-1"
+}

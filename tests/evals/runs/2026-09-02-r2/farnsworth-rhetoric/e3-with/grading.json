@@ -1,0 +1,116 @@
+{
+  "expectations": [
+    {
+      "text": "The response presents between three and five distinct options",
+      "passed": true,
+      "evidence": "result.md presents exactly 4 numbered options: '1. No figure, diction only', '2. Isocolon', '3. Hypophora', '4. No figure, diction only — outcome-first order', each using a distinct construction (two of the four share the 'no figure' label but differ in word order and are explicitly distinguished as separate options)."
+    },
+    {
+      "text": "Every option names the rhetorical figure it uses (or states 'no figure, diction only')",
+      "passed": true,
+      "evidence": "Option headings are exact: 'No figure, diction only' (x2, one with a qualifier), 'Isocolon', 'Hypophora'. All four options are explicitly labeled."
+    },
+    {
+      "text": "No option uses a negative parallelism ('not just X, it's Y', 'more than just', 'not only X but Y'); a plain antithesis with both poles real ('X, not Y') is allowed only if both poles are claims the input supports",
+      "passed": true,
+      "evidence": "None of the four presented options is an antithesis or uses negative-parallelism phrasing. The one antithesis candidate generated ('Not more diagrams. More alignment.') was withdrawn before being offered, precisely because its pole was not supported by the input — see the 'Withdrawn candidates' section."
+    },
+    {
+      "text": "Every option is shorter than the input tagline (fewer words)",
+      "passed": true,
+      "evidence": "Input is correctly counted as 19 words. The four options are 8, 5, 8, and 8 words respectively (word counts stated in the option headers match the actual option text on manual recount), all well below 19."
+    },
+    {
+      "text": "No option adds a claim absent from the input: no social-proof superlative..., no characterization of the alternative or status quo the input does not make, and no mechanism turned into a guaranteed outcome",
+      "passed": true,
+      "evidence": "All four presented options (diction cuts and the isocolon) restate or compress claims already in the source (visualization, governance, strategic alignment) without adding superlatives, competitor/status-quo characterizations, or guaranteed outcomes. The hypophora option ('what achieves strategic alignment? Visualization, plus governance.') restates the source's own hedged claim rather than hardening it into a guarantee; the response's claim-check block explicitly defends this point ('No mechanism turned into a guaranteed outcome — the line asks what achieves alignment and answers with the same two capabilities the source names, nothing more'), and that framing is consistent with what the two-clause line actually does."
+    },
+    {
+      "text": "Any candidate treatment the response's own claim check finds to add a claim is withdrawn, not presented as an option with a caveat",
+      "passed": true,
+      "evidence": "The response generated six candidates and withdrew two before presenting them: antithesis ('Not more diagrams. More alignment.') for inventing an unsupported 'diagrams' pole, and erotema ('Isn't it time strategy and architecture actually aligned?') for presupposing a status quo the input never characterizes. Both are placed under a clearly labeled 'Withdrawn candidates' section with the explicit note 'not offered as options' / 'Withdrawn' — never folded into the four numbered options with a caveat."
+    },
+    {
+      "text": "The response recommends one option and gives a reason",
+      "passed": true,
+      "evidence": "'Recommendation: Option 3 (Hypophora).' followed by a reasoned paragraph explaining it keeps the outcome claim explicit while still cutting word count, and reads as confident rather than descriptive."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 3,
+      "Write": 4,
+      "Bash": 0,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 7,
+    "total_steps": 8,
+    "files_created": [
+      "outputs/result.md",
+      "transcript.md",
+      "outputs/user_notes.md",
+      "metrics.json"
+    ],
+    "errors_encountered": 0,
+    "output_chars": 13215,
+    "transcript_chars": 6268
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:57:21Z",
+    "executor_end": "2026-09-02T19:35:52Z",
+    "duration": "0:38:31.035639"
+  },
+  "claims": [
+    {
+      "claim": "The input tagline is 19 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Manual count of the quoted input ('Contoso: A comprehensive enterprise architecture platform enabling organizations to achieve strategic alignment through integrated visualization and collaborative governance capabilities.') gives 19 words, matching the response."
+    },
+    {
+      "claim": "Antimetabole was correctly not attempted because no reciprocal relationship exists in the source",
+      "type": "process",
+      "verified": true,
+      "evidence": "'Antimetabole — considered and not attempted: no reciprocal relationship in the source to reverse (visualization and governance don't invert into each other), so the trigger never fires.' Visualization and governance are indeed two independent capabilities, not a reversible pair, so this trigger-discipline claim holds."
+    },
+    {
+      "claim": "The beyond-obvious skill chain was not literally invoked, and equivalent reasoning was substituted",
+      "type": "process",
+      "verified": true,
+      "evidence": "user_notes.md workarounds section states this explicitly and the transcript's Step 5 corroborates it ('The Skill tool itself was not invoked (per task constraints); the divergence step was performed directly'), so the claim is consistent across transcript and user notes, though it does mean the eval did not test the skill's actual beyond-obvious chaining instruction end-to-end."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Option 2 (isocolon) drops the explicit 'strategic alignment' outcome claim entirely — an omission rather than an inflation, so it still passes the claim check, but the executor flags that a human reviewer might prefer it over the recommended hypophora line for brevity.",
+      "'Contoso' is retained as a bare brand token with no attached verb across options 2-4; a normal tagline convention, but the executor flags it should be checked against the brand's tagline style guide, which was not provided."
+    ],
+    "needs_review": [
+      "Confirm 'strategic alignment' is still the term Contoso wants to lead with, since a marketer might want a different outcome word entirely — a content decision the executor correctly frames as upstream of this skill's rhetoric-only scope."
+    ],
+    "workarounds": [
+      "beyond-obvious was not chained per the run's explicit constraint; equivalent divergent-option reasoning was performed directly in-session instead.",
+      "scripts/scan-ai-tells.py was not run per the run's explicit constraint, even though this eval batch otherwise includes scan.txt outputs for sibling arms (a scan.txt is nonetheless present for this arm, produced by the eval harness rather than the executor)."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "No option adds a claim absent from the input",
+        "reason": "The hypophora option ('what achieves strategic alignment? Visualization, plus governance.') sits closer to the line than the other three options — phrasing a capability as the direct answer to 'what achieves X' reads slightly more assertive than the source's hedged 'enabling organizations to achieve'. It passes here because it still names the same two capabilities rather than inventing a new one, but a stricter version of this assertion (or a note in the skill itself) could make the hedge-vs-assertion distinction for question-answer figures more explicit, since hypophora is structurally prone to converting hedges into confident-sounding answers."
+      },
+      {
+        "reason": "No assertion checks whether withdrawn candidates are withdrawn for a claim reason genuinely equivalent to a real claim-check failure, versus a milder or debatable one. In this arm both withdrawals (antithesis, erotema) are clear-cut, but the expectation as written would also pass a response that withdrew options overcautiously (e.g., withdrawing a defensible antithesis) — it rewards withdrawal over inclusion without checking whether the withdrawal itself was well-reasoned."
+      }
+    ],
+    "overall": "No significant gaps for this arm. All seven expectations passed on genuine, substantive grounds: the withdrawn-candidates section is a clean, unambiguous demonstration of the claim-check-then-withdraw behavior expectation 6 is designed to test, and it stands in clear contrast to the prev arm's failure on the same expectation."
+  }
+}

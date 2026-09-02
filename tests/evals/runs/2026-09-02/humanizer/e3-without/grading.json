@@ -1,0 +1,118 @@
+{
+  "eval_id": 3,
+  "name": "gemini-residue",
+  "arm": "without",
+  "expectations": [
+    {
+      "text": "The response identifies the [cite: N] markers and the [span_2](start_span)/(end_span) markers as chatbot markup residue",
+      "passed": false,
+      "evidence": "result.md: \"The main problem was leftover citation markers (`[cite: 4]`, `[span_2](start_span)` and so on), which look like artifacts from an AI research tool or a document export.\" The response names both marker types but hedges equally between an AI tool and a non-AI 'document export', and its follow-up note leans toward the non-AI reading: \"The citation markers suggest the text was pulled from source documents.\" It never commits to the markers being chatbot/LLM residue. user_notes.md shows the executor privately believed they were 'Gemini Deep Research residue' but chose not to say so. Under the grading guidance (must say what the markers are, not merely treat them as artifacts) and burden-on-the-response, this is a fail. Note for the lead: a lenient reading could credit 'AI research tool' as sufficient; I did not, because the hedge leaves the user unable to tell which explanation applies."
+    },
+    {
+      "text": "The response names Gemini as the likely source of the markers",
+      "passed": false,
+      "evidence": "Gemini does not appear anywhere in result.md. user_notes.md: \"I did not name Gemini in the response since the user didn't say where the text came from.\""
+    },
+    {
+      "text": "All bracketed markers are removed from the output text",
+      "passed": true,
+      "evidence": "The cleaned paragraph between the two horizontal rules contains no [cite: ...] or [span_2](...) strings (verified by regex). The only bracket strings in the response are the backticked marker names in the opening explanation, which is not the output text."
+    },
+    {
+      "text": "The surrounding prose is preserved essentially unchanged: the facts (Leeds, 2011, 38 staff, two presses, 2023 employee trust) are all still present and the sentences are not restyled",
+      "passed": false,
+      "evidence": "All five facts are present, but every sentence was reworded. Sentence-by-sentence diff against the marker-stripped input: (1) 'was started' -> 'was founded'; (2) 'The firm printed ... for its first three years, then added packaging work when' -> 'For its first three years the firm printed ..., then added packaging work after'; (3) 'packaging was about half' -> 'packaging accounted for about half'; (4) 'The founders sold the business to an employee trust in 2023' -> 'In 2023 the founders sold the business to an employee trust'. The response itself admits \"lightly tightened the wording\" and the transcript (Step 4) lists these edits. These are restyling, not punctuation fixes. Notably 'started' -> 'founded' moves the text toward the more formal register that AI-writing checks flag."
+    },
+    {
+      "text": "The response does not claim the markers prove the prose itself was AI-written; it either says residue proves a chatbot touched the citations or avoids claiming authorship",
+      "passed": true,
+      "evidence": "result.md attributes the markers only to 'an AI research tool or a document export' and says they 'suggest the text was pulled from source documents'. No statement that the prose was AI-written; authorship is left open."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 3,
+    "total": 5,
+    "pass_rate": 0.4
+  },
+  "execution_metrics": {
+    "tool_calls": {"Read": 1, "Write": 0, "Bash": 4, "Edit": 0, "Glob": 0, "Grep": 0},
+    "total_tool_calls": 5,
+    "total_steps": 5,
+    "errors_encountered": 0,
+    "skill_invoked": false,
+    "output_chars": 7373,
+    "transcript_chars": 3785,
+    "note": "output_chars (7373) exceeds the sum of the three outputs/ files; executor appears to have counted transcript.md and a stray top-level metrics.json as outputs. Not material to grading."
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "I removed all of them",
+      "type": "process",
+      "verified": true,
+      "evidence": "No marker strings remain in the cleaned paragraph."
+    },
+    {
+      "claim": "No facts were changed",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Leeds, 2011, two former newspaper compositors, three years, election leaflets, parish newsletters, short-run boxes, 2019, 38 staff, two presses, about half of turnover, employee trust, 2023, directors all preserved."
+    },
+    {
+      "claim": "Lightly tightened the wording",
+      "type": "quality",
+      "verified": false,
+      "evidence": "'Lightly' understates it: all four sentences were reworded or reordered. Word count is essentially unchanged, so nothing was tightened; it was restyled."
+    },
+    {
+      "claim": "The markers look like artifacts from an AI research tool or a document export",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The 'document export' half is unsupported: [cite: N] and [span_N](start_span)/(end_span) are a recognisable Gemini pattern, and the executor's own user_notes identify them as Gemini Deep Research residue. The hedge is a choice, not an evidentiary limit."
+    },
+    {
+      "claim": "'Employee trust' may formally be an Employee Ownership Trust (EOT)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Unverifiable from the input. Plausible for a UK firm and correctly raised as a question rather than changed."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Interpreted 'clean this up' as strip residue plus light polish; user might have wanted a fuller narrative treatment.",
+      "Kept 'employee trust' as written; flagged possible EOT.",
+      "Recognised the markers as Gemini Deep Research residue but deliberately did not name Gemini in the response."
+    ],
+    "needs_review": [
+      "All numeric claims are unverified and come straight from the input.",
+      "'Newspaper compositors' is a specific trade term; confirm it is accurate."
+    ],
+    "workarounds": [],
+    "suggestions_from_executor": [
+      "Baseline did not audit for AI-style prose patterns; it only removed markup and copy-edited."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response identifies the [cite: N] markers and the [span_2](start_span)/(end_span) markers as chatbot markup residue",
+        "reason": "The baseline produced a hedged identification ('AI research tool or a document export') that sits right on the boundary. The assertion should say whether a hedge that includes a non-AI explanation passes, e.g. 'commits to the markers being AI/LLM citation residue, without offering a non-AI explanation as equally likely'. Otherwise graders will split on exactly this case."
+      },
+      {
+        "assertion": "The surrounding prose is preserved essentially unchanged",
+        "reason": "Discriminated well here: the baseline preserved all facts but reworded every sentence, which is exactly the failure mode the assertion targets. Worth keeping the 'sentences are not restyled' clause; the facts-only clause alone would have passed this arm."
+      },
+      {
+        "reason": "No assertion covers the unsourced-figures warning. Both arms volunteered it; the baseline did too, so it is not skill-dependent, but it is an important outcome for a published page and cheap to check."
+      }
+    ],
+    "overall": "The assertion set separates the arms clearly (2/5 vs 4/5). Expectation 1 needs a sentence on how to treat hedged identifications; expectation 4 is doing real work and should stay as worded."
+  }
+}

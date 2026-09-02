@@ -1,0 +1,13 @@
+{
+  "eval_id": 1,
+  "name": "case-study-short-form",
+  "arm": "old",
+  "prompt": "This customer case study feels too neat. Can you make it read more human at the structural level?",
+  "expectations": [
+    "The response identifies the register as a case study and applies the short-form or case-study mode rather than the full long-form checklist",
+    "The response applies at most two interventions, and every intervention is one of: thematic restraint (removing the stated lesson), emotional rebalance (replacing an embodied metaphor with a plain label or behavior), naming a specific reference, or reader address",
+    "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce a new unresolved thread",
+    "The response invents no facts: every number, name, date, and quotation in the output appears in the input",
+    "The response reports which clusters fired and which did not, and if the stated lesson at the end is removed, it is deleted rather than replaced with a summary phrase such as 'In summary' or 'The takeaway is'"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "expectations": [
+    {
+      "text": "The response does not perform a rewrite of the text, in full or of any paragraph, even as an optional extra; it reports findings only, with at most a one-clause fix suggestion per finding",
+      "passed": true,
+      "evidence": "result.md contains exactly one finding (`boasts`) with a single-clause fix: 'Fix: \"The area has a sub-regional sports centre.\"' The 'world-famous' item is discussed but explicitly not treated as a finding requiring a fix ('Don't change it to sound less like AI.'). The response ends with an offer, not an act: 'If you want, I can do a narrow copyedit that fixes the run-on and replaces \"boasts,\" leaving everything else as is.' No rewritten paragraph appears anywhere in the output."
+    },
+    {
+      "text": "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human or is at most ambiguous leaning human",
+      "passed": true,
+      "evidence": "Opening line: 'No, this doesn't read like AI wrote it. It reads like Wikipedia circa 2010: assembled by a few editors over time and never properly proofread.' Unambiguous human verdict, reinforced by a 'What argues for a human author' section."
+    },
+    {
+      "text": "The words actually present that sit on watch lists ('boasts', 'world-famous', 'premier', 'provides', 'officially opened') are, where flagged, described as weak or context-dependent evidence rather than as proof of AI writing",
+      "passed": true,
+      "evidence": "'boasts' is flagged but immediately qualified: 'one instance is not evidence of a machine.' 'world-famous' is flagged as 'Borderline, and I'd argue it's not an AI tell ... unsupported superlatives ... are on the source's list of *human* writing signs, not AI ones.' 'premier', 'provides', and 'officially opened' are not flagged at all in this arm, so the conditional expectation ('where flagged') is trivially satisfied for them."
+    },
+    {
+      "text": "The response gives a reason for restraint, such as the low number of hits relative to length, the small number of distinct patterns, or the absence of structural tells",
+      "passed": true,
+      "evidence": "'a density of roughly 0.7 per 100 words in a single pattern. That sits inside the normal human range, so nothing here justifies a rewrite on pattern evidence alone.' Also: 'Passes 2 through 4 turn up nothing: no negative parallelism, no false ranges, no challenges-and-prospects formula, no didactic disclaimers or signposting, no chatbot residue or stray markdown.'"
+    },
+    {
+      "text": "The response states a hit count or a rate relative to the text's length (for example 'one hit in 135 words' or 'under 1 per 100')",
+      "passed": true,
+      "evidence": "'The passage is 135 words and produces one watch-list hit, a density of roughly 0.7 per 100 words in a single pattern.'"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 5,
+      "Read": 1
+    },
+    "total_tool_calls": 6,
+    "total_steps": 8,
+    "errors_encountered": 0,
+    "output_chars": 2757,
+    "transcript_chars": 7880
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "1 hit / 135 words = 0.74 per 100 (density calculation)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "sample-b.txt is 135 words; only 'boasts' is a literal watch-list token per SKILL.md's INFLATION/AI-VOCAB lists. 1/135 = 0.74%, matching the stated rate."
+    },
+    {
+      "claim": "The transcript states outputs/user_notes.md and outputs/metrics.json were written",
+      "type": "process",
+      "verified": false,
+      "evidence": "The outputs directory contains only result.md and transcript.md (verified via `fd`); no user_notes.md or metrics.json exists on disk despite the transcript's 'Output Files' section listing them."
+    },
+    {
+      "claim": "No em dashes, boldface, headings, or chatbot residue in the reviewed text",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Manual inspection of sample-b.txt confirms plain prose with no markdown, em dashes, or residue strings."
+    },
+    {
+      "claim": "The response's own prose stays within the skill's own AI-tell budget",
+      "type": "quality",
+      "verified": true,
+      "evidence": "scan.txt run against result.md shows 0 hard violations, 1 phrase-level triad (within a figure budget of 3), 0 em dashes, and 0 constructions-table violations. The flagged 'boasts'/'vibrant' single-word hits are false positives of the scanner (quoting/discussing the source text and a hypothetical AI-written closer, not the reviewer's own promotional language)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The words actually present that sit on watch lists ... are, where flagged, described as weak or context-dependent evidence",
+        "reason": "This assertion is conditional on the word being flagged at all, so a response that simply ignores 'premier', 'provides', and 'officially opened' passes trivially, as this arm's output shows. Consider requiring the response to at least acknowledge why the untouched watch-list words were not flagged, so silent omission can't masquerade as restraint."
+      },
+      {
+        "reason": "The transcript claims outputs/user_notes.md and outputs/metrics.json were written, but neither file exists in the outputs directory. No assertion in this eval checks output-file completeness against the transcript's own claims, so this discrepancy would go undetected by the expectations alone."
+      }
+    ],
+    "overall": "All five expectations pass on genuine evidence, not surface compliance. The main gap is a mismatch between what the transcript claims to have produced (user_notes.md, metrics.json) and what actually exists on disk -- worth a dedicated assertion or an automated file-existence check in future runs."
+  }
+}

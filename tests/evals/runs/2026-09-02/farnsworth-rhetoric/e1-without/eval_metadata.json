@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "name": "runbook-hard-stop",
+  "arm": "without",
+  "prompt": "Make this land. It's the failover section of our on-call runbook and nobody reads it.",
+  "expectations": [
+    "The response identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+    "No rhetorical figure is added: no antithesis, anaphora, epistrophe, antimetabole, rhetorical question, or deliberate triad appears in the output",
+    "If the text is edited at all, the edits are limited to diction, such as turning 'undertake verification of' into 'verify' or 'perform a restart of' into 'restart'",
+    "The output contains no em dashes and every procedural condition (thirty-second lag threshold, escalation rule, connection-string update, restart) is preserved exactly"
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "arm": "with",
+  "eval_id": 1,
+  "name": "case-study-short-form",
+  "expectations": [
+    {
+      "text": "The response identifies the register as a case study and applies the short-form or case-study mode rather than the full long-form checklist",
+      "passed": true,
+      "evidence": "result.md opens: '**Register:** customer case study. Clusters in scope: A, B, E, F, C1. Out of scope for this register: C2, D, G.' Transcript Step 3 records the same triage. The scan table covers only the five in-scope clusters, and the verdict uses the 'Case-study order is A → B → F → E'. C2 (temporal), D, and G were not audited."
+    },
+    {
+      "text": "The response applies at most two interventions, and every intervention is one of: thematic restraint (removing the stated lesson), emotional rebalance (replacing an embodied metaphor with a plain label or behavior), naming a specific reference, or reader address",
+      "passed": true,
+      "evidence": "Word-level diff of the rewrite against the input shows exactly two changes: (1) deletion of the two closing sentences beginning 'The lesson from the rollout is clear' (thematic restraint); (2) insertion of one sentence in 'The challenge': 'It was the constraint Eliyahu Goldratt describes in *The Goal* (1984)...' (naming a specific reference). No other words changed; the embodied 'frustration in her chest' line, all headings, metrics, and the quote are untouched. Both interventions are in the allowed set and the response labels them as A and F."
+    },
+    {
+      "text": "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce a new unresolved thread",
+      "passed": true,
+      "evidence": "Section order and event chronology (Until 2025 / March 2025 / first quarter / 2026) are unchanged. The inserted Goldratt sentence is a gloss on an existing fact (the phone-call bottleneck), not a new event. The rewrite ends on 'Ridgeline plans to extend the platform to its maintenance scheduling in 2026', which is a thread already present in the input. The response explicitly declines to add a subplot or break a causal link: 'You cannot add a subplot that did not happen or break a causal link that did.'"
+    },
+    {
+      "text": "The response invents no facts: every number, name, date, and quotation in the output appears in the input",
+      "passed": false,
+      "evidence": "The rewrite contains a name ('Eliyahu Goldratt'), a work ('*The Goal*'), and a date ('1984') that do not appear in the input, plus an attributed paraphrase of the book ('a system moves at the pace of its slowest step') that the executor's own user_notes say 'was not verified against the source in this run'. All Ridgeline facts (140 vans, forty minutes, six, 11 percent, twelve hours, under two, six weeks, two weeks, March 2025, 2026, Maria Chen, the quotation) are preserved exactly, and no fact about the customer was invented. The failure is on the literal test in the expectation ('every ... name, date ... appears in the input'), which the named-reference intervention permitted by expectation 2 cannot satisfy. See eval_feedback."
+    },
+    {
+      "text": "The response reports which clusters fired and which did not, and if the stated lesson at the end is removed, it is deleted rather than replaced with a summary phrase such as 'In summary' or 'The takeaway is'",
+      "passed": true,
+      "evidence": "The scan table has a 'Fired' column: A Yes, B No, C No ('gate is human-side'), E Yes, F Yes; the Verdict says 'Three clusters fired (A, E, F)' and the 'Not taken' section explains E, B, C1, and the out-of-scope C2/D/G. The final section of the rewrite is the single sentence 'Ridgeline plans to extend the platform to its maintenance scheduling in 2026.' Nothing was substituted for the deleted lesson; the diff shows only deletions at that position."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2,
+      "Write": 0,
+      "Bash": 5,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 7,
+    "total_steps": 9,
+    "errors_encountered": 0,
+    "output_chars": 11257,
+    "transcript_chars": 6863
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "The rewritten case study is 254 words (from 267)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Independent count of the rewrite block in result.md: 254 words; input: 267 words."
+    },
+    {
+      "claim": "Deleted the last two sentences of 'Looking ahead'. Nothing added in their place.",
+      "type": "process",
+      "verified": true,
+      "evidence": "Word diff shows only deletions from 'The lesson from the rollout' through 'entire operating rhythm.' with no insertions in that section."
+    },
+    {
+      "claim": "Embodied share 1 of 3 = 33%, under the 60% rule, so B does not fire",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The three beats named (chest frustration, Chen's quoted surprise, drivers asking why not sooner) are all in the input and the arithmetic is right. The executor's user_notes correctly flag that counting quoted-speech beats is a judgment the skill does not settle; a different tally would fire B."
+    },
+    {
+      "claim": "Eliyahu Goldratt, *The Goal* (1984), argues a system moves at the pace of its slowest step",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Author, title, and 1984 publication year are correct from general knowledge; the paraphrase is a fair summary of the book's constraint argument. The executor did not verify it in-run and flagged it for source-check."
+    },
+    {
+      "claim": "Statistical figures cited per cluster (e.g. 77% vs 52%, 28% vs 7%, 4.74 vs 4.41)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Unverifiable in this grading run: the grader was instructed not to read the skill directory, and the figures are attributed to the skill's references file. They are consistent across the 'with' and 'old' arms, which suggests they were copied rather than invented."
+    },
+    {
+      "claim": "C1 did not fire because the resolution is external",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The result and user_notes both show the gate answered by mode of resolution; the executor documents that answering by agency would flip the call. The choice matches the option set as the executor describes it, and the outcome (no C1 intervention) is consistent with expectation 3."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Cluster B gate: whether emotional beats inside quoted speech count toward the tally; a different count fires B and changes the intervention set to A then B",
+      "Cluster C gate: skill conflates mode of resolution and agency in resolution; answering by agency would fire C1",
+      "A corroborator on intertextual gestures scored as not AI-side because the piece has none rather than implicit echoes",
+      "Goldratt paraphrase not verified against the source",
+      "Word count 267 to 254"
+    ],
+    "needs_review": [
+      "Whether the publishing template requires an explicit takeaway line",
+      "Whether an outside book reference is acceptable house style; if not, drop it and substitute E",
+      "Goldratt claim needs source-check before shipping",
+      "One-sentence 'Looking ahead' reads abrupt"
+    ],
+    "workarounds": [
+      "humanizer and source-check not run per eval rules; named as next steps",
+      "Request treated as full audit + rewrite with no diagnosis-only offer step"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response invents no facts: every number, name, date, and quotation in the output appears in the input",
+        "reason": "This conflicts with expectation 2, which permits 'naming a specific reference' as an intervention. Any named external reference necessarily adds a name (and usually a date or title) not in the input, so a run that correctly picks intervention F fails expectation 4 by construction. Consider rewording to 'invents no facts about the subject: every number, name, date, quotation, and event concerning Ridgeline appears in the input; an added external reference must be a real, verifiable work and be flagged for source-check.'"
+      },
+      {
+        "assertion": "The response invents no facts: every number, name, date, and quotation in the output appears in the input",
+        "reason": "The operational list (number, name, date, quotation) misses invented states and characterizations, which is where the other arms actually fabricated ('Maintenance scheduling still runs on spreadsheets', 'she'd stopped noticing them'). Add 'event, state, or characterization of a person' to the list so the assertion catches the failure mode it is meant to."
+      },
+      {
+        "assertion": "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce a new unresolved thread",
+        "reason": "'New unresolved thread' is ambiguous when the input already ends on a forward-looking plan (the 2026 maintenance extension). Both skill arms end on that thread; one merely keeps it, the other rewrites it into a present-tense problem. Specify 'a thread not present in the input' so graders treat these consistently."
+      }
+    ],
+    "overall": "Expectations 1, 2, 3, and 5 are discriminating and separated the arms cleanly. Expectation 4 is internally inconsistent with expectation 2 and, as worded, penalises the sanctioned named-reference intervention while under-specifying the invented-texture failure it should catch."
+  }
+}

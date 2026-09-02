@@ -36,11 +36,11 @@ Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 | [and-or-planner](skills/and-or-planner/) | Autonomous AND/OR task planner — breaks complex tasks into conjunctive and alternative subtasks before execution | ✅ | ⚠️ | [.skill](dist/and-or-planner.skill) |
 | [beyond-obvious](skills/beyond-obvious/) | Generates diverse options beyond predictable defaults using verbalized sampling | ✅ | ✅ | [.skill](dist/beyond-obvious.skill) |
 | [beyond-the-summary](skills/beyond-the-summary/) | Extracts non-obvious insights, tensions, and actionable implications from documents | ✅ | ✅ | [.skill](dist/beyond-the-summary.skill) |
-| [farnsworth-rhetoric](skills/farnsworth-rhetoric/) | Applies classical rhetorical techniques to make writing more memorable and persuasive | ✅ | ✅ | [.skill](dist/farnsworth-rhetoric.skill) |
+| [farnsworth-rhetoric](skills/farnsworth-rhetoric/) | Applies classical rhetorical figures to existing writing under a strict dosage budget — antithesis, isocolon, antimetabole, hypophora, Saxon finish | ✅ | ✅ | [.skill](dist/farnsworth-rhetoric.skill) |
 | [good-presentations](skills/good-presentations/) | Creates persuasive, rhetorically structured presentations using the Rhetoric of Decks framework | ✅ | ✅ | [.skill](dist/good-presentations.skill) |
 | [great-demo](skills/great-demo/) | Apply Peter Cohan's Great Demo! method to design, critique, and qualify software demonstrations | ✅ | ⚠️ | [.skill](dist/great-demo.skill) |
-| [human-narrative](skills/human-narrative/) | Audits writing for AI-elevated narrative patterns and guides structural rewrites — temporal order, thematic restraint, subplot architecture, character interiority | ✅ | ✅ | [.skill](dist/human-narrative.skill) |
-| [humanizer](skills/humanizer/) | Removes AI writing patterns from text to make it sound more natural and human-written | ✅ | ✅ | [.skill](dist/humanizer.skill) |
+| [human-narrative](skills/human-narrative/) | Audits narrative structure for AI patterns that survive surface editing — thematic over-explanation, embodied emotion, tidy resolution, linear time | ✅ | ✅ | [.skill](dist/human-narrative.skill) |
+| [humanizer](skills/humanizer/) | Removes AI writing patterns from text — 20 source-checked patterns with stable IDs, a measured finding threshold, and model-residue detection | ✅ | ✅ | [.skill](dist/humanizer.skill) |
 | [intelligence-flow-architecture](skills/intelligence-flow-architecture/) | Designs how humans and AI collaborate in products, workflows, and processes | ✅ | ✅ | [.skill](dist/intelligence-flow-architecture.skill) |
 | [markdown-fetch](skills/markdown-fetch/) | Fetches web content as clean markdown, reducing token usage by up to 80% | ✅ | ⚠️ | [.skill](dist/markdown-fetch.skill) |
 | [skill-builder](skills/skill-builder/) | Creates and improves skills — turns conversations or existing prompts into reusable skills | ✅ | ✅ | [.skill](dist/skill-builder.skill) |

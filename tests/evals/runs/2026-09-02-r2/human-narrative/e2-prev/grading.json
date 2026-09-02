@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the text as a status update (short-form register) and applies no structural interventions",
+      "passed": true,
+      "evidence": "result.md ## Register: 'Status update, 48 words. That puts it in the short-form row: clusters A, B, E, F in scope; C, D, G never.' Verdict section: '1 cluster fired → 0–1 on the threshold table → reads within human structural range. No interventions.'"
+    },
+    {
+      "text": "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+      "passed": true,
+      "evidence": "Opening line: 'Nothing needs fixing. It already reads within the human range, and I'd leave it exactly as it is.' Transcript confirms: 'The input file was not modified.' No rewritten text is presented anywhere in result.md."
+    },
+    {
+      "text": "The response says explicitly that zero interventions is the correct outcome, rather than listing findings and leaving the decision to the user",
+      "passed": true,
+      "evidence": "## Verdict states directly: '1 cluster fired → 0–1 on the threshold table → reads within human structural range. No interventions.' The response also explains, under '## Why I'm not acting on E', that it is declining the one fired cluster on the guardrail even though the cap already forbids it — an affirmative call, not a punt to the user."
+    },
+    {
+      "text": "The response is proportionate to the input: under 250 words, with no cluster table or corpus statistics for a 48-word status update",
+      "passed": false,
+      "evidence": "scan.txt reports the output at 596 words — more than double the 250-word ceiling for a 48-word input. result.md also contains a full markdown cluster table (## Cluster scan: columns Cluster | Gate | Call | Corroborators | Fired, 4 data rows) plus a follow-on 'Notes on the two close calls' subsection, which is exactly the disproportionate apparatus the expectation says should not appear for a status update this short."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "output_chars": 3800,
+    "transcript_chars": 7600,
+    "note": "metrics.json not present in outputs/ despite transcript.md listing it as an output file; tool-call counts could not be independently confirmed beyond what the transcript narrates (Read, Bash/wc, Bash/grep, Write)."
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:57:21Z"
+  },
+  "claims": [
+    {
+      "claim": "The input is a 48-word status update",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w on inputs/status-update.txt returns 48."
+    },
+    {
+      "claim": "1 cluster fired (E only), placing the piece at 0–1 on the threshold table",
+      "type": "process",
+      "verified": true,
+      "evidence": "Cluster scan table shows only E marked 'Fired' (✅); A, B, F show '—'. Reasoning per cluster is given and is internally consistent with the skill's gate/corroborator logic described in the transcript."
+    },
+    {
+      "claim": "The output contains no sentence-level polish and the input file was not modified",
+      "type": "process",
+      "verified": true,
+      "evidence": "No rewritten version of the status update appears anywhere in result.md; transcript explicitly states 'No sentence-level polishing was done' and 'The input file was not modified.'"
+    },
+    {
+      "claim": "Register placement (status update, not data reporting) was correctly resolved",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The response itself flags this as an unresolved ambiguity: 'a sprint status is functionally close to data reporting, which is a hard stop for this skill... I ran it because the register table names \"status update\" explicitly.' This is a judgment call the executor disclosed rather than a settled fact — reasonable, but not something this grader can independently verify without the skill's register table wording."
+    },
+    {
+      "claim": "The em dash usage in the response is not itself an AI tell worth flagging",
+      "type": "quality",
+      "verified": false,
+      "evidence": "scan.txt flags 'HARD VIOLATIONS: 1' for em-dash clustering (18 em dashes total, 10 in one paragraph, flagged EM-DASH 3+ in proximity). The response's own '## Scope note' claims it found no surface tells worth a humanizer pass, but the scan contradicts that on the one surface-level dimension it checks. This is out of human-narrative's structural scope by design, but the response's blanket claim of finding nothing is not fully supported by the scan."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response is proportionate to the input: under 250 words, with no cluster table or corpus statistics for a 48-word status update",
+        "reason": "This assertion is doing real discriminating work here — it's the one that actually separates the two arms cleanly. No change needed; flagging it as a good assertion, not a weak one."
+      },
+      {
+        "reason": "No expectation checks whether the response's own em-dash usage undercuts its closing claim ('no surface tells... worth running one for'). scan.txt shows a hard EM-DASH violation in this exact output. Since the skill explicitly scopes surface tells to humanizer, this may be intentionally out of scope for human-narrative's own grading — but if the eval intends to catch the skill practicing what it preaches, a fifth assertion checking that the closing scope note isn't contradicted by the scan would catch this in future runs."
+      },
+      {
+        "reason": "user_notes.md and metrics.json are referenced by transcript.md as produced outputs ('Output Files' section) but neither file exists in outputs/. This is a run-artifact gap rather than a skill defect, but worth flagging so future runs actually persist what the transcript claims to have written."
+      }
+    ],
+    "overall": "The four assertions are well-targeted and discriminating — in particular the proportionality assertion cleanly fails this arm on real evidence (596 words, full cluster table) rather than a technicality. One gap: no assertion catches the response's own em-dash violation undercutting its closing scope claim."
+  }
+}

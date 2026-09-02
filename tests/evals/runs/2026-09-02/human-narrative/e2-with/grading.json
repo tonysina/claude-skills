@@ -1,0 +1,130 @@
+{
+  "arm": "with",
+  "eval_id": 2,
+  "eval_name": "status-update-hard-stop",
+  "expectations": [
+    {
+      "text": "The response identifies the text as a status update or process/report register and applies no structural interventions",
+      "passed": true,
+      "evidence": "result.md opens the register triage with 'Status update, 48 words. Per the human-narrative register table, clusters A, B, E and F are in scope.' The verdict line is 'I have left the text unchanged' and a section titled 'Why I took none of the permitted interventions' declines both candidate fixes (F and E). The only edit-shaped content is an author-side suggestion ('put them in... Something like \"blocked on the schema change in DB-412, with Priya for review by Wednesday\"') that is explicitly labeled 'not an AI fix' and 'for you, not for an editor', and is not applied to the returned text. Caveat: the skill did not hard-stop. Transcript Step 4 records 'Not a hard stop', and the response runs a full cluster scan, records E and F as 'Fired... by the letter', and computes 'Two clusters fired, which permits up to two interventions.' No intervention was applied, so the expectation as worded passes."
+    },
+    {
+      "text": "The output text is unchanged from the input",
+      "passed": true,
+      "evidence": "The blockquote under 'The text, unchanged' in result.md was extracted and diffed against inputs/status-update.txt with newlines stripped: byte-identical (diff produced no output). No Edit or Write tool calls to the input (metrics.json: Write 0, Edit 0)."
+    },
+    {
+      "text": "The response says explicitly that zero interventions is the answer for this register rather than manufacturing findings",
+      "passed": true,
+      "evidence": "result.md states: 'Both E and F fire on nearly every status update ever written. Never addressing the reader and never citing an outside work is what the register is. That is the assignment, not an AI tell. Zero interventions is the expected result for short professional writing.' This is an explicit statement that zero changes is the correct outcome for the register, not merely that changes are optional. Borderline note: the response does first list two 'fired' clusters and a threshold permitting two interventions before declining them, which is the pattern the guidance calls borderline. It passes because the explicit 'zero interventions is the expected result' statement is present and the declines are grounded in the register, not in taste."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 3,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 4,
+    "total_steps": 8,
+    "errors_encountered": 0,
+    "output_chars": 12950,
+    "transcript_chars": 5777,
+    "result_md_words": 508
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations available"
+  },
+  "claims": [
+    {
+      "claim": "The input is a status update of 48 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Manual count of inputs/status-update.txt: 8+8+13+7+9+3 = 48 words, five sentences."
+    },
+    {
+      "claim": "The returned text is unchanged",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Diff of blockquote vs input: identical."
+    },
+    {
+      "claim": "Clusters C, D and G are never applied to this register; A, B, E, F are in scope; threshold of 2 fired permits up to 2 interventions; short-form order is A, B, F, E",
+      "type": "process",
+      "verified": false,
+      "evidence": "Unverifiable within grading constraints (skill directory not read per instructions). Internally consistent with the transcript."
+    },
+    {
+      "claim": "StoryScope gaps: direct reader address 28% human vs 7% AI; explicit named reference 47% human vs 24% AI (23pp); corpus is ~5,000-word literary fiction",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Unverifiable without reading references/features.md, which grading instructions exclude. The response does caveat that applying these to a 48-word status update is extrapolation."
+    },
+    {
+      "claim": "Trial E interventions ('you'll know by Wednesday whether we hold the sprint', 'that's the whole update') were drafted and rejected under the guardrails",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 7 records both drafts and the guardrail each failed; result.md repeats them."
+    },
+    {
+      "claim": "Nothing in these five sentences stood out at the sentence level",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Consistent with the without-arm's independent read and with scan.txt on the input register; the input contains no stock AI phrasing."
+    },
+    {
+      "claim": "'DB-412' and 'Priya' are placeholders for facts the author holds",
+      "type": "quality",
+      "verified": true,
+      "evidence": "user_notes.md says both names are invented illustrations; result.md frames the line as 'Something like' and conditions it on 'If the DBA reviewer has a name and the schema change has a ticket'. Minor risk that a user copies invented identifiers; flagged, not a failure."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Whether clusters E and F should be recorded as fired for a 48-word status update; executor recorded them fired 'by the letter' and notes a different executor could reasonably record 0 fired",
+      "Cluster F corroborator scored 'no' because 'Sprint 14', 'Friday', 'the schema change' are the subject not references; a looser reading could un-fire F",
+      "The example line with 'DB-412' and 'Priya' uses invented placeholder names"
+    ],
+    "needs_review": [
+      "Whether 'leave it alone' is the intended outcome for this eval case (it is)"
+    ],
+    "workarounds": [],
+    "skill_suggestions_from_executor": [
+      "E and F fire by construction on every <600-word professional piece; either drop E from the status-update row or note in Step 3 that E+F alone do not reach the intervention bar",
+      "Cluster F's 'person' fix collapses into a specificity edit in professional registers; a one-line note would remove ambiguity",
+      "Skill does not say what to do when the threshold permits interventions but none survive Step 5"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response identifies the text as a status update or process/report register and applies no structural interventions",
+        "reason": "The eval is named 'hard-stop' but no assertion checks that the skill actually stopped. This run ran the full cluster scan, reported two clusters as fired, computed a threshold of 'up to two interventions', and produced 508 words with a table and corpus statistics for a 48-word status update. It passes all three assertions anyway. If the intended skill behavior is to decline the scan for this register, add an assertion such as 'The response does not report any cluster as fired or compute an intervention threshold for this text' or 'The response does not run the cluster scan'. As written, the eval cannot distinguish hard-stop from scan-then-decline-everything."
+      },
+      {
+        "reason": "The without-skill baseline also passes 3/3 with a 270-word response. Nothing in the current assertions discriminates between arms. A proportionality assertion (for example, response under N words, or no cluster table for out-of-scope registers) would separate the two behaviours observed here."
+      },
+      {
+        "assertion": "The response says explicitly that zero interventions is the answer for this register rather than manufacturing findings",
+        "reason": "The 'rather than manufacturing findings' clause is doing real work but is hard to grade: this run manufactured two findings ('Fired... by the letter') and then explained them away with an explicit zero-interventions statement. Consider splitting into two assertions: (a) explicit zero-interventions statement present, (b) no cluster reported as fired / no findings listed. This run would pass (a) and fail (b)."
+      },
+      {
+        "reason": "The task description calls the input a four-sentence status update; the input file has five sentences ('No other blockers.' is the fifth). Cosmetic, but worth correcting in the eval description."
+      }
+    ],
+    "overall": "All three assertions pass, but the eval does not discriminate between the skill arm and the no-skill baseline, and it does not check the 'hard stop' behaviour its name implies. The with-skill run ran a full cluster scan on an out-of-scope register and reached the right verdict by declining every permitted intervention, which the executor's own notes flag as a tension in the skill text."
+  }
+}

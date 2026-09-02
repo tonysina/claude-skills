@@ -1,0 +1,98 @@
+{
+  "expectations": [
+    {
+      "text": "The response states a figure budget for the piece and adds at most one figure the author did not already have",
+      "passed": true,
+      "evidence": "result.md line 5: '91 words the budget is one figure. You already spent it' and the change-note block states 'Budget: 91 words → 1 figure' and 'Applied: none'. Zero new figures were added by the assistant."
+    },
+    {
+      "text": "The concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved in the output",
+      "passed": true,
+      "evidence": "The response recommends publishing the paragraph 'as it stands' and 'I'd change nothing' (line 1); no figure or edit is applied to the body of the paragraph, so every original detail (Tuesday, the leading-zero bug, the American test team, the hour-long fix, ~400 signups) survives untouched by construction. The response's own prose explicitly references Tuesday/Wednesday/Thursday, the American test team, 'an hour', and 'four hundred signups' when discussing them (lines 15-19), confirming none were dropped or altered in the assistant's reasoning either."
+    },
+    {
+      "text": "No claim is inflated or generalized: 'about four hundred' keeps its hedge, no new absolute, superlative, or general maxim about all teams is added, and 'a lesson I keep having to relearn' is neither turned into a promise nor restated as an explicit moral",
+      "passed": true,
+      "evidence": "Line 15 quotes 'about four hundred signups' with the hedge intact and explicitly warns against ever dropping the 'about'. Line 5 quotes 'a lesson I keep having to relearn' verbatim inside a discussion of zeugma, without moralizing it or turning it into a promise. No sentence asserts a general claim about 'all teams' or test practices generally; the only generalization is the assistant's own closing aphorism about editing ('Adding craft to prose that's already working is the most reliable way to make it worse'), which is meta-commentary about editing practice, not an inflation of any claim inside the post-mortem paragraph itself."
+    },
+    {
+      "text": "If a figure is applied, the response names it and the trigger condition that licensed it; if none is applied, the response says so and explains why the paragraph already lands",
+      "passed": true,
+      "evidence": "The change-note block states 'Applied: none. Budget spent by the author — zeugma at the close...'. The prose gives extended reasoning for why zero figures were applied: the diction is already Saxon, the ending passes the ear test, the rhythm already contrasts long/short sentences, and the one candidate trigger (antithesis) is explicitly named along with why it was rejected ('trigger fires cleanly, but the parallel frame would break the Tuesday-Wednesday-Thursday chronology')."
+    },
+    {
+      "text": "Non-figure edits are also restrained: the closing sentence is preserved, and no more than one sentence is split, merged, or given a new subject",
+      "passed": true,
+      "evidence": "No revision to the paragraph is proposed at all — the recommendation is to publish unchanged, so the closing sentence and every other sentence are preserved verbatim. The only edit mentioned is an optional, explicitly non-mandatory word cut ('Cutting \"in testing\" loses nothing... I'd ship either version') that neither splits, merges, nor changes the subject of any sentence."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2
+    },
+    "total_tool_calls": 2,
+    "total_steps": 9,
+    "errors_encountered": 0,
+    "output_chars": 3306,
+    "transcript_chars": 7917
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "The prev skill's register table has no row matching 'engineering blog, post-mortem'; the closest row is 'Thought leadership, executive summary'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Checked /Users/tonysina/Documents/claude-skills/tests/evals/runs/2026-09-02-r2/skills-prev/farnsworth-rhetoric/SKILL.md line 93: the register row reads 'Thought leadership, executive summary | Half budget...' with no mention of engineering blog or post-mortem, confirming the transcript's stated gap."
+    },
+    {
+      "claim": "The closing sentence's zeugma 'consumed' the 1-figure budget",
+      "type": "quality",
+      "verified": false,
+      "evidence": "This is a debatable reading of the skill's dosage rule: the budget in SKILL.md governs figures the assistant applies, not figures the original author already used. Treating a pre-existing authorial figure as spending the assistant's applied-figure budget is a plausible but non-obvious interpretation; the skill text does not explicitly say a pre-existing figure counts against the budget. The net result (0 figures applied) is the same as if this reasoning were wrong, so it doesn't affect the outcome, but the stated justification is not fully verifiable against the skill's rules as written."
+    },
+    {
+      "claim": "Zeugma is not covered in this skill's core catalog or in references/figures.md",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript step 5 explicitly checked references/figures.md and reported it is absent from both; not independently re-verified against the reference file in this grading pass, but the claim is consistent with the core-figures list in SKILL.md (antithesis, isocolon, antimetabole, hypophora, erotema, anaphora, epistrophe) which does not include zeugma."
+    },
+    {
+      "claim": "outputs/user_notes.md was produced",
+      "type": "process",
+      "verified": false,
+      "evidence": "Transcript's 'Output Files' section lists 'outputs/user_notes.md: uncertainties and skill gaps', but no such file exists in the outputs directory — only result.md, scan.txt, and transcript.md are present."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Transcript flags that the register table has no row for personal/narrative blog writing, resolved by treating length as the binding constraint",
+      "Transcript flags that zeugma (the figure that decided the zero-figure verdict) is absent from both SKILL.md and references/figures.md"
+    ],
+    "needs_review": [
+      "user_notes.md was referenced in the transcript as an output file but does not exist in outputs/, so these uncertainties could only be recovered from the transcript, not from the file the process is supposed to produce"
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved in the output",
+        "reason": "Because the correct answer here is 'change nothing,' this assertion (and the closing-sentence assertion) is trivially satisfied by any response that declines to touch the paragraph — including a lazy or under-reasoned 'looks fine, ship it' with no real analysis. It doesn't discriminate between a well-reasoned zero-figure verdict and a low-effort one; consider requiring the response to also demonstrate it engaged with the specific details (e.g., quoting at least N of them) rather than just leaving them untouched."
+      },
+      {
+        "reason": "No assertion checks whether the stated figure budget itself is correct per the skill's own tiering rules. This arm computed a budget of '1 figure' using the plain word-count tier, while the patched skill (with-arm) uses a more specific register row to compute a budget of '0'. Since both arms applied zero figures anyway, this discrepancy in the underlying budget math goes completely unflagged by the current expectations — a genuinely discriminating check (does the stated budget match the skill's register+length rules) is missing."
+      }
+    ],
+    "overall": "The five expectations correctly capture restraint and claim-fidelity, but two of them (concrete-detail preservation and closing-sentence preservation) are automatically satisfied whenever the model recommends no changes, regardless of the quality of reasoning behind that recommendation. Consider adding an assertion that checks the correctness of the stated budget/register determination, which is where this eval's two arms actually diverge in approach."
+  }
+}

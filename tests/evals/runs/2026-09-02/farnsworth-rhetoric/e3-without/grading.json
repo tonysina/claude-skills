@@ -1,0 +1,133 @@
+{
+  "arm": "without",
+  "eval_id": 3,
+  "name": "tagline-options",
+  "input_word_count": 19,
+  "expectations": [
+    {
+      "text": "The response presents between three and five distinct options and names the rhetorical figure used in each",
+      "passed": false,
+      "evidence": "result.md presents five distinct options (one 'Recommended' line plus four under 'Alternatives, depending on tone'), which satisfies the count. No option names a rhetorical figure. The recommended line is described only as 'Two short verbs, two parallel halves' (parallelism/isocolon is described but not named); the alternatives are annotated by tone ('Cleanest if...', 'Slightly more action-oriented', 'Longer, but...', 'Closest to the original meaning') with no figure named. user_notes.md confirms: 'did not apply any explicit rhetorical framework'. The second half of the expectation is unmet."
+    },
+    {
+      "text": "No option uses a negative parallelism ('not just X, it's Y', 'more than just', 'not only X but Y')",
+      "passed": true,
+      "evidence": "scan.txt: 'forbidden-table violations: 0', 'HARD VIOLATIONS: 0'. Manual check of all five option lines ('See your enterprise. Steer it together.', 'Where strategy meets architecture.', 'Map the enterprise. Align the business.', 'One picture of your enterprise. One plan everyone follows.', 'Enterprise architecture, seen clearly and governed together.') finds no 'not just', 'more than just', 'not only', or any negation at all. The scan's meta-quotation filter removed only 31 words here, so the option text was scanned."
+    },
+    {
+      "text": "Every option is shorter than the input tagline",
+      "passed": true,
+      "evidence": "Input tagline is 19 words (wc -w; the executor mis-stated it as 22). Option word counts: Recommended = 7; 'Where strategy meets architecture.' = 5; 'Map the enterprise. Align the business.' = 7; 'One picture of your enterprise. One plan everyone follows.' = 10; 'Enterprise architecture, seen clearly and governed together.' = 8. All five are shorter than 19."
+    },
+    {
+      "text": "No option adds a claim absent from the input, such as 'leading', 'the only', 'number one', 'trusted by', or a customer count",
+      "passed": true,
+      "evidence": "No option contains 'leading', 'the only', 'number one', 'trusted by', a customer count, or any comparative or superlative. Each option is a compression of the input's claims: see/map/picture = visualization; steer it together/governed together/one plan everyone follows = collaborative governance; align/strategy meets architecture = strategic alignment. Borderline: 'One plan everyone follows' states the alignment outcome as universal adherence, and 'seen clearly' adds 'clearly'; both are readable as renderings of existing claims rather than new ones, and no characterization of competitors or the status quo is introduced."
+    },
+    {
+      "text": "The response recommends one option and gives a reason",
+      "passed": true,
+      "evidence": "result.md marks one line '**Recommended**': 'Contoso: See your enterprise. Steer it together.' followed by the reason: 'Two short verbs, two parallel halves, and it keeps both real ideas from the original (visualization, shared governance) while implying the outcome (alignment) instead of announcing it.' The closing offer to 'narrow it to one' given channel information does not retract the recommendation."
+    }
+  ],
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 3,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 4,
+    "total_steps": 4,
+    "files_created": [
+      "outputs/result.md",
+      "outputs/user_notes.md",
+      "outputs/metrics.json",
+      "transcript.md"
+    ],
+    "errors_encountered": 0,
+    "output_chars": 3009,
+    "transcript_chars": 2968
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "The original is 22 words",
+      "type": "factual",
+      "verified": false,
+      "evidence": "inputs/tagline.txt is 19 words by whitespace split (wc -w = 19). Stated in result.md's opening sentence and transcript Step 1. Does not change any verdict."
+    },
+    {
+      "claim": "Kept it under ten words so it can sit on a slide, a website hero, or a booth banner",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The recommended line is 7 words, but the claim sits in a 'What I changed and why' section that reads as applying to the set; alternative 3 ('One picture of your enterprise. One plan everyone follows.') is 10 words, not under ten. The executor even labels it 'Longer'. Minor inconsistency."
+    },
+    {
+      "claim": "It keeps both real ideas from the original (visualization, shared governance) while implying the outcome (alignment)",
+      "type": "quality",
+      "verified": true,
+      "evidence": "'See your enterprise' = visualization; 'Steer it together' = collaborative governance; alignment is not stated in the line and is only implied by 'steer'."
+    },
+    {
+      "claim": "Only the fourth alternative preserves 'enterprise architecture' verbatim",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Of the five options only 'Contoso: Enterprise architecture, seen clearly and governed together.' contains the phrase 'enterprise architecture'."
+    },
+    {
+      "claim": "No skill, framework, or reference file was consulted",
+      "type": "process",
+      "verified": true,
+      "evidence": "metrics.json: 1 Read (executor.md) and 3 Bash calls; transcript Step 3 and user_notes.md both state no skill was loaded."
+    },
+    {
+      "claim": "Did not apply any explicit rhetorical framework, dosage control, or claim-inflation check",
+      "type": "process",
+      "verified": true,
+      "evidence": "result.md contains no figure names, no budget statement, and no claim check section. Confirms the expectation 1 fail is a genuine gap, not a labeling omission."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "No brief on audience, channel, or brand voice; assumed B2B enterprise-software tagline for web or deck",
+      "Assumed 'enterprise architecture' need not appear verbatim; only alternative 4 keeps it",
+      "Whether 'Contoso:' should stay as a prefix is a guess"
+    ],
+    "needs_review": [
+      "Tone fit with Contoso brand voice cannot be checked without guidelines",
+      "'Steer it together' implies shared governance; reviewer should confirm collaboration is a real differentiator"
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response presents between three and five distinct options and names the rhetorical figure used in each",
+        "reason": "This assertion did its job: the baseline produced a clean, well-reasoned set of options and failed only on naming figures, which is exactly the skill's contribution. Keep it, but consider splitting the count and the figure-naming into two assertions so the report shows which half failed."
+      },
+      {
+        "assertion": "No option adds a claim absent from the input, such as 'leading', 'the only', 'number one', 'trusted by', or a customer count",
+        "reason": "'One plan everyone follows' is a promise of universal adherence that the input only gestures at via 'collaborative governance'. It passed here as a compression, but the assertion gives no guidance on outcome-strengthening (turning a mechanism into a guaranteed result), which is a plausible failure mode for taglines. Consider adding 'promises an outcome the input only describes as enabled' to the examples."
+      },
+      {
+        "reason": "Both arms mis-counted the input as 22 words and no assertion catches it. See the with-arm grading for the same note."
+      }
+    ],
+    "overall": "The baseline passed 4 of 5 and failed only on naming figures. The evals discriminate the with and without arms on the one dimension that is the skill's job, which is the right outcome, but it means assertions 2 through 5 are satisfied by ordinary careful copywriting and do not by themselves measure the skill."
+  },
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  }
+}

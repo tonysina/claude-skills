@@ -1,0 +1,14 @@
+{
+  "eval_id": 4,
+  "name": "human-signs-preserved",
+  "arm": "with",
+  "prompt": "Humanize this paragraph from my blog post.",
+  "expectations": [
+    "'in order to', 'the fact that', 'very', and 'there is a' all survive verbatim in any returned text; none is cut, contracted, or replaced for any stated reason, unless the response explicitly identifies them as human markers and then keeps them",
+    "The response reports that the text has few or no AI patterns and returns it unchanged or with minor edits, where minor means punctuation or a single word and at most one sentence touched; a 'light pass' that rewords two or more sentences fails, even if labeled optional",
+    "The plain verbs 'tried', 'moved', and 'used' are not replaced with 'attempted', 'relocated', or 'utilized'",
+    "The response adds no words, hedges (such as 'mostly'), or punctuation to the paragraph that were not in the original, whatever the stated reason",
+    "The response tells the user that these plain constructions are markers of human writing and that editing them would move the text toward AI, not away from it"
+  ],
+  "executor_model": "fable-5-1"
+}

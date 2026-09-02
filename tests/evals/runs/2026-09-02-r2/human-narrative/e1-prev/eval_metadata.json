@@ -1,0 +1,15 @@
+{
+  "eval_id": 1,
+  "name": "case-study-short-form",
+  "arm": "prev",
+  "prompt": "This customer case study feels too neat. Can you make it read more human at the structural level?",
+  "expectations": [
+    "The response identifies the register as a case study and applies the short-form or case-study mode rather than the full long-form checklist",
+    "The response applies at most two interventions, counting every structural change actually made whether or not it is labeled, and every intervention is one of: thematic restraint (removing the stated lesson), emotional rebalance (replacing an embodied metaphor with a plain label or behavior), naming a specific reference, or reader address",
+    "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce an unresolved thread that is not present in the input (the input's own forward-looking 2026 plan does not count)",
+    "The response invents no fact about Ridgeline: every number, name, date, quotation, event, present-state claim, and characterization of a person in the output is supported by the input; the only permitted addition is one clearly labeled outside reference (a real book, author, or event) if the response chose the naming-a-reference intervention and told the user to verify it",
+    "All input facts are retained: 140 vans, Pacific Northwest, three coordinators, forty minutes, six weeks, two weeks parallel, forty to six, 11 percent, twelve hours to under two, the Chen quotation, and the 2026 plan",
+    "The response reports which clusters fired and which did not, and if the stated lesson at the end is removed, it is deleted rather than replaced with a summary phrase, a rhetorical question, or a new inference"
+  ],
+  "executor_model": "opus-5"
+}

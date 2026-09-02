@@ -1,0 +1,97 @@
+{
+  "expectations": [
+    {
+      "text": "The response does not perform a rewrite of the text, in full or of any paragraph, even as an optional extra; it reports findings only, with at most a one-clause fix suggestion per finding",
+      "passed": true,
+      "evidence": "No paragraph is rewritten. Two findings are given, each with a short fix: 'Fix if you want it gone: \"The area has a sub-regional sports centre.\"' and 'Fix: name who says so, or cut back to \"a trampolining centre\" and \"Kent's Invicta Dynamos.\"' The closing line offers rather than performs an edit: 'Want me to do a light edit on the two flags?' The second fix presents two alternative phrasings joined by 'or' rather than a single clause, which stretches but does not break the 'at most one-clause' bound -- it remains a suggestion, not an executed rewrite."
+    },
+    {
+      "text": "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human or is at most ambiguous leaning human",
+      "passed": true,
+      "evidence": "'No, this doesn't read like AI wrote it. I'm confident about that, and the strongest evidence is what the text does *wrong* rather than what it does well.' Closes with 'My read: an older encyclopedia or local-guide entry, human-written, carrying the mild promotional habits that genre has always had.'"
+    },
+    {
+      "text": "The words actually present that sit on watch lists ('boasts', 'world-famous', 'premier', 'provides', 'officially opened') are, where flagged, described as weak or context-dependent evidence rather than as proof of AI writing",
+      "passed": true,
+      "evidence": "'world-famous' and 'premier' are explicitly called out: 'Weak as an AI signal, since unsourced claims and superlatives both lean human.' 'boasts' is called 'the most AI-shaped word in the passage' but immediately tempered: 'It's also standard tourist-board and gazetteer English that long predates chatbots' -- net framing is context-dependent, not proof. 'provides' and 'officially opened' are not flagged in this arm."
+    },
+    {
+      "text": "The response gives a reason for restraint, such as the low number of hits relative to length, the small number of distinct patterns, or the absence of structural tells",
+      "passed": true,
+      "evidence": "'That sits inside the human range, so nothing here justifies a rewrite on word-list evidence alone. The structural and formatting passes come back empty: no negative parallelisms, no rule-of-three padding, no em dashes at all, no generic upbeat closer, no challenges-and-prospects formula, no boldface or inline-header lists, no signposting, no chatbot residue or citation markers.'"
+    },
+    {
+      "text": "The response states a hit count or a rate relative to the text's length (for example 'one hit in 135 words' or 'under 1 per 100')",
+      "passed": true,
+      "evidence": "'Watch-list density comes out around 0.7 hits per 100 words (one real hit in 135 words), spread across one pattern.'"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 8,
+      "Read": 2
+    },
+    "total_tool_calls": 10,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 3101,
+    "transcript_chars": 7863
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "One literal watch-list hit in 135 words = 0.74 per 100 (density calculation)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "sample-b.txt is 135 words; 'boasts' is the only literal watch-list token; 1/135 = 0.74%, matching the stated figure."
+    },
+    {
+      "claim": "'key' is a false positive from 'Hockey', not a genuine AI-VOCAB hit",
+      "type": "factual",
+      "verified": true,
+      "evidence": "sample-b.txt contains 'Kent's premier Ice Hockey Club' -- 'key' is indeed a substring of 'Hockey', not a standalone word. The response correctly identifies and discards this false positive."
+    },
+    {
+      "claim": "The transcript states outputs/user_notes.md and outputs/metrics.json were written",
+      "type": "process",
+      "verified": false,
+      "evidence": "The outputs directory contains only result.md and transcript.md (verified via `fd`); no user_notes.md or metrics.json exists on disk despite the transcript's 'Output Files' section listing them -- same discrepancy as the prev arm."
+    },
+    {
+      "claim": "The response's own prose stays within the skill's stylistic constraints ('I also kept my own prose within the skill's constraints, using -- for dashes and avoiding a decorative triad or an upbeat closer')",
+      "type": "quality",
+      "verified": false,
+      "evidence": "scan.txt run against this result.md finds 2 word-level triads and 1 phrase-level triad in the reviewer's own prose ('specific, unglamorous, and checkable'; 'entry, human-written, carrying'; 'no rule-of-three padding, no em dashes at all, no generic upbeat close[r]'), contradicting the transcript's claim of 'avoiding a decorative triad.' All three sit within the 300-600 word figure budget of 3, so there is no hard violation, but the explicit claim of having avoided triads is false."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response does not perform a rewrite ... with at most a one-clause fix suggestion per finding",
+        "reason": "This arm's second fix ('name who says so, or cut back to \"a trampolining centre\" and \"Kent's Invicta Dynamos.\"') offers two alternative edits joined by 'or', which is arguably more than one clause of guidance. The assertion's 'at most one-clause' bound is soft enough that this still passes, but a stricter phrasing (e.g., 'a single proposed edit, not multiple alternatives') would make the check more discriminating."
+      },
+      {
+        "reason": "The transcript explicitly claims the response avoided decorative triads ('avoiding a decorative triad or an upbeat closer'), but the skill's own scan.txt tool finds 3 triads in the output prose. No expectation checks the skill's self-consistency claims against its own scan tool, so this contradiction went uncaught by the predefined assertions -- worth adding a check that self-reported compliance claims in the transcript match the scan output."
+      },
+      {
+        "reason": "Same as prev arm: the transcript claims user_notes.md and metrics.json were written, but neither exists on disk. Not covered by any current assertion."
+      }
+    ],
+    "overall": "All five expectations pass on genuine evidence. However, this arm makes an explicit self-assessment claim ('avoiding a decorative triad') that the skill's own scan tool contradicts -- a notable quality issue not caught by any current assertion, since none of the five expectations examine the reviewer's own prose for the AI tells it is supposed to be hunting for in the input."
+  }
+}

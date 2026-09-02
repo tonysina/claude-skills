@@ -1,0 +1,11 @@
+{
+  "eval_id": 2,
+  "name": "status-update-hard-stop",
+  "arm": "with",
+  "prompt": "Audit the narrative structure of this and fix anything that reads as AI.",
+  "expectations": [
+    "The response identifies the text as a status update or process/report register and applies no structural interventions",
+    "The output text is unchanged from the input",
+    "The response says explicitly that zero interventions is the answer for this register rather than manufacturing findings"
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "expectations": [
+    {
+      "text": "The response applies at most three rhetorical figures and names each one with the trigger condition that licensed it",
+      "passed": true,
+      "evidence": "Two figures applied and both named with triggers in the change note: 'Applied: antithesis at the open (\"four separate... platforms / one unified... report\") — trigger: both poles are real ... and the sentence fails the swap test' and 'Applied: hypophora at the ask (\"Why a planning phase rather than a decision now? Because...\") — trigger: leadership will ask exactly this ... and the summary already answers it in the two risk paragraphs'. Independent count of deliberate figures in the rewritten text confirms two: the antithesis in paragraph 1 ('maintain four separate customer data platforms and cannot produce one unified customer report') and the hypophora in paragraph 6. No anaphora, epistrophe, antimetabole, or decorative triads present. The 'their data models are hard to extend and their integration tooling is immature' pair mirrors the source's two listed limitations and is not a deliberate figure. scan.txt: 0 anaphora runs; the one word-level triad it flags ('number, date, hedge') is actually a four-item list in the preface ('number, date, hedge, and caveat'), not an isocolon."
+    },
+    {
+      "text": "The response reports a claim check: it confirms that hedges such as 'potentially', 'more difficult to quantify with precision', and 'has not been fully assessed' survived, or explicitly notes any it removed",
+      "passed": true,
+      "evidence": "Change note contains a 'Claim check' section: 'Hedges intact: \"Financial modelling indicates... would offset\" kept; \"would potentially include\" → \"are possible\"; \"has not been fully assessed\" → \"have not yet fully assessed\"; \"Preliminary indications suggest\" → \"Early indications suggest\"' and explicitly declares the one nuance dropped: '\"Difficult to quantify with precision\" became \"harder to quantify\". The \"with precision\" nuance ... is lost; restore it if...'. Verified in the rewritten text: para 3 'Financial modelling indicates that licensing savings would offset ... Further benefits are possible but harder to quantify'; para 5 'we have not yet fully assessed how far they can carry both'; para 7 'That is not a recommendation ... Early indications suggest that two of the four platforms would be technically viable'. Every claim in the check matches the output; no hedge was silently dropped."
+    },
+    {
+      "text": "The ask ('Leadership approval is requested to proceed with a detailed planning phase, with a decision gate...') is preserved in substance",
+      "passed": true,
+      "evidence": "Paragraph 6 of the rewrite: 'We are asking leadership to approve a detailed planning phase, with a decision gate at the end of it before any engineering investment is committed.' All three elements of the original ask survive: planning phase, decision gate at its conclusion, no committed engineering investment before the gate. The hypophora answer adds a rationale ('Because two questions are still open...') but does not change what is requested, and the response declares this addition: 'One thing made explicit that the original left implicit ... Confirm that this is the reason you want on the page.'"
+    },
+    {
+      "text": "The output contains no negative parallelism and no generic positive closer ('the future is bright', 'poised for growth', 'we will lead')",
+      "passed": true,
+      "evidence": "scan.txt: 'forbidden-table violations: 0'. Manual read confirms: 'Why a planning phase rather than a decision now?' is a comparative question, not a not-X-but-Y construction; 'That is not a recommendation.' is a plain negation with no parallel positive pole. The rewrite closes on the source's own scheduling caveat: 'Account management must therefore be involved before any date is set.' No aspirational closer anywhere in the output."
+    },
+    {
+      "text": "The output contains at most one anaphora run and no more than two em dashes in any paragraph",
+      "passed": true,
+      "evidence": "scan.txt: 'em dashes: 0 total, max 0 per paragraph' and 'anaphora: 0 strong run(s) (>=3), 0 weak (2)' for the rewritten text. The scan's meta-quotation filter excludes the change-note code block; grep of the full result.md finds exactly two em dashes there (lines 29 and 33, one per 'Applied:' entry, used as label separators), which is within the two-per-paragraph limit even if the whole code block is treated as one paragraph. The '2021–2024' and '300–600' ranges use en dashes. No anaphora anywhere in the file."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 5,
+    "total_steps": 8,
+    "errors_encountered": 0,
+    "output_chars": 9711,
+    "transcript_chars": 8508,
+    "revision_words": 384,
+    "original_words": 401,
+    "figures_applied": 2,
+    "figure_budget": 2
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "note": "timing.json contains only executor_start; no duration fields available"
+  },
+  "claims": [
+    {
+      "claim": "Revision body is 384 words against the original 401",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w on the text between the two horizontal rules in result.md returns 384; the input file is 401 words per the transcript's wc."
+    },
+    {
+      "claim": "Two figures spent against a ceiling of two",
+      "type": "process",
+      "verified": true,
+      "evidence": "Independent count of the rewritten text finds exactly the antithesis and the hypophora. The ceiling itself (half of cap 3 rounded up to 2) is a judgement the executor flags in user_notes; a stricter reading would give 1. Not an expectation here, since the expectation only caps at three."
+    },
+    {
+      "claim": "Every number, date, hedge, and caveat from the original is still there (preface)",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Numbers all verified (four platforms, 2021 and 2024, $2.1M a year, eighteen months, three teams, month twenty-six, two of four undocumented, two of four viable, this fiscal year). But the preface overstates slightly: the change note itself admits the 'with precision' qualifier was dropped and the umbrella 'significant operational inefficiencies, including' was removed. The change note is accurate; the one-line preface is not fully consistent with it."
+    },
+    {
+      "claim": "No em dashes in the revision",
+      "type": "factual",
+      "verified": true,
+      "evidence": "grep finds em dashes only on change-note lines 29 and 33; none in the rewritten summary."
+    },
+    {
+      "claim": "Every paragraph closes on a stressed syllable inside one breath, except paragraph 3 ('downstream')",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Paragraph endings: 'a year', 'data moves', 'downstream', 'in doubt', 'carry both', 'at once', 'immature', 'date is set'. Seven end on a stressed syllable; 'downstream' carries primary stress on the first syllable, as the response declares."
+    },
+    {
+      "claim": "Author's spelling and register kept ('modelling', 'programme', 'organization')",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All three spellings appear unchanged in the rewritten text."
+    },
+    {
+      "claim": "references/figures.md was not loaded because no secondary-figure trigger fired",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 1 documents the decision; metrics show a single Read call (SKILL.md) and no further reads."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Budget arithmetic: half of cap 3 is 1.5, rounded up to 2 and both spent; a stricter reading allows 1.",
+      "Register table says figures at open and close only; the second figure was placed at the ask (paragraph 6 of 8) rather than at the literal close, a deviation from the letter of the rule.",
+      "The hypophora answer states a causal link (open questions → planning-phase ask) that the original leaves implicit; the author may have a different reason."
+    ],
+    "needs_review": [
+      "'one unified customer report' as a rendering of 'unified customer reporting' may narrow the meaning.",
+      "'still in doubt' for 'introduces uncertainty into effort estimation' reads slightly more negative.",
+      "Dropped umbrella 'significant operational inefficiencies, including' may under-claim if other inefficiencies exist.",
+      "Dropped 'with precision' closes a door the original left open."
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The output contains at most one anaphora run and no more than two em dashes in any paragraph",
+        "reason": "The deterministic scan strips code blocks and quoted strings before counting, so em dashes inside the skill's prescribed change-note block are invisible to it. Here that hid two em dashes (still within limit). If the intent is to police only the rewritten prose, say so in the expectation; if it is the whole response, the scan needs to count the code block too."
+      },
+      {
+        "reason": "No assertion checks that the numbers survive (four platforms, $2.1M, month twenty-six, etc.). Both arms preserved them, but a rewrite that rounds or drops a figure would pass every current expectation. Expectation 2 covers hedges only."
+      },
+      {
+        "reason": "Expectation 2 accepts a claim check that lists hedges, but a check can be accurate about the three named hedges while a different hedge is silently dropped. Consider naming 'Financial modelling indicates' and 'should not be interpreted as a recommendation' as well, since the without arm dropped the first one while claiming nothing was strengthened."
+      }
+    ],
+    "overall": "Assertions are discriminating for this eval: the skill arm passes all five with verifiable evidence and the no-skill arm fails the two that require the skill's disciplines (naming figures with triggers, and an honest hedge check). The main gap is number preservation, which no assertion covers."
+  }
+}

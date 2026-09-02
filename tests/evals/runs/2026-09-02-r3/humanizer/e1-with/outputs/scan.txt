@@ -1,0 +1,46 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 319   figure budget: 3   (300-600 words: 3)
+
+  [CONSTRUCTIONS] forbidden-table violations: 3
+        FLAG NEG-PARALLEL: "it's not just"
+        FLAG NEG-PARALLEL: "not just a form to fill out; it's"
+        FLAG NEG-PARALLEL: "more than just"
+
+  [A] humanizer multi-word flags: 5 distinct
+        x2  "pivotal moment"  [INFLATION]
+        x1  "commitment to"  [INFLATION]
+        x1  "industry reports"  [VAGUE-ATTRIB]
+        x1  "in conclusion"  [DIDACTIC]
+        x1  "the future looks bright"  [GENERIC-CLOSER]
+
+  [B] humanizer single-word flags (needs context): 6 distinct
+        x2  landscape  [AI-VOCAB]
+        x2  pivotal  [AI-VOCAB]
+        x1  fostering  [ING-ANALYSIS]
+        x1  enhance  [AI-VOCAB]
+        x1  robust  [AI-VOCAB]
+        x1  testament  [AI-VOCAB]
+
+  em dashes: 0 total, max 0 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 1 weak (2)
+        weak   "it's the..." x2
+
+  triads: 1 word-level, 0 phrase-level
+        facts, numbers, capabilities
+        -> run isocolon load-bearing test on each
+
+  density: 17 flag hits / 319 words = 5.3 per 100   distinct patterns: 7 ['AI-VOCAB', 'DIDACTIC', 'GENERIC-CLOSER', 'INFLATION', 'ING-ANALYSIS', 'NEG-PARALLEL', 'VAGUE-ATTRIB']
+
+  HARD VIOLATIONS: 3
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     319   3     3   6   8    0   0/1   1   5.3   7     3

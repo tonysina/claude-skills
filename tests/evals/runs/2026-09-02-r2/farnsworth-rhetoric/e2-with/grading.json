@@ -1,0 +1,106 @@
+{
+  "expectations": [
+    {
+      "text": "The response states a figure budget for the piece and adds at most one figure the author did not already have",
+      "passed": true,
+      "evidence": "Change-note block states 'Budget: 91 words, post-mortem register → 0 figures' and 'Applied: none'. Prose (line 5) walks the math explicitly: 'A post-mortem on an engineering blog runs at half budget... At 91 words you're in the under-300 tier, which caps at one figure to begin with. Half of one... is none.' Zero figures were added."
+    },
+    {
+      "text": "The concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved in the output",
+      "passed": true,
+      "evidence": "The response recommends publishing 'as it stands' (line 1) with no edits made to the paragraph itself, so every original detail is preserved by construction. The reasoning explicitly references 'three days to find it, one hour to fix it' (line 20), 'all-American test team' and 'four hundred signups' (line 25), and 'we fixed it in an hour' (line 7/22), confirming these details were engaged with, not dropped."
+    },
+    {
+      "text": "No claim is inflated or generalized: 'about four hundred' keeps its hedge, no new absolute, superlative, or general maxim about all teams is added, and 'a lesson I keep having to relearn' is neither turned into a promise nor restated as an explicit moral",
+      "passed": true,
+      "evidence": "Line 27 states '\"About four hundred signups\" is correctly hedged; keep the \"about\" if anyone tries to tighten it' -- hedge explicitly preserved, not dropped. Line 9 quotes '...and a lesson I keep having to relearn' verbatim without moralizing or converting it to a promise. No claim about 'all teams' or test practice in general is introduced; the response instead flags 'half of Europe' as the one claim needing a real number, which is the opposite of inflating it."
+    },
+    {
+      "text": "If a figure is applied, the response names it and the trigger condition that licensed it; if none is applied, the response says so and explains why the paragraph already lands",
+      "passed": true,
+      "evidence": "Change-note block: 'Applied: none... No trigger fired'. Prose gives the reasoning: the budget worked out to zero, the paragraph's own long/short sentence contrast already does what a figure would do, the ending passes the ear test, and the one figure whose trigger did fire (antithesis, at the diagnose/fix contrast) is explicitly named along with why it was rejected ('the parallel frame would break the Tuesday-Wednesday-Thursday chronology')."
+    },
+    {
+      "text": "Non-figure edits are also restrained: the closing sentence is preserved, and no more than one sentence is split, merged, or given a new subject",
+      "passed": true,
+      "evidence": "No edit to the paragraph is proposed; the recommendation is to publish unchanged, so the closing sentence and all others are preserved verbatim. The only suggestion offered is a content question about whether the author has a real number behind 'half of Europe' -- this is a request for information, not a sentence split/merge/subject change."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Bash": 2
+    },
+    "total_tool_calls": 3,
+    "total_steps": 8,
+    "errors_encountered": 1,
+    "output_chars": 2846,
+    "transcript_chars": 7602
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "'engineering blog, post-mortem' is a verbatim row in the register table",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Checked /Users/tonysina/Documents/claude-skills/skills/farnsworth-rhetoric/SKILL.md line 96: 'Thought leadership, executive summary, engineering blog, post-mortem | Half budget. Figures at the open and close only.' -- confirms the patched skill added this exact row (absent in the prev skill version), and the transcript's claim is accurate."
+    },
+    {
+      "claim": "A `cat -A` invocation was rejected by a shell hook, with no cost to the run",
+      "type": "process",
+      "verified": true,
+      "evidence": "Reported plausibly and consistently in the transcript's Issues section; the plain `cat`/`wc -w` in the same step succeeded per the transcript, and the final word count (91) matches independent verification of inputs/already-good.txt."
+    },
+    {
+      "claim": "outputs/metrics.json and outputs/user_notes.md were produced",
+      "type": "process",
+      "verified": false,
+      "evidence": "The transcript's 'Output Files' section lists both, but neither file exists in the outputs directory -- only result.md, scan.txt, and transcript.md are present."
+    },
+    {
+      "claim": "result.md is 496 words",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Transcript states 496 words; the AI-tells scan (scan.txt) independently counted 480 words for the same file. The two figures disagree by 16 words and neither is dramatically wrong, but the transcript's self-reported word count does not match the scan tool's count."
+    },
+    {
+      "claim": "The output contains no forbidden constructions",
+      "type": "quality",
+      "verified": false,
+      "evidence": "scan.txt reports 1 forbidden-table violation ('FLAG NEG-PARALLEL tailing negation: \", no latinate\"') and 2 hard violations total (also an EM-DASH cluster, 4 in one paragraph), versus 0 and 1 respectively for the prev arm on the same task. Manual inspection of the flagged text ('No diction work either. No nominalizations, no Latinate pileup, no paragraph ending that trails off.') suggests this reads as a legitimate own-analysis restating the skill's diction checklist rather than the 'not just X, it's Y' pattern the skill's forbidden-constructions table (SKILL.md line 297) actually targets, so the automated NEG-PARALLEL flag looks like a probable false positive rather than a genuine violation of the skill's rule -- but it is not fully clean either, since the phrase 'no nominalizations, no Latinate pileup, no...' is repeated near-verbatim once in prose and once in the change-note block, which reads as slightly repetitive even if not a forbidden construction."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Transcript notes it deliberately did not load references/figures.md since no figure was named by the user and the analysis ended at zero figures",
+      "Transcript flags a shell-hook rejection of `cat -A` as a minor, costless issue"
+    ],
+    "needs_review": [
+      "metrics.json and user_notes.md were referenced as outputs but do not exist in the outputs directory",
+      "scan.txt flags a NEG-PARALLEL forbidden-construction hit and 2 weak anaphora patterns that are not clearly genuine violations of the skill's own forbidden-constructions table on manual inspection -- worth a human second look"
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved in the output",
+        "reason": "Same issue as in the prev arm: since 'change nothing' is the correct verdict here, this assertion (and the closing-sentence one) passes for any response that abstains from editing, including a low-effort one. It doesn't discriminate on the quality of the reasoning behind the abstention."
+      },
+      {
+        "reason": "scan.txt shows this arm has more hard-violation flags than the prev arm on the identical prompt (2 vs 1: an extra em-dash and a NEG-PARALLEL flag), yet no expectation checks forbidden-construction cleanliness at all. On manual review the NEG-PARALLEL flag looks like a probable false positive (a repeated 'no X, no Y' diction checklist, not the skill's actual 'not just X, it's Y' pattern), but the eval currently has no assertion that would catch a genuine instance of this, nor prompt a grader to look at scan.txt without being told to. Consider adding an assertion tied to the skill's own forbidden-constructions table."
+      }
+    ],
+    "overall": "All five expectations pass, and the underlying reasoning is more precise than the prev arm's (this arm correctly uses the register table's now-explicit 'engineering blog, post-mortem' row to compute budget 0, rather than the prev arm's budget-of-1-then-spent-by-the-author workaround). However, none of the expectations are sensitive to that improvement, nor to the scan.txt-flagged forbidden-construction and anaphora hits, which is worth closing in a future revision of this eval."
+  }
+}

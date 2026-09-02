@@ -1,0 +1,100 @@
+{
+  "expectations": [
+    {
+      "text": "The response commits to the [cite: N] markers and the [span_2](start_span)/(end_span) markers being chatbot or LLM citation residue, without offering a non-AI explanation as equally likely",
+      "passed": true,
+      "evidence": "result.md: 'The paragraph carried Gemini's citation markers (`[cite: 4]`, `[cite: 5, 6]`, `[cite: 9]`) and a pair of its span markers (`[span_2](start_span)` and `[span_2](end_span)`). These are residue from a Gemini session that touched this paragraph...' No alternative non-AI explanation is offered."
+    },
+    {
+      "text": "The response names Gemini as the likely source of the markers",
+      "passed": true,
+      "evidence": "result.md names Gemini twice, explicitly attributing the citation and span markers to it."
+    },
+    {
+      "text": "All bracketed markers are removed from the cleaned paragraph (the paragraph delivered to the user, not the response's explanation, which may quote the marker names)",
+      "passed": true,
+      "evidence": "The cleaned paragraph delivered at the top of result.md contains no bracketed markers; markers only appear later, quoted in backticks within the explanation."
+    },
+    {
+      "text": "The cleaned paragraph preserves the prose essentially unchanged: the facts (Leeds, 2011, 38 staff, two presses, 2023 employee trust) are all still present and no sentence is reworded beyond punctuation",
+      "passed": true,
+      "evidence": "Compared sentence-by-sentence against inputs/gemini-residue.txt: every sentence is identical to the source except for removed markers. All facts (Leeds, 2011, 38 staff, two presses, 2019, half of turnover, 2023 employee trust) are intact."
+    },
+    {
+      "text": "The response does not state or imply that Gemini or any model wrote the prose; it either says residue proves a chatbot touched the citations or paragraph, or avoids claiming authorship",
+      "passed": true,
+      "evidence": "result.md explicitly hedges: 'Whether Gemini also drafted the wording I can't tell from the markers alone. Some people only use it to pull sources.' This directly avoids claiming authorship while still committing to Gemini as the source of the markers."
+    },
+    {
+      "text": "The response warns that the removed markers were the only sourcing for the dates and headcount, and that the figures should be verified before publication",
+      "passed": true,
+      "evidence": "result.md: 'Those `[cite:]` markers were the paragraph's only sourcing... With them gone, every figure and date in the paragraph is unsourced. Check these against your own records before publishing:' followed by a bulleted list covering every factual claim in the paragraph (founding, timeline, headcount, turnover share, sale/date)."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 6,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 0,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "extended-patterns.md confirms [cite: N] and [span_N](start_span)/(end_span) are Gemini residue and that residue proves the model touched the text but not that it drafted the prose",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript Step 7 quotes SKILL.md's 'What residue proves' rule directly, matching the response's careful phrasing that Gemini 'touched' but may not have drafted the paragraph."
+    },
+    {
+      "claim": "Word-list density is 0 per 100 words with one word-level triad flagged for review, and prose was left unedited",
+      "type": "process",
+      "verified": true,
+      "evidence": "scan.txt shows: 'density: 0 flag hits / 327 words = 0.0 per 100' and 'triads: 1 word-level, 0 phrase-level ... dates, headcount, press -> run isocolon load-bearing test'. The triad is a naturally occurring list of three nouns in the analysis prose (not the delivered paragraph) and is not a hard violation; HARD VIOLATIONS: 0."
+    },
+    {
+      "claim": "The span_2 numbering suggests the paragraph was excerpted from a longer Gemini output",
+      "type": "quality",
+      "verified": true,
+      "evidence": "result.md notes this inference explicitly, and user_notes.md flags it as 'an inference from the numbering, not something the reference file states outright' but 'sound' -- an appropriately hedged, value-adding observation not required by any expectation."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Read 'clean this up' as the skill's full-rewrite use case combined with a professional-register constraint from 'company history page'",
+      "Judged ordinary referent variation ('the firm'/'it'/'the business') as not ELEGANT-VAR",
+      "Did not verify any of the underlying facts, only flagged that they are now unsourced"
+    ],
+    "needs_review": [
+      "Whether the user wants the source list restored as real footnotes",
+      "The span_2 excerpt inference is not explicitly stated in the reference file and should not be treated as certain"
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "The scan.txt flags one word-level triad ('dates, headcount, press') in this arm but not in prev, purely because the 'with' response's explanatory prose is longer (327 vs 228 words) and uses a bulleted list of facts. No assertion checks for over-explanation length or whether the added bulleted fact list is necessary versus padding; both arms pass the substantive expectations, but the 'with' arm produces nearly 100 more words of explanation for the same core information, which is worth an eval author noting even though it isn't a failure here."
+      }
+    ],
+    "overall": "All six expectations pass with strong, directly-quotable evidence. This arm's authorship hedge ('Whether Gemini also drafted the wording I can't tell...') and its explicit, itemized sourcing warning are more precise than the minimum the expectations require, and the sentence-by-sentence diff against the input confirms the prose was left genuinely untouched. No eval-breaking gaps found; the only observation is that the response is longer than necessary without a corresponding assertion to check for padding."
+  }
+}

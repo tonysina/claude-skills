@@ -1,0 +1,35 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 985   figure budget: 6   (>600 words: 1 per 150, cap 6)
+  meta-quotation filter removed 107 words (code, blockquotes, flag lists, short quoted strings)
+
+  [CONSTRUCTIONS] forbidden-table violations: 1
+        FLAG NEG-PARALLEL: "not just its"
+
+  [A] humanizer multi-word flags: 0 distinct
+        none
+
+  [B] humanizer single-word flags (needs context): 0 distinct
+        none
+
+  em dashes: 0 total, max 0 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 1 word-level, 0 phrase-level
+        challenge, solution, results
+        -> run isocolon load-bearing test on each
+
+  density: 1 flag hits / 985 words = 0.1 per 100   distinct patterns: 1 ['NEG-PARALLEL']
+
+  HARD VIOLATIONS: 1
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     985   6     1   0   0    0   0/0   1   0.1   1     1

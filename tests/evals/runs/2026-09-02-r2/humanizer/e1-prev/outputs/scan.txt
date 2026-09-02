@@ -1,0 +1,49 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 736   figure budget: 4   (>600 words: 1 per 150, cap 6)
+
+  [CONSTRUCTIONS] forbidden-table violations: 3
+        FLAG NEG-PARALLEL: "it's not just"
+        FLAG NEG-PARALLEL: "not just a form to fill out; it's"
+        FLAG NEG-PARALLEL: "more than just"
+
+  [A] humanizer multi-word flags: 8 distinct
+        x2  "stands as"  [INFLATION]
+        x2  "pivotal moment"  [INFLATION]
+        x2  "the road ahead is promising"  [GENERIC-CLOSER]
+        x1  "serves as"  [INFLATION]
+        x1  "commitment to"  [INFLATION]
+        x1  "industry reports"  [VAGUE-ATTRIB]
+        x1  "in conclusion"  [DIDACTIC]
+        x1  "the future looks bright"  [GENERIC-CLOSER]
+
+  [B] humanizer single-word flags (needs context): 8 distinct
+        x2  showcasing  [INFLATION]
+        x2  fostering  [ING-ANALYSIS]
+        x2  pivotal  [AI-VOCAB]
+        x2  testament  [AI-VOCAB]
+        x1  additionally  [AI-VOCAB]
+        x1  enhance  [AI-VOCAB]
+        x1  landscape  [AI-VOCAB]
+        x1  robust  [AI-VOCAB]
+
+  em dashes: 0 total, max 0 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 1 weak (2)
+        weak   "it's the..." x2
+
+  triads: 0 word-level, 0 phrase-level
+
+  density: 26 flag hits / 736 words = 3.5 per 100   distinct patterns: 7 ['AI-VOCAB', 'DIDACTIC', 'GENERIC-CLOSER', 'INFLATION', 'ING-ANALYSIS', 'NEG-PARALLEL', 'VAGUE-ATTRIB']
+
+  HARD VIOLATIONS: 3
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     736   4     3  11  12    0   0/1   0   3.5   7     3

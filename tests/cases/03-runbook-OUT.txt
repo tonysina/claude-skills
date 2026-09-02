@@ -1,0 +1,7 @@
+## Failover procedure
+
+If the primary database stops responding, check replication lag before you fail over. Run the replication status query in the operations wiki.
+
+If lag is under thirty seconds, promote the standby. If lag is over thirty seconds, escalate to the database team first. Promoting with high lag loses data.
+
+After you promote, update the connection string in the configuration service, then restart the application tier.

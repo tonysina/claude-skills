@@ -1,0 +1,141 @@
+{
+  "eval_id": 2,
+  "name": "human-negative-review",
+  "arm": "without",
+  "skill_version": null,
+  "ground_truth": "human (pre-2021 Wikipedia revision)",
+  "expectations": [
+    {
+      "text": "The response does not perform a rewrite of the text; it reports findings only",
+      "passed": false,
+      "evidence": "result.md contains a section 'If you want to tidy it anyway' with a blockquoted rewrite of the entire first paragraph: '> The area has a sub-regional sports centre, the Black Lion Leisure Centre (now Medway Park), with three indoor pools for swimming and scuba diving, a gym, a sports hall and squash courts. Also in the same area is the Jumpers Rebound Centre for trampolining.' That is a rewritten passage of the user's text, not a per-finding suggested fix, and it was not requested. The executor's own user notes flag it: 'The suggested rewrite is optional and was not asked for. The user asked only for a review. Including it could be seen as scope creep.' The rest of the response is findings only, and the rewrite is marked optional and limited to one paragraph, but the expectation says no rewrite is performed, so the burden of proof is not met."
+    },
+    {
+      "text": "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human or is at most ambiguous",
+      "passed": true,
+      "evidence": "First line of result.md: 'No, this does not read as AI-written. It reads like a human-edited encyclopedia entry ... My confidence is high.' Verdict is unambiguous and matches the ground truth (human)."
+    },
+    {
+      "text": "Any flagged words such as 'features', 'serves as', or 'offers' are described as weak or context-dependent evidence rather than as proof of AI writing",
+      "passed": true,
+      "evidence": "None of the listed example words occur in the input. The words the response raises, 'Boasts', 'premier' and 'world-famous facility', are handled under 'The one thing that might trip a detector': 'promotional puffery is on most lists of AI signs. Here it points the other way. The puffery is unsourced local pride attached to specific named venues ... AI puffery is usually diffuse.' This is context-dependent treatment, not proof of AI."
+    },
+    {
+      "text": "The response gives a reason for restraint, such as the low number of hits relative to length, the small number of distinct patterns, or the absence of structural tells",
+      "passed": true,
+      "evidence": "No hit count or rate is given, but the response reasons explicitly from the absence of structural tells: 'There is no shaping. No topic sentence framing the section, no closing line that sums up what the town offers ... The paragraphs simply stop.' and 'No parallel triads or balanced clauses. The lists are lumpy ... Models tend to smooth lists into tidy groups of three.' It also explains why the single lexical signal is discounted in context. This meets the guidance that any explicit reasoning about restraint passes."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 1,
+    "total": 4,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 2,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0,
+      "Skill": 0
+    },
+    "total_tool_calls": 3,
+    "total_steps": 4,
+    "errors_encountered": 0,
+    "output_chars": 9221,
+    "transcript_chars": 3484,
+    "result_md_words": 344,
+    "scan_hard_violations": 0,
+    "scan_flag_density_per_100": 0.3,
+    "note": "output_chars (9221) is larger than the other arms despite a similar result.md length; the executor's metrics may include transcript or metrics files in the count. Not independently recomputed."
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations recorded"
+  },
+  "claims": [
+    {
+      "claim": "The response's verdict (human-written, high confidence) matches the ground truth",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Ground truth: pre-2021 Wikipedia revision, human-written. Response: 'No, this does not read as AI-written ... My confidence is high.'"
+    },
+    {
+      "claim": "The text is most likely a section of a Wikipedia article about Gillingham, Kent",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The executor flagged this as an unverified inference. The eval author's ground truth confirms the text is a Wikipedia revision. Correct inference from register alone."
+    },
+    {
+      "claim": "The first paragraph has a genuine grammatical breakdown with two sentences run together and a missing appositive comma",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Input paragraph 1: '...squash courts also in the same area is Jumpers Rebound Centre for trampolining a world-famous facility for the sport.' No punctuation at either join."
+    },
+    {
+      "claim": "SCUBA is in capitals; the Medway Bears former name is mentioned; 'Her Majesty the Queen' appears as a bare title",
+      "type": "factual",
+      "verified": true,
+      "evidence": "All three strings found verbatim in the input."
+    },
+    {
+      "claim": "Language models almost never produce ungrammatical run-ons",
+      "type": "quality",
+      "verified": false,
+      "evidence": "A generalisation about model output offered as the decisive signal. Plausible and consistent with the skill's stated ineffective-indicator that perfect grammar is not a tell, but not verifiable from the run materials. The other two arms lean on the same reasoning."
+    },
+    {
+      "claim": "No skill or checklist was used; the assessment was made by default judgement",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Skill section: 'None (baseline)'. metrics.json shows Skill: 0 calls and only Read and Bash usage. Step 3 says 'without a checklist or skill'."
+    },
+    {
+      "claim": "Promotional puffery is on most lists of AI signs",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Consistent with the eval author's note that 'boasts', 'world-famous', and 'premier' are on AI watch lists, but not checked against any list by the grader."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Verdict rests on the executor's own judgement; no detector tool or reference checklist used.",
+      "Input filename 'human-2020-gillingham.txt' hints at the ground truth; executor says it was noticed but not used.",
+      "The 'most likely Wikipedia' statement was an inference, not verified (no web tools)."
+    ],
+    "needs_review": [
+      "Whether treating 'boasts' and 'world-famous' as human puffery rather than AI puffery is a fair weighting.",
+      "The optional rewrite was not asked for and may be scope creep (this is the cause of the expectation 1 failure)."
+    ],
+    "workarounds": [],
+    "suggestions_from_executor": [
+      "Comparison point for the with-skill run: does the skill flag the promotional words as tells and hedge, or does it weigh the grammatical breakdown and uneven detail as counter-evidence?"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response does not conclude that the text is AI-generated",
+        "reason": "The input filename 'human-2020-gillingham.txt' encodes the answer and was visible to the executor (noted in user_notes). A neutral filename would make this assertion discriminating."
+      },
+      {
+        "assertion": "The response does not perform a rewrite of the text; it reports findings only",
+        "reason": "This assertion did real work here: the baseline produced an unrequested paragraph rewrite that both skill arms avoided. Worth keeping. Consider stating explicitly whether per-finding one-clause 'fix' suggestions count as findings (they were treated as findings in all arms) so graders apply the line consistently."
+      },
+      {
+        "assertion": "Any flagged words such as 'features', 'serves as', or 'offers' are described as weak or context-dependent evidence",
+        "reason": "None of the named example words are in the input. Name the words actually present ('boasts', 'world-famous', 'premier') so the check is concrete."
+      },
+      {
+        "reason": "The baseline reached the correct verdict with confident, well-argued reasoning and no skill. Expectation 4 passed on structural-absence reasoning alone. If the intent is to test the v1.3.0 density table, add an assertion that the response states a hit count or rate relative to length; the baseline would fail that and the skill arm would pass."
+      }
+    ],
+    "overall": "Three of four pass. The one failure (an unrequested paragraph rewrite) is the only behavioural difference from the skill arms on this eval; the verdict and reasoning quality are otherwise comparable. The eval as written does not isolate the skill's density mechanism."
+  }
+}

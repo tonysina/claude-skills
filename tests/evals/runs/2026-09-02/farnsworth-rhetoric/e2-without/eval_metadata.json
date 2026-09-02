@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "name": "already-good-restraint",
+  "arm": "without",
+  "prompt": "Strengthen this. It's a paragraph from a post-mortem I'm publishing on our engineering blog.",
+  "expectations": [
+    "The response states a figure budget for the piece and applies at most one figure",
+    "The concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved in the output",
+    "No claim is inflated: the figure of four hundred signups is not rounded up, no new absolute or superlative is added, and 'a lesson I keep having to relearn' is not turned into a promise",
+    "If a figure is applied, the response names it and the trigger condition that licensed it; if none is applied, the response says so and explains why the paragraph already lands"
+  ]
+}

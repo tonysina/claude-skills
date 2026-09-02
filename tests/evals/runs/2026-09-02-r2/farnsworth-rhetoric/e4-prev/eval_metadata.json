@@ -1,0 +1,16 @@
+{
+  "eval_id": 4,
+  "name": "exec-summary-budget",
+  "arm": "prev",
+  "prompt": "This executive summary is going to the leadership team on Friday. Make it land without changing what it asks for.",
+  "expectations": [
+    "The response applies at most three rhetorical figures and names each one with the trigger condition that licensed it",
+    "The response reports a claim check hedge by hedge, covering at least 'potentially', 'more difficult to quantify with precision', 'has not been fully assessed', 'financial modelling indicates', and 'should not be interpreted as a recommendation', and each hedge it reports as kept is actually present in the output",
+    "Every number in the source survives unchanged: four platforms, 2021 to 2024, $2.1M, eighteen months, three teams, month twenty-six, two of four platforms undocumented, two viable targets",
+    "The ask ('Leadership approval is requested to proceed with a detailed planning phase, with a decision gate...') is preserved in substance",
+    "The output adds no claim or commitment absent from the source, such as what the planning phase will resolve or who will own it",
+    "The output contains no negative parallelism and no generic positive closer ('the future is bright', 'poised for growth', 'we will lead')",
+    "The rewritten prose contains at most one anaphora run and no more than two em dashes in any paragraph (the change-note block is exempt)"
+  ],
+  "executor_model": "fable-5-1"
+}

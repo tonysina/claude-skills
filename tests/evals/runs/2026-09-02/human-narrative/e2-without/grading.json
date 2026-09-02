@@ -1,0 +1,118 @@
+{
+  "arm": "without",
+  "eval_id": 2,
+  "eval_name": "status-update-hard-stop",
+  "expectations": [
+    {
+      "text": "The response identifies the text as a status update or process/report register and applies no structural interventions",
+      "passed": true,
+      "evidence": "result.md: 'Nothing here reads as AI, and there is no narrative structure to audit. This is a five-sentence status update, and it is already in good shape. I would send it as is.' The five checks (order, specificity, vocabulary, ending, voice) are each marked passing with 'No reordering needed' and similar. Two 'optional touches' are offered (name who was asked; optional comma) but are explicitly labeled 'neither of which is an AI fix' and are not applied. No Edit or Write to the input (metrics.json: Write 0, Edit 0)."
+    },
+    {
+      "text": "The output text is unchanged from the input",
+      "passed": true,
+      "evidence": "The response does not return a rewritten text. It states 'I would send it as is' and transcript Final Result says 'The text was returned unchanged.' Per grading guidance, a response that returns no text but says it is unchanged passes. The quoted fragments in result.md ('No other blockers.', 'I have asked for review by Wednesday', 'If it slips past Wednesday we lose the sprint') match the input verbatim. The optional comma and named-reviewer touches are suggestions, not edits."
+    },
+    {
+      "text": "The response says explicitly that zero interventions is the answer for this register rather than manufacturing findings",
+      "passed": true,
+      "evidence": "result.md states 'there is no narrative structure to audit' (register out of scope for the requested audit), 'I would send it as is', and closes with 'If you were expecting me to find something, the more likely risk is the reverse: rewriting this would make it read more like AI, not less. Any expansion into sections, headers, or a closing sentiment would add exactly the patterns you are trying to avoid.' This states zero changes is the correct outcome, not merely optional. No findings are manufactured: the checklist reports why each check passes rather than listing problems and declining them. The two optional touches are explicitly non-AI style notes."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 1,
+      "Write": 0,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 5,
+    "total_steps": 5,
+    "errors_encountered": 0,
+    "output_chars": 7058,
+    "transcript_chars": 3270,
+    "result_md_words": 270
+  },
+  "timing": {
+    "executor_start": "2026-09-02T18:24:04Z",
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only executor_start; no durations available"
+  },
+  "claims": [
+    {
+      "claim": "The input is a five-sentence, 48-word status update",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Manual count of inputs/status-update.txt: 48 words, five sentences ending 'No other blockers.'"
+    },
+    {
+      "claim": "The text was returned unchanged",
+      "type": "factual",
+      "verified": true,
+      "evidence": "No rewritten text appears in result.md; all quoted fragments match the input verbatim; no file edits."
+    },
+    {
+      "claim": "The update runs done, in progress, blocked, ask, risk, closing",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Sentence order in the input: reindex finished (done), 2 of 5 migrated (in progress), 3 blocked on schema change (blocked), asked for review by Wednesday (ask), lose the sprint if it slips (risk), no other blockers (close)."
+    },
+    {
+      "claim": "No stock AI phrasing present ('excited to share', 'key highlights', 'moving forward', 'ensure alignment', hedging stacks, triplets, label-and-colon bullets, restating summary)",
+      "type": "factual",
+      "verified": true,
+      "evidence": "None of the named phrases appear in the input. The input has no bullets, no triplet, no closing summary."
+    },
+    {
+      "claim": "'I have asked for review by Wednesday' is active first person rather than passive",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Quoted sentence matches input and is first-person active."
+    },
+    {
+      "claim": "Rewriting this would make it read more like AI, not less",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Judgment claim, but consistent with the eval's own premise (a hard-stop case) and with the with-skill arm reaching the same verdict independently."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Prompt frames the input as narrative that may read as AI; executor chose 'nothing to fix' over a forced rewrite and notes this would fail an eval expecting a rewrite",
+      "Assumed 'fix anything that reads as AI' permits a no-change answer"
+    ],
+    "needs_review": [
+      "Whether returning the text unchanged with reasoning is the desired baseline behaviour (it is, per the expectations)",
+      "The two optional touches are labeled style suggestions; a reviewer may prefer them omitted"
+    ],
+    "workarounds": [],
+    "skill_suggestions_from_executor": [
+      "Executor inferred the eval tests over-diagnosis of a clean non-narrative input and suggested the rubric make 'no findings, text unchanged, explains why' explicit (which the actual expectations already do)"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "The no-skill baseline passes 3/3 with a shorter, plainer response than the skill arm. The current assertions therefore give the skill no measurable lift on this eval. If the skill's value on this register is a fast, explicit hard stop, add an assertion that captures what the baseline lacks (for example, an explicit statement that structural narrative audit is out of scope for status/report registers, or a pointer to the correct tool such as humanizer for surface tells). The baseline says 'no narrative structure to audit' but does not route the user anywhere."
+      },
+      {
+        "assertion": "The output text is unchanged from the input",
+        "reason": "The assertion is satisfied by a response that never returns the text at all. That is fine under the stated guidance, but it means a response that silently changed nothing and said nothing about the text would also pass. Consider requiring either the unchanged text be returned or an explicit 'unchanged' statement, which this run does provide ('I would send it as is')."
+      },
+      {
+        "reason": "The task description calls the input a four-sentence status update; the input file has five sentences. Cosmetic, but worth correcting in the eval description."
+      }
+    ],
+    "overall": "All three assertions pass with clear evidence. The baseline correctly identifies the register, declines to invent findings, and states that zero changes is the right outcome. Because the baseline and skill arm both score 3/3, this eval as written does not discriminate; see the with-arm grading for a suggested hard-stop assertion."
+  }
+}
