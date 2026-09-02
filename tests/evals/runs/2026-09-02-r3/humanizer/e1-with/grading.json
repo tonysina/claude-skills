@@ -1,0 +1,118 @@
+{
+  "expectations": [
+    {
+      "text": "The response contains a full rewritten text and a change summary, not just a list of findings",
+      "passed": true,
+      "evidence": "result.md lines 1-13 contain full rewritten prose ('Customer onboarding shapes a new customer's first real impression of a brand...'), followed by a '---' separator and a '**Change summary**' section (lines 17-29) with per-pattern bullets, not merely a findings list."
+    },
+    {
+      "text": "The change summary names at least three patterns using the skill's stable IDs in uppercase hyphenated form",
+      "passed": true,
+      "evidence": "Change summary bullets use backticked uppercase IDs: `INFLATION`, `NO-COPULA`, `NEG-PARALLEL`, `AI-VOCAB`, `VAGUE-ATTRIB`, `BOLD-LISTS`, `CHALLENGES-FORMULA`, `DIDACTIC`, `GENERIC-CLOSER` -- nine distinct stable IDs, well over the three required."
+    },
+    {
+      "text": "The rewritten text contains no negative parallelism in any form: 'not just X, it's Y', 'more than just', 'not only X but Y', 'not X, but Y', or the inverted 'X, not Y' used to affirm by negation",
+      "passed": true,
+      "evidence": "The rewritten body (lines 1-13) contains no negation-then-affirmation construction. The only occurrences of 'not just' / 'more than just' phrasing in result.md appear inside the change-summary bullet quoting the ORIGINAL sentence being removed (line 21: '\"It's not just a form to fill out; it's the first real impression of the brand\"' and '\"onboarding is more than just a process...\"'), which is illustrative quoting in the summary, not part of the rewritten text itself."
+    },
+    {
+      "text": "The rewritten text contains no generic positive closer such as 'the road ahead is promising' or 'the future looks bright', and does not end on an equivalent vague upbeat sentence",
+      "passed": true,
+      "evidence": "The body ends with 'Onboarding is the foundation of lasting customer relationships.' -- a value statement carried over from the source's own claim, not a forward-looking optimism cliche. Neither 'road ahead' nor 'future looks bright' appears in the rewritten body (they appear only inside the change-summary's quoted description of what was cut)."
+    },
+    {
+      "text": "The vague attribution 'Industry reports indicate' is removed from the rewritten body, or replaced with a specific named source; a note after the body does not count, and replacing it with an unsourced specific-sounding claim does not count",
+      "passed": true,
+      "evidence": "The body contains no retention-rate claim or attribution sentence at all -- it was deleted outright, not replaced with a placeholder note or an invented specific-sounding stat. The change summary (a separate, clearly labeled section, not a note left in place of body content) explains: 'deleted the unsourced ...claim rather than replacing it with an equally unsourced specific-sounding stat.'"
+    },
+    {
+      "text": "The bold inline-header list (Speed/Clarity/Confidence) is converted to prose or a plain list with no bolded lead-in text of any kind",
+      "passed": true,
+      "evidence": "Body lines 7-9: '- Setup takes minutes instead of hours.\\n- Every step comes with clear, contextual guidance.\\n- Users always know exactly where they stand in the process.' No bold markdown, no 'Speed:'/'Clarity:'/'Confidence:' lead-ins remain."
+    },
+    {
+      "text": "The rewritten text introduces no new AI-vocabulary words (delve, robust, leverage, seamless, tapestry, landscape as abstract noun) that were not already present, and reads as professional register rather than casual first-person",
+      "passed": true,
+      "evidence": "None of delve/robust/leverage/seamless/tapestry/landscape appear anywhere in the rewritten body. Register is third-person, business-professional throughout ('Our onboarding platform is built with that in mind...', 'Our support team works through that with customers...'); no first-person 'I' or casual tone."
+    },
+    {
+      "text": "The rewritten text adds no fact, capability, number, or time reference that is not in the source (for example 'this year', 'waiting on IT', a specific integration, a named metric)",
+      "passed": true,
+      "evidence": "Cross-checked each body claim against inputs/ai-heavy-onboarding.txt: 'minutes instead of hours' matches source's 'minutes rather hours'; 'legacy systems' complexity matches source; 'support team... continued investment' matches 'dedicated support team and ongoing product investment.' No new numbers, named integrations, dates, or capabilities appear."
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2,
+      "Write": 3,
+      "Bash": 4,
+      "Edit": 1,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 10,
+    "total_steps": 5,
+    "errors_encountered": 0,
+    "output_chars": 13494,
+    "transcript_chars": 6697
+  },
+  "timing": {
+    "executor_duration_seconds": 137,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "The prompt's 'Keep it professional' register descriptor does not trigger 'Edit with constraints' and the request stays 'Full rewrite' per the skill's use-case disambiguation",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 1 quotes the skill's own rule that a bare register descriptor with no scope-limiting instruction stays 'Full rewrite'; the executor's output matches that use case (full rewrite + change summary), consistent with the fix this run was meant to verify."
+    },
+    {
+      "claim": "No new facts, numbers, capabilities, or time references were introduced",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Line-by-line comparison of result.md body against inputs/ai-heavy-onboarding.txt shows every retained claim (setup speed, contextual guidance, user status visibility, legacy-system complexity, support/investment, foundation claim) traces to the source; nothing new added."
+    },
+    {
+      "claim": "scan.txt's 'HARD VIOLATIONS: 3' (NEG-PARALLEL) reflect real violations in the rewritten text",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The three flagged NEG-PARALLEL substrings ('it's not just', 'not just a form to fill out; it's', 'more than just') all occur inside the change-summary's illustrative quotation of the ORIGINAL sentence being removed (result.md line 21), not in the live rewritten body (lines 1-13). The scanner does not distinguish quoted-for-illustration text in the summary from the actual rewritten prose, so this scan output is a false positive as applied to expectation 3."
+    },
+    {
+      "claim": "NO-COPULA and CHALLENGES-FORMULA patterns were also fixed (beyond the expectations list)",
+      "type": "process",
+      "verified": true,
+      "evidence": "Source has 'serves pivotal moment', 'stands testament' (copula-avoidance) and a 'Despite...however...road ahead promising' challenges-formula; rewrite replaces these with direct statements and drops the formula's optimism half while keeping the one concrete fact (legacy-system complexity)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Source draft had garbled grammar (missing articles/prepositions) throughout; executor treated this as an artifact of eval construction rather than a literal-preservation signal and produced grammatical output.",
+      "The Speed/Clarity/Confidence list was kept as a de-bolded three-item list (passing the RULE-OF-3 load-bearing test) rather than collapsed to prose; executor flagged this as a defensible alternative reading if the grader expected prose."
+    ],
+    "needs_review": [
+      "The VAGUE-ATTRIB retention-rate claim was deleted rather than replaced; a human with an actual source may want to re-add it with citation."
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "scan.txt's AI-tell scanner scans the entire result.md file, including the change-summary section, and flags illustrative quotations of the REMOVED source phrases (e.g., the NEG-PARALLEL quote describing what was cut) as if they were live violations in the rewritten text. This produced 'HARD VIOLATIONS: 3' and multiple pattern hits (INFLATION, VAGUE-ATTRIB, DIDACTIC, GENERIC-CLOSER, AI-VOCAB, ING-ANALYSIS) that do not actually exist in the rewritten body -- all of them trace to quoted-for-illustration text in the change summary. Anyone relying on scan.txt's summary line without reading result.md directly would wrongly conclude this arm failed. Consider having the scan tool scan only the rewritten-text portion (before the '---' separator) when a change summary is present, or have executors keep illustrative quotes out of the change summary."
+      },
+      {
+        "assertion": "The rewritten text contains no generic positive closer...",
+        "reason": "The body's final sentence ('Onboarding is the foundation of lasting customer relationships.') is still a fairly stock B2B-marketing closing claim, even though it isn't the specific 'future looks bright' cliche the assertion names. This one passes on the letter of the assertion but a stricter version of this check (e.g., flagging any generic value-proposition restatement as a closer, not just forward-looking-optimism phrasing) would be more discriminating for future runs."
+      }
+    ],
+    "overall": "All 8 expectations pass on genuine merit -- the rewritten body is clean of every targeted pattern, the change summary correctly names 8+ stable IDs, and no facts were fabricated. This confirms the 'Full rewrite' vs 'Edit with constraints' disambiguation fix worked for this prompt (previously scored 4/8 for suppressing the change summary; this run correctly produced both rewrite and summary). The one real gap is in the eval harness itself: scan.txt's naive substring scan over the whole file conflates the change summary's illustrative quotes of removed text with the live rewrite, producing misleading 'HARD VIOLATIONS' that a grader must manually discount by reading result.md directly."
+  }
+}
