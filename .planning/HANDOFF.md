@@ -2,9 +2,10 @@
 
 **Branch:** `skills/writing-triad-review` (branched from `main` @ `3d4564d`)
 **Date:** 2026-09-02
-**State:** 3 of 3 reviewed, revised, and evaluated. Branch pushed; **PR #3 open** against
-`main`: https://github.com/tonysina/claude-skills/pull/3. See "Session 2 addendum" at the
-end of this file for the eval run and the candidate patches still open.
+**State:** 3 of 3 reviewed, revised, evaluated, patched, and re-evaluated. Branch pushed;
+**PR #3 open** against `main`: https://github.com/tonysina/claude-skills/pull/3. See
+"Session 3 addendum" at the end of this file for the patch-verification re-run and the
+regression it caught and fixed.
 
 ---
 
@@ -323,7 +324,57 @@ missing fidelity checks) for the next run. Changelogs of all three skills carry 
 - ~~Candidate patches from the eval report~~ **Applied** as `0d604c7` (humanizer 1.3.1),
   `810507d` (farnsworth-rhetoric 1.1.1), `f0acd86` (human-narrative 1.1.1), approved
   2026-09-02. All four candidate patches and the executor suggestions landed; each
-  changelog names the eval evidence. Not yet re-evaluated.
-- Re-run the corrected eval suite; three runs per configuration for variance.
+  changelog names the eval evidence.
+- ~~Re-run the corrected eval suite~~ **Done** — see "Session 3 addendum" below. Still only
+  one run per configuration; three-run variance measurement remains deferred.
 - LLM rubric for `human-narrative` beyond the eval expectations.
 - Thresholds unchecked on non-encyclopedic human prose.
+- `scan-ai-tells.py`'s meta-quotation filter still misses quoted change-summary text
+  (produced 3 false-positive `NEG-PARALLEL` hits on humanizer's own r3 output) and has no
+  check for `human-narrative`'s forward-reference tell — both noted in
+  `runs/2026-09-02-r2/REPORT.md`.
+
+---
+
+## Session 3 addendum — patch re-run, regression caught and fixed (2026-09-02)
+
+Re-ran the corrected eval suite (`evals.json` fixes from Session 2's grader feedback)
+against the four applied patches. `prev` = pre-patch skill (`skills-prev/`), `with` =
+patched. 11 evals, 22 arms, 79 graded expectations. Full writeup in
+`tests/evals/runs/2026-09-02-r2/REPORT.md`; table in
+`tests/evals/runs/2026-09-02-r2/results-table.md`.
+
+**Mean pass rate, prev → with:** farnsworth-rhetoric 0.89 → 0.91, human-narrative
+0.83 → 0.92, humanizer 0.94 → **0.88 (regressed)**.
+
+**Regression found and fixed.** `0d604c7`'s new "when 'humanize' and a constraint arrive
+together, [Edit with constraints] wins" clause had no test for what counts as a
+constraint. A bare register descriptor ("Humanize this... keep it professional") tripped
+it, routing the prompt away from Full rewrite and silently suppressing the change summary
+and pattern IDs. humanizer e1 dropped 0.75 → 0.50 as a direct result. Fixed in `0089d3a`
+(v1.3.2): narrowed the clause to constraints that limit *what may change* (structure,
+length, wording to preserve), not register/tone. Verified in a targeted re-run
+(`tests/evals/runs/2026-09-02-r3/humanizer/e1-with/`, commit `6c29196`): **8/8**, above
+even the pre-patch baseline. The other three humanizer evals were unaffected and were not
+re-run.
+
+**farnsworth e3 and human-narrative e2 confirm their target patches worked**
+(0.57 → 1.00 and 0.75 → 1.00 respectively) — see REPORT.md for the mechanism in each case.
+
+### Commits this session
+
+```
+0089d3a fix(humanizer): don't let a register descriptor trigger Edit-with-constraints
+6c29196 test(evals): verify the humanizer register-descriptor fix
+```
+
+Plus the r2 run's own commit carrying all 22 arms' `grading.json`, `results-table.md`, and
+`REPORT.md` (folded into `0089d3a` alongside the fix, since the eval run is what surfaced
+it).
+
+### Status: ready to merge
+
+Branch is fully reviewed, revised, evaluated, patched, and re-evaluated with the patch
+verified. PR #3 is open against `main`. Nothing else deferred blocks a merge; the
+remaining "Still deferred" items above (variance runs, human-narrative LLM rubric,
+scan-script gaps) are follow-on work, not blockers.
