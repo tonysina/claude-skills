@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.1.1] - 2026-09-02
+
+Patches from the first clean-context eval (`tests/evals/runs/2026-09-02/REPORT.md`). No
+cluster, feature, or register changes.
+
+### Fixed
+
+- **E and F fire by construction on short professional text.** The eval's 48-word status
+  update drew a 508-word audit that reported two clusters fired (reader address, intertextual
+  reference), computed "up to 2 interventions," and then declined both. The executor noted
+  that E and F are AI-side on nearly every status update because such text never addresses
+  the reader and never names a book, and that it had to reconcile the table with the
+  skill's own "zero is the common answer" by hand. Step 3 now counts E and F as one cluster
+  between them in the under-600-word row unless A or B also fires. Chosen over dropping E
+  from the row because E is still a real move on an executive summary that has an argument.
+- **Blocked interventions and the cap.** Step 5 said an intervention blocked by a guardrail
+  loses, but not whether its slot is freed. The eval executor assumed it was. Now stated: a
+  blocked intervention is reported, not counted; the next in order takes its slot.
+
+### Added
+
+- **"Report in proportion to the input."** Under 100 words, a one-paragraph verdict, no
+  table, no corpus percentages. The register allow-list was flagged in 1.1.0 as the change
+  most likely to be wrong; this is the first data point and it says the row was right about
+  scope and wrong about ceremony.
+
 ## [1.1.0] - 2026-09-02
 
 Restructured from a findings checklist into a gated procedure, and corrected four citation
