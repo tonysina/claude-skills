@@ -2,9 +2,9 @@
 
 **Branch:** `skills/writing-triad-review` (branched from `main` @ `3d4564d`)
 **Date:** 2026-09-02
-**State:** 3 of 3 reviewed and revised. `humanizer` v1.3.0 committed in four commits
-(approved 2026-09-02). See "Session 2 addendum" at the end of this file. Nothing pushed,
-no PR yet.
+**State:** 3 of 3 reviewed, revised, and evaluated. Branch pushed; **PR #3 open** against
+`main`: https://github.com/tonysina/claude-skills/pull/3. See "Session 2 addendum" at the
+end of this file for the eval run and the candidate patches still open.
 
 ---
 
