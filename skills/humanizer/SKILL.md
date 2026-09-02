@@ -14,7 +14,7 @@ description: |
   Do NOT use for: general editing unrelated to AI patterns, grammar-only fixes,
   style preferences that don't involve AI detection.
 metadata:
-  version: 1.3.0
+  version: 1.3.1
 ---
 
 # Humanizer: Remove AI Writing Patterns
@@ -65,11 +65,11 @@ House style: this file writes `--` for every dash on purpose. Its own prose has 
 
 ### Use cases
 
-**Review and flag:** User pastes text and asks "does this sound like AI?" or "review for AI tells." Scan for patterns, report what you found with pattern IDs, and offer to rewrite. Don't rewrite automatically -- the user wants a diagnosis first. Return a findings list ordered by signal strength; each finding names the pattern, quotes the offending text, and suggests a fix.
+**Review and flag:** User pastes text and asks "does this sound like AI?" or "review for AI tells." Scan for patterns, report what you found with pattern IDs, and offer to rewrite. Don't rewrite automatically -- the user wants a diagnosis first. Open with a one-line verdict and how confident you are, then a findings list ordered by signal strength; each finding names the pattern, quotes the offending text, and suggests a fix. A one-clause fix suggestion per finding is fine; a rewritten paragraph is not.
 
-**Full rewrite:** User pastes text and says "humanize this" or "de-slop this." Scan, rewrite, and return clean text followed by a brief change summary naming the patterns fixed.
+**Full rewrite:** User pastes text and says "humanize this" or "de-slop this." Scan, rewrite, and return clean text followed by a brief change summary naming the patterns fixed. If the scan is clean under the threshold below, return the text unchanged and say so. "Humanize this" is a request for a result, not an instruction to change something.
 
-**Edit with constraints:** User says "make this less AI but keep the formal tone" or "clean up this draft but don't change the structure." Apply pattern fixes within the stated constraints. Respect the user's boundaries over the skill's defaults. Include a change summary on request.
+**Edit with constraints:** User says "make this less AI but keep the formal tone" or "clean up this draft but don't change the structure." Apply pattern fixes within the stated constraints. Respect the user's boundaries over the skill's defaults. When "humanize" and a constraint arrive together, this use case wins. Include a change summary on request.
 
 **Voice calibration with sample:** User provides a sample of their own writing (inline or via file path) and asks for a humanized rewrite that matches their voice. Before rewriting, analyze the sample for sentence length patterns, word choice register (casual vs academic), paragraph openings, punctuation habits, transition style, and any recurring phrases. Then rewrite the target text using patterns drawn from the sample, not generic "human" defaults. If the sample uses short sentences, don't produce long ones. If the writer says "stuff" and "things," don't upgrade to "elements" and "components." If no sample is provided, fall back to the default behavior in "Tone awareness" below.
 
@@ -89,6 +89,8 @@ The word lists in this file carry about 180 literal flags, and many are ordinary
 Calibrated in v1.3.0 by scanning the source page's own confirmed-AI examples (84 blocks) against two human sets: the page's editorial prose and pre-2021 Wikipedia articles on the same subjects (60 blocks). No human block scored above 1.6 per 100 or above 2 patterns; three in ten AI blocks scored 2.0 or higher.
 
 **What the table does not gate.** Constructions and residue are findings on their own, at any density: a negative parallelism (`NEG-PARALLEL`), a generic closer (`GENERIC-CLOSER`), a challenges-formula section, three em dashes in a paragraph, a `[cite: 3]` marker. No human block in the calibration set contained one. Equally, more than half the confirmed-AI blocks scored **zero** on word lists -- their tells were structural or markup. A clean word-list scan is not a clean bill; run Passes 2-4.
+
+**What residue proves.** A citation marker or markup artifact proves a chatbot touched the citation or paragraph it sits in. It does not prove the chatbot wrote the prose; some writers use a chatbot only to find sources. Name the model the marker belongs to (`references/extended-patterns.md` lists them) and say "touched," not "drafted." When you strip markers that were the text's only sourcing, tell the user the figures and dates are now unsourced and need checking before publication.
 
 ## Tone awareness
 
@@ -130,6 +132,8 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 **Words to watch:** stands/serves as, is a testament/reminder, vital/significant/crucial/pivotal/key role/moment, underscores/highlights its importance/significance, reflects broader, symbolizing ongoing/enduring/lasting, setting the stage for, marks a shift, key turning point, evolving landscape, focal point, indelible mark, deeply rooted, boasts a, vibrant, rich (figurative), profound, showcasing, exemplifies, commitment to, natural beauty, nestled, in the heart of, groundbreaking (figurative), renowned, breathtaking
 
 **Authority trope phrases:** the real question is, at its core, in reality, what really matters, fundamentally, the deeper issue, the heart of the matter, the truth is, more importantly
+
+The lists above are drawn from the source and are not exhaustive for marketing copy. Unlisted promotional adjectives (*seamless*, *effortless*, *powerful* used figuratively) count as this pattern when they cluster with listed ones. They are not counted by `scripts/scan-ai-tells.py`, so a marketing piece can score under the threshold on word lists and still be puffery; read it.
 
 **Problem:** LLMs puff up importance by adding statements about how aspects of a topic represent or contribute to broader themes. They also default to promotional adjectives absorbed from marketing copy in training data. A related sub-pattern uses authority-claiming openers ("at its core, what really matters is") to imply the writer is revealing a deeper truth -- but the sentence that follows usually just restates an ordinary point with extra ceremony. Both patterns signal depth that isn't there. The difference: significance inflation adds importance to the *subject*; authority tropes claim insight for the *writer*.
 
@@ -186,6 +190,8 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 **Notability phrases:** profiled in, regional/national media outlets, active social media presence, independent coverage
 
 **Problem:** LLMs attribute opinions to vague authorities. They also exaggerate source quantity -- presenting one or two sources as "several" or "many," or claiming views are "widely held" when only one source expresses them. A related sub-pattern lists source names as proof of notability, echoing Wikipedia's own guideline language (e.g., claiming "active social media presence" as evidence of significance). With retrieval-augmented generation, LLMs may attribute fabricated analyses to named sources regardless of what those sources actually say.
+
+**When no real source exists:** the fix is to name one, and often there is none to name. Then delete the claim, or leave it in the body with an inline marker the user cannot miss ("[needs a source]"). Do not keep the sentence as-is with a note underneath, and do not swap it for a specific-sounding claim that is equally unsourced ("Companies with streamlined onboarding retain 30% more customers").
 
 **Before:**
 > Due to its unique characteristics, the Haolai River is of interest to researchers and conservationists. Efforts are ongoing to monitor its ecological health.
