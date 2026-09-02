@@ -26,19 +26,20 @@ Two flag sources:
      live means the scan cannot drift out of sync when humanizer is revised.
 
   2. HAND-DERIVED construction cores (CONSTRUCTIONS below). humanizer states some
-     patterns as templates with X/Y/Z placeholders (#6 negative parallelism) or as
-     open-ended categories (#15 generic positive conclusions). Placeholders cannot
+     patterns as templates with X/Y/Z placeholders (NEG-PARALLEL) or as
+     open-ended categories (GENERIC-CLOSER). Placeholders cannot
      be literal-matched, so the invariant core of each template is encoded here as
      a regex. These need updating by hand if humanizer's pattern set changes.
+     Labels use humanizer's stable pattern IDs, not display numbers.
 
 Also measures:
-  - em dash total and max-per-paragraph (humanizer #8 is about proximity, not count)
+  - em dash total and max-per-paragraph (EM-DASH is about proximity, not count)
   - anaphora runs at sentence and clause level, ignoring leading conjunctions
-  - word-level and phrase-level triads (isocolon load-bearing test / humanizer #7)
+  - word-level and phrase-level triads (isocolon load-bearing test / RULE-OF-3)
   - word count vs farnsworth figure budget
 
 Known limits (need the LLM grader, not this script):
-  - #15 generic positive conclusions is an open category; only listed literals hit.
+  - GENERIC-CLOSER is an open category; only listed literals hit.
   - Antithesis and hypophora are not reliably detectable by regex, so the figure
     count here is a floor, not a total.
   - Claim drift (a hedge becoming a promise, a dropped qualifier) is not checkable
@@ -61,14 +62,14 @@ WATCH_HEADERS = (
 # Hand-derived. Invariant cores of humanizer's placeholder templates.
 GAP = r".{1,60}?"
 CONSTRUCTIONS = [
-    ("#6 negative parallelism", r"\bit'?s not just\b"),
-    ("#6 negative parallelism", r"\bnot just\b" + GAP + r"\b(?:it'?s|we|they|but)\b"),
-    ("#6 negative parallelism", r"\bnot only\b" + GAP + r"\bbut\b"),
-    ("#6 negative parallelism", r"\bmore than just\b"),
-    ("#6 negative parallelism", r"\bisn'?t just\b"),
-    ("#6 negative parallelism", r"\bit'?s not about\b" + GAP + r"\bit'?s\b"),
-    ("#6 tailing negation", r",\s*no\s+\w+\.\s*$|,\s*no\s+\w+\s*$"),
-    ("#15 generic positive closer", r"\bwe will lead\b|\bthe future is bright\b"),
+    ("NEG-PARALLEL", r"\bit'?s not just\b"),
+    ("NEG-PARALLEL", r"\bnot just\b" + GAP + r"\b(?:it'?s|we|they|but)\b"),
+    ("NEG-PARALLEL", r"\bnot only\b" + GAP + r"\bbut\b"),
+    ("NEG-PARALLEL", r"\bmore than just\b"),
+    ("NEG-PARALLEL", r"\bisn'?t just\b"),
+    ("NEG-PARALLEL", r"\bit'?s not about\b" + GAP + r"\bit'?s\b"),
+    ("NEG-PARALLEL tailing negation", r",\s*no\s+\w+\.\s*$|,\s*no\s+\w+\s*$"),
+    ("GENERIC-CLOSER", r"\bwe will lead\b|\bthe future is bright\b"),
 ]
 
 LEADING_STOPWORDS = {
@@ -269,7 +270,7 @@ def scan(path, flags):
 
     print(f"\n  em dashes: {dash_total} total, max {dash_max_para} per paragraph")
     if dash_max_para >= 3:
-        print("        FLAG humanizer #8 (3+ in proximity)")
+        print("        FLAG humanizer EM-DASH (3+ in proximity)")
 
     print(f"\n  anaphora: {len(strong)} strong run(s) (>=3), {len(weak)} weak (2)")
     for key, run in strong:

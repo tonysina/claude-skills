@@ -106,8 +106,8 @@ These patterns were common in older AI models but are less frequent in 2025+ mod
 
 - **Prompt refusal:** "As an AI language model, I can't directly..." (increasingly rare)
 - **Abrupt cutoffs:** Text stopping mid-sentence due to token limits
-- **Didactic disclaimers:** "It's important to note..." (see main SKILL.md, pattern 13)
-- **Section summaries:** "In summary..." / "In conclusion..." (see main SKILL.md, pattern 13)
+- **Didactic disclaimers:** "It's important to note..." (see main SKILL.md, `DIDACTIC`)
+- **Section summaries:** "In summary..." / "In conclusion..." (see main SKILL.md, `DIDACTIC`)
 
 ---
 

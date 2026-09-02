@@ -160,7 +160,7 @@ Before: "Our pricing is competitive and our support is a differentiator."
 After: "Our competitors win on price. We win after the sale."
 
 **Not the same as negative parallelism.** "It's not just X, it's Y" asserts one pole and
-dismisses a straw pole — humanizer flags it (#6) because the dismissed pole was never a
+dismisses a straw pole — humanizer flags it (`NEG-PARALLEL`) because the dismissed pole was never a
 real option. Antithesis gives both poles weight and lets them stand.
 
 **Cap:** 1 per three paragraphs.
@@ -177,7 +177,7 @@ shape*. Three is the number that resolves; two feels open, four feels like a lis
 **Load-bearing test — required.** An isocolon earns its place only if each member adds
 something the others don't. Ask: could I cut this to one member and lose information?
 If no, cut it to one. Interchangeable adjectives and padded parallel phrases are
-humanizer's decorative triad (#7), not a figure.
+humanizer's decorative triad (`RULE-OF-3`), not a figure.
 
 Fails the test: "We value innovation, collaboration, integrity, excellence, and growth."
 (Five interchangeable abstractions. Cut to what you actually do.)
@@ -229,7 +229,7 @@ After: "So why not wait a year? Because the license renews in March, and renewin
 us in for three more."
 
 **Anti-patterns:** Never ask a question you don't answer immediately. Never announce it
-("You might be wondering...") — humanizer flags that as signposting (#17). Just ask.
+("You might be wondering...") — humanizer flags that as `SIGNPOSTING`. Just ask.
 
 **Cap:** 2 per piece. The most under-used figure in business writing; spend here first.
 
@@ -288,13 +288,16 @@ list. Producing them makes this skill actively counterproductive.
 
 | Do not produce | humanizer flag | Use instead |
 |---|---|---|
-| "not just X, it's Y" / "not only X but Y" / "X is more than Y. It's Z." | #6 negative parallelism | Antithesis, both poles real |
-| Three interchangeable adjectives or padded parallel phrases | #7 rule of three | Isocolon that passes the load-bearing test, or one member |
-| "Put simply:" / "In other words:" / "What this means is" | #14 didactic filler | Juxtapose the two sentences with no transition |
-| "You might be wondering..." / "Let's explore" | #17 signposting | Ask the question outright (hypophora) |
-| Three or more em dashes in close proximity | #8 em dash overuse | Commas, colons, periods |
-| "The real question is" / "At its core" / "Fundamentally" | #1 authority tropes | Ask the real question, or state the point |
-| "we will lead" / "the future is bright" / "poised for growth" closers | #15 generic positive conclusions | A concrete claim, with a Saxon finish |
+| "not just X, it's Y" / "not only X but Y" / "X is more than Y. It's Z." | `NEG-PARALLEL` | Antithesis, both poles real |
+| Three interchangeable adjectives or padded parallel phrases | `RULE-OF-3` | Isocolon that passes the load-bearing test, or one member |
+| "Put simply:" / "In other words:" / "What this means is" | `DIDACTIC` | Juxtapose the two sentences with no transition |
+| "You might be wondering..." / "Let's explore" | `SIGNPOSTING` | Ask the question outright (hypophora) |
+| Three or more em dashes in close proximity | `EM-DASH` | Commas, colons, periods |
+| "The real question is" / "At its core" / "Fundamentally" | `INFLATION` (authority tropes) | Ask the real question, or state the point |
+| "we will lead" / "the future is bright" / "poised for growth" closers | `GENERIC-CLOSER` | A concrete claim, with a Saxon finish |
+
+Flags are humanizer's stable pattern IDs (see the table at the top of its SKILL.md), not
+display numbers, which can change between humanizer versions.
 
 The general rule: a figure that could be dropped into any piece about any topic is not a
 figure, it's filler with parallel structure.
