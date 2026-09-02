@@ -1,5 +1,32 @@
 # Changelog
 
+## [1.1.1] - 2026-09-02
+
+Patches from the first clean-context eval (`tests/evals/runs/2026-09-02/REPORT.md`). No
+figure or budget changes.
+
+### Fixed
+
+- **A treatment that fails the claim check is withdrawn.** The eval's tagline run offered
+  an antithesis its own claim check had found to add a characterization of the status quo,
+  shipped as a non-recommended option with a caveat. The skill ran the check but never said
+  what to do with a failing treatment. Now it does.
+- **Description and register table said different things about process text.** The
+  description lists process instructions under "Do NOT use for"; the register table handled
+  them with "diction work only." The executor followed the table and noted the conflict.
+  The row now states that these registers are the description's exclusion list, and that
+  diction-only is the fallback if the skill is invoked on one anyway.
+
+### Added
+
+- **Single-line output shape.** The executor produced both the treatments list and a
+  strengthen-mode change note "since the skill asks for both in different places." Now
+  stated: treatments with figures named, then one change note for the recommended option.
+- **Engineering blog and post-mortem** added to the thought-leadership register row. The
+  executor had no row to put a blog post-mortem in.
+- **"Count the words."** Both eval executors budgeted a 19-word tagline as 22. Verdict
+  unchanged, arithmetic wrong.
+
 ## [1.1.0] - 2026-09-02
 
 Restructured from a reference document into an executable procedure. The figure

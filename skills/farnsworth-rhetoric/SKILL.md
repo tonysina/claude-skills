@@ -16,7 +16,7 @@ description: |
   removing AI tells (use humanizer), narrative structure (use human-narrative),
   technical documentation, process instructions, data reporting, or legal language.
 metadata:
-  version: 1.1.0
+  version: 1.1.1
 ---
 
 # Farnsworth Rhetoric: Memorable Writing
@@ -77,7 +77,10 @@ that justified it.
 
 **Single line:** User wants one sentence sharpened — a tagline, a closing line, a slide
 title. Chain `beyond-obvious` for options, present 3–5 treatments with the figure named,
-and recommend one. Budget is 1 figure.
+and recommend one. Budget is 1 figure. Run the claim check on every treatment before
+presenting it; a treatment that fails is withdrawn, not offered with a caveat. Output
+shape: the treatments list, each with its figure named, then one change note for the
+recommended treatment only.
 
 ---
 
@@ -90,12 +93,14 @@ Answer three questions before touching the text.
 | Register | Approach |
 |---|---|
 | Speech, keynote, closing argument | Full budget. The ear is the only channel. |
-| Thought leadership, executive summary | Half budget. Figures at the open and close only. |
+| Thought leadership, executive summary, engineering blog, post-mortem | Half budget. Figures at the open and close only. |
 | Business email, internal memo | 1 figure maximum, at the ask. |
 | Slide title, subject line, tagline | 1 figure, or none. Compression usually beats ornament. |
-| Technical, legal, process, data | **Stop.** Diction work only (free, below). No figures. |
+| Technical, legal, process, data | **Stop.** Out of scope for figures; this is the description's "Do NOT use for" list. If invoked anyway, say so and do diction work only (free, below). |
 
 **Q2: What is the figure budget?**
+
+Count the words. Do not estimate them; the budget tiers have hard edges.
 
 | Length | Max figures |
 |---|---|
