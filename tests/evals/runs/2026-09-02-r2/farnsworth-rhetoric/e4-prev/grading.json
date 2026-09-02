@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "text": "The response applies at most three rhetorical figures and names each one with the trigger condition that licensed it",
+      "passed": true,
+      "evidence": "Change note lists exactly one applied figure: 'Applied: hypophora at the ask (paragraph 6): \"What does approval commit us to? Planning, and no more.\" -- trigger: leadership's first question on reading a request like this is what it commits them to...'. The 'Left alone' section shows antithesis, isocolon, anaphora, and antimetabole were considered and explicitly rejected with reasons, confirming the 1-figure count is deliberate, not an omission. scan.txt confirms 0 forbidden constructions and 0 anaphora runs. The word-triads scan.txt finds (e.g. 'year, moves, downstream') are lists inside the change-note prose describing word endings, not additional rhetorical figures deployed in the executive summary itself."
+    },
+    {
+      "text": "The response reports a claim check hedge by hedge, covering at least 'potentially', 'more difficult to quantify with precision', 'has not been fully assessed', 'financial modelling indicates', and 'should not be interpreted as a recommendation', and each hedge it reports as kept is actually present in the output",
+      "passed": true,
+      "evidence": "Claim check explicitly addresses all five: '\"would potentially include\" -> \"could include\". Hedges preserved.'; '\"more difficult to quantify with precision\" -> \"harder to put a number on\"'; '\"Financial modelling indicates\" and \"Preliminary indications suggest\". Both attributions preserved.'; 'the extent to which these commitments... has not been fully assessed at this stage\" -> \"we have not yet fully assessed how much of both they can carry at once\". Degree (\"extent\") and the not-yet hedge both kept.'; '\"should not be interpreted as a recommendation\"... All preserved.' Each corresponding phrase is verifiably present in the rewritten body: 'could include' (para 3), 'harder to put a number on' (para 3), 'Financial modelling indicates' (para 3, verbatim), 'we have not yet fully assessed' (para 5), 'That is not a recommendation' (para 7)."
+    },
+    {
+      "text": "Every number in the source survives unchanged: four platforms, 2021 to 2024, $2.1M, eighteen months, three teams, month twenty-six, two of four platforms undocumented, two viable targets",
+      "passed": true,
+      "evidence": "Body text: 'four separate customer data platforms', 'between 2021 and 2024', 'roughly $2.1M a year', 'over eighteen months', 'dedicated engineers from three separate teams', 'offset implementation costs by month twenty-six', 'Two of the four platforms also lack comprehensive documentation', 'two of the four platforms would be technically viable as consolidation targets'. All eight figures present unchanged."
+    },
+    {
+      "text": "The ask ('Leadership approval is requested to proceed with a detailed planning phase, with a decision gate...') is preserved in substance",
+      "passed": true,
+      "evidence": "'We are asking leadership to approve a detailed planning phase. What does approval commit us to? Planning, and no more. A decision gate at the end of that phase sits before any committed engineering spend.' Same request, same gate, same sequencing as the source."
+    },
+    {
+      "text": "The output adds no claim or commitment absent from the source, such as what the planning phase will resolve or who will own it",
+      "passed": true,
+      "evidence": "Change note states explicitly: 'Nothing added. No mechanism, number, or failure case appears in the revision that is not in the original.' Manual comparison of both texts confirms no new ownership, deliverable, or resolution claim was introduced; the planning-phase paragraph stays as unspecified as the source ('Planning, and no more' restates the source's silence on scope rather than adding detail)."
+    },
+    {
+      "text": "The output contains no negative parallelism and no generic positive closer ('the future is bright', 'poised for growth', 'we will lead')",
+      "passed": true,
+      "evidence": "scan.txt reports 'forbidden-table violations: 0'. The final paragraph closes on a scoping caveat ('We will coordinate with account management before we set any dates'), not a generic uplift closer. No 'X, not Y' or 'not just X, it's Y' construction appears anywhere in the body."
+    },
+    {
+      "text": "The rewritten prose contains at most one anaphora run and no more than two em dashes in any paragraph (the change-note block is exempt)",
+      "passed": true,
+      "evidence": "scan.txt: 'anaphora: 0 strong run(s) (>=3), 0 weak (2)' and 'em dashes: 1 total, max 1 per paragraph' -- both within the stated limits."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "output_chars": 6798,
+    "transcript_chars": null,
+    "note": "No transcript.md or metrics.json present for this arm; result.md and scan.txt were the only inspectable outputs."
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json contains only 'executor_start' (2026-09-02T18:57:21Z); no duration fields to report."
+  },
+  "claims": [
+    {
+      "claim": "The rewrite is 401 words, giving a figure budget of 3 (length-based), halved to 1 for executive-summary register",
+      "type": "factual",
+      "verified": true,
+      "evidence": "inputs/exec-summary.txt is confirmed 401 words by word count. The stated budget arithmetic and the single applied figure (hypophora) are consistent with that math."
+    },
+    {
+      "claim": "'Ear test: last five words of each paragraph read aloud; each closes on a stressed monosyllable and fits in one breath'",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Spot-checking all eight paragraph endings: year, moves, downstream, size, once, spend, tools, dates. 'Downstream' (paragraph 3) is disyllabic, not a monosyllable, contradicting the blanket claim that 'each' ending is monosyllabic. Seven of eight endings do satisfy the claim, but the unqualified 'each' overstates the craft."
+    },
+    {
+      "claim": "\"I did not reorder paragraphs\"",
+      "type": "process",
+      "verified": true,
+      "evidence": "Paragraph order and content topics (platforms/cost, migration plan, financial modelling, risks, capacity, ask, vendor, customer comms) match the source's paragraph order one-to-one."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "No assertion checks the accuracy of the self-reported 'ear test' craft claim. Both arms make this claim, and both overstate it (see the 'downstream'/'mature' counter-examples in the claims sections) -- an assertion verifying that the claimed prosody pattern actually holds for every cited paragraph ending would catch inflated craft claims that currently pass unchecked."
+      }
+    ],
+    "overall": "Assertions are discriminating and well-evidenced for this arm; all 7 pass on genuine substance, not surface compliance. The only gap is that the executor's self-verification claims (like the ear test) aren't independently checked by any assertion, and at least one such claim is measurably false."
+  }
+}

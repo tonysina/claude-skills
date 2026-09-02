@@ -1,0 +1,109 @@
+{
+  "expectations": [
+    {
+      "text": "The response scores the piece cluster by cluster and reports at least three clusters as fired, naming the gate feature for each",
+      "passed": true,
+      "evidence": "Step 2 table lists all 7 clusters (A–G) each with an explicit Gate value ('narrator states the theme: yes', 'dominant emotional expression: embodied metaphors', 'resolved internally', etc.) and a Fired column marking all 7 as fired."
+    },
+    {
+      "text": "The response applies at most three interventions, counting every structural change actually made whether or not it is labeled, and names the cluster each one belongs to",
+      "passed": true,
+      "evidence": "Exactly three labeled interventions are executed and delivered in the rewrite: Intervention 1 (A, deletion of closing paragraph), Intervention 2 (B, emotion rebalance on 'stomach dropped'/'heat rise up my neck'), Intervention 3 (D, reordering to open on the Thursday scene + delayed disclosure of the pipeline's lateness). Diffing the rewrite against the input, the only other changes ('in the third week' dropped, a new transition sentence about the pipeline) are mechanically entailed by the D reordering, not a separate unlabeled cluster fix. Note: the response also claims, inside Intervention 1, that the line 'She had never wanted me to do both; she had just never been told I couldn't' was 'demoted... into a plain statement of fact' and 'relocated' via Intervention 3 — but the rewrite shows this sentence verbatim and in its original relative position. This is a false process claim, not evidence of a 4th intervention (see claims section)."
+    },
+    {
+      "text": "The closing paragraph's stated lesson ('What I learned is that saying no is rarely a confrontation...') is removed or substantially reduced, and the point remains inferable from the scene",
+      "passed": true,
+      "evidence": "The entire final paragraph is deleted (Intervention 1: 'Deleted the final paragraph entirely'). The rewrite ends on 'which made me laugh, because all I had done was ask a question,' and the earlier line 'She had never wanted me to do both; she had just never been told I couldn't' still carries the thesis in-scene."
+    },
+    {
+      "text": "If the response reports cluster B as fired, at least one embodied-emotion metaphor ('my stomach dropped', 'my chest tightened', 'heat rise up my neck') is replaced with a plain emotion label or a behavior; if B is reported as not fired, the metaphors are left alone and the response says why",
+      "passed": true,
+      "evidence": "B is reported fired (✅ in the cluster table). Intervention 2 replaces 'My stomach dropped.' with 'I was afraid.' (plain label) and cuts 'My chest tightened' while keeping the calendar detail as a behavioral cue; 'heat rise up my neck' is explicitly left unchanged."
+    },
+    {
+      "text": "The resolution is made partial, external, or left with one unresolved thread, and the resulting text is still coherent; 'everything at work got easier, and I have never gone back' does not survive unchanged",
+      "passed": false,
+      "evidence": "The quoted sentence is gone (the whole closing paragraph was deleted), but the resolution itself is untouched: the rewrite still ends with the pipeline finished, the dashboard handed to a contractor 'who did it better than I would have,' and a glowing review — a fully internal, cost-free resolution. The response itself confirms this was not addressed: under 'What I didn't take,' it states cluster C ('the resolution') fired but was capped out, and 'C would move the resolution off \"once I understood that\" toward something partial or external' — i.e., that change was explicitly not made."
+    },
+    {
+      "text": "The output contains no signposting phrase such as 'you might be wondering' or 'here's what you need to know', and no forward-reference announcement to the reader",
+      "passed": false,
+      "evidence": "Line 5: 'Here’s the full audit, then the rewrite.' is a direct structural announcement to the reader in the same family as the banned example. Step 3 also contains 'F is the reason — see the end,' an explicit forward-reference to later content."
+    },
+    {
+      "text": "The rewrite invents no biographical fact: no new event, person, job detail, number, or characterization of Dana or the narrator that the input does not contain; any change the response describes as 'same facts' is checked against the input",
+      "passed": true,
+      "evidence": "Ages, tenure, roles, the dashboard/pipeline/on-call details, dialogue, and the review quote all match the input verbatim or in paraphrase. No new person, number, or event appears. One soft concern: the new transition sentence 'What she did not know, because nobody had told her, was that the pipeline had already slipped a month and no one had asked about it' adds the interpretive detail 'no one had asked about it,' which the input does not state either way — flagged below as a quality claim rather than a hard invention (it doesn't add a new fact about a person/event/number)."
+    },
+    {
+      "text": "If an intervention is blocked by a guardrail, the response says so and states whether the next intervention in order took its slot",
+      "passed": true,
+      "evidence": "'Order for this register: A → B → F → D → E → C → G. I took A, B, and D. F is the reason — see the end,' and later: 'F — name a reference... That's a truth violation, and when a guardrail and an intervention conflict, the intervention loses.' This functionally states F was blocked and D was taken in its place, though it never uses an explicit phrase like 'D took F's slot' (contrast with the 'with' arm, which states this outright)."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 2,
+    "total": 8,
+    "pass_rate": 0.75
+  },
+  "execution_metrics": {
+    "tool_calls": null,
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": 0,
+    "output_chars": 11090,
+    "transcript_chars": 0,
+    "note": "No transcript.md or metrics.json present for this arm; grading is based on eval_metadata.json, outputs/result.md, outputs/scan.txt, and timing.json only."
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null,
+    "note": "timing.json only contains executor_start ('2026-09-02T18:57:21Z'); no end time or duration recorded."
+  },
+  "claims": [
+    {
+      "claim": "The line 'She had never wanted me to do both; she had just never been told I couldn't' was demoted into a plain statement of fact and relocated as part of Intervention 3",
+      "type": "process",
+      "verified": false,
+      "evidence": "The rewrite contains this sentence verbatim, in the same position relative to the opening dialogue scene as in the original. It was not altered in wording or demoted — the claim describes a change that does not appear in the delivered output."
+    },
+    {
+      "claim": "377 → 296 words",
+      "type": "factual",
+      "verified": false,
+      "evidence": "Input is 377 words (confirmed by direct count). The delivered rewrite blockquote is 292 words by direct count, not 296 — a small (~1%) but real discrepancy in a stated figure."
+    },
+    {
+      "claim": "Four of seven emotional beats run through the body (57%, just under the 60% quantitative rule), yet the gate fires anyway on the dominant-mode call",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The response's own enumerated beats (stomach dropped, chest tightened, calendar blurred, told myself and didn't believe it, heat up the neck, made me laugh, the fear I carried) support the count and the reasoning is internally consistent with the escalation argument made."
+    },
+    {
+      "claim": "Population base rates (52% of human stories state their theme, 57% have no subplots, humans name feelings ~3x as often as AI)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "These figures cannot be checked against any source available in this eval's outputs; they are presented as corpus statistics from the skill's reference data. Flagged as unverifiable rather than false — the same figures appear consistently in the 'with' arm's output, suggesting they come from a shared reference table rather than being invented per-run."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The resolution is made partial, external, or left with one unresolved thread...",
+        "reason": "This expectation presumes cluster C (structural streamlining / resolution) will be among the interventions taken, but the skill's own stated intervention order for this register (A → B → F → D → E → C → G) puts C sixth, well past a cap of 3 — so a compliant, well-reasoned run that honestly follows the skill's ordering logic will legitimately never reach C unless the prompt specifically calls out the ending. Both arms explicitly acknowledge C fired and explicitly decline it for exactly this reason. Consider either raising the intervention cap for this eval, rephrasing the prompt to specifically target the ending, or dropping/reweighting this expectation, since as written it penalizes correct adherence to the skill's own priority order rather than a real failure."
+      },
+      {
+        "assertion": "The output contains no signposting phrase... and no forward-reference announcement to the reader",
+        "reason": "This is a good, discriminating assertion — it caught a real tell ('Here's the full audit, then the rewrite.', 'see the end') that the automated scan.txt tool completely missed (0 flags across every category). Worth noting the automated scanner's forbidden-table/pattern list does not currently cover this class of meta-narration, which is otherwise only caught by manual/LLM grading."
+      }
+    ],
+    "overall": "Assertions 1-4 and 7-8 are discriminating and well-evidenced. Assertion 5 is arguably miscalibrated against the skill's own cap-and-ordering logic (see above) and fired the same way in both arms for a structural reason rather than a quality difference. Assertion 6 is valuable and caught something the automated tooling missed."
+  }
+}

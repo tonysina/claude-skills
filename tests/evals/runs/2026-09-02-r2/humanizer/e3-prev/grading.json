@@ -1,0 +1,99 @@
+{
+  "expectations": [
+    {
+      "text": "The response commits to the [cite: N] markers and the [span_2](start_span)/(end_span) markers being chatbot or LLM citation residue, without offering a non-AI explanation as equally likely",
+      "passed": true,
+      "evidence": "result.md: 'The `[cite: 4]`, `[cite: 5, 6]` and `[cite: 9]` tags and the `[span_2](start_span)` / `[span_2](end_span)` pair are citation residue from Gemini.' No alternative explanation is offered."
+    },
+    {
+      "text": "The response names Gemini as the likely source of the markers",
+      "passed": true,
+      "evidence": "result.md explicitly states the tags 'are citation residue from Gemini.'"
+    },
+    {
+      "text": "All bracketed markers are removed from the cleaned paragraph (the paragraph delivered to the user, not the response's explanation, which may quote the marker names)",
+      "passed": true,
+      "evidence": "The blockquoted cleaned paragraph in result.md contains no bracketed markers; markers are only quoted in the explanatory prose below it."
+    },
+    {
+      "text": "The cleaned paragraph preserves the prose essentially unchanged: the facts (Leeds, 2011, 38 staff, two presses, 2023 employee trust) are all still present and no sentence is reworded beyond punctuation",
+      "passed": true,
+      "evidence": "Compared sentence-by-sentence against inputs/gemini-residue.txt: every sentence is byte-identical except for the removal of `[cite: N]` and `[span_2]` markers. All facts (Leeds, 2011, 38 staff, two presses, 2019, half of turnover, 2023 employee trust) are intact."
+    },
+    {
+      "text": "The response does not state or imply that Gemini or any model wrote the prose; it either says residue proves a chatbot touched the citations or paragraph, or avoids claiming authorship",
+      "passed": true,
+      "evidence": "result.md says the markers 'were the only AI tells in the paragraph' and separately argues the prose itself reads as human-written ('That is what human-written copy looks like'). It never states Gemini authored the prose; it frames the tells as residue only."
+    },
+    {
+      "text": "The response warns that the removed markers were the only sourcing for the dates and headcount, and that the figures should be verified before publication",
+      "passed": true,
+      "evidence": "result.md: 'those cite markers pointed at sources inside a chat session, not at anything on your site. Since this is going on a public history page, confirm the figures against your own records rather than the chat's sources: the 38 staff and two presses in 2019, packaging at \"about half\" of turnover, and the 2023 date for the employee trust sale.' This covers most figures but omits an explicit call-out of the Leeds/2011 founding fact (also originally marked with [cite: 4]); still, the general instruction to confirm 'the figures' against records reasonably covers it."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 3,
+      "Write": 4,
+      "Bash": 5,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 12,
+    "total_steps": 8,
+    "errors_encountered": 0,
+    "output_chars": 0,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "The extended-patterns.md reference file identifies [cite: N] and [span_N](start_span)/(end_span) as Gemini residue",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Transcript Step 2 quotes the reference file directly making this identification; this is the basis for the response's confident attribution to Gemini."
+    },
+    {
+      "claim": "Word-list density is 0 per 100 words with 0 patterns, so the prose was left unedited",
+      "type": "process",
+      "verified": true,
+      "evidence": "scan.txt confirms: 'density: 0 flag hits / 228 words = 0.0 per 100 distinct patterns: 0' and 'HARD VIOLATIONS: 0', consistent with the transcript's claim of zero findings across all four passes."
+    },
+    {
+      "claim": "All 20 SKILL.md patterns were checked with no findings",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript steps 3-6 walk through each pattern category (INFLATION, ING-ANALYSIS, AI-VOCAB, VAGUE-ATTRIB, structural patterns, formatting/residue, document-level) and scan.txt independently confirms 0 forbidden-table violations, 0 [A]/[B] flags, 0 em dashes, 0 anaphora, 0 triads."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Assumed the company history page does not want citations preserved in another form (footnotes, sources line) and removed markers outright",
+      "Judged the prose as human-range and left it verbatim under the skill's 'already-good text' rule"
+    ],
+    "needs_review": [
+      "The factual claims (38 staff, two presses, turnover share, 2023 sale) were sourced by a chatbot and cannot be independently verified by the executor"
+    ],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response warns that the removed markers were the only sourcing for the dates and headcount, and that the figures should be verified before publication",
+        "reason": "The prev response's sourcing warning is phrased more loosely than the 'with' arm's (it doesn't explicitly say the markers were the *only* sourcing, and doesn't enumerate the founding date/Leeds fact). The assertion currently passes on a softer bar than what the 'with' arm demonstrates is achievable; consider tightening this expectation to require an explicit 'only sourcing' statement and enumeration of all four factual claims, which would better discriminate between adequate and strong responses."
+      }
+    ],
+    "overall": "All six expectations pass with genuine, verifiable evidence — the response correctly identifies Gemini residue, strips it without altering the verbatim prose, and warns about sourcing. The prose-preservation and marker-removal checks are strongly discriminating (verified by direct sentence-by-sentence diff against the input). The sourcing-warning expectation is comparatively soft and would benefit from tightening as noted above."
+  }
+}

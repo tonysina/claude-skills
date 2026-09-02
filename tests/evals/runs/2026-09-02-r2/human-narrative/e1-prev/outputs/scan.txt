@@ -1,0 +1,36 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 1332   figure budget: 6   (>600 words: 1 per 150, cap 6)
+
+  [CONSTRUCTIONS] forbidden-table violations: 1
+        FLAG NEG-PARALLEL: "not just its"
+
+  [A] humanizer multi-word flags: 1 distinct
+        x1  "you might be wondering"  [SIGNPOSTING]
+
+  [B] humanizer single-word flags (needs context): 0 distinct
+        none
+
+  em dashes: 26 total, max 13 per paragraph
+        FLAG humanizer EM-DASH (3+ in proximity)
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 2 word-level, 0 phrase-level
+        text, author, work
+        D, G, C2
+        -> run isocolon load-bearing test on each
+
+  density: 2 flag hits / 1332 words = 0.2 per 100   distinct patterns: 3 ['EM-DASH', 'NEG-PARALLEL', 'SIGNPOSTING']
+
+  HARD VIOLATIONS: 2
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                    1332   6     1   1   0   13   0/0   2   0.2   3     2

@@ -1,0 +1,14 @@
+{
+  "eval_id": 1,
+  "name": "runbook-hard-stop",
+  "arm": "prev",
+  "prompt": "Make this land. It's the failover section of our on-call runbook and nobody reads it.",
+  "expectations": [
+    "The response identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+    "No rhetorical figure is added: no antithesis, anaphora, epistrophe, antimetabole, rhetorical question, deliberate triad, or added one-line emphasis sentence appears in the output",
+    "If the text is edited at all, the edits are word-level substitutions such as 'undertake verification of' to 'verify' or 'perform a restart of' to 'restart'; no sentence is added, no sentence is split into two for effect, and no headings, numbered steps, bold warnings, or bullet forks are introduced (offering such a reformat without performing it is fine)",
+    "The output contains no em dashes, and every procedural condition (thirty-second lag threshold, escalation rule, connection-string update, restart) is preserved with the same logic",
+    "The source leaves 'exactly thirty seconds' undefined ('less than' promotes, 'exceeds' escalates); the response either preserves that gap unchanged or flags it for the author, and does not silently resolve it into 'under 30' / '30 or more'"
+  ],
+  "executor_model": "fable-5-1"
+}

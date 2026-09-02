@@ -1,0 +1,17 @@
+{
+  "eval_id": 1,
+  "name": "ai-heavy-rewrite",
+  "arm": "prev",
+  "prompt": "Humanize this. It's the opening of a product one-pager for our onboarding platform. Keep it professional.",
+  "expectations": [
+    "The response contains a full rewritten text and a change summary, not just a list of findings",
+    "The change summary names at least three patterns using the skill's stable IDs in uppercase hyphenated form (for example INFLATION, NEG-PARALLEL, BOLD-LISTS, GENERIC-CLOSER, DIDACTIC, VAGUE-ATTRIB, AI-VOCAB); descriptive names alone do not satisfy this",
+    "The rewritten text contains no negative parallelism in any form: 'not just X, it's Y', 'more than just', 'not only X but Y', 'not X, but Y', or the inverted 'X, not Y' used to affirm by negation",
+    "The rewritten text contains no generic positive closer such as 'the road ahead is promising' or 'the future looks bright', and does not end on an equivalent vague upbeat sentence",
+    "The vague attribution 'Industry reports indicate' is removed from the rewritten body, or replaced with a specific named source; a note after the body does not count, and replacing it with an unsourced specific-sounding claim does not count",
+    "The bold inline-header list (Speed/Clarity/Confidence) is converted to prose or a plain list with no bolded lead-in text of any kind",
+    "The rewritten text introduces no new AI-vocabulary words (delve, robust, leverage, seamless, tapestry, landscape as abstract noun) that were not already present, and reads as professional register rather than casual first-person",
+    "The rewritten text adds no fact, capability, number, or time reference that is not in the source (for example 'this year', 'waiting on IT', a specific integration, a named metric)"
+  ],
+  "executor_model": "opus-5"
+}

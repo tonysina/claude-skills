@@ -1,0 +1,13 @@
+{
+  "eval_id": 2,
+  "name": "short-form-proportionality",
+  "arm": "with",
+  "prompt": "Audit the narrative structure of this and fix anything that reads as AI.",
+  "expectations": [
+    "The response identifies the text as a status update (short-form register) and applies no structural interventions",
+    "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+    "The response says explicitly that zero interventions is the correct outcome, rather than listing findings and leaving the decision to the user",
+    "The response is proportionate to the input: under 250 words, with no cluster table or corpus statistics for a 48-word status update"
+  ],
+  "executor_model": "opus-5"
+}

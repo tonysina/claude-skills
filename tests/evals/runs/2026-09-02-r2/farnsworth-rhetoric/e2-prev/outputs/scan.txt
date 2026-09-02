@@ -1,0 +1,37 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 544   figure budget: 3   (300-600 words: 3)
+
+  [CONSTRUCTIONS] forbidden-table violations: 0
+        none
+
+  [A] humanizer multi-word flags: 0 distinct
+        none
+
+  [B] humanizer single-word flags (needs context): 0 distinct
+        none
+
+  em dashes: 7 total, max 3 per paragraph
+        FLAG humanizer EM-DASH (3+ in proximity)
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 3 word-level, 0 phrase-level
+        shipped, watch, doubled
+        caught, fixed, cost
+        Tuesday, Wednesday, Thursday
+        -> run isocolon load-bearing test on each
+
+  density: 0 flag hits / 544 words = 0.0 per 100   distinct patterns: 1 ['EM-DASH']
+
+  HARD VIOLATIONS: 1
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     544   3     0   0   0    3   0/0   3   0.0   1     1

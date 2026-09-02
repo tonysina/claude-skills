@@ -1,0 +1,38 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 480   figure budget: 3   (300-600 words: 3)
+
+  [CONSTRUCTIONS] forbidden-table violations: 1
+        FLAG NEG-PARALLEL tailing negation: ", no latinate"
+
+  [A] humanizer multi-word flags: 0 distinct
+        none
+
+  [B] humanizer single-word flags (needs context): 0 distinct
+        none
+
+  em dashes: 9 total, max 4 per paragraph
+        FLAG humanizer EM-DASH (3+ in proximity)
+
+  anaphora: 0 strong run(s) (>=3), 2 weak (2)
+        weak   "if you..." x2
+        weak   "no latinate..." x2
+
+  triads: 0 word-level, 2 phrase-level
+        **No diction work either.** No nominalizations, no Latinate pileup, no
+        No trigger fired — no nominalizations, no Latinate pileup, no Latinate
+        -> run isocolon load-bearing test on each
+
+  density: 1 flag hits / 480 words = 0.2 per 100   distinct patterns: 2 ['EM-DASH', 'NEG-PARALLEL']
+
+  HARD VIOLATIONS: 2
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     480   3     1   0   0    4   0/2   2   0.2   2     2

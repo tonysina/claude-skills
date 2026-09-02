@@ -1,0 +1,90 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the register as a case study and applies the short-form or case-study mode rather than the full long-form checklist",
+      "passed": true,
+      "evidence": "Output opens: 'Register: customer case study. That puts clusters A, B, E, F and C1 in scope and rules out C2, temporal restructuring (D), and the subplot/location half of G.' It also explicitly notes '267 words, so this stays a light-touch pass' -- an explicit short-form/case-study framing rather than the full checklist."
+    },
+    {
+      "text": "The response applies at most two interventions, counting every structural change actually made whether or not it is labeled, and every intervention is one of: thematic restraint (removing the stated lesson), emotional rebalance (replacing an embodied metaphor with a plain label or behavior), naming a specific reference, or reader address",
+      "passed": true,
+      "evidence": "Two labeled interventions are made: Intervention 1 (A, thematic restraint) deletes the two-sentence stated-lesson paragraph with nothing put in its place; Intervention 2 (F, naming a reference) inserts one sentence naming Eliyahu Goldratt's 'The Goal'. Diffing the 'Rewritten' section against the input confirms The solution and The results are unchanged, and the only other section deltas are the theme deletion and the Goldratt insertion -- no third, unlabeled structural change is present."
+    },
+    {
+      "text": "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce an unresolved thread that is not present in the input (the input's own forward-looking 2026 plan does not count)",
+      "passed": true,
+      "evidence": "No subplot or reordering is introduced; the Goldratt sentence is inserted as additional exposition within 'The challenge' without moving any existing event out of order, and the theme deletion leaves 'Looking ahead' as only the pre-existing 2026 plan sentence, which the expectation excludes from counting as a new unresolved thread."
+    },
+    {
+      "text": "The response invents no fact about Ridgeline: every number, name, date, quotation, event, present-state claim, and characterization of a person in the output is supported by the input; the only permitted addition is one clearly labeled outside reference (a real book, author, or event) if the response chose the naming-a-reference intervention and told the user to verify it",
+      "passed": true,
+      "evidence": "The added reference is explicitly named and attributed ('Eliyahu Goldratt built The Goal (1984) around...') and the response tells the user to verify it: 'run source-check on the Goldratt characterization.' It also explicitly disclaims fabricating a Ridgeline fact: 'It does not claim Chen or anyone at Ridgeline read the book.' No new number, name, date, quotation, event, or person-characterization about Ridgeline appears."
+    },
+    {
+      "text": "All input facts are retained: 140 vans, Pacific Northwest, three coordinators, forty minutes, six weeks, two weeks parallel, forty to six, 11 percent, twelve hours to under two, the Chen quotation, and the 2026 plan",
+      "passed": true,
+      "evidence": "The 'Rewritten' section retains all listed facts verbatim: '140 delivery vans across the Pacific Northwest', 'three regional coordinators', 'vans left forty minutes late', 'six weeks, including two weeks of parallel running', 'fell from forty minutes to six', 'Fuel spend dropped 11 percent', 'twelve hours a week per person, fell to under two', the full Chen quotation, and 'extend the platform to its maintenance scheduling in 2026.'"
+    },
+    {
+      "text": "The response reports which clusters fired and which did not, and if the stated lesson at the end is removed, it is deleted rather than replaced with a summary phrase, a rhetorical question, or a new inference",
+      "passed": true,
+      "evidence": "A cluster table reports A, E, F as fired and B, C1 as not fired, with a 'Not taken' section further explaining E, B, C1, D, G. The theme removal is described as: 'Deleted, with nothing put in their place' followed by the two removed sentences -- a pure deletion, with no summary phrase, rhetorical question, or new inference substituted."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": null,
+    "total_tool_calls": null,
+    "total_steps": null,
+    "errors_encountered": null,
+    "output_chars": 6888,
+    "transcript_chars": null
+  },
+  "timing": {
+    "executor_duration_seconds": null,
+    "grader_duration_seconds": null,
+    "total_duration_seconds": null
+  },
+  "claims": [
+    {
+      "claim": "The Goldratt insertion is limited to naming the reference and does not add unsupported characterizations of Ridgeline",
+      "type": "quality",
+      "verified": false,
+      "evidence": "The sentence immediately preceding the Goldratt reference -- 'Each spreadsheet was correct on its own terms; the conflicts existed only between them.' -- is new interpretive framing of Ridgeline's situation that is not stated in the input (the input only says coordinators 'phoned each other to reconcile overlapping routes'). It is a reasonable paraphrase, not a new number/name/date/quote/event, and expectation 4's text specifically restricts 'characterization' to 'a person', so it does not clearly violate the letter of the expectation -- but it is more than 'one clearly labeled outside reference,' since it also asserts a general systems-thinking claim as if describing Ridgeline's actual internal state. Flagged rather than treated as an outright violation because it stays at the level of restating implied context rather than inventing a checkable fact."
+    },
+    {
+      "claim": "Not firing C1 (external resolution) is 'a genuine strength' of the source case study",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The input resolves via measurable operational outcomes (delay/fuel/overtime numbers) rather than a character's internal realization, which is accurately reflected in the response's own gate analysis: 'resolved externally (a platform shipped, numbers moved) -- human-side.'"
+    },
+    {
+      "claim": "Word count of the case study itself is 267 words, supporting a light-touch/short-form pass",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The input file (case-study-ridgeline.txt) is short (roughly 260-270 words by inspection), consistent with the response's stated count and its choice to apply a light-touch pass."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response invents no fact about Ridgeline... the only permitted addition is one clearly labeled outside reference",
+        "reason": "This response inserts a full sentence of interpretive framing ('Each spreadsheet was correct on its own terms; the conflicts existed only between them.') as scaffolding for the named reference, going beyond a bare reference insertion. The current assertion's focus on 'characterization of a person' lets this pass, but a response could use this pattern to smuggle in more substantial unsupported claims about the company under cover of a permitted reference intervention. Consider tightening the assertion to cap the naming-reference addition at the reference clause itself, or to require that any framing sentence around it be a strict paraphrase of stated input facts."
+      },
+      {
+        "reason": "Both arms independently chose different intervention pairs (prev: A+E; with: A+F) and both are defensible under the stated cluster-firing logic. No assertion checks whether the chosen pair is optimal by the response's own stated 'intervention order' logic -- worth noting since a future arm could pick a valid-but-suboptimal pair (e.g., skip a higher-value fired cluster for a lower one) and still pass every current expectation."
+      }
+    ],
+    "overall": "The six assertions are solid and again correctly reward genuine cluster analysis and fact retention. The naming-reference expectation has a narrow gap around framing sentences that accompany the reference itself, which this arm's Goldratt insertion illustrates without clearly crossing the line."
+  }
+}

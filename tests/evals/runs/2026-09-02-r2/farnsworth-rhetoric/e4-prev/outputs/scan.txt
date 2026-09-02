@@ -1,0 +1,39 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 997   figure budget: 6   (>600 words: 1 per 150, cap 6)
+
+  [CONSTRUCTIONS] forbidden-table violations: 0
+        none
+
+  [A] humanizer multi-word flags: 0 distinct
+        none
+
+  [B] humanizer single-word flags (needs context): 1 distinct
+        x1  maintains  [NO-COPULA]
+
+  em dashes: 1 total, max 1 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 6 word-level, 0 phrase-level
+        hedge, number, and attribution
+        year, moves, downstream
+        size, once, spend
+        units, periods, functions
+        estimation, stage, investment
+        mechanism, number, or failure
+        -> run isocolon load-bearing test on each
+
+  density: 1 flag hits / 997 words = 0.1 per 100   distinct patterns: 1 ['NO-COPULA']
+
+  HARD VIOLATIONS: 0
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     997   6     0   0   1    1   0/0   6   0.1   1     0
