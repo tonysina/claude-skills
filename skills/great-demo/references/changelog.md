@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.2] - 2026-09-03
+
+### Added
+- Reciprocal routing to vendor-specific voice skills (`SKILL.md`, new "Working
+  With a Vendor-Specific Voice Skill" section). Fixes a one-way pointer:
+  `references/critique.md` already named `bluedolphin-collateral` for brand-voice
+  questions, but only in Critique mode; nothing surfaced that awareness in Design
+  mode, where `bluedolphin-collateral`'s own Demo mode now defers to this skill
+  for structure. Also removes a live trigger collision on "build a demo" between
+  the two skills — they now have explicit, non-overlapping jobs.
+
 ## [1.0.1] - 2026-05-05
 
 ### Changed

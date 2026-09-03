@@ -14,7 +14,7 @@ description: >
   good-presentations); do NOT use for evaluation management or Sequence
   of Events work.
 metadata:
-  version: 1.0.1
+  version: 1.0.2
 ---
 
 # Great Demo
@@ -45,6 +45,17 @@ Read the user's request and route to the right mode. If it spans modes, name the
 | Term lookup | "what does CBI mean", "define Specific Capability", "what's an Illustration in Great Demo!" | `references/glossary.md` |
 
 If unsure: ask one question to disambiguate. Don't guess silently when the request is ambiguous between modes.
+
+## Working With a Vendor-Specific Voice Skill
+
+This skill is product-agnostic by design — it owns qualification and structure,
+not brand voice or product facts. If a brand-specific content skill exists for
+the vendor in question (e.g. `bluedolphin-collateral` for BlueDolphin), use this
+skill to build the structure (Outline, CBI mapping, Illustration → Do It → Do It
+Again) and hand the drafted narration to that skill to apply voice and
+fact-sourcing. If that vendor skill's own "demo" mode already defers to this
+skill for structure, don't duplicate the qualification work — check its routing
+first.
 
 ## Universal Pre-Work
 
