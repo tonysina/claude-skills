@@ -6,13 +6,16 @@ description: >
   leadership deck, knowledge summary, presentation, or slides — especially
   when the goal is to persuade, inform, or move an audience to action. Triggers
   on: "build a deck", "create a presentation", "make slides", "webinar deck",
-  "thought leadership", "knowledge summary", "help me present", "turn this into
-  a deck", or any request to structure ideas into slides. Do NOT use for
-  brand-specific presentations or templated sales decks with fixed formatting
-  requirements.
+  "thought leadership deck", "thought leadership slides", "knowledge summary
+  deck", "help me build slides", "turn this into a deck", or any request to
+  structure ideas into slides. Do NOT use for brand-specific presentations or
+  templated sales decks with fixed formatting requirements, for thought
+  leadership prose or articles (use start-with-why), or for sharpening an
+  individual slide title or closing line that already exists (use
+  farnsworth-rhetoric).
 attribution: Loosely based on https://github.com/scunning1975/MixtapeTools/tree/main/presentations
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 ---
 
 # Good Presentations
@@ -21,9 +24,9 @@ Build presentations that persuade. This skill applies the Rhetoric of Decks
 framework to any PowerPoint output — webinars, thought leadership, knowledge
 summaries, and conference talks.
 
-For pptx mechanics (code, shapes, charts, QA), always read and follow
-`/mnt/skills/public/pptx/SKILL.md`. This skill governs structure and
-rhetoric. The pptx skill governs execution.
+This skill governs structure and rhetoric. Something else governs execution,
+and which one depends on where you are running — see Step 7 before you build
+anything.
 
 ---
 
@@ -187,11 +190,28 @@ Read `references/context-patterns.md` for detailed structural guidance on:
 
 ## Step 7: Build the Deck
 
-Once structure is clear, read `/mnt/skills/public/pptx/SKILL.md` for all
-mechanics: pptxgenjs syntax, color palettes, typography, shapes, charts,
-icons, and the required QA loop.
+Once structure is clear, resolve the build path before writing anything.
 
-Key reminders from the pptx skill that matter most here:
+| Environment | Mechanics source |
+|---|---|
+| claude.ai / API container | `/mnt/skills/public/pptx/SKILL.md` — read and follow it for all mechanics: pptxgenjs syntax, color palettes, typography, shapes, charts, icons, and the required QA loop |
+| Claude Code | that path does not exist. Detect and use a pptx library instead (see below) |
+
+**In Claude Code, detect before installing:**
+1. Check whether `python-pptx` is already importable (`python3 -c "import pptx"`) or
+   `pptxgenjs` is already present (`node -e "require('pptxgenjs')"`). Use whichever
+   succeeds.
+2. If neither is available, attempt `pip install python-pptx` (or
+   `npm install pptxgenjs`). If the install succeeds, use that library and run the
+   QA loop below by hand — there's no equivalent QA rules file to read for either
+   library, so re-derive the same checks (font sizes, alignment, one-idea-per-slide,
+   assertion-title text) from Steps 2-6 above rather than skipping QA entirely.
+3. If install also fails (no network, no package permissions), stop — do not
+   improvise pptx-writing code from memory with no way to verify it. Deliver the
+   deck as a structured outline instead: one block per slide, assertion title +
+   body + figure note. Say plainly that you couldn't build the file and why.
+
+Key reminders that matter most here, regardless of which build path fires:
 - Never use `#` with hex colors
 - Never reuse option objects across calls (use factory functions for shadows)
 - Run the full visual QA loop — convert to images, inspect for overlaps,
@@ -219,4 +239,4 @@ After the pptx QA loop, do a separate rhetoric pass:
 | File | When to read |
 |------|-------------|
 | `references/context-patterns.md` | Before structuring any deck — details for each context type |
-| `/mnt/skills/public/pptx/SKILL.md` | All pptx mechanics, code syntax, shapes, charts, QA loop |
+| `/mnt/skills/public/pptx/SKILL.md` | claude.ai / API container only — all pptx mechanics, code syntax, shapes, charts, QA loop. Does not exist in Claude Code; see Step 7 |

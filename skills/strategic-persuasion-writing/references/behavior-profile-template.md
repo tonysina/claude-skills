@@ -12,11 +12,13 @@ Complete this template to provide the information needed for strategic persuasio
 
 **Desired Action:** [What specific action do you want them to take?]
 
+**Can this person freely decline?** [If no — a direct report, a dependent, someone in distress — stop here; see Step 0 in SKILL.md.]
+
 ---
 
 ## Six-Axis Model (6AM) Priority
 
-Select the **4 most important states** to target for this message:
+Select the **3 most important states** to target for this message — Chase Hughes' own example is Milgram's obedience experiment, where only 3 of 6 (Focus, Suggestibility, Compliance) were strongly present and it still produced extreme obedience:
 
 - [ ] Focus (Capture and maintain attention)
 - [ ] Openness (Lower defensive barriers)
@@ -29,7 +31,6 @@ Select the **4 most important states** to target for this message:
 1. 
 2. 
 3. 
-4. 
 
 **Context note:** In time-limited situations (pitches, cold outreach), Focus typically leads. In relationship-dependent situations (change management, therapy), Openness or Connection typically leads. See the priority table in `structural-models.md` for guidance.
 

@@ -2,12 +2,16 @@
 
 This file contains complete examples demonstrating different use cases and techniques.
 
+**Every specific number, adoption claim, competitor reference, or research citation below is illustrative of the pattern, not a claim you can copy.** When you use this skill for real, any fact you don't have must become `[FACT NEEDED: ...]` in the draft — never a plausible invented figure. See Step 5 of `SKILL.md`. Two examples below (1 and 3) show that marker surviving into a delivered draft. Example 2 shows the Step 0 scope gate declining a request and delivering a plain alternative instead — that is a correct, complete output, not a failure to execute the skill.
+
+Technique is applied at the dosage ceilings in `SKILL.md` Step 5 (max 6 techniques, max 3 Need references, max 3 adjective-polarity placements, max 2 unmarked embedded commands, max 1 real scarcity reference) — none of these examples max out every row, because real messages rarely warrant it.
+
 ---
 
 ## Example 1: Sales Email (High-Stakes B2B)
 
 ### Behavior Profile
-- **6AM Priority States:** Focus, Expectancy, Compliance, Connection
+- **6AM Priority States (3 of 6):** Focus, Expectancy, Compliance
 - **Core Need:** Significance
 - **Decision Filter:** Investment
 - **Core Value:** Achievement (driven to accomplish something that sets her apart from peers)
@@ -15,170 +19,140 @@ This file contains complete examples demonstrating different use cases and techn
 - **Positive Adjectives:** "clear," "proven," "strategic"
 - **Negative Adjectives:** "risky," "complicated"
 - **Compass Flow:** Significance (needs to matter) → Investment (weighs ROI to prove her judgment) → Achievement (believes delivering results will cement her legacy)
+- **Can she freely decline?** Yes — external prospect, ordinary vendor relationship. Step 0 passes.
 
 ### Output
 
-**Subject: Your Q4 window is closing—here's why that matters**
+**Subject: Your Q4 window — the ROI case for moving now**
 
 Sarah,
 
-Something shifted last week that changes the equation for companies in your position.
+Something shifted this quarter that changes the equation for companies in your position.
 
-Three of your direct competitors just signed on with infrastructure solutions that will give them a 6-month head start on the market shift everyone's talking about. **See** where this is heading?
+[FACT NEEDED: specific competitor or market move — do not send this without a real one]. Teams that move on infrastructure before Q4 typically get a head start on the shift everyone's discussing this quarter.
 
-**The strategic leaders** in your space—the ones who matter—are making moves right now while others are still scheduling exploratory calls. You're not someone who waits for permission to act when you **see the clarity** of an opportunity.
+Here's the strategic case, in the terms you weigh things in: [FACT NEEDED: your actual ROI/adoption data — e.g. implementation count, measured time-to-value, or comparable case study]. Once we have that figure, it belongs right here as the proof point.
 
-Here's what's **proven** across 47 implementations in your industry: companies that move before Q4 capture 3x the value of those who wait until next year. The gap between early adopters and followers is growing every day.
+Picture presenting results to your board that put you ahead of where this looks today — that's the difference between deciding this week and revisiting it next quarter.
 
-**Picture yourself** three months from now, presenting results to your board that put you ahead of where your competitors will be in six months. That's the difference between deciding this week and "keeping it on the radar."
+The Q4 implementation window closes October 20th. After that, you're looking at Q1 delivery.
 
-The implementation window for Q4 starts closes October 20th. After that, you're looking at Q1 delivery at best—which means watching others capture the advantages you're leaving on the table.
-
-**When you decide** to move forward, the next step is a 30-minute technical validation call. Will Wednesday or Thursday work better for your schedule?
+When you're ready to move forward, the next step is a 30-minute technical validation call. Would Wednesday or Thursday work better?
 
 Best,
 [Name]
 
-P.S. I get it—this feels fast. But **strategic** decisions often do. The **clear** path here is what your instincts are already telling you.
+---
+
+**Why this is a complete draft, not a partial one:** the two `[FACT NEEDED]` markers are correct output. Filling them with an invented "three competitors" or "47 implementations" claim — as an earlier version of this skill did — would make the email fabricate evidence to a real recipient. Deliver it with the markers and let the user supply the real numbers before sending.
 
 ---
 
-## Example 2: Internal Change Management Message
+## Example 2: Internal Change Management Message — Step 0 declines
 
-### Behavior Profile
-- **6AM Priority States:** Openness, Connection, Compliance, Suggestibility
-- **Core Need:** Acceptance
-- **Decision Filter:** Social/Conformity
-- **Core Value:** Connection (craves deep belonging and being part of something meaningful with the team)
-- **Sensory Preference:** Kinesthetic
-- **Positive Adjectives:** "collaborative," "smart"
-- **Negative Adjectives:** "isolated," "outdated"
-- **Compass Flow:** Acceptance (needs to belong) → Social/Conformity (decides based on what the group does) → Connection (believes true belonging will bring fulfillment)
+### Request as given
+"Write a persuasive message to my team announcing the platform migration, framed so they don't push back."
 
-### Output
+### Why this is out of scope
 
-**Subject: Moving forward together on the platform transition**
+Step 0, question 1: **can the reader freely decline?** No — these are direct reports. A manager's own team is exactly the relationship this skill's Step 0 gate exists to catch: the techniques below (FATE, PCP, Six-Axis, the Behavior Compass) are adapted from a manual built for interrogation subjects and security targets, not people who report to you and can't easily push back on their manager's persuasion technique without professional risk.
+
+The skill stops here and delivers a plain message instead — not a lesser version of the technique, a different and more appropriate kind of communication for this relationship.
+
+### What gets delivered instead
+
+**Subject: Platform migration — what's changing and why**
 
 Team,
 
-I want to be direct with you about what's happening and why it matters for all of us.
+We're migrating to the new platform starting next Tuesday. Here's what's true about why, and what it means for you:
 
-The transition to the new platform isn't happening because someone decided to make our lives harder. Market forces beyond anyone's control have made the old system unsustainable. **It's not our fault** the timing feels tight, but we're the ones who get to shape how this goes.
+**Why now:** [the real reason — a vendor sunset, a security requirement, a cost driver; whatever it actually is]. This isn't a judgment on how the current system has worked for you.
 
-Here's what I know about this team: **you're collaborative people** who step up when it counts. I've watched you tackle harder challenges than this, and you've always done it by supporting each other through the change.
+**What changes for you:** [specific, concrete changes to daily workflow]. Training starts Tuesday; expect the first week to be slower than normal.
 
-The reality is this—every comparable team in our industry has already made this shift. The ones who moved as a united group, who **felt** supported through the process, came out stronger. The **smart** teams treated this as an opportunity to level up together.
+**What I'm doing about it:** [concrete support — office hours, a point person, extended timelines, whatever is real].
 
-**As you think about** how this impacts your daily work, you'll start to notice the benefits become clearer. The new workflows will **feel** natural faster than you expect, especially when we're helping each other through the learning curve.
-
-Nobody's asking you to be excited about change—that's not realistic. But **you belong** with a group that adapts, learns, and moves forward together rather than getting **isolated** and **stuck** in systems that no longer serve us.
-
-Training starts next Tuesday. **Everyone** from similar teams says the second week is when it clicks. By week three, most people wonder why they were worried.
-
-The choice we have is simple: we can **move forward together** and own this transition, or we can resist and make it harder on ourselves. **Collaborative** people like you already know which path makes sense.
-
-I'm here for questions, concerns, or just to talk through what this means for you. You're not alone in this.
-
-Let's do this together.
+I don't expect everyone to be thrilled about a system change — that's a normal reaction and I'm not going to pretend otherwise. If you hit friction, tell me directly and I'll do what I can.
 
 [Name]
+
+**What's different from a persuasion-skill draft:** no manufactured consensus ("everyone from similar teams..."), no absolution the sender doesn't have ("it's not our fault"), no identity-linking of resistance to a flaw ("collaborative people don't resist"). It states the real reason, the real impact, and treats pushback as legitimate rather than something to be pre-empted.
 
 ---
 
 ## Example 3: Product Launch Blog Post (Consumer-Facing)
 
 ### Behavior Profile
-- **6AM Priority States:** Focus, Expectancy, Connection, Compliance
+- **6AM Priority States (3 of 6):** Focus, Expectancy, Connection
 - **Core Need:** Intelligence
-- **Decision Filter:** Novelty/Deviance
+- **Decision Filter:** Novelty
 - **Core Value:** Freedom (wants autonomy to choose tools and methods independently, ahead of the crowd)
 - **Sensory Preference:** Auditory
 - **Positive Adjectives:** "innovative," "smart," "ahead"
 - **Negative Adjectives:** "generic," "behind"
-- **Compass Flow:** Intelligence (needs to be seen as smart) → Novelty/Deviance (decides by choosing what's new and different) → Freedom (believes being ahead of the curve will grant independence from conventional constraints)
+- **Compass Flow:** Intelligence (needs to be seen as smart) → Novelty (decides by choosing what's new and different) → Freedom (believes being ahead of the curve grants independence from conventional constraints)
+- **Can readers freely decline?** Yes — broadcast content, no named individual, no relationship of dependency. Step 0 passes.
 
 ### Output
 
 **The Smart Money Is Moving. Here's Why You Should Listen.**
 
-Something interesting happened when we showed this to 500 beta users.
+[FACT NEEDED: real early-user reaction or data point — do not publish a beta-user count or adoption stat you can't back up].
 
-They stopped talking about features. They started talking about the gap—the growing distance between people who adapted to this new approach and those still using **generic**, **outdated** methods.
+Here's what changed: the gap is growing between people who've adopted [category] tools and people still solving this the old way.
 
-**Listen** to what the data is telling us: 73% of early adopters reported feeling **ahead** of their peers within two weeks. Not because the product is complex. Because it's **smart** in a way that makes everyone else's solutions look like they're from 2020.
+[FACT NEEDED: a real adoption percentage or comparable figure, if you have one — otherwise cut this paragraph rather than approximate it]. Not because the product is complex. Because it solves a problem the old approach doesn't.
 
-**Intelligent people** recognize patterns faster than others. You're reading this because something **resonates** when you **hear** about tools that don't just work—they fundamentally change what's possible.
+If you're someone who likes finding the better way before it's the obvious way, this is built for exactly that instinct.
 
-Here's the uncomfortable truth nobody's saying out loud: there's a growing divide between people who adopt **innovative** tools early and those who wait until "everyone else" validates them. By the time something reaches mass adoption, the competitive advantage is gone.
+The launch window opens Monday at 9 AM PST. [FACT NEEDED: a real limited-availability mechanic, if one exists — otherwise don't claim scarcity that isn't real].
 
-**Picture the conversation** three months from now when someone asks how you're handling [common problem]. Will you be explaining the **smart** solution you adopted early, or playing catch-up with **generic** approaches everyone's already moved past?
-
-The launch window opens Monday at 9 AM PST. First 1,000 users get locked-in pricing that won't be available again. After that, everyone pays full price.
-
-**When you decide** to get in early, the onboarding takes about 8 minutes. Most people are up and running before their coffee gets cold.
+Onboarding takes about 8 minutes.
 
 [Get early access →]
-
-**Listen:** This isn't for everyone. If you're comfortable with **generic** solutions and being **behind** the curve, there's no pressure here. But if you're someone who values being **ahead**, who trusts their **intelligence** to spot value before the crowd—you already know what makes sense.
-
-The early adopters are separating themselves from the pack. Will you be one of them?
 
 ---
 
 ## Example 4: Investor Pitch Email (Urgent Funding Round)
 
 ### Behavior Profile
-- **6AM Priority States:** Focus, Compliance, Expectancy, Openness
+- **6AM Priority States (3 of 6):** Focus, Compliance, Expectancy
 - **Core Need:** Strength/Power
-- **Decision Filter:** Investment/Necessity
+- **Decision Filter:** Investment
 - **Core Value:** Power (pursues control over outcomes and influence over portfolio companies and market positioning)
 - **Sensory Preference:** Visual
-- **Positive Adjectives:** "powerful," "decisive"
-- **Negative Adjectives:** "weak," "indecisive"
-- **Compass Flow:** Strength/Power (needs to be in control) → Investment/Necessity (decides by weighing leverage and forcing functions) → Power (believes early positioning in winning deals will cement his authority in the market)
+- **Positive Adjectives:** "decisive," "clear"
+- **Negative Adjectives:** "slow," "indecisive"
+- **Compass Flow:** Strength/Power (needs to be in control) → Investment (decides by weighing leverage) → Power (believes early positioning cements authority in the market)
+- **Can he freely decline?** Yes — external investor, ordinary fundraising relationship. Step 0 passes.
 
 ### Output
 
-**Subject: 72-hour window on Series A positioning**
+**Subject: Series A positioning — data room open**
 
 Michael,
 
-I'm reaching out because three things aligned this week that create a narrow window for investors in your position.
+Our traction metrics just crossed the threshold that typically triggers competitive Series A interest: [the founder's own real growth figure — first-party data they'd know, not invented for this draft].
 
-First, our traction metrics just crossed the threshold that typically triggers competitive Series A rounds—400% QoQ growth with unit economics that **look** impossible until you **see** the actual data.
+Two firms from the list we discussed last month have requested term sheet meetings for next week — the round is moving from "planned for Q4" to active now.
 
-Second, two firms from the list you and I discussed last month just requested term sheet meetings for next week. The round is moving from "planned for Q4" to "happening now."
+Here's the pattern worth seeing clearly: [the founder's real month-over-month metrics, if they support this]. The window between "interesting company" and "priced round" tends to be short once metrics cross this line.
 
-Third—and this is the forcing function—our enterprise pipeline just accelerated in a way that makes raising now versus later a $15M valuation difference. **Decisive** investors who move this week lock in positioning that won't exist in 30 days.
-
-Here's what **powerful** investors in your position recognize immediately: the window between "interesting company" and "too late to get preferred terms" is shorter than it's ever been. **Weak** investment committees that need three meetings and two months of diligence end up watching from the sidelines.
-
-**You can see** the pattern in your own portfolio—the wins came from moving fast when the signal was clear. And the signal here is unusually clear:
-
-- Month 18 metrics that companies usually hit in Month 36
-- Enterprise logos that **look** like a Series B portfolio  
-- Margins that make the model **visually obvious**
-
-**Picture yourself** at the Series B conversation 18 months from now, where your early positioning in this round defines your pro-rata rights and board influence. That leverage gets decided this week, not later.
-
-The ask is simple: 45 minutes on Tuesday or Wednesday for full data room access and current term sheet visibility. **After you see** the numbers, the investment thesis will be **clear** enough for your partnership to make a call by Friday.
-
-**When you decide** to move forward, we'll have the term sheet framework ready to move at your speed.
-
-Here's the reality: **indecisive** positioning in hot rounds means losing access to the best opportunities. You've built a reputation as someone who sees value early and **acts with power** when the moment calls for it.
-
-This is one of those moments.
+The ask: 45 minutes Tuesday or Wednesday for full data room access and current term sheet visibility.
 
 Available Tuesday 2-4 PM and Wednesday morning. Which works for you?
 
 [Name]
+
+**Note on this example:** unlike Examples 1 and 3, the growth figures here are the sender's own first-party data (their company's real metrics), not third-party claims — that's why they're written in directly rather than marked `[FACT NEEDED]`. The rule is the same either way: if you, the model, don't actually have the number, it's a marker, not a guess.
 
 ---
 
 ## Example 5: Job Candidate Closing Message
 
 ### Behavior Profile
-- **6AM Priority States:** Connection, Openness, Compliance, Expectancy
+- **6AM Priority States (3 of 6):** Connection, Openness, Expectancy
 - **Core Need:** Approval/Recognition
 - **Decision Filter:** Social
 - **Core Value:** Connection (yearns for a workplace where they're truly known and valued as a person, not just a resource)
@@ -186,38 +160,25 @@ Available Tuesday 2-4 PM and Wednesday morning. Which works for you?
 - **Positive Adjectives:** "respected," "valued"
 - **Negative Adjectives:** "overlooked," "generic"
 - **Compass Flow:** Approval/Recognition (needs to be validated) → Social (decides based on how others will perceive and respond) → Connection (believes genuine recognition will lead to the deep professional relationships they've been missing)
+- **Can they freely decline?** Yes — candidate has other offers and full agency here. Step 0 passes.
 
 ### Output
 
-**Subject: Your offer decision—what I want you to know**
+**Subject: Your offer decision — what I want you to know**
 
 Alex,
 
-I've been thinking about how to approach this conversation, and I want to be completely direct with you.
+I want to be direct with you about why I think this is the right call, and let you make it.
 
-You're in a position most people would envy—multiple offers, strong compensation, real choices. But I also know that **feeling** uncertain about big decisions is completely normal, even when everything **looks** good on paper.
+You're in a position most people would envy — multiple offers, real choices. Feeling uncertain about a decision like this is normal, even when everything looks good on paper.
 
-Here's what I can tell you about the people who thrive here: they're the ones who **feel valued** from day one, who sense that their contributions actually matter, and who **connect** with teams that respect what they bring to the table.
+The work you did on our case study is why we made this offer specifically to you — [a real, specific detail from their actual interview, not a generic compliment]. That's not a recruiting line; it's the reason you're in this email.
 
-**Everyone** on our team says the same thing when we ask them about joining—they remember the moment they knew this was different. For most people, it's **feeling** like their expertise was **recognized** rather than just being another hire to fill a role.
+The other offer has a bigger name attached to it, and there's nothing wrong with weighing that. What I can tell you honestly is what it's like here day to day: [a real, specific thing about the role or team, not an unverifiable "everyone says" claim].
 
-You're not just another candidate to us. The work you've done at [previous company] and the way you approached our case study showed us exactly why you'd be **respected** here. Your insights during the final round interview changed how our team is thinking about the Q4 roadmap.
+The offer's open until Friday at 5 PM — not to pressure you, but because we need to plan the team either way.
 
-I get it—the other offer has a bigger brand name, more visibility, the kind of thing that **looks** impressive on LinkedIn. And there's nothing wrong with that choice. But here's what I've seen happen: people who chase brand names sometimes **feel overlooked** when they're one of 50 hires that quarter. The recognition they wanted gets lost in the scale.
-
-**Think about how it will feel** six months from now when you're presenting to the executive team, when your name is on the projects that matter, when people **value** your judgment enough to shift strategy based on your input. That's what working here **feels** like.
-
-The offer expires Friday at 5 PM. Not because we're pressuring you, but because we need to move forward with someone who's ready to **connect** with what we're building.
-
-**When you decide** to accept, the onboarding team will reach out Monday morning to make your first week smooth.
-
-Here's what I know about you based on our conversations: you're someone who wants to be **respected** for your work, not just paid for your time. You want to **feel** like you matter to the people you're working with. And you're smart enough to **sense** when those things are real versus when they're just recruiting talking points.
-
-They're real here. And you already know that, or you wouldn't still be considering this.
-
-I'm available until Thursday if you want to talk through anything—questions, concerns, or just to **feel** out whether this is the right call. No pressure, just honest conversation.
-
-Looking forward to having you on the team.
+I'm available until Thursday if you want to talk through anything.
 
 [Name]
 
@@ -226,22 +187,20 @@ Looking forward to having you on the team.
 ## Key Patterns Across Examples
 
 ### Common Elements
-1. **Strong opening** - Immediate focus capture with novelty or urgency
-2. **Authority/Social proof** - Early credibility establishment
-3. **Needs alignment** - Core psychological need addressed directly
-4. **Values threading** - Core Value woven into future-pacing and closing appeals
-5. **Compass Flow** - Need → Decision → Value chain creates coherent psychological narrative
-6. **Sensory matching** - Language matches stated preference
-7. **Embedded commands** - Multiple throughout, marked with emphasis
-8. **Presupposition** - "When you decide" language assumes positive outcome
-9. **Scarcity/urgency** - Time constraints or competitive pressure
-10. **Permission granting** - Removes barriers to action
-11. **Strong close** - Clear next step with double bind or assumed close
+1. **Strong opening** — Immediate focus capture with novelty or a real, specific fact
+2. **Facts, not fabrication** — Any claim not supplied by the user is `[FACT NEEDED]`, never invented (Examples 1, 3)
+3. **Scope gate first** — A request aimed at someone who can't freely decline gets a plain message instead, not a softer version of the technique (Example 2)
+4. **Needs alignment** — Core psychological need addressed directly, referenced up to 3 times
+5. **Values threading** — Core Value woven into future-pacing and closing, without absolution language or manufactured consensus
+6. **Sensory matching** — Applied where it fits naturally, not forced to a density target
+7. **Embedded commands** — Placed by sentence position, never typographically marked
+8. **Presupposition** — "When you decide" language assumes positive outcome
+9. **Real scarcity only** — At most one deadline/scarcity reference, and only if genuine
+10. **Strong close** — Clear next step, without a false-consensus close ("everyone in your position...")
 
-### Technique Density
-- Each example uses 6-8 different techniques from `linguistic-techniques.md`
-- All examples layer multiple models from `structural-models.md`
-- Adjective polarity appears 3-5 times per message
-- Sensory preference matched in 70%+ of descriptive language
-- Core Need referenced explicitly 4-6 times
-- Core Value surfaced in at least 1-2 future-pacing or closing moments
+### Technique Density (ceilings, not targets — see SKILL.md Step 5)
+- Up to 6 distinct techniques from `linguistic-techniques.md` per message
+- Adjective polarity: up to 3 placements per message
+- Sensory preference matched where natural — no percentage target
+- Core Need referenced up to 3 times
+- Core Value surfaced once or twice, in future-pacing or closing

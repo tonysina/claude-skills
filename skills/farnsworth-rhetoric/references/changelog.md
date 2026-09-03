@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.1.2] - 2026-09-03
+
+Fix from the persuasion-triad skill review (`skills/persuasion-triad-review` branch).
+
+### Fixed
+
+- **Routing clause was wrong for one destination and overpromised for another.**
+  "Generating from scratch (use strategic-persuasion-writing)" dead-ended: that
+  skill's own scope excludes routine business correspondence, so much of what
+  farnsworth sent it got declined. And "message architecture (use start-with-why)"
+  overpromised — that skill only does architecture for belief- or purpose-led
+  messaging, not general restructuring. Replaced with an explicit routing table:
+  belief-led content -> start-with-why; a high-stakes message to one named reader
+  -> strategic-persuasion-writing; BlueDolphin-branded copy ->
+  bluedolphin-collateral; anything else -> write it plainly first, then return
+  here to sharpen it. No single skill in this repo covers general from-scratch
+  generation, and the clause no longer implies one does.
+
 ## [1.1.1] - 2026-09-02
 
 Patches from the first clean-context eval (`tests/evals/runs/2026-09-02/REPORT.md`). No

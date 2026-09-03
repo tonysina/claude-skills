@@ -1,17 +1,17 @@
 # Structural Models Reference
 
-This file provides the core psychological frameworks for strategic messaging design.
+This file provides the core psychological frameworks for strategic messaging design. All four frameworks below — FATE, PCP, the Six-Axis Model, and the Behavior Compass — are from Chase Hughes' *The Behavior Ops Manual*, built originally for interrogation and security-operator use. Two claims from the source (the neuropeptide mechanism under Needs Map, and the VAK sensory model) are the source's own explanatory framing, not independently replicated findings — treat them as calibration heuristics, not settled neuroscience.
 
 ---
 
 ## Why These Models Work
 
-Effective persuasion targets systems deeper than conscious thought. The brain processes influence through four layers:
+Effective persuasion targets systems deeper than conscious thought. The book's own Hierarchy of Influence Factors ranks four layers, most to least powerful:
 
-1. **Impulse** (deepest — ancestral scripts in the brain stem)
-2. **Emotion** (neurochemical cascades that override rational processing)
-3. **Behavioral patterns** (learned scripts from repetition and experience)
-4. **Thoughts** (conscious reasoning — the weakest lever)
+1. **Impulse** (deepest, most powerful — ancestral hardwiring in DNA: "we are more influenced by our ancestors than by anything else")
+2. **Behavioral patterns** (learned scripts from childhood and repetition — govern much of adult behavior)
+3. **Emotion** (neurochemical cascades — we are emotional decision-makers; logic rationalizes the chemical decision after the fact)
+4. **Thoughts** (weakest — a gateway to the other layers, not a lever on its own)
 
 Most persuasion targets only thoughts. These models target all four layers, which is why they produce disproportionate results.
 
@@ -66,12 +66,14 @@ The FATE model leverages primal drives that bypass rational thinking. These are 
 
 In writing, authority is established through certainty of language, reference to credible sources, and framing yourself as a peer-level advisor rather than a supplicant.
 
-**Direct Authority:**
+**Every bracket below must be filled from a fact the user supplied.** If they haven't given you the institution, expert, or finding, leave it as `[FACT NEEDED: source name]` rather than filling it with a plausible-sounding placeholder — see Step 5's fabrication check in SKILL.md.
+
+**Direct Authority (only with user-supplied sources):**
 - "Research from [prestigious institution] confirms..."
 - "Industry leaders at [known companies] have already moved on this."
 - "The data unequivocally shows..."
 
-**Third-Party Authority:**
+**Third-Party Authority (only with user-supplied sources):**
 - "According to [expert name], the window for this is closing."
 - "[Authoritative source] published findings that validate this approach."
 - "Every major player in this space has concluded..."
@@ -87,7 +89,7 @@ The ancestral "tribe script" has six automatic components. Persuasive writing ca
 5. Socially enforce compliance with group norms
 6. Continuously ensure personal behavior won't cause social consequences
 
-**Social Proof Patterns:**
+**Social Proof Patterns (only with user-supplied numbers and groups — if you don't have the figure, use `[FACT NEEDED: adoption data]` instead of inventing one):**
 - "[X%] of people in your position have already..."
 - "Everyone from [respected group] is moving toward this."
 - "The early majority has already made this shift."
@@ -171,28 +173,26 @@ The sequence is critical: **Perception must shift before Context can be establis
 **Goal:** Remove psychological barriers and guilt about taking action.
 
 **Techniques:**
-- Externalize responsibility ("Market conditions require...")
-- Blame external factors, not the subject
-- Frame action as response to circumstances beyond control
+- Name the real, true reason the timing or circumstance has changed
+- Frame the action as a response to a genuine external shift, not a personal failing
 - Give explicit permission statements
+- Do not grant absolution the sender doesn't actually have, and do not claim a consensus that doesn't exist — see Ethical Boundaries in SKILL.md
 
 **Examples:**
-- "It's not your fault the timing wasn't right before. Now it is."
-- "The circumstances have changed. This is no longer optional."
-- "You're responding to forces beyond anyone's control."
-- "Everyone in your position would make the same choice."
+- "The circumstances have genuinely changed: [real, specific change]. That's what makes this worth revisiting now."
+- "This is no longer optional, because [real constraint]."
+- "You have room to decide on your own terms here."
 
 **Permission Statements:**
 - "You have every right to..."
 - "It's completely acceptable to..."
-- "No one would blame you for..."
-- "This is exactly what you should do."
+- "This is a reasonable thing to do given [real circumstance]."
 
 ---
 
 ## 3. Six-Axis Model (6AM)
 
-The Six-Axis Model defines precisely which six psychological states must be present for influence to occur. Only three need to be strongly present, but they must be at high levels. All six are modifiable and fluid.
+The Six-Axis Model defines six psychological states relevant to influence. Only **3 of the 6** need to be strongly present for persuasion to occur — the source's own example is Milgram's obedience experiment: Focus + Suggestibility + Compliance were high while the other three sat near-zero, and it still produced extreme obedience. All six are modifiable and fluid; axis priorities vary by situation (an interrogation leads with Compliance, a therapist leads with Openness, door-to-door leads with Focus).
 
 ### Framework Table
 
@@ -207,7 +207,7 @@ The Six-Axis Model defines precisely which six psychological states must be pres
 
 ### Prioritizing States
 
-When the behavior profile indicates priority states (max 4), allocate more linguistic attention to those states:
+When the behavior profile indicates priority states (3 of 6, per above), allocate more linguistic attention to those states:
 
 - **High Priority States:** Dedicate 2-3 specific techniques per state
 - **Medium Priority States:** Include 1-2 techniques per state
@@ -264,7 +264,7 @@ This is why people seem compulsively driven to repeat the same social patterns �
 | **Pity** | Sympathy, to be seen as deserving help | Being disregarded, ignored, misunderstood | "After everything you've been through..." / "You deserve..." |
 | **Strength/Power** | Control, dominance, authority | Being disrespected, challenged, "punked" | "Take control by..." / "Powerful people don't hesitate..." |
 
-When you profile Needs, you're seeing what was missing during someone's formative years. The Need is the wound; the behavior is the self-medication.
+When you profile Needs, you're seeing what was missing during someone's formative years. This framing is for your own internal reasoning about what to emphasize — never repeat "wound," "addiction," or self-medication language back at the person in the actual message. Say what they'd recognize as respect (e.g., naming their significance or expertise), not a diagnosis of what they're missing.
 
 ### Decision Map
 
