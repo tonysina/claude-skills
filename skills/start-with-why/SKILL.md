@@ -9,14 +9,20 @@ description: >
   manipulate", "inside-out messaging", "celery test", or requests
   for content that leads with belief/purpose. Also use when user
   wants to diagnose why their messaging feels flat or commodity-like.
-  Do NOT use for general copywriting, SEO content, or technical writing.
+  Do NOT use for: product or feature copy, SEO content, or technical
+  writing. Also not for: slides or decks (use good-presentations --
+  bring the WHY statement with you as the deck's central claim),
+  sharpening a line that already exists such as a tagline or a closing
+  sentence (use farnsworth-rhetoric), or a high-stakes message aimed at
+  one named individual in a live decision (use
+  strategic-persuasion-writing, and read its scope gate first).
 metadata:
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Start with Why Writing Skill
 
-Create inspiring thought leadership content using the Golden Circle framework from Simon Sinek's "Start with Why."
+Create inspiring thought leadership content using the Golden Circle framework. Sourced from two Sinek books: the Golden Circle itself, the Law of Diffusion, and the "WHY Goes Fuzzy" pattern are from *Start with Why* (2009); the Contribution/Impact WHY-statement template in Step 2a is from the follow-up, *Find Your Why* (Sinek, Mead & Docker, 2017).
 
 ## Core Principle
 
@@ -46,13 +52,13 @@ Not every user needs full WHY discovery. Branch based on where they are:
 
 If user cannot articulate a clear WHY (purpose, cause, or belief), guide discovery:
 
-**Use the Contribution/Impact Formula:**
+**Use the Contribution/Impact Formula** (from *Find Your Why*):
 Help users draft their WHY using this structure: "To [contribution] so that [impact]"
 - First blank: the action taken (contribution to others)
 - Second blank: the change desired in others' lives (impact)
 - Example: "To inspire people to do the things that inspire them so that, together, we can change our world"
 
-**Apply the 5 Whys Technique:**
+**Apply the 5 Whys Technique** (Toyoda's, not Sinek's, but it does the excavation work):
 - Ask "Why does this matter?" then dig deeper with each answer
 - Continue until reaching a fundamental belief about people, the world, or how things should be
 - The WHY comes from looking back (origins, experiences, formative moments), not forward. This is a process of discovery, not invention.
@@ -99,13 +105,13 @@ Review every claim, feature, story, or recommendation. Ask:
 Content may be valid, popular, or recommended by others, but if it doesn't align with THIS specific WHY, it's clutter. Remove it even if it's "good."
 
 **The Glance Test:**
-Ask a peer to review the draft. Can they articulate the WHY solely from the content included? If they see a disorganized jumble or can't identify the belief, remove more items.
+Run this yourself, in writing, before delivering. Re-read only what survived the audit above -- nothing else -- and state in one sentence the belief a first-time reader would infer from it. If that sentence isn't the WHY statement from the top of the page, cut more and run it again. Report the inferred sentence to the user alongside the draft; the gap between it and the stated WHY is the most useful thing you can show them. If they have a peer to ask, offer that as a second pass -- but don't make it the only check.
 
 If content fails the Celery Test, flag it to the user.
 
 ### 5. Draft Content
 
-**Structure:** Weave Golden Circle naturally. Don't use explicit WHY/HOW/WHAT labels in the output, because the structure should feel like a natural narrative, not an academic framework. Labeling it breaks the spell.
+**Structure:** Weave Golden Circle naturally (see Output Guidelines below for the label rule).
 - Open with belief or cause (the WHY)
 - Show how values bring it to life (the HOW)
 - Present tangible proof (the WHAT)
@@ -123,7 +129,7 @@ If content fails the Celery Test, flag it to the user.
 **Tone:** Default to inspirational and authentic unless user requests otherwise. Authenticity here means the Golden Circle is in balance: what you say and do aligns with what you believe. The limbic brain detects this alignment as "trust."
 
 **Length:** Ask user about intended use and optimize:
-- LinkedIn posts: ~150-300 words + relevant hashtags per SEO best practices
+- LinkedIn posts: ~150-300 words. Three hashtags maximum, and only if the user asks for them -- hashtag stuffing reads as promotional and undercuts the belief. This skill doesn't do SEO; see the description.
 - Articles: Ask target word count (typically 800-2000 words)
 - Speeches: Ask duration target (150 words ~ 1 minute spoken)
 - Other formats: Clarify expectations before drafting
@@ -145,12 +151,8 @@ If user requests manipulative content, explain: "This approach may work short-te
 
 ### 7. Review and Feedback
 
-After delivering draft, provide Golden Circle assessment:
-- Does the opening establish WHY before WHAT?
-- Is the belief clear enough that readers could predict what comes next?
-- Do the HOWs feel like natural expressions of the WHY?
-- Does every WHAT serve as proof of the belief?
-- Would this pass the Celery Test?
+Re-run the Celery Test audit from Step 4 -- don't repeat it from scratch, just confirm it still holds after drafting. Then check the two things Step 4 doesn't cover:
+- Does the opening establish WHY before WHAT (ordering, not just content)?
 - Does it create a sense of belonging, or just deliver information?
 
 Offer to revise based on feedback, but wait for user input before making changes.
@@ -204,6 +206,18 @@ This is the "WHY Goes Fuzzy" pattern from the book. Common in mature companies. 
 - Use book examples internally to shape approach; do not cite them in outputs. The user's content should stand on its own belief, not lean on Apple or Southwest as crutches.
 - Ask about length requirements in context of intended platform.
 - Default audience: business professionals with tacit subject knowledge.
+
+## Workflow Position
+
+This skill generates prose, and generated prose carries AI tells:
+
+    start-with-why -> humanizer -> farnsworth-rhetoric
+
+Run `humanizer` on the draft before delivering it. When one line carries the piece -- a keynote's last sentence, a tagline, a post's closing invitation -- run `farnsworth-rhetoric` last, at its 1-figure budget. Never run farnsworth first: figures applied before humanizer get stripped by it.
+
+At Step 2a, if the user has no WHY and the first candidate passes the validation checklist, consider chaining `beyond-obvious` for 3-5 distinct candidates before committing -- the first statement that passes validation is rarely the truest one.
+
+If the request turns out to be slides rather than prose, stop and use `good-presentations` instead -- bring the WHY statement with you as the deck's central claim.
 
 ## Examples of Inside-Out vs Outside-In
 

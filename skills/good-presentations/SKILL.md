@@ -6,13 +6,16 @@ description: >
   leadership deck, knowledge summary, presentation, or slides — especially
   when the goal is to persuade, inform, or move an audience to action. Triggers
   on: "build a deck", "create a presentation", "make slides", "webinar deck",
-  "thought leadership", "knowledge summary", "help me present", "turn this into
-  a deck", or any request to structure ideas into slides. Do NOT use for
-  brand-specific presentations or templated sales decks with fixed formatting
-  requirements.
+  "thought leadership deck", "thought leadership slides", "knowledge summary
+  deck", "help me build slides", "turn this into a deck", or any request to
+  structure ideas into slides. Do NOT use for brand-specific presentations or
+  templated sales decks with fixed formatting requirements, for thought
+  leadership prose or articles (use start-with-why), or for sharpening an
+  individual slide title or closing line that already exists (use
+  farnsworth-rhetoric).
 attribution: Loosely based on https://github.com/scunning1975/MixtapeTools/tree/main/presentations
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 ---
 
 # Good Presentations

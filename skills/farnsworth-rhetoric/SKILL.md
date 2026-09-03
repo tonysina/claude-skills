@@ -11,12 +11,19 @@ description: |
   persuasive", "apply rhetoric", "craft this message", "sharpen this line", "this
   ending is flat", "speech writing", "key message", "tagline", "farnsworth"
 
-  Do NOT use for: generating a message from scratch (use strategic-persuasion-writing),
-  deck structure (use good-presentations), message architecture (use start-with-why),
-  removing AI tells (use humanizer), narrative structure (use human-narrative),
-  technical documentation, process instructions, data reporting, or legal language.
+  Do NOT use for: deck structure (use good-presentations), belief- or purpose-led
+  message architecture (use start-with-why), removing AI tells (use humanizer),
+  narrative structure (use human-narrative), technical documentation, process
+  instructions, data reporting, or legal language.
+
+  Generating a message from scratch is out of scope, and there is no single
+  destination for it: belief- or purpose-led content for an audience -> use
+  start-with-why; a high-stakes message to one named reader in a live decision ->
+  use strategic-persuasion-writing (read its scope gate first); BlueDolphin-branded
+  copy -> use bluedolphin-collateral; anything else -> write it plainly first, then
+  come back here to sharpen it.
 metadata:
-  version: 1.1.1
+  version: 1.1.2
 ---
 
 # Farnsworth Rhetoric: Memorable Writing
