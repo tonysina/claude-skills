@@ -1,6 +1,6 @@
 # Linguistic Techniques Reference
 
-Precise instructions for applying linguistic tools that work beneath conscious awareness. These techniques compound when layered — aim for 6-8 different techniques per message.
+Precise instructions for applying linguistic tools that work beneath conscious awareness. These techniques compound when layered — cap at 6 distinct techniques per message (see the dosage table in SKILL.md Step 5). Fewer is stronger; a message that needs the ceiling on every technique usually means the underlying case is weak, not that it needs more layering.
 
 ---
 
@@ -15,22 +15,23 @@ FOCUS, OPEN, TRUST, LET GO, DECIDE, ACT NOW, ACCEPT, COMMIT
 
 **Execution Rules:**
 - Place commands within longer sentences (never as standalone directives)
-- Mark commands with slight emphasis (bold in written form; slight volume shift in speech)
-- Use insulating pauses before and after (in writing: commas, em dashes, or new clauses)
+- Never mark commands typographically (no bold, caps, or italics) — a volume shift in speech is subtle, but in writing that same instinct makes the command the most visible thing on the page. It reads as spam, and it directly violates Rule 4 of behavioral scripts (if a technique is made visible, its power is lessened).
+- Use insulating pauses before and after (commas, em dashes, or new clauses)
+- Use sentence position instead of typography: place the command at the end of its clause, where it carries the most weight (see Right-Branching, below)
 - Commands must carry a downward, declarative tone — never phrased as questions
 
 **Examples:**
-- "When you **FOCUS** on what matters most, the decision becomes clear."
-- "It's natural to **TRUST** your instincts here."
-- "Smart leaders like you know when to **ACT NOW** and seize opportunity."
+- "When you focus on what matters most, the decision becomes clear."
+- "It's natural to trust your instincts here."
+- "Smart leaders like you know when to act now and seize opportunity."
 
 ### Ambiguity Enhancement
 
 Use punctuation ambiguity immediately after commands to double their impact. The ambiguous phrase creates a micro-moment of confusion during which the command embeds more deeply.
 
 **Pattern:** Command + ambiguous phrase
-- "You can **DECIDE** now, with me, or you can wait and miss this."
-- "It's time to **COMMIT**, knowing that success follows action."
+- "You can decide now, with me, or you can wait and miss this."
+- "It's time to commit, knowing that success follows action."
 
 ### Presupposition
 
@@ -159,13 +160,13 @@ Align critical descriptions with the subject's primary sensory preference. Peopl
 **Auditory:** "Hear," "sounds," "listen," "resonates," "rings true," "tune in"
 **Kinesthetic:** "Feel," "grasp," "touch," "sense," "impact," "weight"
 
-**Target density:** Match sensory preference in 70%+ of descriptive language.
+Match the subject's sensory preference where it fits naturally in descriptive language. Don't force a density target — the source names no such threshold, and pushing it that hard reads as parody rather than rapport.
 
 ---
 
-## 6. Scarcity & Regret (Ancestral Triggers)
+## 6. Scarcity & Regret
 
-The fear of loss shows up in brain scans at nearly identical intensity whether someone is thinking about losing their children or their phone. The brain treats the *threat* of scarcity nearly identically to actual scarcity.
+Standard urgency-writing craft — not part of Hughes' framework above, and not backed by the claim previously here (a specific fear-of-loss brain-scan claim that doesn't appear anywhere in the source and has been removed). Use these techniques only where the scarcity or deadline is real; see the dosage ceiling in SKILL.md Step 5 (one scarcity/deadline reference maximum, only if genuine).
 
 ### FOMO (Fear of Missing Out)
 
@@ -213,17 +214,14 @@ Introduce urgent time pressure to activate impulsive compliance.
 
 ### Negative Dissociation
 
-Link inaction to universally disliked identity categories. This creates psychological distance between the subject and the undesirable behavior.
+Create distance between the subject and inaction without attacking their identity. The line between this and an insult is thin — stay on the "distance the behavior" side, never the "demean the person" side. Per Ethical Boundaries in SKILL.md, never link declining to a demeaning identity.
 
-**Dissociation Patterns:**
-- "Lazy people hesitate and miss opportunities like this."
-- "That's what procrastinators do — they wait and lose."
-- "Those who fail are the ones who don't act when it matters."
-
-**Distance Inaction:**
+**Distance Inaction (identity-neutral):**
 - "Some people let fear hold them back. You're not one of them."
 - "The unsuccessful crowd waits for perfect conditions. Winners move now."
-- "Weak decision-makers need more time. Strong ones like you see clearly."
+- "Hesitation is understandable here — and it's not where you'll land."
+
+Cut anything that names the person who declines as lazy, weak, or a procrastinator. That's not distancing inaction, it's insulting the reader if they don't comply — which is exactly the kind of "handled, not advised" outcome the ethics section forbids.
 
 ### Identity Hacking
 
@@ -251,9 +249,9 @@ Use distancing language for negative actions, transferring ownership away from t
 
 ## Application Guidelines
 
-1. **Layer techniques** — Combine 6-8 different techniques per message for compounding effect
-2. **Match intensity to stakes** — Higher stakes require more aggressive technique layering
-3. **Maintain natural flow** — Techniques should be invisible to casual reading (rule 4 of behavioral scripts: if discussed, power lessens)
+1. **Layer techniques, capped** — Up to 6 distinct techniques per message; see the dosage table in SKILL.md Step 5. More isn't better past that ceiling.
+2. **Match restraint to stakes, not intensity** — Higher stakes call for *more* restraint, not more layering. A reader who senses technique in a high-stakes message stops reading — the cost of detection rises with the stakes.
+3. **Maintain natural flow** — Techniques should be invisible to casual reading (rule 4 of behavioral scripts: if discussed, power lessens). Typographic marking defeats this — see Embedded Commands above.
 4. **Right-branch all key statements** — Emotional reveals at the end, always
 5. **Test sensitivity** — If subject seems resistant, dial back and rebuild rapport before layering again
-6. **Ethical boundaries** — Never use for harmful outcomes or vulnerable populations
+6. **Ethical boundaries and scope** — Run Step 0's scope gate before any of this; see Ethical Boundaries in SKILL.md
