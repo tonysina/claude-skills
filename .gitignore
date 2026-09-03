@@ -3,3 +3,9 @@ old/
 *.xlsx
 Claude Skills (onedrive)
 skills/bluedolphin-collateral/
+
+# Skill audit / review working files (handoffs, reports, scratch notes)
+.planning/
+.planning-scratch/
+HANDOFF.md
+*-REPORT.md
