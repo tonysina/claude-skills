@@ -46,7 +46,7 @@ Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 | [skill-builder](skills/skill-builder/) | Creates and improves skills — turns conversations or existing prompts into reusable skills | ✅ | ✅ | [.skill](dist/skill-builder.skill) |
 | [split-pdf](skills/split-pdf/) | Downloads, splits, and deeply reads PDFs — producing structured notes for implementation and content | ✅ | ❌ | [.skill](dist/split-pdf.skill) |
 | [start-with-why](skills/start-with-why/) | Creates inspiring content using Simon Sinek's Golden Circle (WHY → HOW → WHAT) | ✅ | ✅ | [.skill](dist/start-with-why.skill) |
-| [strategic-persuasion-writing](skills/strategic-persuasion-writing/) | Generates persuasive language scripts using advanced behavioral influence models (FATE, PCP, Six-Axis) | ✅ | ✅ | [.skill](dist/strategic-persuasion-writing.skill) |
+| [strategic-persuasion-writing](skills/strategic-persuasion-writing/) | Generates persuasive language scripts using behavioral influence models (FATE, PCP, Six-Axis) from Chase Hughes' The Behavior Ops Manual | ✅ | ✅ | [.skill](dist/strategic-persuasion-writing.skill) |
 
 ✅ Full support · ⚠️ Partial (some features require Claude Code tools) · ❌ Claude Code only
 
