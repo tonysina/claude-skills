@@ -1,27 +1,22 @@
 ---
 name: farnsworth-rhetoric
 description: |
-  Apply classical rhetorical figures to make existing writing more memorable and
-  persuasive, at the sentence and paragraph level. Based on Ward Farnsworth's
-  Classical English Rhetoric and Classical English Style. Diagnoses where a piece
-  is flat, applies figures under a strict dosage budget, and checks that craft did
-  not inflate the claim.
+  Apply classical rhetorical figures to make existing writing more memorable
+  and persuasive at the sentence/paragraph level, per Farnsworth's Classical
+  English Rhetoric and Classical English Style. Diagnoses flat prose, applies
+  figures under a dosage budget, and checks craft didn't inflate the claim.
 
-  Triggers: "make this memorable", "strengthen this", "make this land", "make this
-  persuasive", "apply rhetoric", "craft this message", "sharpen this line", "this
-  ending is flat", "speech writing", "key message", "tagline", "farnsworth"
+  Triggers: "make this memorable", "strengthen this", "make this land",
+  "make this persuasive", "apply rhetoric", "craft this message", "sharpen
+  this line", "this ending is flat", "speech writing", "key message",
+  "tagline", "farnsworth"
 
-  Do NOT use for: deck structure (use good-presentations), belief- or purpose-led
-  message architecture (use start-with-why), removing AI tells (use humanizer),
-  narrative structure (use human-narrative), technical documentation, process
-  instructions, data reporting, or legal language.
-
-  Generating a message from scratch is out of scope, and there is no single
-  destination for it: belief- or purpose-led content for an audience -> use
-  start-with-why; a high-stakes message to one named reader in a live decision ->
-  use strategic-persuasion-writing (read its scope gate first); BlueDolphin-branded
-  copy -> use bluedolphin-collateral; anything else -> write it plainly first, then
-  come back here to sharpen it.
+  Do NOT use for: deck structure (good-presentations), purpose-led messaging
+  (start-with-why), removing AI tells (humanizer), narrative structure
+  (human-narrative), technical docs, process instructions, data reporting,
+  legal language, or writing a message from scratch (write it plainly first,
+  or use start-with-why/strategic-persuasion-writing/bluedolphin-collateral,
+  then return here to sharpen it).
 metadata:
   version: 1.1.2
 ---
