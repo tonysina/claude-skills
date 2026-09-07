@@ -44,6 +44,7 @@ Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 | [intelligence-flow-architecture](skills/intelligence-flow-architecture/) | Designs how humans and AI collaborate in products, workflows, and processes | ✅ | ✅ | [.skill](dist/intelligence-flow-architecture.skill) |
 | [markdown-fetch](skills/markdown-fetch/) | Fetches web content as clean markdown, reducing token usage by up to 80% | ✅ | ⚠️ | [.skill](dist/markdown-fetch.skill) |
 | [skill-builder](skills/skill-builder/) | Creates and improves skills — turns conversations or existing prompts into reusable skills | ✅ | ✅ | [.skill](dist/skill-builder.skill) |
+| [source-check](skills/source-check/) | Verifies factual claims against primary sources — one isolated agent per claim, consolidated into a report and a corrected draft | ✅ | ⚠️ | [.skill](dist/source-check.skill) |
 | [split-pdf](skills/split-pdf/) | Downloads, splits, and deeply reads PDFs — producing structured notes for implementation and content | ✅ | ❌ | [.skill](dist/split-pdf.skill) |
 | [start-with-why](skills/start-with-why/) | Creates inspiring content using Simon Sinek's Golden Circle (WHY → HOW → WHAT) | ✅ | ✅ | [.skill](dist/start-with-why.skill) |
 | [strategic-persuasion-writing](skills/strategic-persuasion-writing/) | Generates persuasive language scripts using behavioral influence models (FATE, PCP, Six-Axis) from Chase Hughes' The Behavior Ops Manual | ✅ | ✅ | [.skill](dist/strategic-persuasion-writing.skill) |
