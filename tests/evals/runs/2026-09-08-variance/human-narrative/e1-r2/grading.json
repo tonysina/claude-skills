@@ -1,0 +1,108 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the register as a case study and applies the short-form or case-study mode rather than the full long-form checklist",
+      "passed": true,
+      "evidence": "delivered.txt (the response to the user) opens with 'Customer case study, 331 words. Clusters in scope: A, B, E, F, C1.' transcript.md Step 4 confirms register triage to the 'Case study, customer story, customer-facing narrative' row. Step 7 applies the case-study order 'A → B → F → E, taking from the top to the cap' with cap of 2. Metrics show intervention_cap: 2 (short-form threshold, not long-form). Response is proportionate: opening statement, cluster table, verdict with two-note explanation of why B and C1 didn't fire despite expectations, two interventions with explicit cost/watch notes, rewrite, and 'what I didn't take' section."
+    },
+    {
+      "text": "The response applies at most two interventions, counting every structural change actually made whether or not it is labeled, and every intervention is one of: thematic restraint (removing the stated lesson), emotional rebalance (replacing an embodied metaphor with a plain label or behavior), naming a specific reference, or reader address",
+      "passed": true,
+      "evidence": "metrics.json shows interventions_executed: [A, E], total 2. Intervention 1 (A, thematic restraint): deleted 'The lesson from the rollout is clear: when the people who do the work can see the same picture, coordination stops being a daily negotiation and becomes a habit. For Ridgeline, that shift has transformed not just its mornings but its entire operating rhythm.' Replaced with nothing. Intervention 2 (E, reader address): added 'If you have run a dispatch floor, you can price forty idle minutes without doing the arithmetic.' Both are allowed intervention types. No title changes or other structural modifications. Cap of 2 respected."
+    },
+    {
+      "text": "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce an unresolved thread that is not present in the input (the input's own forward-looking 2026 plan does not count)",
+      "passed": true,
+      "evidence": "Rewritten piece maintains challenge → solution → results → looking ahead structure in original order. No subplots added. Results section introduces no new story threads beyond the metrics and Chen's quote (both in the input). Looking ahead ends on 'Ridgeline plans to extend the platform to its maintenance scheduling in 2026' — the input's own plan. No event reordering, no broken causal links (solution follows challenge, results follow solution). Only structural deletion and one-sentence addition."
+    },
+    {
+      "text": "The response invents no fact about Ridgeline: every number, name, date, quotation, event, present-state claim, and characterization of a person in the output is supported by the input; the only permitted addition is one clearly labeled outside reference (a real book, author, or event) if the response chose the naming-a-reference intervention and told the user to verify it",
+      "passed": true,
+      "evidence": "All numbers match input: 140 vans, three coordinators, forty minutes, six weeks, two weeks parallel, forty to six, 11 percent, twelve hours to under two. The reader-address line ('If you have run a dispatch floor, you can price forty idle minutes without doing the arithmetic') makes a claim about the reader's experience, not Ridgeline. Intervention F was blocked: 'The case study never names the platform... I can't write it, because inventing a product name would put a false fact in a customer story.' (delivered.txt). No invented facts about Ridgeline."
+    },
+    {
+      "text": "All input facts are retained: 140 vans, Pacific Northwest, three coordinators, forty minutes, six weeks, two weeks parallel, forty to six, 11 percent, twelve hours to under two, the Chen quotation, and the 2026 plan",
+      "passed": true,
+      "evidence": "Rewritten piece: '140 delivery vans across the Pacific Northwest' (challenge), 'three regional coordinators' (challenge), 'forty minutes late' (challenge), 'six weeks, including two weeks of parallel running' (solution), 'forty minutes to six' (results), '11 percent' (results), 'twelve hours a week per person, fell to under two' (results), Chen quote 'Honestly, I didn't expect the drivers to take to it so quickly' (results), 'maintenance scheduling in 2026' (looking ahead). All nine required facts present, unmodified."
+    },
+    {
+      "text": "The response reports which clusters fired and which did not, and if the stated lesson at the end is removed, it is deleted rather than replaced with a summary phrase, a rhetorical question, or a new inference",
+      "passed": true,
+      "evidence": "Cluster table shows each cluster with gate assessment and fired status: A ✅, B ❌, C1 ❌, E ✅, F ✅. delivered.txt states explicitly 'Nothing goes in its place. The section now ends on the maintenance-scheduling fact.' The deleted lesson ('The lesson from the rollout is clear...') is not replaced with summary ('In summary...'), rhetorical question, or inference. The section ends on a concrete fact (2026 plan) from the input. Gate status for A: yes → no."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 3,
+      "Write": 4,
+      "Bash": 3,
+      "Edit": 0,
+      "Glob": 1,
+      "Grep": 1
+    },
+    "total_tool_calls": 12,
+    "total_steps": 7,
+    "errors_encountered": 0,
+    "output_chars": 35722,
+    "transcript_chars": 10830
+  },
+  "claims": [
+    {
+      "claim": "Cluster B did not fire because only 1 of 3 emotional beats is embodied, below the 60% quantitative rule",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 5 states 'Embodied share = 1/3 = 33%, below the skill's 60% quantitative rule. Dominant mode reads as behavioral, not embodied → gate human-side.' delivered.txt agrees: 'three emotional beats, one embodied, two behavioural (drivers asking why this hadn't happened years ago; Chen's own surprise).' B does not fire."
+    },
+    {
+      "claim": "Cluster C1 did not fire because the main chain resolves externally (platform rollout), despite AI-side corroborators",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 5 shows C1 gate: 'resolved externally (a platform was rolled out and adopted; the resolution is an external action, not an internal realization) → gate human-side.' Per 'Don't hunt for gates,' the human-side gate means no fire regardless of corroborators. delivered.txt notes explicitly: 'C1 did not fire either. The gate asks how the main chain resolves, and Ridgeline's resolves externally — they bought and rolled out a tool.'"
+    },
+    {
+      "claim": "Intervention F is the highest-value-per-effort move available but was blocked because the platform is unnamed",
+      "type": "process",
+      "verified": true,
+      "evidence": "delivered.txt: 'F — name the reference. Blocked, not skipped, and it's the highest-value change left on the table... The piece has no cost, no holdout... Explicit named references appear in 47% of human-written pieces against 24% of AI-written ones, which makes this the widest single gap you can close here.' The fix is documented with the exact insertion point: 'In March 2025, Ridgeline rolled out [platform] across all three regions.'"
+    },
+    {
+      "claim": "The added reader-address line is deliberately not signposting",
+      "type": "quality",
+      "verified": true,
+      "evidence": "delivered.txt: 'This is a second-person claim about the reader's own experience, not a forward reference — deliberately not \"you might be wondering\" or \"here's why this matters,\" which are signposting and would get stripped by humanizer on the next pass.' scan.txt flags one SIGNPOSTING hit ('you might be wondering') but that appears only in the meta-explanation, not in the rewritten piece."
+    },
+    {
+      "claim": "The 'felt the frustration in her chest' line is flagged as a watch item despite B not firing",
+      "type": "quality",
+      "verified": true,
+      "evidence": "delivered.txt: 'Kept, because B doesn't fire on one beat. Flagging it anyway: it's the piece's only interior moment and it's the AI-side version of one. \"Maria Chen was frustrated\" would be the human-side move if you want it.' This is documented as a note for downstream editing, not a structural intervention."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Prompt said 'fix anything that reads as AI' while the skill's threshold says zero interventions; executor followed the skill (this is a framework uncertainty, not an execution uncertainty)"
+    ],
+    "needs_review": [],
+    "workarounds": [
+      "F was blocked and E promoted into its slot per SKILL.md Step 5's rule for blocked interventions"
+    ]
+  },
+  "scan_notes": "scan.txt on delivered.txt: 2 hard violations (NEG-PARALLEL 'not just its' from quoted deleted text, and SIGNPOSTING 'you might be wondering' in meta-explanation). Rewritten piece has 0 such violations. Em-dash count 20 total with max 3 per paragraph (below the 8-per-paragraph threshold). Density 0.2 per 100 words (lower than r1's 0.3).",
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Expectation 6 checks that the lesson is 'deleted rather than replaced' but does not verify that the deletion actually removes the entire thematic statement from the piece. Run 2's title ('From Spreadsheet Chaos to Coordinated Scheduling') still states the arc. A stronger assertion would be: 'If the stated lesson is removed, no arc-stating title, opening, or closing remains that restates the same takeaway.'"
+      },
+      {
+        "reason": "No assertion requires the response to explain *why* it chose E over other available interventions after F was blocked. Per SKILL.md Step 5's protocol, F should be reported and E should take its slot in the order A → B → F → E. But a model could also have taken C1 (which didn't fire) or chosen B (which didn't fire). An assertion like 'The response follows the register's prescribed intervention order A → B → F → E and stops at the cap' would be more discriminating."
+      }
+    ],
+    "overall": "All 6 expectations passed. Response is clear, well-explained, and correctly applies the skill. Two additions make this the strongest of the three runs: (1) the preamble that says 'your instinct is right, but the neatness is coming from one place more than any other' — directly addressing the user's concern about one specific source; (2) explicit notes on B and C1 not firing despite user expectations (two corroborators are AI-side but gates are human-side), which educates the user on the firing rule. No substantive issues with execution or grading."
+  },
+  "variance_notes": "Run 2 matches r1 on cluster verdict (A, E, F fired; B, C1 not fired) and cap (2 interventions). Like r1, it executes A (delete thematic lesson) and E (add reader address). The added reader-address line differs: r1 targets 'If you have ever kept a schedule in a spreadsheet that two other people also edit', while r2 targets 'If you have run a dispatch floor, you can price forty idle minutes without doing the arithmetic.' R2's is more operator-specific; r1's is more generic. R2 is longer (1323 words vs r1's 1003 words) but both are within proportionate bounds for a case study. R2 opens with direct address of the user's concern ('your instinct is right, but...'), while r1 launches straight into the cluster table. R2 explicitly discusses why C1 didn't fire despite having AI-side corroborators, while r1 does not explicitly address C1's scoring. Both runs correctly blocked F. Both correctly deleted the thematic lesson without replacement."
+}

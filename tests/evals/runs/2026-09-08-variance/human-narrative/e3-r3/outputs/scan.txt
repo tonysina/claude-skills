@@ -1,0 +1,45 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions + 11 forward-reference patterns  (quotes kept)
+
+======================================================================
+FILE: delivered.txt
+======================================================================
+  words: 1362   figure budget: 6   (>600 words: 1 per 150, cap 6)
+
+  [CONSTRUCTIONS] forbidden-table violations: 0
+        none
+
+  [A] humanizer multi-word flags: 1 distinct
+        x1  "you might be wondering"  [SIGNPOSTING]
+
+  [B] humanizer single-word flags (needs context): 1 distinct
+        x1  key  [AI-VOCAB]
+
+  em dashes: 28 total, max 12 per paragraph
+        FLAG humanizer EM-DASH (3+ in proximity)
+
+  anaphora: 1 strong run(s) (>=3), 3 weak (2)
+        STRONG "what if..." x3
+        weak   "what if..." x2
+        weak   "i can..." x2
+        weak   "she had..." x2
+
+  triads: 3 word-level, 1 phrase-level
+        A, B, C2
+        D, E, F
+        work, author, text
+        the pipeline finishing, the contractor doing better work, the good rev
+        -> run isocolon load-bearing test on each
+
+  forward references (human-narrative cluster E): 1
+        FLAG FORWARD-REF: "you'll understand why this matters in a moment"
+
+  density: 2 flag hits / 1362 words = 0.1 per 100   distinct patterns: 3 ['AI-VOCAB', 'EM-DASH', 'SIGNPOSTING']
+
+  HARD VIOLATIONS: 1
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri fwd  /100 pat  VIOL
+--------------------------------------------------------------------------------------
+delivered.txt                1362   6     0   1   1   12   1/3   4   1   0.1   3     1
