@@ -33,14 +33,32 @@ for skill in $SKILLS_TO_BUILD; do
     exit 1
   fi
 
+  # Only SKILL.md and subdirectories get packaged (see the zip below), so a
+  # file left at the skill root would be dropped from the .skill bundle
+  # without any error. Fail loudly instead.
+  STRAY=$(find "$SKILL_DIR" -maxdepth 1 -type f ! -name 'SKILL.md' ! -name '.*' -exec basename {} \;)
+  if [ -n "$STRAY" ]; then
+    echo "❌ $skill: these files sit at the skill root and would not be packaged."
+    echo "   Move them into a subdirectory (references/, scripts/, assets/):"
+    echo "$STRAY" | sed 's/^/     - /'
+    exit 1
+  fi
+
   echo "📦 Building $skill.skill..."
 
   # Remove stale dist file so zip creates fresh (not appends)
   rm -f "$DIST_DIR/$skill.skill"
 
-  # Create ZIP archive containing SKILL.md and all subdirectories (assets, references, etc)
+  # Create ZIP archive containing SKILL.md and all subdirectories (assets, references, etc).
+  # Skills with no subdirectories are packaged from SKILL.md alone; decide which
+  # case applies up front rather than letting a zip failure fall through silently.
   cd "$SKILL_DIR"
-  zip -q -r "$DIST_DIR/$skill.skill" SKILL.md */ 2>/dev/null || zip -q -r "$DIST_DIR/$skill.skill" SKILL.md
+  SUBDIRS=$(find . -maxdepth 1 -type d ! -name '.' ! -name '.*' -exec basename {} \;)
+  if [ -n "$SUBDIRS" ]; then
+    zip -q -r "$DIST_DIR/$skill.skill" SKILL.md $SUBDIRS
+  else
+    zip -q "$DIST_DIR/$skill.skill" SKILL.md
+  fi
   cd "$REPO_ROOT"
 
   echo "✅ Created dist/$skill.skill"
