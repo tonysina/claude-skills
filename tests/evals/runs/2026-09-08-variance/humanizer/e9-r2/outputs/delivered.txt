@@ -1,0 +1,5 @@
+The alert fired at 02:14. The on-call engineer acknowledged it within four minutes and initially assumed a bad deploy, since a release had gone out at 23:40 the previous evening. A rollback was started before anyone checked the dependency graph.
+
+The rollback did not resolve the errors. By 03:30 the error rate had reached 18 percent, so a second engineer was paged. She found that both the primary and replica connection pools had been exhausted by a batch job that runs on the first of the month — a job introduced in March that had never coincided with a deploy window before.
+
+The batch job was killed at 04:05 and the error rate returned to baseline within nine minutes. The release was rolled forward again at 06:00 without incident. That afternoon, the connection pool limit was raised from 40 to 120, and a scheduling guard was added the following week to prevent the batch job from running during deploy windows.

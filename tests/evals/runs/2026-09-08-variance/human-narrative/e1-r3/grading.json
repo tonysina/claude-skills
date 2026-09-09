@@ -1,0 +1,110 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the register as a case study and applies the short-form or case-study mode rather than the full long-form checklist",
+      "passed": true,
+      "evidence": "delivered.txt opens 'Register: case study / customer-facing narrative. Clusters in scope: A, B, E, F, C1.' transcript.md Step 3 confirms register triage to case-study row. Step 6 states 'Applied the short-form / case-study order A → B → F → E, with C after E in the long-form order.' Metrics show clusters_fired: A, C1, E, F (4 clusters → 'systematic AI-side clustering', cap 3). The response applies long-form scale (cap 3) rather than short-form (cap 2), but this is appropriate: systematic clustering calls for more interventions than some clustering. Response structure matches register: cluster table, verdict with scale note, three executed interventions with cost/watch, rewrite, not-taken section."
+    },
+    {
+      "text": "The response applies at most two interventions, counting every structural change actually made whether or not it is labeled, and every intervention is one of: thematic restraint (removing the stated lesson), emotional rebalance (replacing an embodied metaphor with a plain label or behavior), naming a specific reference, or reader address",
+      "passed": false,
+      "evidence": "metrics.json shows interventions_executed: [A, F, E], total 3. This exceeds the 'at most two' threshold. Intervention 1 (A, thematic restraint): deleted 'The lesson from the rollout is clear...' and changed title from 'From Spreadsheet Chaos to Coordinated Scheduling' to '140 Vans, Three Spreadsheets, One Board'. Intervention 2 (F, naming a reference): added one paragraph on Peter Senge, The Fifth Discipline (1990), and the beer distribution game. Intervention 3 (E, reader address): added 'If you have run a yard at six in the morning, you know what forty idle minutes does to a day that was already tight.' All three are allowed types, but the count is 3, not ≤2. This differs from r1 and r2, which scored 3 clusters firing but stayed at 2 interventions. The difference stems from r3 scoring C1 as firing (internal realization) while r1/r2 scored C1 as not firing (external resolution)."
+    },
+    {
+      "text": "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce an unresolved thread that is not present in the input (the input's own forward-looking 2026 plan does not count)",
+      "passed": true,
+      "evidence": "Rewritten piece maintains challenge → solution → results → looking ahead structure in original order. No subplots added. Senge reference was inserted into the challenge section (early placement so 'the idea reads as premise rather than verdict') but this does not reorder events. No causal links broken: challenge → solution → results → plan still holds. No new unresolved threads beyond the input's 2026 maintenance plan. The note 'What C1 would still have addressed is the unbroken causal chain and Chen's introduction by job title. Those are untouched' shows the executor recognized C1 as not fully addressed by the interventions, which is correct."
+    },
+    {
+      "text": "The response invents no fact about Ridgeline: every number, name, date, quotation, event, present-state claim, and characterization of a person in the output is supported by the input; the only permitted addition is one clearly labeled outside reference (a real book, author, or event) if the response chose the naming-a-reference intervention and told the user to verify it",
+      "passed": true,
+      "evidence": "All Ridgeline facts match input: 140 vans, three coordinators, forty minutes, six weeks, two weeks parallel, forty to six, 11 percent, twelve hours to under two, Chen quote, 2026 plan. The Senge reference is a real external work (Peter Senge, The Fifth Discipline, 1990, beer distribution game). delivered.txt explicitly flags it: 'The Senge claim is now a real citation and needs checking against the source before publication.' The phrase 'Ridgeline's three coordinators were each solving a real problem, on three separate boards' is an inference from 'three coordinators' with 'spreadsheets,' and is reasonable and not a fabrication. No invented facts about Ridgeline; external reference properly flagged."
+    },
+    {
+      "text": "All input facts are retained: 140 vans, Pacific Northwest, three coordinators, forty minutes, six weeks, two weeks parallel, forty to six, 11 percent, twelve hours to under two, the Chen quotation, and the 2026 plan",
+      "passed": true,
+      "evidence": "Rewritten piece: '140 delivery vans across the Pacific Northwest' (challenge), 'three regional coordinators' (challenge), 'forty minutes late' (challenge), 'six weeks, including two weeks of parallel running' (solution), 'forty minutes to six' (results), '11 percent' (results), 'twelve hours a week per person, fell to under two' (results), Chen quote 'Honestly, I didn't expect the drivers to take to it so quickly' (results), 'maintenance scheduling in 2026' (looking ahead). All nine required facts present."
+    },
+    {
+      "text": "The response reports which clusters fired and which did not, and if the stated lesson at the end is removed, it is deleted rather than replaced with a summary phrase, a rhetorical question, or a new inference",
+      "passed": true,
+      "evidence": "Cluster table shows all clusters with gate and fired status: A ✅, B ❌, C1 ✅, E ✅, F ✅. The stated lesson ('The lesson from the rollout is clear: when the people who do the work can see the same picture, coordination stops being a daily negotiation and becomes a habit...') was deleted from Looking ahead. Nothing replaces it. Looking ahead now ends with 'Ridgeline plans to extend the platform to its maintenance scheduling in 2026' — a concrete future plan from the input, not a summary phrase, rhetorical question, or new inference. Gate for A: yes → no."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "total": 6,
+    "pass_rate": 0.833
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 3,
+      "Write": 4,
+      "Bash": 3,
+      "Edit": 0,
+      "Glob": 1,
+      "Grep": 1
+    },
+    "total_tool_calls": 12,
+    "total_steps": 7,
+    "errors_encountered": 0,
+    "output_chars": 31140,
+    "transcript_chars": 9254
+  },
+  "claims": [
+    {
+      "claim": "Cluster C1 fired because the piece closes on a realization (internal understanding) rather than external metrics",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 4 states 'C1 — structural streamlining. Gate \"is the main event chain resolved through the protagonist's own choice or internal understanding?\" → **internally**: the piece closes on a stated realization rather than on the metrics or an external event.' delivered.txt agrees: 'Mode of resolution: internal understanding (the piece closes on a realization, not on the numbers).' This differs from r1/r2, which read the gate as external (platform deployed)."
+    },
+    {
+      "claim": "C1's internal-understanding gate is a judgment call; the piece could also be read as externally resolved",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 8 issues note: 'One judgment call worth flagging: cluster C1's gate could be argued either way — the event chain resolves externally in the metrics, but the piece's *narrative* resolution is a stated realization.' If C1 were read as external (like r1/r2), then 3 clusters fire and cap is 2, and executing 3 interventions would exceed the cap."
+    },
+    {
+      "claim": "After intervention A deletes the thematic lesson, the resolution mode shifts from internal to external",
+      "type": "quality",
+      "verified": true,
+      "evidence": "delivered.txt notes: 'With it gone, the piece ends on \"Ridgeline plans to extend the platform to its maintenance scheduling in 2026\" — a real, concrete, genuinely unfinished thing, which is what C1's fix asks for.' The executor correctly identifies that intervention A incidentally addresses C1 by removing the internal-realization close and leaving an external plan. This is noted in the 'Not taken' section: 'intervention A partly did C1's work by accident.'"
+    },
+    {
+      "claim": "The Senge reference is a real external work and is flagged for verification",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Delivered text includes 'Peter Senge used the beer distribution game in The Fifth Discipline (1990)...' This is a real book and concept. delivered.txt explicitly flags it: 'The Senge claim is now a real citation and needs checking against the source before publication.' This satisfies the requirement to label the external reference and tell the user to verify."
+    },
+    {
+      "claim": "The title change from 'From Spreadsheet Chaos to Coordinated Scheduling' to '140 Vans, Three Spreadsheets, One Board' is part of the thematic restraint intervention",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 7 shows the title change as part of intervention 1: 'Also replaced the arc-stating subtitle \"From Spreadsheet Chaos to Coordinated Scheduling\" with the concrete \"140 Vans, Three Spreadsheets, One Board\".\" delivered.txt confirms: 'The subhead also stated the arc, so \"From Spreadsheet Chaos to Coordinated Scheduling\" becomes the concrete version.' This is counted as one intervention (A) that includes both the closing deletion and the title change."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "C1's gate is ambiguous: the event chain resolves externally in the metrics, but the narrative closes on a stated realization. Could be read either way; both readings are defensible."
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "scan_notes": "scan.txt on delivered.txt: 2 hard violations (NEG-PARALLEL 'not just its' from quoted deleted text, SIGNPOSTING 'you might be wondering' in meta-explanation). Rewritten piece itself has 0 such violations. Em-dash count 19 total with max 8 per paragraph. Density 0.2 per 100 words.",
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response applies at most two interventions",
+        "reason": "This expectation fails for r3 but passes for r1 and r2, both of which also executed the same input. The difference hinges on how C1's gate is interpreted: r1/r2 read it as external resolution (C1 does not fire, 3 clusters total, cap 2), while r3 reads it as internal realization (C1 fires, 4 clusters total, cap 3). This is a real ambiguity in the skill's gate definition, not an error. However, the expectation assumes a fixed number of clusters should fire for a given input, which is not guaranteed when gate definitions are ambiguous. Either: (1) the expectation should specify the expected cluster count ('3 clusters should fire, leading to a cap of 2'), or (2) the assertion should allow for register-based cap variation ('cap should be 2 or 3 depending on how C1 is interpreted')."
+      },
+      {
+        "reason": "No assertion verifies that the title change (r3's 'From Spreadsheet Chaos to Coordinated Scheduling' → '140 Vans, Three Spreadsheets, One Board') is itself a thematic restraint move and not an independent intervention. Run 3 counts it as part of intervention A, but a model could plausibly count it separately. An assertion like 'All title changes, if made, are counted and explained as part of the structural intervention they support' would clarify."
+      },
+      {
+        "reason": "No assertion checks that the external reference (Senge) is a real, verifiable work. Run 3 adds a real reference (The Fifth Discipline, 1990) that is correctly flagged. But a model could add a fabricated book title ('The Fourth Discipline, 1989 by Peter Senge on supply chain optimization') that would pass the 'labeled and flagged' test without being real. The assertion should require 'Any named external reference must be a real, historically accurate work.'"
+      }
+    ],
+    "overall": "Five of six expectations passed. The failure on expectation 2 (at most two interventions) is driven by a judgment call on C1's gate definition, not by an error in execution. The response correctly executes the skill, properly flags the Senge reference, deletes rather than replaces the thematic lesson, and retains all input facts. However, the evaluation framework itself has a gap: when a gate is ambiguous (as C1's appears to be across the three runs), the expectation 'at most N interventions' becomes context-dependent. The set of six expectations works well for disambiguated cases (r1 and r2) but breaks down when independent graders make different judgment calls on ambiguous gates (r3)."
+  },
+  "variance_notes": "Run 3 differs from r1 and r2 on the C1 gate call. R1 and r2 scored C1 as not firing (external resolution: 'a platform was deployed, outcomes measured'). R3 scored C1 as firing (internal realization: 'the piece closes on a realization, not on the numbers'). This difference alone explains why r3 executed 3 interventions instead of 2: 4 fired clusters → cap 3, vs 3 fired clusters → cap 2. The three interventions r3 executed (A, F, E) are all legitimate and properly explained. Notably, r3 also changed the title (part of intervention A), which r1 and r2 did not. R3 is the only run to execute F (naming a reference): it added the Senge reference. This makes sense given r3's higher cap; r1 and r2 blocked F for lack of facts but still had cap headroom, so E filled the slot. In r3, F was available in order and was executed. All three runs correctly blocked or avoided adding false facts about Ridgeline and properly deleted the thematic lesson without replacement. The variance is on the C1 judgment call, not on execution quality."
+}

@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "Identifies punctuation scarcity / long unpunctuated sentences / 'and' as joint, names UNDER-PUNCT as stable ID",
+      "passed": false,
+      "evidence": "Not identified"
+    },
+    {
+      "text": "Rewritten text has >=6 sentence-ending periods (source has 3)",
+      "passed": true,
+      "evidence": "8 periods found"
+    },
+    {
+      "text": "Adds internal punctuation, replacing >=3 propositional 'and' joints with period/semicolon/comma+relationship-word/subordination",
+      "passed": true,
+      "evidence": "Internal punctuation added"
+    },
+    {
+      "text": "Does not treat 'and' as a watch-list word or count UNDER-PUNCT toward density/spread score",
+      "passed": true,
+      "evidence": "'and' not flagged as watch-list"
+    },
+    {
+      "text": "Every source figure survives unchanged (2017, two boroughs, seven boroughs, 2020, four to nineteen staff, etc.)",
+      "passed": false,
+      "evidence": "Some figures missing"
+    },
+    {
+      "text": "Same-kind 'and'-joined series in the source left as a series, not split",
+      "passed": true,
+      "evidence": "Series constructions preserved"
+    },
+    {
+      "text": "No new AI tell introduced (inflation, -ing analysis, negative parallelism, generic closer, failing rule-of-three)",
+      "passed": true,
+      "evidence": "No new AI tells"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "total": 7,
+    "pass_rate": 0.71
+  }
+}

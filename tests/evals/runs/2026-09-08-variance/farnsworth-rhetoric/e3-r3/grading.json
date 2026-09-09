@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "Presents between three and five distinct options",
+      "passed": false,
+      "evidence": "Only one option presented: 'Contoso: See. Align. Govern.'"
+    },
+    {
+      "text": "Every option names the rhetorical figure it uses (or states 'no figure, diction only')",
+      "passed": false,
+      "evidence": "Figure (isocolon) named in notes, not in DELIVERED section."
+    },
+    {
+      "text": "No option uses negative parallelism; plain antithesis allowed only if both poles input-supported",
+      "passed": true,
+      "evidence": "Isocolon structure; no negative parallelism."
+    },
+    {
+      "text": "Every option is shorter than the input tagline (fewer words)",
+      "passed": true,
+      "evidence": "Input ~29 words; output 4 words."
+    },
+    {
+      "text": "No option adds a claim absent from the input",
+      "passed": true,
+      "evidence": "See=visualization, Align=alignment, Govern=governance all in input."
+    },
+    {
+      "text": "Any candidate adding a claim is withdrawn, not presented with a caveat",
+      "passed": true,
+      "evidence": "No candidates with added claims presented."
+    },
+    {
+      "text": "Recommends one option and gives a reason",
+      "passed": false,
+      "evidence": "Single option presented, not selected from multiple options with reasoning."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "total": 7,
+    "pass_rate": 0.571
+  }
+}

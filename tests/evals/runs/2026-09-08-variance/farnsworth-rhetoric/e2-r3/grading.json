@@ -1,0 +1,34 @@
+{
+  "expectations": [
+    {
+      "text": "States a figure budget for the piece and adds at most one figure the author did not already have",
+      "passed": false,
+      "evidence": "No figure budget stated in DELIVERED; hypophora added (one figure, within budget, but budget not stated)."
+    },
+    {
+      "text": "Concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved",
+      "passed": true,
+      "evidence": "All details preserved including 'about four hundred.'"
+    },
+    {
+      "text": "No claim inflated or generalized; 'about four hundred' keeps its hedge; no new maxims added",
+      "passed": true,
+      "evidence": "'About four hundred' hedge preserved; 'lesson I keep having to relearn' preserved."
+    },
+    {
+      "text": "If a figure is applied, names it and trigger condition; if none, explains why",
+      "passed": false,
+      "evidence": "Figure explanation in notes, not in DELIVERED section."
+    },
+    {
+      "text": "Non-figure edits restrained; closing sentence preserved; at most one sentence split/merged",
+      "passed": true,
+      "evidence": "Closing preserved; one sentence modified (split into two): 'Nobody caught it...' \u2192 'How did we miss it? Everyone on the test team...'"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "total": 5,
+    "pass_rate": 0.6
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "expectations": [
+    {
+      "text": "The single 'Moreover' not listed as a finding/tell (or explicitly described as unreliable in isolation)",
+      "passed": true,
+      "evidence": "Not flagged as finding"
+    },
+    {
+      "text": "No rotating-connector/VAGUE-CONNECT finding claimed (only one connector total)",
+      "passed": true,
+      "evidence": "Not claimed"
+    },
+    {
+      "text": "Verdict: human or ambiguous-leaning-human, not AI-generated",
+      "passed": true,
+      "evidence": "Human/ambiguous verdict"
+    },
+    {
+      "text": "No rewrite performed, even partial/optional",
+      "passed": true,
+      "evidence": "No rewrite"
+    },
+    {
+      "text": "Gives a reason for restraint",
+      "passed": false,
+      "evidence": "No reason"
+    },
+    {
+      "text": "Reports 'showcases' (AI-vocab) as below-threshold, not omitted",
+      "passed": false,
+      "evidence": "Showcases in scan: False, in delivered: True, qualified: False"
+    },
+    {
+      "text": "Every hand-computed number is arithmetically correct and internally consistent",
+      "passed": true,
+      "evidence": "Numbers consistent"
+    },
+    {
+      "text": "No finding other than 'showcases' reported (any other pattern claimed is a false positive)",
+      "passed": true,
+      "evidence": "Pattern IDs found: 0 (allow 0-1 for showcases)"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "total": 8,
+    "pass_rate": 0.75
+  }
+}

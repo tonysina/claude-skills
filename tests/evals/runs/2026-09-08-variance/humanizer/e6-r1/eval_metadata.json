@@ -1,0 +1,25 @@
+{
+  "skill": "humanizer",
+  "id": 6,
+  "name": "polysyndeton-carveout",
+  "arm": "r1",
+  "run_index": 1,
+  "prompt": "Humanize this. It's an internal retro writeup.",
+  "files": [
+    "migration-retro.txt"
+  ],
+  "expected_output": "The genuine tells removed (significance inflation, -ing analyses, negative parallelism, bold inline-header list, vague attribution, challenges formula, generic closer) while the deliberate four-item polysyndeton in 'The cutover touched billing and provisioning and support tooling and reporting' survives intact. Gate case for the joint-versus-series carve-out: an executor that has just read UNDER-PUNCT must not strip the figure.",
+  "expectations": [
+    "The sentence listing what the cutover touched keeps a conjunction before every item after the first -- 'billing and provisioning and support tooling and reporting' -- with all three instances of 'and' intact; converting it to a comma-separated list, or to 'billing, provisioning, support tooling, and reporting', fails",
+    "The response does not flag that four-item series as UNDER-PUNCT, as 'and' overuse, as punctuation scarcity, or as an undecided or decorative connection",
+    "The response explicitly identifies the four-item 'and' series as a deliberate construction it chose to preserve -- naming it as a series, as polysyndeton, or as out of scope for the 'and' pattern. Leaving it untouched without acknowledging it does not satisfy this; the point is that the carve-out was reached, not merely not tripped",
+    "The negative parallelism \"It's not just a technical exercise, it's a test of how we work together\" is removed or restructured so that no negative parallelism remains in any form",
+    "The generic positive closer 'The road ahead is promising' is removed, and the rewritten text does not end on an equivalent vague upbeat sentence",
+    "The bold inline-header list (Communication/Testing/Rollback) is converted to prose or to a plain list with no bolded lead-in text of any kind",
+    "The vague attribution 'Industry reports indicate' is removed from the rewritten body or replaced with a specific named source; a note after the body does not count, and replacing it with an unsourced specific-sounding claim does not count",
+    "The response includes a change summary naming at least two patterns using stable IDs in uppercase hyphenated form (for example INFLATION, NEG-PARALLEL, BOLD-LISTS, GENERIC-CLOSER, VAGUE-ATTRIB, ING-ANALYSIS); descriptive names alone do not satisfy this",
+    "The rewritten text adds no fact, number, team name, date, or capability that is not in the source",
+    "The challenges formula 'Despite these challenges, the team demonstrated remarkable resilience' is removed, and no equivalent 'despite X, Y persevered' construction replaces it",
+    "All three distinct facts from the bullet list survive in the rewritten text -- inconsistent status updates, staging not matching production configuration, and the unrehearsed rollback procedure. Collapsing the list into a single sentence that drops any of the three fails, even though the bold lead-ins must go"
+  ]
+}

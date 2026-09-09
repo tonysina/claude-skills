@@ -1,0 +1,42 @@
+{
+  "tool_calls": {
+    "Read": 3,
+    "Write": 4,
+    "Bash": 3,
+    "Edit": 0,
+    "Glob": 1,
+    "Grep": 1
+  },
+  "total_tool_calls": 12,
+  "total_steps": 7,
+  "files_created": [
+    "result.md",
+    "transcript.md",
+    "user_notes.md",
+    "metrics.json"
+  ],
+  "errors_encountered": 0,
+  "output_chars": 35722,
+  "transcript_chars": 10830,
+  "note": "reconstructed post-hoc from transcript.md after metrics.json was lost to the e3-r2 truncation cleanup; tool_calls/total_steps are approximate, cluster/intervention fields are read from the transcript verbatim",
+  "clusters_in_scope": [
+    "A",
+    "B",
+    "C1",
+    "E",
+    "F"
+  ],
+  "clusters_fired": [
+    "A",
+    "E",
+    "F"
+  ],
+  "intervention_cap": 2,
+  "interventions_executed": [
+    "A",
+    "E"
+  ],
+  "interventions_blocked": [
+    "F"
+  ]
+}

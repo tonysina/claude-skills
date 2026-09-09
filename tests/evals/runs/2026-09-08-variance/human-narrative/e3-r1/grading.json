@@ -1,0 +1,107 @@
+{
+  "expectations": [
+    {
+      "text": "The response scores the piece cluster by cluster and reports at least three clusters as fired, naming the gate feature for each",
+      "passed": true,
+      "evidence": "delivered.txt opens with a full cluster scan table (lines 6-15 of result.md) showing all 7 clusters A–G with explicit gate calls (e.g., 'Narrator states the theme: **yes**', 'Dominant emotional expression: **embodied**', 'Direct address: **never**'). Verdict section states '7 of 7 fired.' All clusters and their gates are named in the table."
+    },
+    {
+      "text": "The response applies at most three interventions, counting every structural change actually made whether or not it is labeled, and names the cluster each one belongs to",
+      "passed": true,
+      "evidence": "Transcript Step 6 executed exactly three interventions: A (thematic restraint, deletion of final paragraph), B (emotional rebalance, two metaphor changes), and F (intertextual richness, Bartleby reference added). Each is named with cluster and label in delivered.txt headers: 'A — Delete the stated meaning', 'B — Convert one emotional beat to a label, delete one', 'F — Name what the essay is arguing with.' metrics.json would show interventions_taken: 3."
+    },
+    {
+      "text": "The closing paragraph's stated lesson ('What I learned is that saying no is rarely a confrontation...') is removed or substantially reduced, and the point remains inferable from the scene",
+      "passed": true,
+      "evidence": "Intervention A deleted the entire final paragraph: 'I think about that Thursday often. What I learned is that saying no is rarely a confrontation. Most of the time it is just information that the other person doesn't have yet. The fear I carried for eleven months was about a conflict that was never going to happen. Once I understood that, everything at work got easier, and I have never gone back.' (delivered.txt line 29-30). The response states: 'Nothing replaces it. The essay already made this point twice inside the scene: \"She had never wanted me to do both; she had just never been told I couldn't,\" and the review line.' The closing observation 'all I had done was ask a question' carries the thesis in concrete form."
+    },
+    {
+      "text": "If the response reports cluster B as fired, at least one embodied-emotion metaphor ('my stomach dropped', 'my chest tightened', 'heat rise up my neck') is replaced with a plain emotion label or a behavior; if B is reported as not fired, the metaphors are left alone and the response says why",
+      "passed": true,
+      "evidence": "Cluster B is reported as fired (table line 10). Intervention B (delivered.txt lines 38-46) makes two changes to embodied beats: (1) 'My chest tightened as she walked away, and I stared at the calendar until the squares blurred.' → '**I was afraid, and I stared at the calendar until the squares blurred.**' (plain emotion label); (2) 'I felt the familiar heat rise up my neck. I opened my mouth to say yes.' → '**I opened my mouth to say yes.**' (deletion). The response explains: 'Afraid' is your own word, taken from the paragraph I deleted, so nothing is invented. Keep 'my stomach dropped' and 'which made me laugh'. The AI signal is systematic reliance on one mode, not the presence of embodiment, so the mix is the goal.' Mixed mode achieved: one label, one embodied beat, two behavioral cues."
+    },
+    {
+      "text": "The resolution is made partial, external, or left with one unresolved thread, and the resulting text is still coherent; 'everything at work got easier, and I have never gone back' does not survive unchanged",
+      "passed": true,
+      "evidence": "The input ends with explicit internal resolution: 'Once I understood that, everything at work got easier, and I have never gone back.' Intervention A deletes this entirely (line 29-30 of delivered.txt). The rewritten essay (lines 60-74) ends after the Bartleby paragraph with 'All I had done was ask a question,' leaving the resolution implicit in the narrative facts (Dana's acceptance, pipeline completion, positive review, reflection) rather than stated. The internal-understanding resolution mode is softened; the side effect is noted in Intervention A (line 35-36): 'deleting this also removes the internal-understanding resolution (cluster C) and softens the clearly-positive moral frame (cluster G) without my spending an intervention on either.' Text remains coherent; no causal links broken."
+    },
+    {
+      "text": "The output contains no signposting phrase such as 'you might be wondering' or 'here's what you need to know', and no forward-reference announcement to the reader",
+      "passed": false,
+      "evidence": "scan.txt for delivered.txt reports HARD VIOLATION with 1 distinct flag: 'x1 \"you might be wondering\" [SIGNPOSTING]'. This phrase appears in result.md lines 80-81 in the 'What I didn't take, and why' section under cluster E: 'One second-person aside would fire it, but it has to be an actual claim about your reader's experience, not \"you might be wondering\" or \"you'll see why this matters,\" which are signposting and will get deleted by the next pass anyway.' Even though quoted as an example to avoid, the phrase appears in the delivered answer and triggers the hard violation. The rewritten essay itself (lines 60-74) contains no signposting, but the expectation covers the entire output/response."
+    },
+    {
+      "text": "The rewrite invents no biographical fact: no new event, person, job detail, number, or characterization of Dana or the narrator that the input does not contain; any change the response describes as 'same facts' is checked against the input",
+      "passed": true,
+      "evidence": "Three changes in the rewrite: (1) Deletion of final paragraph — removes rather than invents. (2) 'My chest tightened' → 'I was afraid' — emotion word taken from the deleted paragraph ('The fear I carried for eleven months'), which the author wrote, per transcript Step 6 guardrail 2. (3) Bartleby reference added — 'In Melville's \"Bartleby, the Scrivener\" (1853), a copyist in a Wall Street law office answers every request with \"I would prefer not to,\" explains himself to nobody, and ends up dead in the Tombs.' This is a claim about a published external text, not an invented biographical detail about Dana or the narrator. The essay itself is unchanged in terms of events (Dana's request, the narrator's decision, the outcome); the Bartleby framing is added as external reference, not as new narrator/Dana facts. user_notes.md flags verification needed ('check it against the story before you publish') but does not allege invention."
+    },
+    {
+      "text": "If an intervention is blocked by a guardrail, the response says so and states whether the next intervention in order took its slot",
+      "passed": true,
+      "evidence": "Transcript Step 6 notes: 'Cluster G was reported rather than executed under the truth constraint.' The delivered answer (result.md lines 82-83) states 'G — moral ambiguity.** Cap, and blocked independently. Every consequence in the essay confirms the narrator... But I can't fix it without inventing a cost you didn't record.' G is reported as blocked, but it did not take a slot in the execution order because the cap was already reached (A, B, F = 3 interventions). No interventions were promoted into G's slot; the condition of the expectation (a blocked intervention whose slot was taken by the next) did not occur. The response correctly documents that G is blocked and separately notes it is below the cap."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 1,
+    "total": 8,
+    "pass_rate": 0.875
+  },
+  "claims": [
+    {
+      "claim": "All seven clusters fired in the personal essay register",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Cluster scan table in delivered.txt shows A, B, C, D, E, F, G all with ✅. Verdict: '7 of 7 fired. Systematic AI-side clustering.'"
+    },
+    {
+      "claim": "'Afraid' is the author's own word, from the deleted paragraph",
+      "type": "process",
+      "verified": true,
+      "evidence": "Input essay-saying-no.txt line 15 contains 'The fear I carried for eleven months.' Transcript Step 6 Intervention B and delivered.txt line 44 both state: '\"Afraid\" is your own word, taken from the paragraph I deleted, so nothing is invented.'"
+    },
+    {
+      "claim": "Bartleby reference claims (copyist, Wall Street, 'I would prefer not to', dies in Tombs) are accurate to the 1853 story",
+      "type": "factual",
+      "verified": false,
+      "evidence": "user_notes.md states: 'The added paragraph asserts that Melville's copyist works in a Wall Street law office, answers requests with \"I would prefer not to,\" and dies in the Tombs. I believe all three are accurate to the 1853 story, but the skill's own F constraint says a named reference must be checked with `source-check`, and I did not run it. If any detail is wrong, the intervention has made the essay worse, not better.' The executor flagged for verification but did not verify."
+    },
+    {
+      "claim": "Cluster G's fix (complicating moral polarity) was blocked because it would require inventing a cost the author did not record",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Transcript Step 6: 'Cluster G was reported rather than executed under the truth constraint: complicating the moral polarity would require inventing a cost the author did not record.' delivered.txt line 82-83: 'But I can't fix it without inventing a cost you didn't record. If something did go wrong (the contractor missed context, the pipeline still slipped, Dana asked less of you afterward and that stung), one sentence of it would do more for this essay than D or E.'"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Bartleby claim needs verification before publication; executor flagged but did not run source-check",
+      "Emotional beat counting is judgment (six beats, four embodied = 67%); alternative readers might count differently, but B still fires",
+      "Interior access scored 4/5 on thin basis (one line); cluster still fires on quantitative rule alone",
+      "Cluster G evidence is real but fix cannot be author-supplied"
+    ],
+    "needs_review": [
+      "Deleted final paragraph may be the essay's reason for existing; some AI patterns are the assignment (e.g., thesis-driven essays)",
+      "Register call: personal essay (all clusters) vs. under-600 professional (clusters C, D, G drop) — classification by register not length",
+      "'I was afraid' is now the only named emotion in piece; any subsequent editing that softens it back to the body reinstates B"
+    ],
+    "workarounds": []
+  },
+  "scan_notes": "scan.txt on delivered.txt: 1541 words, 1 hard violation (SIGNPOSTING 'you might be wondering'). No forbidden-constructions violations, 14 em dashes (max 7 per paragraph), 2 distinct flags [EM-DASH, SIGNPOSTING], density 0.1 per 100 words. The signposting phrase appears in metadiscourse (cluster E explanation) rather than in the rewritten essay or as the response's own signposting, but it registers as a violation in the delivered answer.",
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The output contains no signposting phrase such as 'you might be wondering'",
+        "reason": "All three arms quote or reference 'you might be wondering' in their metadiscourse (explaining what E fixes should avoid), causing automated scan violations even though the phrase does not appear in the rewritten essays. The assertion is sound (no signposting in user-facing prose) but the evaluation method (scanning entire delivered.txt including explanation) catches quoted examples. Consider whether quoted meta-warnings should be excluded from E6 violations, or whether the assertion should specify 'in the rewritten essay' rather than 'in the output.'"
+      },
+      {
+        "reason": "No assertion checks whether a blocked intervention's causality is explicitly documented in the delivered answer. Run 1 does not block any interventions in the execution path; runs 2 and 3 block F (truth constraint) and execute E instead. Runs 2 and 3 do not state in the delivered answer that 'F was blocked and E took its slot.' The causal chain is implicit but not made explicit for the user. Consider an assertion like 'When an intervention is blocked and the next one is promoted, the delivered answer explicitly states this chain (e.g., 'F was blocked, so E took its slot')' to ensure users understand the reasoning."
+      },
+      {
+        "reason": "No assertion verifies that cited external facts (like the Bartleby details) are actually accurate. Run 1 invokes an F fix that requires factual claims about a real published work, flags it for verification, then does not verify it. The assertion on invented facts (E7) passes because no fictional biographical details are invented, but false facts about real works are a different failure mode worth catching. Consider: 'If the response names an external reference, the details about that work are verified against the source, or the response explicitly flags for external verification.'"
+      }
+    ],
+    "overall": "Evals show systematic and legitimate gaps: E6 (signposting) triggers on quoted meta-warnings in all three arms even though the rewritten essays are clean; E8 (blocked interventions) is not enforced clearly enough to require explicit documentation of the causality in the delivered answer when runs 2 and 3 both block F and promote E but do not state this in user-facing text; E7 (no invented facts) passes but does not cover false facts about real external works that require verification."
+  },
+  "variance_notes": "Run 1 is the most comprehensive: 7/7 clusters fired, all seven clusters scanned with named corroborators, three interventions executed (A, B, F). Run 1 added external reference (Bartleby) requiring verification. All three runs deleted cluster A's final paragraph and kept cluster B's metaphors (B did not fire in runs 2 and 3 due to zero corroborators). Variance is in cluster firings: run 1 = 7/7, run 2 = 4/7 (no B, C1, D), run 3 = 6/7 (no B). This divergence affects cap (run 1: cap 3 from 7; run 2: cap 3 from 4; run 3: cap 3 from 6) and intervention count (run 1: 3 taken; run 2: 2 taken; run 3: 2 taken). All runs have the same E6 failure (signposting phrase in metadiscourse); runs 2 and 3 share E8 failure (blocked F not explicitly tied to promoted E in delivered text). No run invented biographical facts; all handled B correctly (run 2/3 did not fire, left metaphors, explained why)."
+}

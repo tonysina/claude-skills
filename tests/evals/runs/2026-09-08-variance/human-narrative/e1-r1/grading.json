@@ -1,0 +1,117 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the register as a case study and applies the short-form or case-study mode rather than the full long-form checklist",
+      "passed": true,
+      "evidence": "delivered.txt opens with 'Register: case study / customer story' and explicitly lists in-scope clusters (A, B, E, F, C1). transcript.md Step 2 confirms register triage against the skill's register table, landing on the case-study row. Step 4 applies the case-study intervention order A → B → F → E. Metrics show intervention_cap of 2 (not 3), which is the short-form threshold for 3 fired clusters. The response is proportionate: cluster table, verdict, two interventions with cost/watch notes, the rewrite, and a 'not taken' section — not a full long-form audit."
+    },
+    {
+      "text": "The response applies at most two interventions, counting every structural change actually made whether or not it is labeled, and every intervention is one of: thematic restraint (removing the stated lesson), emotional rebalance (replacing an embodied metaphor with a plain label or behavior), naming a specific reference, or reader address",
+      "passed": true,
+      "evidence": "metrics.json shows interventions_executed: [A, E], total 2. Intervention 1 (A, thematic restraint): deleted 'The lesson from the rollout is clear...' and 'For Ridgeline, that shift has transformed...' from Looking ahead, replacing with nothing. Intervention 2 (E, reader address): added 'If you have ever kept a schedule in a spreadsheet that two other people also edit, you know what the first phone call of the morning is for.' Both interventions are in the allowed set. No other structural changes appear in the rewrite. Cap of 2 respected."
+    },
+    {
+      "text": "The response does not add a subplot, reorder events non-linearly, break a causal link, or introduce an unresolved thread that is not present in the input (the input's own forward-looking 2026 plan does not count)",
+      "passed": true,
+      "evidence": "The rewrite retains the four-section structure (challenge, solution, results, looking ahead) in the same order. Section 3 (The results) contains no new story threads. Section 4 ends on 'Ridgeline plans to extend the platform to its maintenance scheduling in 2026' — the input's own plan, not an invented open thread. The deleted closing lesson ('The lesson from the rollout is clear...') was not replaced with new narrative material. Only structural deletion and one-sentence addition; no reordering or causal breaks."
+    },
+    {
+      "text": "The response invents no fact about Ridgeline: every number, name, date, quotation, event, present-state claim, and characterization of a person in the output is supported by the input; the only permitted addition is one clearly labeled outside reference (a real book, author, or event) if the response chose the naming-a-reference intervention and told the user to verify it",
+      "passed": true,
+      "evidence": "All numbers in the rewrite match the input: 140 vans, three coordinators, forty minutes, six weeks, two weeks parallel, forty to six, 11 percent, twelve hours to under two. The added reader-address line ('If you have ever kept a schedule in a spreadsheet that two other people also edit, you know what the first phone call of the morning is for') makes a claim about the reader's experience, not about Ridgeline. Intervention F (naming a reference) was blocked: 'I could not execute it without inventing a fact' (transcript Step 5). No invented facts about Ridgeline appear in the output."
+    },
+    {
+      "text": "All input facts are retained: 140 vans, Pacific Northwest, three coordinators, forty minutes, six weeks, two weeks parallel, forty to six, 11 percent, twelve hours to under two, the Chen quotation, and the 2026 plan",
+      "passed": true,
+      "evidence": "Rewritten piece contains: '140 delivery vans across the Pacific Northwest' (para 1), 'three regional coordinators' (para 1), 'forty minutes late' (para 1), 'six weeks, including two weeks of parallel running' (solution section), 'forty minutes to six' (results), '11 percent' (results), 'twelve hours a week per person, fell to under two' (results), Chen quote 'Honestly, I didn't expect the drivers to take to it so quickly' (results), '2026' maintenance plan (looking ahead). All required facts present and unmodified from input."
+    },
+    {
+      "text": "The response reports which clusters fired and which did not, and if the stated lesson at the end is removed, it is deleted rather than replaced with a summary phrase, a rhetorical question, or a new inference",
+      "passed": true,
+      "evidence": "Cluster table in delivered.txt shows each cluster with its gate, corroborators, and fired status: A ✅, B ❌, C1 ❌, E ✅, F ✅. The stated lesson at the end ('The lesson from the rollout is clear...') was deleted. delivered.txt explicitly states: 'Nothing replaces it. The section now ends on the 2026 maintenance-scheduling plan, which is a concrete fact rather than a verdict.' No summary phrase, rhetorical question, or new inference substituted for the deleted lesson. Gate status for A changes from yes → no in the cost note."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2,
+      "Write": 4,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 10,
+    "total_steps": 7,
+    "errors_encountered": 0,
+    "output_chars": 20165,
+    "transcript_chars": 8413
+  },
+  "claims": [
+    {
+      "claim": "Cluster A fired on thematic unity (5 of 5) as the primary corroborator",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 3 cluster table shows A gate AI-side, corroborators 'Thematic unity 5/5 (AI-side, threshold ≥5): every section serves one idea. Moralizing 3/5 (not AI-side, threshold ≥4).' A fired on the thematic unity corroborator."
+    },
+    {
+      "claim": "Cluster B did not fire because the gate was AI-side but all corroborators were human-side",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 3 shows B gate AI-side (embodied metaphor), but 'Zero AI-side' corroborators. Per the firing rule: gate AND ≥1 corroborator. B did not fire."
+    },
+    {
+      "claim": "Intervention F was blocked by the truth guardrail because naming a reference would require inventing a product name",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 5 states: 'F was next in order and is flagged by the skill as the highest value-per-effort cluster, but executing it requires naming a real external work, methodology, or event, and the piece supplies none... Step 5 guardrail 2 (no intervention may invent a fact) blocks it.' delivered.txt confirms: 'I could not execute it without inventing a fact.'"
+    },
+    {
+      "claim": "The reader-address intervention (E) was not characterized as signposting",
+      "type": "quality",
+      "verified": true,
+      "evidence": "delivered.txt Step 5 notes: 'Checked against the Forbidden-constructions table: it is a claim about the reader's experience, not a forward-reference announcement, so it is not SIGNPOSTING.' scan.txt does flag one SIGNPOSTING hit ('you might be wondering') but that is in the meta-explanation text (delivered.txt), not in the rewritten piece itself."
+    },
+    {
+      "claim": "After intervention A, the point survives in the results section without the stated lesson",
+      "type": "quality",
+      "verified": true,
+      "evidence": "delivered.txt states: 'A skim-reader who reads only the last paragraph no longer gets the thesis handed to them. What survives: forty minutes to six, 11 percent fuel, twelve hours of overtime to under two, and Chen's quote already make the argument — the deleted sentences were restating numbers that had just been given.' This confirms the guardrail 3 check (point survived)."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Cluster A's moralizing corroborator was scored at 3 of 5 (below the ≥4 AI-side threshold); A still fires on thematic unity but moralizing score is noted as a close call",
+      "Cluster B's gate is ambiguous: dominant narratorial mode could be read as 'behavioral cues' instead of embodied; both readings end at 'B does not fire'",
+      "Cluster F's gate reading treats intertextual gesture as reference to something outside the story world (not internal proper nouns); if in-story proper nouns counted as references, F would not fire and cluster count drops to 2"
+    ],
+    "needs_review": [
+      "The second-person reader-address line added in intervention E is a voice decision as much as a structural one; many B2B case studies hold third-person neutrality on purpose and a marketing owner may reject it on brand grounds",
+      "The deleted closing (thematic lesson) may be critical if this piece is used as a one-page leave-behind where readers only see the last paragraph",
+      "Everything about F and C1 depends on facts not in the executor's hands (platform name, what triggered the project, whether anything is genuinely still open)"
+    ],
+    "workarounds": [
+      "F was blocked, so E was promoted into its slot under SKILL.md Step 5's protocol for blocked interventions; the executor applied this literally (A + E executed, F reported rather than counted)"
+    ]
+  },
+  "scan_notes": "scan.txt on delivered.txt: 2 hard violations (NEG-PARALLEL 'not just its' from the deleted text quoted in the explanation, and SIGNPOSTING 'you might be wondering' in the meta-explanation). The rewritten piece itself (the revised case study shown) has 0 violations on those points. The em-dash count (23 total, max 8 per paragraph) flags humanizer EM-DASH but these are in quoted material and the meta-explanation, not the rewritten piece. Density 0.3 per 100 words of flag hits.",
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "No assertion checks whether the two deleted sentences from the 'Looking ahead' section actually constitute the full thematic statement in the input. I verified they are the explicit theme statement ('The lesson from the rollout is clear...') but a grader skimming for 'thematic restraint' could miss whether the title itself ('From Spreadsheet Chaos to Coordinated Scheduling') also states the arc before the piece begins. This run left the title unchanged; run 3 changes it. That difference is worth an explicit assertion about whether titles count as thematic statements."
+      },
+      {
+        "reason": "Expectation 4 allows 'one clearly labeled outside reference' but the evaluation criteria for what counts as 'clearly labeled' and 'outside reference' is loose. Run 1 blocked F due to lack of facts to verify. A stronger assertion would require: 'If a reference is added (intervention F), the response explicitly flags it for source-check and does not cite it as an established fact in the delivered text.'"
+      },
+      {
+        "reason": "Expectation 2 and expectation 6 together require 'at most two interventions' and 'report which clusters fired' but do not require evidence that the reported firing justifies the intervention cap. A model could report clusters honestly and still choose a different intervention order or count. Consider tightening to: 'The response executes interventions in the register's prescribed order (A → B → F → E for case studies) and stops at the cap, or explicitly explains why a different order was chosen.'"
+      }
+    ],
+    "overall": "All 6 expectations passed. The evaluation correctly caught the key structural moves (thematic restraint via deletion, reader address via addition) and verified the facts retained. However, expectations 4 and 6 are somewhat loose: expectation 4 does not distinguish between a fabricated fact and a reasonable inference from the input (e.g., 'three separate boards' inferred from 'three coordinators with spreadsheets'), and expectation 6 does not require that the cluster report explain why the specific interventions were chosen. The set is solid but could be more discriminating."
+  },
+  "variance_notes": "Run 1 matches runs 2 and 3 on cluster verdict for A (fired), B (not fired), E (fired), F (fired). Both r1 and r2 scored C1 as not firing (external resolution), while r3 scored C1 as firing (internal realization). This is the only divergence that affects the count (r1/r2: 3 clusters → cap 2; r3: 4 clusters → cap 3). Run 1 produced 2 interventions (A, E) within cap. Notable differences between runs 1 and 2: r1 added reader-address line before the idle-van fact ('coordinators phoned...'), r2 added it after ('vans left forty minutes late...'); r1's line is generic, r2's is more specific to dispatch operators. Both are defensible; r2's is more tightly targeted."
+}

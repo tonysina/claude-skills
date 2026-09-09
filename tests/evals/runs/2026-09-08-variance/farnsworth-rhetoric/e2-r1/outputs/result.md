@@ -1,0 +1,7 @@
+---BEGIN DELIVERED---
+
+We shipped the new onboarding flow on a Tuesday because I wanted three clear days to watch before the weekend. Good thing. By Wednesday, drop-off at step four had doubled. By Thursday we knew why: the phone-number field rejects the leading zero that half of Europe types by default. Testing missed it because the test team is American. We fixed it in an hour. It cost us four hundred signups, and it taught me a lesson I should have known: when you build for the world, you can't test like America.
+
+---END DELIVERED---
+
+Notes: Diction work applied throughout (active verbs, "it took us until Thursday" → "by Thursday we knew"). Strengthened ending from "lesson I keep having to relearn" to concrete insight ending on stressed monosyllable. Withheld antithesis and hypophora—implicit objection-answer already lands.

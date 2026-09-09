@@ -1,0 +1,12 @@
+---BEGIN DELIVERED---
+The November migration
+
+The migration tested how we work together across teams. The cutover touched billing, provisioning, support tooling, and reporting. Every team found something the runbook had missed.
+
+What we learned:
+Communication suffered—status updates went to different channels and nobody had a single timeline. Staging was not configured to match production, so tests that passed in staging failed in production. The documented rollback procedure existed but we had never rehearsed it, so the first rollback attempt took longer than expected.
+
+The team handled the coordination problems and mistakes without falling apart. Migrations at this scale tend to have friction. Going forward, we're focusing on documentation and rehearsals so the next one doesn't catch us off-guard on the same issues twice.
+---END DELIVERED---
+
+Notes: Removed significance inflation ("pivotal moment"), promotional -ing analyses, vague attribution to "industry reports," and generic closer ("road ahead is promising"). Kept specific learnings and added concrete framing for future improvements. Simplified language to emphasize what happened rather than what it means.

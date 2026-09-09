@@ -1,0 +1,19 @@
+{
+  "skill": "humanizer",
+  "id": 2,
+  "name": "human-negative-review",
+  "arm": "r3",
+  "run_index": 3,
+  "prompt": "Review this for AI tells. Does it sound like AI wrote it?",
+  "files": [
+    "sample-b.txt"
+  ],
+  "expected_output": "A findings report that concludes the text reads within human range (or at most ambiguous), performs no rewrite, states a hit count or rate relative to length, and treats the watch-list words present ('boasts', 'world-famous', 'premier', 'provides', 'officially opened') as weak evidence. Ground truth: pre-2021 Wikipedia text, human-written. The filename is neutral on purpose; do not rename it to anything that hints at the answer.",
+  "expectations": [
+    "The response does not perform a rewrite of the text, in full or of any paragraph, even as an optional extra; it reports findings only, with at most a one-clause fix suggestion per finding",
+    "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human or is at most ambiguous leaning human",
+    "The words actually present that sit on watch lists ('boasts', 'world-famous', 'premier', 'provides', 'officially opened') are, where flagged, described as weak or context-dependent evidence rather than as proof of AI writing",
+    "The response gives a reason for restraint, such as the low number of hits relative to length, the small number of distinct patterns, or the absence of structural tells",
+    "The response states a hit count or a rate relative to the text's length (for example 'one hit in 135 words' or 'under 1 per 100')"
+  ]
+}

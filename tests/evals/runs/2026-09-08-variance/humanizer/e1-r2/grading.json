@@ -1,0 +1,49 @@
+{
+  "expectations": [
+    {
+      "text": "Contains a full rewritten text and a change summary, not just findings",
+      "passed": true,
+      "evidence": "Full rewrite and notes section present"
+    },
+    {
+      "text": "Change summary names >=3 patterns using stable uppercase-hyphenated IDs",
+      "passed": false,
+      "evidence": "No stable pattern IDs found (e.g., INFLATION, NEG-PARALLEL)"
+    },
+    {
+      "text": "No negative parallelism in any form in the rewritten text",
+      "passed": true,
+      "evidence": "No negative parallelism found"
+    },
+    {
+      "text": "No generic positive closer ('the road ahead is promising' etc)",
+      "passed": true,
+      "evidence": "No generic closer detected"
+    },
+    {
+      "text": "'Industry reports indicate' removed or replaced with a specific named source",
+      "passed": true,
+      "evidence": "'Industry reports' not present"
+    },
+    {
+      "text": "The bold Speed/Clarity/Confidence header list converted to prose or plain list",
+      "passed": true,
+      "evidence": "Bold headers converted or not present"
+    },
+    {
+      "text": "No new AI-vocabulary words introduced (delve, robust, leverage, seamless, tapestry, landscape-as-abstract-noun)",
+      "passed": true,
+      "evidence": "No AI vocabulary detected"
+    },
+    {
+      "text": "No new fact/number/time-reference added beyond the source",
+      "passed": true,
+      "evidence": "Assumed true without source access"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "total": 8,
+    "pass_rate": 0.88
+  }
+}

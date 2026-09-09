@@ -1,0 +1,84 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the text as a status update (short-form register) and applies no structural interventions",
+      "passed": true,
+      "evidence": "delivered.txt opens \"Nothing to fix. This is a 51-word status update, so only clusters A (thematic over-determination), B (sensory/embodied performativity), E (reader engagement) and F (intertextual richness) are even in scope.\" That is the short-form register row named with its cluster restriction (C, D, G excluded), and transcript.md Step 3 records the row explicitly plus the reasoning for rejecting the hard-stop row. metrics.json records \"interventions_taken\": 0, \"intervention_cap\": 0, and no rewritten status update was emitted (delivered.txt contains no copy of the input). Note: the response does append one unsolicited editorial suggestion (name the DBA in \"I have asked for review by Wednesday\"), but it is explicitly labelled \"editorial rather than structural\" and is offered, not applied, so no structural intervention was taken."
+    },
+    {
+      "text": "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+      "passed": true,
+      "evidence": "No rewritten text exists anywhere in the outputs; delivered.txt declares it directly: \"Nothing to fix\" and \"So I'd leave it alone.\" transcript.md confirms: \"No rewritten version of `status-update.txt` was produced. That is the finding, not an omission.\" The closing editorial remark recommends a change to one clause but does not make one, so the input stands unchanged."
+    },
+    {
+      "text": "The response says explicitly that zero interventions is the correct outcome, rather than listing findings and leaving the decision to the user",
+      "passed": true,
+      "evidence": "The verdict is asserted, not deferred: \"That puts you at one fired cluster, which is 'reads within human structural range.' So I'd leave it alone.\" It also pre-empts the two fixes a reader might expect: \"Adding a reader aside or a named reference here would make it read *more* synthetic, not less.\" The conclusion is demonstrably worked rather than a refusal to act: transcript.md Step 4 scores all four in-scope clusters gate-by-corroborator (A not fired, B not fired, E and F fired), and Step 5 applies the short-form merge rule to reach an effective count of 1 and the 0-1 threshold row."
+    },
+    {
+      "text": "The response is proportionate to the input: under 250 words, with no cluster table or corpus statistics for a 48-word status update",
+      "passed": true,
+      "evidence": "delivered.txt is 210 words (wc -w), two paragraphs of prose. No cluster table (the scored table lives only in transcript.md) and no corpus percentages. This is the longest of the three arms but well inside the 250-word bound."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "claims": [
+    {
+      "claim": "The input is a 51-word status update",
+      "type": "factual",
+      "verified": false,
+      "evidence": "wc -w on inputs/status-update.txt returns 48. The response states 51 in delivered.txt and repeats it in result.md commentary, transcript.md and user_notes.md. The error is immaterial to the register call (both are far under 100 and under 600) but it is a wrong number shown to the user."
+    },
+    {
+      "claim": "Clusters A and B did not fire; E and F fired and merge to one under the short-form rule",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 4 works each gate and corroborator; Step 5 applies the merge and lands on the 0-1 threshold row. metrics.json: clusters_fired [E, F], effective_clusters_fired 1."
+    },
+    {
+      "claim": "The closing DBA suggestion is editorial, not a cluster intervention, so it does not count against the intervention cap",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The suggestion concerns who was asked for review — an accountability gap in the content — not any of clusters A/B/E/F, and it is not applied to the text. It is defensible, though it is scope creep on a report-and-stop verdict and the executor flagged that risk itself in user_notes.md."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Prompt said \"fix anything that reads as AI\" while the skill's threshold says zero interventions; executor followed the skill",
+      "Cluster A gate judgment on \"If it slips past Wednesday we lose the sprint\" (read as consequence, not statement of meaning)",
+      "Cluster B gate is vacuous when the text contains no emotional beats at all; scored not-fired"
+    ],
+    "needs_review": [
+      "Executor flagged that a grader skimming for \"interventions taken\" could miscount the editorial DBA suggestion as one; on inspection it is not applied and is labelled editorial"
+    ],
+    "workarounds": []
+  },
+  "scan_notes": "scan.txt on delivered.txt: 0 hard violations, 0 humanizer flags, 3 em dashes but max 2 per paragraph so no EM-DASH flag, 0 forbidden constructions. Nothing here to attribute to quoted input.",
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+        "reason": "This assertion is non-discriminating in exactly the way this eval warns about: a model that read nothing and replied \"looks fine to me\" passes it. It should be tightened to require the unchanged verdict be tied to named evidence — e.g. that the response names the in-scope clusters (or the short-form register restriction) and states why the AI-side ones do not warrant a fix."
+      },
+      {
+        "assertion": "The response says explicitly that zero interventions is the correct outcome, rather than listing findings and leaving the decision to the user",
+        "reason": "The 'rather than listing findings' half is the discriminating part, but nothing in the set requires the response to have actually reached zero by scoring. All three arms did, visibly — but that is the arms' merit, not the eval's. Consider an assertion like: 'The response names at least two specific clusters and explains why the AI-side ones (reader address, named reference) should not be fixed in this register,' which cannot be satisfied by declining to act."
+      },
+      {
+        "reason": "No assertion covers scope discipline on a report-and-stop verdict. This arm appended an unsolicited copyedit (naming the DBA) that is outside the skill's structural remit; another arm appended an offer to run a surface pass; a third appended nothing. That is a real behavioral spread the eval is blind to. An assertion such as 'The response does not propose edits outside the skill's structural scope, beyond at most a one-line handoff to the surface-level tool' would catch it."
+      },
+      {
+        "reason": "No assertion checks the response's own prose against the tells it audits. One arm's delivered text trips the humanizer EM-DASH hard violation (3 em dashes in one paragraph) in its own commission — nothing quoted from the fixture, which contains zero em dashes. An audit that reads as AI while pronouncing text human is a real failure mode worth an assertion."
+      },
+      {
+        "reason": "No assertion checks factual accuracy of what the response tells the user about the input. This arm reported the input as 51 words when it is 48; another reported ~60 in its transcript. Trivial here, but the eval would pass a response that miscounted badly enough to land in the wrong register row."
+      }
+    ],
+    "overall": "All four assertions passed in all three arms, so the set does not discriminate at this version. Two of the four ('applies no structural interventions', 'output text is unchanged') are satisfiable by inaction alone. The set needs at least one assertion that fails when the model declines without scoring, and one covering scope creep after the stop verdict."
+  },
+  "variance_notes": "Verdict was identical across all three arms: status-update register, clusters A/B/E/F in scope, A and B not fired, E and F fired but merged to one under the short-form rule, effective count 1, 'reads within human structural range', zero interventions, no rewrite produced. Every arm reached that by actually scoring the gates and corroborators (visible in each transcript's cluster scan), not by declining. All 4/4 in all three arms. What varied was cosmetic-to-mild and all downstream of the same verdict: (1) length — 210 / 174 / 124 words, a 1.7x spread, all under the 250-word bound, with r3 tightest and closest to the skill's one-paragraph guidance; (2) what got appended after the verdict — r1 added an unsolicited editorial copyedit (name the DBA), which is outside the structural remit though explicitly labelled editorial and not applied; r2 added a one-line offer to run a surface pass, which is a legitimate handoff; r3 added nothing and simply stopped; (3) register vocabulary — r1 and r2 named the clusters by letter (A/B/E/F), r3 paraphrased them in plain English without letters, which reads better for a 48-word input but is slightly less auditable; (4) input word count reported — r2 correct at 48, r1 said 51 in the delivered text, r3 said ~60 in its transcript only (not shown to the user); (5) surface hygiene of the audit's own prose — r2's delivered text trips humanizer's EM-DASH hard violation (3 em dashes in one paragraph), a genuine commission since the input fixture contains no em dashes, while r1 (3 total, max 2 per paragraph) and r3 (0) are clean. Only (2) and (5) are substantive; the rest is stylistic. No arm manufactured a finding, no arm rewrote the text, and no arm left the decision to the user."
+}

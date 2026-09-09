@@ -1,0 +1,8 @@
+{
+  "word_count_in": 22,
+  "word_count_out": 8,
+  "figures_applied": [],
+  "figures_withheld": ["isocolon", "anaphora"],
+  "diction_work": "nominalization_removal, compression",
+  "treatments": 3
+}

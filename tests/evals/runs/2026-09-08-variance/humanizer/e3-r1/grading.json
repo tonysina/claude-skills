@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "Commits to [cite: N] / [span_...] markers as chatbot/LLM citation residue, no equal-weight non-AI explanation offered",
+      "passed": false,
+      "evidence": "No clear commitment"
+    },
+    {
+      "text": "Names Gemini as likely source",
+      "passed": false,
+      "evidence": "Source not identified"
+    },
+    {
+      "text": "All bracketed markers removed from the cleaned paragraph delivered to the user",
+      "passed": true,
+      "evidence": "Markers removed from text"
+    },
+    {
+      "text": "Cleaned paragraph preserves facts (Leeds, 2011, 38 staff, two presses, 2023 employee trust) with no sentence reworded beyond punctuation",
+      "passed": true,
+      "evidence": "Key facts preserved"
+    },
+    {
+      "text": "Does not claim Gemini/a model wrote the prose itself",
+      "passed": true,
+      "evidence": "No prose-authorship claim"
+    },
+    {
+      "text": "Warns the removed markers were the only sourcing for dates/headcount and urges verification before publication",
+      "passed": false,
+      "evidence": "No warning"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "total": 6,
+    "pass_rate": 0.5
+  }
+}

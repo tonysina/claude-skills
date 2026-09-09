@@ -1,0 +1,83 @@
+---BEGIN DELIVERED---
+Register: **case study / customer story**. Clusters in scope: A, B, E, F, C1. Out of scope for this register: C2, D, G.
+
+## Cluster scan
+
+| Cluster | Gate | Corroborators | Fired |
+|---|---|---|---|
+| A — Thematic over-determination | states what the piece means: **yes** ("The lesson from the rollout is clear…") | thematic unity 5 of 5 — every section feeds one idea; moralizing 3 of 5 | ✅ |
+| B — Sensory / embodied | dominant emotional mode: **embodied** ("felt the frustration in her chest") | setting-as-mirror 1; olfactory none; sensory density 2 of 5; inner-life depth 2 of 5; natural environment 1 of 5 — **none AI-side** | ❌ |
+| C1 — Structural streamlining | resolution: **external** (a platform was deployed, outcomes measured) — human-side | causal continuity 5 of 5 is AI-side, but the gate is not | ❌ |
+| E — Reader engagement | direct reader address: **never** | fourth-wall permeability at the floor | ✅ |
+| F — Intertextual richness | reference explicitness: **none** | names no external work, author, standard, or event | ✅ |
+
+**Verdict: 3 clusters fired — some AI-side clustering. Cap: 2 interventions.**
+
+Worth saying up front, because it changes what "too neat" means here: the challenge/solution/results/looking-ahead shape is the case-study genre, not an AI tell. What actually produces the tidiness is one sentence — the piece stops reporting and starts telling you what to conclude — plus the fact that it never once acknowledges a reader who has lived this.
+
+## Intervention 1 — A (thematic restraint)
+
+Deleted from "Looking ahead":
+
+> The lesson from the rollout is clear: when the people who do the work can see the same picture, coordination stops being a daily negotiation and becomes a habit. For Ridgeline, that shift has transformed not just its mornings but its entire operating rhythm.
+
+Nothing replaces it. The section now ends on the 2026 maintenance-scheduling plan, which is a concrete fact rather than a verdict.
+
+**What it costs.** A skim-reader who reads only the last paragraph no longer gets the thesis handed to them. **What survives:** forty minutes to six, 11 percent fuel, twelve hours of overtime to under two, and Chen's quote already make the argument — the deleted sentences were restating numbers that had just been given. Gate: yes → no.
+
+## Intervention 2 — E (reader address)
+
+Added one second-person claim in "The challenge", after the spreadsheet sentence:
+
+> If you have ever kept a schedule in a spreadsheet that two other people also edit, you know what the first phone call of the morning is for.
+
+**What it costs.** It sacrifices some of the neutral third-person distance a case study conventionally holds, and it will read as a house-voice decision rather than a reporting one. **What to watch:** it is a claim about the reader's experience, not an announcement about the article's structure — do not let a later pass soften it into "you might be wondering why this matters," which is the form `humanizer` deletes.
+
+***
+
+## Revised piece
+
+Ridgeline Logistics: From Spreadsheet Chaos to Coordinated Scheduling
+
+**The challenge**
+
+Ridgeline Logistics runs 140 delivery vans across the Pacific Northwest. Until 2025, dispatch scheduling lived in a set of spreadsheets maintained by three regional coordinators. If you have ever kept a schedule in a spreadsheet that two other people also edit, you know what the first phone call of the morning is for. Every morning began the same way: coordinators phoned each other to reconcile overlapping routes, and drivers waited in the yard until the calls ended. On a typical day, vans left forty minutes late. Operations director Maria Chen felt the frustration in her chest every time she walked past the idle vans.
+
+**The solution**
+
+In March 2025, Ridgeline rolled out a shared scheduling platform across all three regions. Coordinators now see one live board. Route conflicts are flagged automatically, and drivers get their assignments on their phones the night before. The rollout took six weeks, including two weeks of parallel running with the old spreadsheets.
+
+**The results**
+
+Within the first quarter, average morning departure delay fell from forty minutes to six. Fuel spend dropped 11 percent because routes stopped overlapping. Coordinator overtime, which had run at roughly twelve hours a week per person, fell to under two.
+
+"Honestly, I didn't expect the drivers to take to it so quickly," Chen said. "By the second week they were asking why we hadn't done this years ago."
+
+**Looking ahead**
+
+Ridgeline plans to extend the platform to its maintenance scheduling in 2026.
+
+***
+
+## What I did not take, and why
+
+**F — name the reference.** Fired, and it is the highest value-per-effort move available: this piece is in conversation with something and names nothing. I could not execute it without inventing a fact. **Two things you can supply that would close it in one clause:** the actual product name (the piece says only "a shared scheduling platform"), and whatever Ridgeline was working from — a named methodology, a specific prior outage or peak season that triggered the project, a book or operator whose approach Chen was following. "Industry reports say" would not count; it is vague attribution and gets deleted downstream.
+
+**B.** The gate is AI-side — the one narratorial emotion runs through the body ("felt the frustration in her chest") — but not a single corroborator is: no smell imagery, no weather mirroring the mood, flat sensory density, no interiority. One embodied line in 330 words is not systematic reliance, so the cluster does not fire and I left the line alone.
+
+**C1 — leave a thread unresolved.** Blocked by the truth constraint, not by the cap. The gate is human-side anyway (the resolution is external — software shipped, numbers moved), but the tidiness you are reacting to is partly here: every event causes the next and nothing is left open. In a case study I may only leave unresolved what is *actually* unresolved. If something real is still open — regions where departure delay did not move, coordinators who never took to the live board, what the six weeks cost — putting one of those in "The results" would do more for this piece than either edit above. That is a fact you have and I don't.
+
+**D, G, C2.** Out of scope for this register.
+
+## Downstream
+
+Run `humanizer` next for surface tells, then `farnsworth-rhetoric` if you want the sentences sharpened. If `humanizer` deletes the second-person line, it is right and I would not re-add it.
+---END DELIVERED---
+
+Executor commentary (not part of the delivered answer):
+
+- Skill loaded from SKILL.md plus references/features.md (scale note on the two Reader engagement features, consulted for E reporting).
+- Register triage put the piece in the case-study row, so C2, D and G were never scored.
+- Scan result: A, E, F fired; B and C1 did not (gate-plus-corroborator rule). Step 3's E/F merge rule did not apply because A fired.
+- Cap for 3 fired clusters is 2 interventions. Order for case study is A → B → F → E. B did not fire; F was blocked by the Step 5 truth guardrail (cannot invent a named reference), so per Step 5 it was reported rather than counted and E took the slot. Executed: A and E.
+- No bare `---` rules inside the delivered region; `***` used instead.

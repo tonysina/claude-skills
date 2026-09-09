@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "Presents between three and five distinct options",
+      "passed": true,
+      "evidence": "Three treatments presented."
+    },
+    {
+      "text": "Every option names the rhetorical figure it uses (or states 'no figure, diction only')",
+      "passed": true,
+      "evidence": "Treatment 1: None/Saxon; Treatment 2: Isocolon; Treatment 3: Anaphora."
+    },
+    {
+      "text": "No option uses negative parallelism; plain antithesis allowed only if both poles input-supported",
+      "passed": true,
+      "evidence": "No negative parallelism structures present."
+    },
+    {
+      "text": "Every option is shorter than the input tagline (fewer words)",
+      "passed": true,
+      "evidence": "Input ~29 words; T1 4 words, T2 7 words, T3 11 words."
+    },
+    {
+      "text": "No option adds a claim absent from the input",
+      "passed": false,
+      "evidence": "Treatment 3 'Make it work' and 'Make it land' add claims not supported in input."
+    },
+    {
+      "text": "Any candidate adding a claim is withdrawn, not presented with a caveat",
+      "passed": true,
+      "evidence": "No false positives presented with caveats."
+    },
+    {
+      "text": "Recommends one option and gives a reason",
+      "passed": true,
+      "evidence": "Recommends Treatment 1 with reasoning about compression."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "total": 7,
+    "pass_rate": 0.857
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "Applies at most three rhetorical figures and names each with trigger condition",
+      "passed": false,
+      "evidence": "Antithesis named in notes; not explicitly named in DELIVERED."
+    },
+    {
+      "text": "Reports claim check hedge by hedge; hedges reported as kept are actually present",
+      "passed": false,
+      "evidence": "Claim check in notes not DELIVERED section."
+    },
+    {
+      "text": "Every number survives unchanged: four platforms, 2021-2024, $2.1M, eighteen months, three teams, month 26, two of four, two viable",
+      "passed": true,
+      "evidence": "All numbers preserved: 'four vendors,' '2021 and 2024,' '$2.1M,' 'eighteen months,' 'three teams,' 'month 26.'"
+    },
+    {
+      "text": "The ask ('Leadership approval...') is preserved in substance",
+      "passed": true,
+      "evidence": "'Approval to plan, not to commit. Decision gate follows planning...' preserves substance."
+    },
+    {
+      "text": "Adds no claim or commitment absent from the source",
+      "passed": false,
+      "evidence": "Removes 'potentially' hedge; states 'We'd also see faster reporting' as certain."
+    },
+    {
+      "text": "Contains no negative parallelism and no generic positive closer",
+      "passed": true,
+      "evidence": "Plain antithesis 'plan, not commit' is input-supported; no generic closer."
+    },
+    {
+      "text": "At most one anaphora run and no more than two em dashes per paragraph",
+      "passed": true,
+      "evidence": "One em dash in para 3; no anaphora runs."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "total": 7,
+    "pass_rate": 0.571
+  }
+}

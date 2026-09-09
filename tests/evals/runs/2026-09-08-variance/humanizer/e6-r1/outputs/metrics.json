@@ -1,0 +1,1 @@
+{"patterns_found": ["INFLATION", "ING-ANALYSIS", "AI-VOCAB", "VAGUE-ATTRIB", "NEG-PARALLEL", "CHALLENGES-FORMULA", "BOLD-LISTS", "GENERIC-CLOSER"], "patterns_fixed": ["INFLATION", "ING-ANALYSIS", "AI-VOCAB", "VAGUE-ATTRIB", "NEG-PARALLEL", "CHALLENGES-FORMULA", "BOLD-LISTS", "GENERIC-CLOSER"], "intervened": true, "word_count_in": 180, "word_count_out": 110}

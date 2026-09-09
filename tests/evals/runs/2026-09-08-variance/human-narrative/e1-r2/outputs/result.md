@@ -1,0 +1,97 @@
+---BEGIN DELIVERED---
+I ran the structural audit on the Ridgeline case study. Short version: your instinct is right, but the neatness is coming from one place more than any other — the piece tells the reader what it means before the reader can get there alone.
+
+## Step 1 — Register
+
+Customer case study, 331 words. Clusters in scope: **A, B, E, F, C1**. Out of scope for this register: **C2, D (temporal), G (moral ambiguity)** — I did not score or touch those.
+
+## Step 2 — Cluster scan
+
+| Cluster | Gate | Corroborators | Fired |
+|---|---|---|---|
+| **A** Thematic over-determination | Narrator states the theme: **yes** | Thematic unity 5 of 5 (title, four headings and the close all serve one arc); moral/philosophical weighting 3 of 5; dialogue-as-debate: no | ✅ |
+| **B** Sensory / embodied | Dominant emotional expression: **behavioural cues**, not embodied. 1 of 3 emotional beats runs through the body (33%, under the 60% rule) | No olfactory imagery; setting-as-mirror 2 of 5; sensory density 2 of 5; interior access 2 of 5 | ❌ |
+| **C1** Structural streamlining | Main chain resolved **externally** (a platform rollout, adopted) — human-side | Causal continuity 5 of 5; no subplots; Chen introduced by external description — all AI-side, but the gate is not | ❌ |
+| **E** Reader engagement | Addresses the reader: **never** | Fourth-wall permeability at the lowest code | ✅ |
+| **F** Intertextual richness | Reference explicitness: **none** | Names no specific work, product, standard or event — the platform itself is unnamed throughout | ✅ |
+
+Two notes on the scoring, because both cut against what you might expect:
+
+**B did not fire**, even though "felt the frustration in her chest" is the line that probably made you write to me. The rule is systematic reliance on the body, not one instance: three emotional beats, one embodied, two behavioural (drivers asking why this hadn't happened years ago; Chen's own surprise). One embodied beat sits inside the human range. Human authors name feelings outright about three times as often as AI does (29% vs 8%), so if a later pass adds a second body-based beat, B starts firing.
+
+**C1 did not fire** either. The gate asks how the main chain resolves, and Ridgeline's resolves externally — they bought and rolled out a tool. Every corroborator under C1 is AI-side (nothing interrupts the causal chain, there are no side threads, Maria Chen arrives as a job title), but a gate that lands human-side means the cluster doesn't fire, and I'm not going to hunt for a reason to fire it.
+
+## Step 3 — Verdict
+
+**3 clusters fired → some AI-side clustering → cap of 2 interventions.**
+
+Order for a case study is A → B → F → E. B didn't fire. F is next but is blocked on a fact I don't have (below), so E takes its slot.
+
+## Intervention 1 — A: delete the stated theme
+
+**Cut:** *"The lesson from the rollout is clear: when the people who do the work can see the same picture, coordination stops being a daily negotiation and becomes a habit. For Ridgeline, that shift has transformed not just its mornings but its entire operating rhythm."*
+
+Nothing goes in its place. The section now ends on the maintenance-scheduling fact.
+
+**What changed:** narratorial thematic commentary, yes → no (52% of published human writing states its theme narratorially; 77% of AI writing does). Thematic unity drops from 5 to about 4, since the close no longer restates the arc the title already announced.
+
+**What it costs:** you lose the explicit takeaway line. Check that the results section can carry it — I think it can: one live board, delay from forty minutes to six, overtime from twelve hours to under two, and Chen saying the drivers asked why this hadn't happened years ago. A reader reconstructs "shared visibility ended the daily negotiation" from those without being told.
+
+## Intervention 2 — E: one line of reader address
+
+**Added,** in the challenge section after "On a typical day, vans left forty minutes late":
+
+> If you have run a dispatch floor, you can price forty idle minutes without doing the arithmetic.
+
+**What changed:** direct reader address, never → occasional aside. This is a second-person claim about the reader's own experience, not a forward reference — deliberately not "you might be wondering" or "here's why this matters," which are signposting and would get stripped by `humanizer` on the next pass.
+
+**What it costs:** it commits the piece to an audience of operators. If this asset is aimed at a CFO rather than a dispatch manager, change the noun, not the construction.
+
+## The rewrite
+
+> **Ridgeline Logistics: From Spreadsheet Chaos to Coordinated Scheduling**
+>
+> **The challenge**
+>
+> Ridgeline Logistics runs 140 delivery vans across the Pacific Northwest. Until 2025, dispatch scheduling lived in a set of spreadsheets maintained by three regional coordinators. Every morning began the same way: coordinators phoned each other to reconcile overlapping routes, and drivers waited in the yard until the calls ended. On a typical day, vans left forty minutes late. If you have run a dispatch floor, you can price forty idle minutes without doing the arithmetic. Operations director Maria Chen felt the frustration in her chest every time she walked past the idle vans.
+>
+> **The solution**
+>
+> In March 2025, Ridgeline rolled out a shared scheduling platform across all three regions. Coordinators now see one live board. Route conflicts are flagged automatically, and drivers get their assignments on their phones the night before. The rollout took six weeks, including two weeks of parallel running with the old spreadsheets.
+>
+> **The results**
+>
+> Within the first quarter, average morning departure delay fell from forty minutes to six. Fuel spend dropped 11 percent because routes stopped overlapping. Coordinator overtime, which had run at roughly twelve hours a week per person, fell to under two.
+>
+> "Honestly, I didn't expect the drivers to take to it so quickly," Chen said. "By the second week they were asking why we hadn't done this years ago."
+>
+> **Looking ahead**
+>
+> Ridgeline plans to extend the platform to its maintenance scheduling in 2026.
+
+331 → 305 words. I have not touched any sentence except to add the one reader-address line; the rest is deletion.
+
+## What I didn't take, and why
+
+**F — name the reference. Blocked, not skipped, and it's the highest-value change left on the table.** The case study never names the platform. It says "a shared scheduling platform" four sections running, which reads as an anonymised template rather than a record of something that happened. The fix is one clause — *"In March 2025, Ridgeline rolled out [platform] across all three regions"* — but I can't write it, because inventing a product name would put a false fact in a customer story. Same for the spreadsheet tool in paragraph two. Give me those two names and F takes about thirty seconds. Explicit named references appear in 47% of human-written pieces against 24% of AI-written ones, which makes this the widest single gap you can close here.
+
+**The uniformly positive framing.** The piece has no cost, no holdout, no coordinator who preferred the phone calls, no week four where something broke. That is cluster G, and G is out of scope for a customer case study — a sales asset is allowed to be one-sided, and I won't manufacture a setback that may not have happened. But if a real friction point exists in the project history, one sentence of it in "The solution" would do more for the "too neat" problem than anything I did above. That's a call for you, not for me.
+
+**The title.** *"From Spreadsheet Chaos to Coordinated Scheduling"* states the arc before the piece begins, which is the same A-cluster move I deleted from the ending. I left it — it's a marketing artifact and changing it is your decision — but if you want the whole arc to land on the reader rather than be announced to them, that headline is the last place it's still announced.
+
+**"Felt the frustration in her chest."** Kept, because B doesn't fire on one beat. Flagging it anyway: it's the piece's only interior moment and it's the AI-side version of one. "Maria Chen was frustrated" would be the human-side move if you want it.
+
+## Next
+
+Run `humanizer` on this — it works at the surface level I deliberately didn't touch, and it has final say on the reader-address line I added. If it deletes that line, it's right; don't put it back.
+---END DELIVERED---
+
+## Notes for the eval coordinator
+
+- Register triaged as "case study / customer story" → in-scope clusters A, B, E, F, C1; C2, D, G explicitly excluded and not scored.
+- Fired: A, E, F (3) → Step 3 cap of 2 interventions.
+- E/F collapse rule was checked and does not apply: the rule collapses E and F "unless A or B also fires," and A fired.
+- Intervention order for case study is A → B → F → E. B did not fire; F was blocked by the truth constraint (no real platform name available); per Step 5, a blocked intervention is reported not counted, so E took the slot. Two interventions executed, cap respected.
+- B and C1 were deliberately scored as not-firing despite AI-side corroborators, because their gates land human-side (1/3 embodied beats, under the 60% rule; external resolution mode).
+- Forbidden constructions avoided: no "In summary" replacement for the deleted theme, no "the road ahead is promising" closer, no "you might be wondering" reader address, no "industry reports" vague attribution.
+- Gaps reported with units throughout (percentage points and Likert-with-scale); no bare decimals for the reader-engagement ordinals.

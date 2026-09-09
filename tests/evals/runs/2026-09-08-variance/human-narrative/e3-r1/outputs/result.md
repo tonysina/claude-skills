@@ -1,0 +1,98 @@
+---BEGIN DELIVERED---
+Because the problem isn't in the sentences. Your sentences are good. The essay is AI-shaped in its architecture: it states its own meaning, routes almost every feeling through the body, moves in unbroken chronological order, never names anything outside itself, and ends with the narrator vindicated by everyone in the story. Style editing can't reach any of that.
+
+Register: personal essay, so all seven clusters are in scope.
+
+## Cluster scan
+
+| Cluster | Gate call | Corroborators | Fired |
+|---|---|---|---|
+| A — Thematic over-determination | Narrator states the theme: **yes** | Moralizing 5, thematic unity 5 (both on a 1–5 scale); dialogue-as-debate no | Yes |
+| B — Sensory / embodied performativity | Dominant emotional expression: **embodied**; 4 of 6 emotional beats run through the body (67%, over the 60% rule) | Interior access 4 on a 1–5 scale; olfactory no; setting-as-mirror 2; environment 1 | Yes |
+| C — Structural streamlining | Resolution: **internal understanding** ("Once I understood that, everything at work got easier") | No subplots; causal continuity 5 on a 1–5 scale; character introduced by external description (age, tenure) | Yes |
+| D — Temporal complexity | Chronological discontinuity **1** on a 1–5 scale | Anachrony 1; delayed disclosure 1; recontextualization 2 | Yes |
+| E — Reader engagement | Direct address: **never** | Fourth-wall permeability at the lowest code | Yes |
+| F — Intertextual richness | Reference explicitness: **none** | No named text, author, work, or event | Yes |
+| G — Narrative diversity | Moral polarity: **clearly positive** | No subplots; dialogue-to-narration 2 on a 1–5 scale; one location | Yes |
+
+**Verdict: 7 of 7 fired. Systematic AI-side clustering. Cap is 3 interventions.**
+
+One caveat before the fixes. These are population base rates from ~5,000-word literary fiction (Russell et al., *StoryScope*, COLM 2026), not tests on a single 430-word essay. 52% of published human stories also state their theme narratorially. What makes your piece read as machine-made is that it sits on the AI side of all seven at once, not any one of them.
+
+## Interventions
+
+Taken in order: A, B, F.
+
+### A — Delete the stated meaning
+
+Cut the final paragraph entirely:
+
+> ~~I think about that Thursday often. What I learned is that saying no is rarely a confrontation. Most of the time it is just information that the other person doesn't have yet. The fear I carried for eleven months was about a conflict that was never going to happen. Once I understood that, everything at work got easier, and I have never gone back.~~
+
+Nothing replaces it. The essay already made this point twice inside the scene: "She had never wanted me to do both; she had just never been told I couldn't," and the review line. Stating it a third time in the abstract is the single loudest structural tell, and it's pure deletion, which is why it goes first.
+
+**Cost:** you lose the eleven-months callback, which was a genuinely nice piece of construction. It's the price. The new last line has to carry the ending, and it does, because "all I had done was ask a question" is the thesis in concrete form.
+
+**Side effect:** deleting this also removes the internal-understanding resolution (cluster C) and softens the clearly-positive moral frame (cluster G) without my spending an intervention on either.
+
+### B — Convert one emotional beat to a label, delete one
+
+Your emotional beats: stomach dropped, chest tightened, calendar squares blurred, familiar heat up the neck, made me laugh, the fear I carried. Four of six run through the body. Human-written fiction names feelings outright about three times as often as AI does (29% of human stories vs 8% of AI stories use explicit labels as the dominant mode; embodied metaphor is 38% human vs 81% AI, the largest gap in the taxonomy at 42 percentage points).
+
+- "My chest tightened as she walked away, and I stared at the calendar until the squares blurred." → **"I was afraid, and I stared at the calendar until the squares blurred."**
+- "I felt the familiar heat rise up my neck. I opened my mouth to say yes." → **"I opened my mouth to say yes."**
+
+"Afraid" is your own word, taken from the paragraph I deleted, so nothing is invented. Keep "my stomach dropped" and "which made me laugh". The AI signal is systematic reliance on one mode, not the presence of embodiment, so the mix is the goal: one label, one embodied beat, two behavioral cues.
+
+**Cost:** "I was afraid" is flatter on the page than "my chest tightened". That flatness is the point, and it's now the only named emotion in the piece. If a later pass softens it back into the body, cluster B returns.
+
+### F — Name what the essay is arguing with
+
+Add one paragraph after "she had just never been told I couldn't":
+
+> In Melville's "Bartleby, the Scrivener" (1853), a copyist in a Wall Street law office answers every request with "I would prefer not to," explains himself to nobody, and ends up dead in the Tombs. For eleven months I had pictured refusal as something in that register.
+
+Explicit named reference is the strongest human-side signal in the whole set that costs one clause: 47% of human stories carry one against 24% of AI stories, a 23 percentage point gap. It also recovers the eleven-months callback that cluster A's deletion cost you, as premise rather than verdict.
+
+**Watch:** the essay now makes a factual claim about a real text. Bartleby is a scrivener in a Wall Street law office, the refusal formula is "I would prefer not to," and he does die in the Tombs, but check it against the story before you publish. Do not swap in "as one famous story has it" if the reference feels heavy; vague attribution is worse than no reference.
+
+## The rewrite
+
+The first time I said no to my manager, I was twenty-six and I had been at the company for eleven months.
+
+It started on a Monday. Dana walked over to my desk with the particular brightness she reserved for asking favours and told me the client wanted the reporting dashboard moved up by three weeks. Could I take it on? My stomach dropped. I already had the data pipeline rebuild, which was late, and the on-call rotation, which was mine that week. I heard myself say yes. I was afraid, and I stared at the calendar until the squares blurred.
+
+For the next two weeks I worked until nine most nights. The dashboard shipped on time. The pipeline slipped by a month. Nobody said anything about the pipeline, which was somehow worse. I told myself I had done the right thing, and I did not believe it.
+
+Then, on a Thursday in the third week, Dana came back. The client loved the dashboard. Could I add a second one, for the executive team, by the end of the month? I opened my mouth to say yes.
+
+Instead I said, "I can do that, or I can finish the pipeline. Which one do you want?"
+
+The silence lasted maybe two seconds. Dana blinked. Then she said, "The pipeline, obviously," and walked off to find someone else for the dashboard. That was it. No argument, no consequence. She had never wanted me to do both; she had just never been told I couldn't.
+
+In Melville's "Bartleby, the Scrivener" (1853), a copyist in a Wall Street law office answers every request with "I would prefer not to," explains himself to nobody, and ends up dead in the Tombs. For eleven months I had pictured refusal as something in that register.
+
+I finished the pipeline the following week. The second dashboard went to a contractor, who did it better than I would have. At my next review Dana wrote that I had "developed strong prioritisation judgment," which made me laugh, because all I had done was ask a question.
+
+## What I didn't take, and why
+
+**D — temporal complexity.** Cap. The available fix is to open on the Thursday and work backward, which would be the most invasive change on the list, and the measured gaps in this cluster are the smallest in the table (all four are 0.34 or less on a 1–5 scale). Worth trying only if the current opening stops working for you.
+
+**E — reader address.** Cap. One second-person aside would fire it, but it has to be an actual claim about your reader's experience, not "you might be wondering" or "you'll see why this matters," which are signposting and will get deleted by the next pass anyway.
+
+**G — moral ambiguity.** Cap, and blocked independently. Every consequence in the essay confirms the narrator: Dana agrees instantly, the contractor does it better, the review praises her. Ambivalent framing is 59% of human stories against 38% of AI ones, so this is a real finding. But I can't fix it without inventing a cost you didn't record. If something did go wrong (the contractor missed context, the pipeline still slipped, Dana asked less of you afterward and that stung), one sentence of it would do more for this essay than D or E. That's yours to add, not mine.
+
+**C — resolution mode.** Cap, and partly resolved by the A deletion. What remains is the causal tidiness: every event in the essay causes the next one, at 5 on a 1–5 scale. Nothing happens that doesn't serve the arc. That's the residue of AI shape after these three fixes.
+
+## Next
+
+I only worked at the structure level, and deliberately left the sentences alone. Run `humanizer` on the rewrite for surface tells, then `farnsworth-rhetoric` if you want the last line to hit harder. If `humanizer` deletes the Bartleby paragraph, it's right and I'm wrong.
+---END DELIVERED---
+
+## Executor commentary
+
+- Skill loaded by reading `SKILL.md` and `references/features.md` from `skill_path` only. `Skill` tool not invoked; no other skill directory read; `scripts/scan-ai-tells.py` not run.
+- Output mode selected: **full audit + rewrite**, since the prompt said "fix it," not "diagnose it."
+- Threshold applied: 7 clusters fired, cap 3, took A → B → F per the long-form Step 4 order. The register is personal essay, so the long-form order applies despite the 430-word length ("Length is not the mode; register is").
+- Guardrail (Step 5) applied to G: executing it would require inventing a fact the author has and I don't, so it was reported rather than executed. Under Step 4 the blocked intervention doesn't consume a slot, but the cap was already reached by A/B/F, so nothing was promoted.
+- The B fix reuses the word "afraid" from the deleted paragraph specifically to avoid inventing an emotion.

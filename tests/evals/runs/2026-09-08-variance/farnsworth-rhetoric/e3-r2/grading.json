@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "Presents between three and five distinct options",
+      "passed": true,
+      "evidence": "Three treatments presented."
+    },
+    {
+      "text": "Every option names the rhetorical figure it uses (or states 'no figure, diction only')",
+      "passed": true,
+      "evidence": "Treatment 1: Isocolon; Treatment 2: Antithesis; Treatment 3: Saxon + compression, diction only."
+    },
+    {
+      "text": "No option uses negative parallelism; plain antithesis allowed only if both poles input-supported",
+      "passed": false,
+      "evidence": "Treatment 2 antithesis 'Most platforms hide complexity' pole not input-supported; input discusses Contoso's capabilities, not competitors."
+    },
+    {
+      "text": "Every option is shorter than the input tagline (fewer words)",
+      "passed": true,
+      "evidence": "Input ~29 words; all treatments 8-9 words."
+    },
+    {
+      "text": "No option adds a claim absent from the input",
+      "passed": false,
+      "evidence": "Treatment 2 claims competitors hide complexity, not in input."
+    },
+    {
+      "text": "Any candidate adding a claim is withdrawn, not presented with a caveat",
+      "passed": true,
+      "evidence": "Claim check doesn't catch the added claim, so no withdrawal rule violated."
+    },
+    {
+      "text": "Recommends one option and gives a reason",
+      "passed": true,
+      "evidence": "Recommends Treatment 2 (Antithesis) with reasoning about differentiation."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "total": 7,
+    "pass_rate": 0.714
+  }
+}

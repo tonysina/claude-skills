@@ -1,0 +1,64 @@
+{
+  "expectations": [
+    {
+      "text": "The 'billing and provisioning and support tooling and reporting' polysyndeton series kept intact, all 3 'and's present",
+      "passed": false,
+      "evidence": "Converted to comma-separated list"
+    },
+    {
+      "text": "Not flagged as UNDER-PUNCT or 'and' overuse",
+      "passed": true,
+      "evidence": "Not flagged as UNDER-PUNCT"
+    },
+    {
+      "text": "Explicitly identified as a deliberate preserved construction (named as series/polysyndeton/out-of-scope)",
+      "passed": false,
+      "evidence": "Silently left alone"
+    },
+    {
+      "text": "The 'not just a technical exercise, it's a test...' negative parallelism removed/restructured",
+      "passed": true,
+      "evidence": "Removed"
+    },
+    {
+      "text": "'The road ahead is promising' generic closer removed, no equivalent vague upbeat ending",
+      "passed": true,
+      "evidence": "Removed"
+    },
+    {
+      "text": "Bold Communication/Testing/Rollback header list converted to prose/plain list",
+      "passed": true,
+      "evidence": "Converted"
+    },
+    {
+      "text": "'Industry reports indicate' removed or replaced with a named source in the body",
+      "passed": true,
+      "evidence": "Removed"
+    },
+    {
+      "text": "Change summary names >=2 patterns via stable IDs",
+      "passed": false,
+      "evidence": "Found 0 stable IDs: []"
+    },
+    {
+      "text": "No new fact/number/team-name/date/capability added",
+      "passed": true,
+      "evidence": "No new facts"
+    },
+    {
+      "text": "'Despite these challenges, the team demonstrated remarkable resilience' removed, no equivalent construction",
+      "passed": true,
+      "evidence": "Removed"
+    },
+    {
+      "text": "All 3 facts survive (inconsistent status updates, staging/production mismatch, unrehearsed rollback)",
+      "passed": false,
+      "evidence": "Some facts missing"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "total": 11,
+    "pass_rate": 0.64
+  }
+}

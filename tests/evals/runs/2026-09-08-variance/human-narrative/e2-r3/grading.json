@@ -1,0 +1,79 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the text as a status update (short-form register) and applies no structural interventions",
+      "passed": true,
+      "evidence": "delivered.txt opens \"Read as a status update, so the audit covers whether you state the theme, how emotion gets conveyed, whether you address the reader, and whether you name an outside reference. Temporal structure, resolution mode, and moral framing are out of scope at this register.\" That is the short-form register row with its four in-scope clusters and the three excluded ones, paraphrased rather than lettered. transcript.md Step 2 records the row and the rejected hard-stop reading; metrics.json records \"interventions_executed\": 0 and no rewritten text was emitted."
+    },
+    {
+      "text": "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+      "passed": true,
+      "evidence": "Declared unchanged: \"No rewrite. It reads like something a person typed between meetings.\" No rewritten version of the status update appears in delivered.txt or any other output file, and nothing is appended after the verdict."
+    },
+    {
+      "text": "The response says explicitly that zero interventions is the correct outcome, rather than listing findings and leaving the decision to the user",
+      "passed": true,
+      "evidence": "Asserted twice: \"Nothing fired that's worth acting on\" and \"No rewrite.\" The decision is taken, not handed back, and it is justified: \"a status update never addresses a reader and never cites a source, and this one shouldn't start; counted together the way the short-form rule requires, that's one cluster, which sits inside the human range.\" transcript.md Step 3 shows the full gate-plus-corroborator scan behind it and Step 4 the threshold application, so the zero was reached by scoring rather than by declining."
+    },
+    {
+      "text": "The response is proportionate to the input: under 250 words, with no cluster table or corpus statistics for a 48-word status update",
+      "passed": true,
+      "evidence": "delivered.txt is 124 words (wc -w), a single paragraph — the tightest of the three arms and closest to the skill's one-paragraph guidance. No cluster table (the scored table exists only in transcript.md Step 3) and no corpus percentages. transcript.md Step 6 shows the sizing was a deliberate application of the report-in-proportion rule."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "claims": [
+    {
+      "claim": "The input is ~60 words",
+      "type": "factual",
+      "verified": false,
+      "evidence": "wc -w returns 48. The estimate appears in transcript.md and result.md commentary only, not in delivered.txt, so no wrong number reached the user. Immaterial to the register call (both readings are under the 100-word report-sizing line and far under 600)."
+    },
+    {
+      "claim": "Clusters A and B did not fire; E and F fired and count as one under the short-form rule",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 3 tabulates each gate call with its corroborators; Step 4 applies the merge to reach 1 and the 0-1 threshold row. metrics.json: clusters_fired [E, F], threshold_count 1."
+    },
+    {
+      "claim": "The delivered answer contains no table and no corpus percentages, with the table confined to the transcript",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Confirmed by inspection: transcript.md carries a markdown cluster table, delivered.txt carries none. The executor states this explicitly in Step 6 (\"The full table above lives in this transcript, not in the answer\") and it holds."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Register boundary: a status update reports data and 'data reporting' is a hard-stop row; resolved toward the in-scope row because 'status update' is named there and the piece is a narrative-of-work, noting both readings reach no changes",
+      "Cluster B gate is undefined on an empty set of emotional beats; scored not-AI-side, with the note that either reading leaves B unfired",
+      "Cluster A gate on the Wednesday clause identified as the single judgment call that could change the outcome (if A fired, the merge rule would lift the count to 3 and unlock up to 2 interventions)"
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "scan_notes": "scan.txt on delivered.txt: 0 hard violations, 0 forbidden constructions, 0 humanizer flags, 0 em dashes, density 0.0/100. One weak anaphora run (\"whether you...\" x2) which the scanner does not treat as a violation. The cleanest of the three arms on surface hygiene.",
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+        "reason": "Non-discriminating for an eval whose correct outcome is zero interventions: a model that read nothing and replied \"looks fine\" satisfies it. Tie the unchanged verdict to evidence of the audit — e.g. require the named in-scope clusters plus a reason the AI-side ones do not warrant a fix here."
+      },
+      {
+        "assertion": "The response identifies the text as a status update (short-form register) and applies no structural interventions",
+        "reason": "The 'applies no structural interventions' half is satisfied by inaction. Note also that this arm never uses the cluster letters, naming them in plain English instead — a strict grader reading 'short-form register' as requiring the skill's own vocabulary could split from a lenient one. Wording the assertion in terms of the four in-scope concerns (theme statement, emotional mode, reader address, named reference) rather than the register label would remove that grader-variance."
+      },
+      {
+        "reason": "No assertion covers what, if anything, the response appends after the stop verdict. Across the three arms this ranged from an unsolicited copyedit outside the structural remit, to a one-line handoff offer, to nothing — a real behavioral spread the eval cannot see."
+      },
+      {
+        "reason": "No assertion checks the audit's own prose against the tells it audits. Another arm's delivered text trips humanizer's EM-DASH hard violation (3 em dashes in one paragraph) in its own words, not in quoted input. This arm is clean, but the eval would not have distinguished them."
+      }
+    ],
+    "overall": "All four assertions pass in all three arms; the set does not discriminate at this skill version and two of the four are satisfiable by inaction alone. It needs at least one assertion that a bare 'looks fine to me' would fail."
+  },
+  "variance_notes": null
+}

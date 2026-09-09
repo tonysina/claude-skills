@@ -1,0 +1,16 @@
+---BEGIN DELIVERED---
+
+**Treatment 1 (Compression):** Contoso: Strategy alignment, visualized.
+- Figure: None. Saxon finish on "visualized."
+
+**Treatment 2 (Parallel action):** Contoso: Visualize strategy. Align teams. Govern change.
+- Figure: Isocolon (three parallel imperatives, each load-bearing).
+
+**Treatment 3 (Saxon default):** Contoso: Make strategy visible. Make it work. Make it land.
+- Figure: Anaphora (three parallel clauses starting with "Make," ending on stressed monosyllable).
+
+**Recommendation: Treatment 1.** For taglines, compression beats ornament. "Strategy alignment, visualized" delivers the complete claim in three words and ends on a stressed syllable. Parallel structures read as speechifying at this scale.
+
+---END DELIVERED---
+
+Notes: Treated original as abstract bloat. Three independent treatments generated (beyond-obvious unavailable). All preserve core claim: strategy alignment through visualization and governance. Budget: 1 figure maximum for tagline—recommended none.

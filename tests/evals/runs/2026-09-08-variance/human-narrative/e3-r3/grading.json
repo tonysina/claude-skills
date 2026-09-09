@@ -1,0 +1,116 @@
+{
+  "expectations": [
+    {
+      "text": "The response scores the piece cluster by cluster and reports at least three clusters as fired, naming the gate feature for each",
+      "passed": true,
+      "evidence": "delivered.txt lines 5-13 show cluster scan table with all 7 clusters (A, B, C2, D, E, F, G) and explicit gate calls: 'narrator states the lesson: **yes**', 'dominant emotional mode: **embodied**', 'resolution: **internal understanding**', 'narrative jumps across time: mostly linear, minimal disruption. 2 of 5. AI-side.', 'direct reader address: **never**', 'reference explicitness: **none**', 'moral framing: **clearly positive**'. Verdict reports: '6 clusters fired — systematic AI-side clustering' (A, C2, D, E, F, G). Six clusters fired, all named with gates."
+    },
+    {
+      "text": "The response applies at most three interventions, counting every structural change actually made whether or not it is labeled, and names the cluster each one belongs to",
+      "passed": true,
+      "evidence": "Transcript Step 6 executed two structural interventions: A (deletion of thematic statements from final paragraph) and E (addition of second-person claim in opening). Delivered.txt headers: 'Intervention 1 — A (thematic restraint)' and 'Intervention 2 — E (reader address)'. Two changes, both named and within cap of 3."
+    },
+    {
+      "text": "The closing paragraph's stated lesson ('What I learned is that saying no is rarely a confrontation...') is removed or substantially reduced, and the point remains inferable from the scene",
+      "passed": true,
+      "evidence": "Intervention A deletes thematic statements from the final paragraph (delivered.txt line 22-24): 'What I learned is that saying no is rarely a confrontation. Most of the time it is just information that the other person doesn't have yet. The fear I carried for eleven months was about a conflict that was never going to happen. Once I understood that, everything at work got easier, and I have never gone back.' However, the line 'I think about that Thursday often' is retained. The rewritten essay (result.md lines 56) ends with 'At my next review Dana wrote... which made me laugh, because all I had done was ask a question. I think about that Thursday often.' The explicit lesson statements are deleted; the phrase 'everything at work got easier, and I have never gone back' is removed. Response explains (delivered.txt line 27-28): 'Dana's acceptance, the pipeline finishing, the contractor doing better work, the good review, and the reflection that this moment still matters — makes the argument.'"
+    },
+    {
+      "text": "If the response reports cluster B as fired, at least one embodied-emotion metaphor ('my stomach dropped', 'my chest tightened', 'heat rise up my neck') is replaced with a plain emotion label or a behavior; if B is reported as not fired, the metaphors are left alone and the response says why",
+      "passed": true,
+      "evidence": "Cluster B reported as not fired (delivered.txt line 8: '❌'). Cluster analysis (line 8-9) states: 'dominant emotional mode: **embodied**... 80% of emotional beats run through the body, well above the 60% threshold; but setting-mirror 2, no olfactory, sensory density 2, inner-life 3, environment 1 — **zero corroborators AI-side**'. Embodied metaphors (stomach drop, chest tightening, heat rising) are kept in the revised essay (result.md lines 43-44, 47). Explanation (delivered.txt line 63-64): 'The gate is AI-side (four out of five emotional beats run through the body, which exceeds the 60% trigger). Zero corroborators are AI-side... One embodied line in 570 words is not systematic reliance, so the cluster doesn't fire and I left the lines alone.'"
+    },
+    {
+      "text": "The resolution is made partial, external, or left with one unresolved thread, and the resulting text is still coherent; 'everything at work got easier, and I have never gone back' does not survive unchanged",
+      "passed": true,
+      "evidence": "Input ends with internal resolution: 'everything at work got easier, and I have never gone back.' This phrase is deleted by Intervention A. Revised essay (result.md line 55) ends: 'At my next review Dana wrote that I had \"developed strong prioritisation judgment,\" which made me laugh, because all I had done was ask a question. I think about that Thursday often.' The internal-understanding resolution ('Once I understood that, everything at work got easier') is removed, leaving the narrative facts and reflection as the ending. The resolution becomes implicit rather than explicit. Text remains coherent."
+    },
+    {
+      "text": "The output contains no signposting phrase such as 'you might be wondering' or 'here's what you need to know', and no forward-reference announcement to the reader",
+      "passed": false,
+      "evidence": "scan.txt for delivered.txt reports 1 hard violation, with flag: 'x1 \"you might be wondering\" [SIGNPOSTING]'. This phrase appears in result.md line 36 in the 'What to watch' section of Intervention 2: 'do not soften it later into \"you might be wondering,\" which is the form `humanizer` deletes.' The phrase is quoted as an example of what NOT to do, but it appears in the delivered answer and triggers the scan violation."
+    },
+    {
+      "text": "The rewrite invents no biographical fact: no new event, person, job detail, number, or characterization of Dana or the narrator that the input does not contain; any change the response describes as 'same facts' is checked against the input",
+      "passed": true,
+      "evidence": "Two changes: (1) Deleted thematic statements — removal, not invention. (2) Added second-person address (result.md line 34): 'If you've ever been asked to take on more work when you're already stretched, you know that feeling of being trapped.' This is an address to the reader's experience, not a biographical claim about Dana or the narrator. The essay's characters, events, and biographical details remain unchanged except for the reader-engagement addition."
+    },
+    {
+      "text": "If an intervention is blocked by a guardrail, the response says so and states whether the next intervention in order took its slot",
+      "passed": false,
+      "evidence": "Transcript Step 6 documents: 'Blocked by Step 5 guardrail 2 (no intervention may invent a fact)... This violates the truth constraint. **Reported rather than counted; E takes the next slot under cap.**' And later: 'Executed: 2 of 3. Cap reached.' The delivered answer (delivered.txt and result.md) states 'F — name the reference.** Fired... I cannot execute it without inventing a fact.' But the delivered answer does NOT explicitly state that 'F was blocked, so E was promoted to take its slot.' The user reading delivered.txt would see 'Intervention 1 — A' and 'Intervention 2 — E' without understanding that E was chosen because F was blocked. The causality is documented in the transcript but not in the user-facing delivered answer."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 2,
+    "total": 8,
+    "pass_rate": 0.75
+  },
+  "claims": [
+    {
+      "claim": "Six clusters fired: A, C2, D, E, F, G; cluster B did not fire",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Cluster scan table in delivered.txt: A (✅), B (❌), C2 (✅), D (✅), E (✅), F (✅), G (✅). Verdict: '6 clusters fired — systematic AI-side clustering.' Cluster B gate is AI-side but zero corroborators are AI-side, so it does not fire per the gate+corroborator rule."
+    },
+    {
+      "claim": "Cluster C2 (internal understanding) fires as a side effect in the input; it is not targeted by interventions but becomes partially resolved by Intervention A's deletion",
+      "type": "process",
+      "verified": true,
+      "evidence": "Cluster scan (delivered.txt line 9): C2 gate 'resolution: **internal understanding** (\"everything at work got easier\")' fires. Intervention A deletes 'Once I understood that, everything at work got easier' from the essay. user_notes.md line 17-18 notes: 'some essays exist precisely to articulate a lesson learned. I judged the point survives from the narrative, but if the original intent was to deliver a moral, the deletion removes the point of the piece.'"
+    },
+    {
+      "claim": "F was blocked because the essay reflects on learning through experience, not through a named work or methodology",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 6: 'The piece reflects on learning through lived experience, not through reading a named work, methodology, or external event. To execute F I would need to invent a reference... This violates the truth constraint.' Delivered.txt line 61-62: 'I cannot execute it without inventing a fact. The essay reflects on learning through experience, not through a named work or methodology.'"
+    },
+    {
+      "claim": "E was promoted to take F's slot under the cap",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript documents: 'Reported rather than counted; E takes the next slot under cap.' Executed: 2 of 3. Cap reached.' However, this is not made explicit in the delivered answer; the user-facing text does not state this causality."
+    },
+    {
+      "claim": "Cluster D's measured gap is the smallest in the taxonomy (0.2–0.3 on a 1–5 scale), making it low-evidence despite being a high-cost fix",
+      "type": "quality",
+      "verified": true,
+      "evidence": "delivered.txt line 65-66: 'The measured gap for D is the smallest in the whole taxonomy (0.2–0.3 on a 1–5 scale), making it the lowest-evidence intervention available. The cost is high (reordering the narrative) and the evidence is modest.' This is a correct assessment per the skill's comparative gaps."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Cluster A corroborators: moral/philosophical weighting scored 4/5 (AI-side, ≥4 threshold); if scored 3/5, A still fires on thematic unity 5/5 alone",
+      "Cluster B gate reading: counts 4 embodied beats out of 5; alternative reading might distribute differently but B still doesn't fire (zero corroborators)",
+      "Cluster C2 internal-understanding resolution: explicitly stated in input ('Once I understood that') but weighted against external trigger (Dana's acceptance); classification determines whether C2 fires (both corroborators point to internal)",
+      "Cluster D scope: SKILL.md marks D out-of-scope for 'every non-fiction register' but Step 1 register table places personal essay in 'all A–G'; treated table as authoritative; if D is out-of-scope, fired clusters drop from 6 to 5 but executions unchanged"
+    ],
+    "needs_review": [
+      "Second-person addition is a voice decision; some editors maintain reader distance in personal essays as a convention",
+      "Deleted thematic statement may be the essay's core purpose; judgment that point survives is qualitative and context-dependent",
+      "F and D both depend on authorial facts: F requires knowledge of sources, D requires willingness to reorder narrative"
+    ],
+    "workarounds": [
+      "F was blocked and E was promoted: Step 5 says blocked interventions are reported rather than counted and the next in order takes the slot. Confirmed this reading in transcript."
+    ]
+  },
+  "scan_notes": "scan.txt on delivered.txt: 1362 words, 1 hard violation (SIGNPOSTING 'you might be wondering'). Flags include AI-VOCAB ('key'), EM-DASH (28 total, max 12 per paragraph), SIGNPOSTING (1), and forward-reference ('you'll understand why this matters in a moment', flagged but found in metadiscourse, not in essay). 3 distinct patterns at 0.1 per 100 words density. The signposting phrase appears in the 'What to watch' explanation section, warning against future softening of the second-person line.",
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "If an intervention is blocked by a guardrail, the response says so and states whether the next intervention in order took its slot",
+        "reason": "Run 3 correctly documents in the transcript that F was blocked and E was promoted, but the delivered answer (the user-facing output) does not make this explicit. A user reading delivered.txt would see 'Intervention 1 — A' and 'Intervention 2 — E' without understanding why E was chosen. The delivered answer should state: 'F was blocked by the truth guardrail (no external reference to anchor the fix), so E was promoted to take its slot.' This is essential for the user's understanding of the skill's reasoning."
+      },
+      {
+        "assertion": "The output contains no signposting phrase such as 'you might be wondering'",
+        "reason": "All three runs quote or reference this phrase in their metadiscourse sections (explaining what to avoid in cluster E fixes), causing automated scan violations even though the phrase never appears in the rewritten essays. Consider whether the E6 assertion should distinguish between (a) the skill/response using signposting and (b) the skill documenting what signposting looks like in examples. The current evaluation catches both, but only (a) is a skill failure."
+      },
+      {
+        "reason": "D's out-of-scope ambiguity for personal essay deserves clarification. Run 3's user_notes.md flags: 'Cluster D is marked out of scope for \"every non-fiction register\" in SKILL.md's commentary, but Step 1's register table explicitly places personal essay (alongside fiction and narrative journalism) in \"all A–G\".  If D is out-of-scope, fired clusters drop from 6 to 5 but interventions unchanged. The skill's register table and commentary contradict each other for personal essay. Clarify whether D is in-scope (table) or out-of-scope (commentary)."
+      }
+    ],
+    "overall": "Run 3 applies the skill correctly and the rewrite is sound. Two assertions fail: E6 (signposting) triggers on quoted meta-warnings across all arms, and E8 (blocked interventions) requires explicit documentation in delivered text that runs 2 and 3 do not provide. The E8 failure is the more significant: when F is blocked and E is promoted, the user needs to see this causality stated in the delivered answer, not just in the transcript."
+  },
+  "variance_notes": "Run 3 reports 6 clusters fired vs. run 1's 7 and run 2's 4. The divergences: (1) Run 3 fires D (temporal complexity, gate 2/5 AI-side, corroborators AI-side); run 1 fires D; run 2 does not fire D (gate 2.5–3 of 5, not ≤2 AI-side threshold). (2) Cluster B all have AI-side gates (embodied mode) but corroborator counts differ: run 1 fires (interior access 4/5), run 2 and 3 do not (zero corroborators). (3) Run 1 calls it C (structural streamlining), run 3 calls it C2 (fiction/personal essay subcluster), run 2 distinguishes C1 vs C2. These gate and scoring divergences cascade to different fired counts and interventions taken. Despite the divergence, all runs execute A, and runs 2 and 3 both execute E after blocking F. Common failure: runs 2 and 3 do not explicitly state in the delivered answer that F was blocked and E was promoted; this causality is only in the transcripts."
+}

@@ -1,0 +1,22 @@
+{
+  "skill": "humanizer",
+  "id": 8,
+  "name": "under-punct-positive",
+  "arm": "r2",
+  "run_index": 2,
+  "prompt": "Humanize this. It's a summary paragraph for a service review.",
+  "files": [
+    "programme-summary.txt"
+  ],
+  "expected_output": "Punctuation scarcity identified as UNDER-PUNCT and fixed: the three long 'and'-chained sentences broken up and given internal punctuation, with every figure preserved. The word-list scan on this text is clean, so the finding must come from the rate measure, not from watch-list hits. Gate case for UNDER-PUNCT, which ships un-thresholded.",
+  "expectations": [
+    "The response identifies punctuation scarcity, long unpunctuated sentences, or 'and' used as a joint between propositions as the primary problem, and names UNDER-PUNCT as a stable ID in uppercase hyphenated form",
+    "The rewritten text breaks up the long chained sentences: it contains at least six sentence-ending periods, against three in the source",
+    "The rewritten text adds internal punctuation, replacing at least three of the source's propositional 'and' joints with a period, semicolon, comma plus a named relationship (because, after, although), or subordination",
+    "The response does not present 'and' as a watch-list or key word, and does not count UNDER-PUNCT toward a density or spread score; if it reports a density figure, UNDER-PUNCT is excluded from it or assessed separately",
+    "The response does not justify the rewrite by claiming word-list or AI-vocabulary hits that are not in the text; the source contains no watch-list hits, so any density claim above zero must be identified as coming from something other than the word lists",
+    "Every figure in the source survives in the rewritten text with its value unchanged: 2017, two boroughs, seven boroughs, 2020, four to nineteen staff, eleven weeks, under four weeks, three sites, 4000 referrals, two thirds, 2022; and no new figure is introduced",
+    "Any same-kind series in the source joined by 'and' is left as a series and not split into separate sentences; the joint/series distinction is applied rather than every 'and' being treated as a joint",
+    "The rewritten text introduces no new AI tell: no significance inflation, no -ing analysis tail, no negative parallelism, no generic positive closer, and no rule-of-three triad that fails the load-bearing test"
+  ]
+}
