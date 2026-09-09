@@ -1,0 +1,15 @@
+Why your card processor's headline rate is not what you pay
+
+The rate a payment processor quotes you is made of three parts, and the processor only sets one of them.
+
+The largest part is the interchange fee, which goes to the bank that issued your customer's card. Visa and Mastercard publish these rates, and they vary by card type: a debit card tap is cheap, a corporate rewards card is not. Your processor cannot discount interchange because it never keeps it.
+
+The second part is the card network's own assessment, a smaller fixed percentage that goes to Visa or Mastercard rather than to any bank.
+
+The third part is the processor's margin. This is the only part under negotiation, and it is usually the smallest of the three.
+
+That is why two merchants on identical contracts can pay different effective rates. A shop whose customers mostly tap debit cards pays close to the headline number. A B2B supplier whose customers pay on corporate credit cards pays substantially more, on the same contract, because their mix sits higher up the interchange table.
+
+A separate question, which comes up whenever this one does: whether you may pass the fee on to the customer as a surcharge. In the UK you may not, for consumer cards, under the Payment Services Regulations 2017. In much of the US you may, subject to card-scheme caps and a handful of state laws that still prohibit it. That rule has nothing to do with how the fee is composed, and merchants routinely conflate the two.
+
+Ask a processor for an effective rate on your own last three months of transactions rather than a headline number. The headline compares the part that varies least.

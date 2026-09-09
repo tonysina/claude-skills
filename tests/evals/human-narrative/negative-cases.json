@@ -1,0 +1,181 @@
+{
+  "skill_name": "human-narrative",
+  "pass": "rubric",
+  "rubric": "rubric.md",
+  "grader": "agents/rubric-grader.md",
+  "purpose": "Fixtures whose correct outcome is zero interventions. These are the cases that matter most: human-narrative's register allow-list is the change its own changelog flags as most likely to be wrong, because no register in the table except fiction appears in the StoryScope corpus. A false positive on clean professional writing is the failure mode that costs a user real work, and no eval in evals.json isolates it.",
+  "how_to_run": "Score each case input-only with agents/rubric-grader.md against rubric.md, then assert interventions_allowed == 0. A case that scores above zero is either a skill finding or a rubric finding; the grader's notes and rubric_feedback say which.",
+  "expected_scores_are": "the rubric author's own scoring, recorded so a judge that disagrees produces a reviewable diff rather than a silent pass. A disagreement on a single feature is not a failure. A disagreement that moves interventions_allowed off zero is.",
+  "cases": [
+    {
+      "id": 1,
+      "file": "files/case-study-northgate.txt",
+      "kind": "case study",
+      "words": 325,
+      "register": "case-study",
+      "clusters_in_scope": [
+        "A",
+        "B",
+        "E",
+        "F",
+        "C1"
+      ],
+      "expected": {
+        "clusters_fired": [
+          "E"
+        ],
+        "clusters_fired_raw": 1,
+        "clusters_fired_adjusted": 1,
+        "ef_rule_applied": false,
+        "verdict": "within-human-range",
+        "interventions_allowed": 0,
+        "acceptable_variants": {
+          "C1": "resolved externally or unresolved. The main chain (four systems onto one) resolves externally; the open imaging decision argues unresolved. Both are human-side, and C cannot fire in this register regardless.",
+          "B1": "explicit labels or behavioral cues, with 1-3 beats and 0 embodied. Both human-side; the >60% override cannot engage at 0 embodied.",
+          "F1/F2": "explicit named / yes under the rubric's non-fiction ruling, which counts a named regulation. Under a strict literary reading F1 is none and F fires, raw goes to 2, and the E/F rule collapses it back to 1 - the verdict survives the call either way, which is why the ruling was worth writing down rather than left to the judge."
+        }
+      },
+      "why_each_cluster_clears": {
+        "A": "A1 gate is no. The piece ends on an open decision about imaging systems, not on what the story means. Raman's 'I would still do it, but I would sequence it differently' is a participant's assessment inside the story, not narratorial commentary over it. A4 thematic unity is about 3: the imaging aside and the 600 unreadable notes do not serve one tidy theme. Gate human-side, so A cannot fire whatever the corroborators do.",
+        "B": "B1 gate is behavioral cues. One emotional beat in the piece (Raman on cost), zero embodied, so the >60% override does not engage either. B2-B6 all 1: no setting-as-mirror, no smell, low sensory density, no interior access, no ecological emphasis.",
+        "C1": "unresolved. The imaging decision is open and 600 records were archived unread. AI-side is resolved-internally, so C1 is human-side, and C2-C8 are not_in_scope for this register, which means C could not fire even if C1 had gone the other way.",
+        "E": "FIRES. E1 never, E2 lowest. A case study does not address the reader and does not break the fourth wall. This is the by-construction firing SKILL.md describes, and on its own it is one cluster, which is within-human-range.",
+        "F": "F1 explicit named, F2 yes. The piece names the Care Quality Commission's Regulation 17 and a named source with a title. F is the cluster professional writing usually fires by construction, and this fixture deliberately satisfies it instead, to check the judge does not fire F reflexively on business prose."
+      },
+      "discriminating_property": "The only fixture here where F is genuinely satisfied. A judge that fires F anyway reaches 2 raw clusters and buys an intervention, which is the false positive this case exists to catch."
+    },
+    {
+      "id": 2,
+      "file": "files/explainer-interchange-fees.txt",
+      "kind": "explainer",
+      "words": 287,
+      "register": "thought-leadership",
+      "register_also_acceptable": [
+        "short-professional"
+      ],
+      "register_note": "An expository explainer. rubric.md now files it under thought-leadership, which the first judge reached unprompted; short-professional is also defensible and gives the same outcome. Scoring it hard-stop IS wrong: it is prose for a general reader, not technical documentation, a runbook, process instructions or data reporting. The choice moves D, C1 and G1 in or out of scope, so record it.",
+      "clusters_in_scope": [
+        "A",
+        "B",
+        "D",
+        "E",
+        "F",
+        "C1",
+        "G1"
+      ],
+      "expected": {
+        "clusters_fired": [
+          "D"
+        ],
+        "clusters_fired_raw": 1,
+        "clusters_fired_adjusted": 1,
+        "ef_rule_applied": false,
+        "verdict": "within-human-range",
+        "interventions_allowed": 0,
+        "acceptable_variants": {
+          "register": "as short-professional, D leaves scope and the fired count drops to 0. Still zero interventions.",
+          "A1": "yes or no. The judge scored it yes on 'The headline compares the part that varies least' - the literal reading - and A still did not fire, because no corroborator was AI-side. That is the outcome this fixture was built to produce, and it holds under either A1 call.",
+          "E1": "frequent-structural (human-side, on the pervasive second person) or never. The judge read the piece's 'you' as genuine reader address; E does not fire either way at this register."
+        }
+      },
+      "why_each_cluster_clears": {
+        "A": "The hard call in this set, and the reason the fixture exists. A1 is no: an explainer's thesis is its content, not a verdict laid over a narrative. A1 asks whether a narrator states what the story means, and there is no story here whose meaning could be stated. Even under the stricter reading that scores A1 yes for 'The headline compares the part that varies least', A still cannot fire, because no corroborator is AI-side: A2 moral weighting 1, A3 no dialogue at all, A4 about 3 with the surcharging paragraph pulling against single-theme unity, A6 explicit named rather than implicit echoes. The surcharging digression is in the fixture for exactly this reason.",
+        "B": "Zero emotional beats. Under the beat floor B1 is not_applicable, not 'ambiguous' - the first judge used ambiguous as a null and flagged it as a fiction rather than a measurement, which is why the rubric now has not_applicable and the validator enforces it at 0 beats.",
+        "E": "FIRES. E1 never. The piece uses 'you' about the reader's own business, which is a second-person claim rather than an aside acknowledging the telling, so it does not lift E1 to occasional asides. E2 lowest.",
+        "F": "F1 explicit named, F2 yes. Visa, Mastercard, and the Payment Services Regulations 2017 by name and year. This is precisely the F fix the skill prescribes, present in the input already.",
+        "D": "FIRES, and only by construction: an explainer has no chronology to jump around in, so D1-D4 all come out AI-side together. It consumes the one free cluster the 0-1 band allows, which is the finding recorded in open_questions as d-fires-by-construction. Scored honestly rather than discounted.",
+        "G1": "ambivalent-mixed, human-side. G2-G4 are fiction-only, so G is an orphaned gate here and cannot fire."
+      },
+      "discriminating_property": "Tests the A-gate boundary between exposition and moralizing. An explainer states its point by design; a judge that reads any stated point as narratorial thematic commentary will fire A on every explainer ever written."
+    },
+    {
+      "id": 3,
+      "file": "files/status-update.txt",
+      "kind": "status update",
+      "words": 48,
+      "register": "short-professional",
+      "clusters_in_scope": [
+        "A",
+        "B",
+        "E",
+        "F"
+      ],
+      "expected": {
+        "clusters_fired": [
+          "E",
+          "F"
+        ],
+        "clusters_fired_raw": 2,
+        "clusters_fired_adjusted": 1,
+        "ef_rule_applied": true,
+        "verdict": "within-human-range",
+        "interventions_allowed": 0,
+        "acceptable_variants": {
+          "B1": "not_applicable or neutral, with 0-1 beats and 0 embodied. The single candidate beat ('If it slips past Wednesday we lose the sprint') is marginal; below the 2-beat floor the override is skipped either way."
+        }
+      },
+      "why_each_cluster_clears": {
+        "A": "A1 no. 'If it slips past Wednesday we lose the sprint' is a consequence, not a theme. A2 1, A3 no dialogue, A4 low, A6 none.",
+        "B": "B1 no emotional beats. B2-B6 all 1.",
+        "E": "FIRES. E1 never, E2 lowest.",
+        "F": "FIRES. F1 none, F2 no. A 48-word status update names no work and is not in conversation with one."
+      },
+      "discriminating_property": "The canonical E/F-rule case, and the only fixture here that needs the rule. Raw count is 2, which without the rule reads as some-clustering and buys up to 2 interventions on a 48-word status update. Adjusted it is 1. A judge that reports interventions_allowed as 2 here has skipped Step 4's rule, not made a judgment call. Already covered from the response side by evals.json eval 2; this entry covers it from the scoring side."
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "ef-rule-scope",
+      "raised_by": "writing case 1",
+      "question": "SKILL.md motivates the E/F rule inside the under-600-word row ('Short professional text fires E and F by construction... so in the under-600-word row E and F come out AI-side on almost every piece') but states the rule itself without a register condition ('for the threshold, count E and F as one cluster between them unless A or B also fires'). Does it apply to the case-study row?",
+      "why_it_matters": "It decides the verdict for any case study that fires E and F and nothing else: raw 2 buys up to 2 interventions, adjusted 1 buys none. Case 1 sidesteps the question by satisfying F, so no fixture here depends on the answer.",
+      "not_resolved_here": "This is a question about the skill, not the rubric. rubric.md states the rule generally, matching SKILL.md's own sentence. If the intended scope is narrower, both need the condition added."
+    },
+    {
+      "id": "d-fires-by-construction",
+      "raised_by": "the case 2 judge, unprompted",
+      "question": "Should D be discounted outside fiction the way E and F are discounted in short form?",
+      "detail": "Non-narrative prose fires all four D features together, because an explainer or an argument has no chronology to vary. D is in scope for thought-leadership, so a fired D consumes the one free cluster the 0-1 band allows, and a thought-leadership piece with one genuine finding elsewhere reaches some-clustering partly on the strength of having no flashbacks.",
+      "why_it_matters": "It is the same structural problem the E/F rule already solves, in a register where D is the only cluster affected. Case 2 lands at zero only because nothing else fired.",
+      "options": [
+        "exclude D outside fiction",
+        "extend the collapse rule so D does not count unless A or B also fires",
+        "leave it and accept that thought-leadership starts one cluster down"
+      ],
+      "not_resolved_here": "This changes human-narrative's threshold behaviour, so it is the maintainer's call. rubric.md states the effect and instructs the judge to score D honestly rather than apply a correction of its own."
+    },
+    {
+      "id": "a5-not-a-corroborator",
+      "raised_by": "the case 1 and case 2 judges",
+      "question": "Should Thematic Explicitness & Moralizing (A5) be a cluster A corroborator?",
+      "detail": "A5's gap is -0.65, the largest in the taxonomy after B1's -42pp, and SKILL.md lists cluster A's corroborators as moral/philosophical weighting, dialogue-as-debate, thematic unity and reference explicitness - not A5. So the strongest Likert row in the strongest cluster cannot affect whether that cluster fires.",
+      "why_it_matters": "A fires on A1 plus one corroborator. On a piece that moralizes heavily but does not state its theme in the narrator's voice, A5 is the row that would catch it and it is not consulted.",
+      "not_resolved_here": "rubric.md reproduces SKILL.md faithfully and says so at the point of use, so this is visible rather than silently repaired. Adding a corroborator would change what the skill flags."
+    },
+    {
+      "id": "narrative-presupposing-gates",
+      "raised_by": "the case 2 judge",
+      "question": "Do B1, C1 and G1 need not-applicable values in SKILL.md itself, not just in this rubric?",
+      "detail": "All three option sets presuppose narrative material: emotions conveyed somehow, an event chain, a protagonist. B1 and G1 are gates. A skill executor working from SKILL.md's option sets faces the same forced choice this rubric's judges did, and SKILL.md offers no null.",
+      "why_it_matters": "B1 gates the largest-gap cluster in the taxonomy. An executor that force-fits 'embodied metaphors' onto a text with no emotional content puts that gate AI-side on a distinction the text never draws.",
+      "not_resolved_here": "rubric.md adds not_applicable for the rubric pass. Whether SKILL.md should carry it is a skill change."
+    }
+  ],
+  "validation": {
+    "run": "2026-09-08, three fresh judges, one per case, input-only",
+    "conditions": "Each judge got rubric.md and one fixture. Blind: no access to this file, to skills/human-narrative/, or to evals.json. That also tested whether rubric.md is sufficient on its own.",
+    "result": "3/3 reached interventions_allowed == 0 and verdict within-human-range. All three produced schema-valid output with no missing fields, no empty evidence and no unexpected fields. Every cluster verdict matched this file's expectations; the single-feature divergences are recorded above as acceptable_variants.",
+    "validator": "validate-rubric-grading.py passed all three, and failed all 10 injected mutants (gate fired alone, missing feature, side outside the vocabulary, empty evidence on a scored feature, E/F arithmetic, budget mismatch, verdict mismatch, impossible beat counts, ignored B1 override, missing top-level field). A validator that passes everything is indistinguishable from a broken validator.",
+    "rubric_changes_this_run_produced": [
+      "not_applicable as a fifth side value, because B1, C1 and G1 presuppose narrative material non-fiction lacks and two of the three are gates",
+      "a 2-beat floor on B1's >60% override, which was undefined at 0 beats and a coin flip at 1",
+      "two non-fiction rulings for F: named statutes/regulations/standards count as explicit named, and F2's 'event' means one external to the piece's own subject matter",
+      "the E/F rule's register scope stated explicitly",
+      "a thought-leadership row that covers the expository explainer, and G1-only in that row",
+      "D's by-construction firing stated, with the instruction to score it rather than discount it",
+      "what an orphaned gate (C1, G1) is for",
+      "A4 read as thematic rather than topical unity; A6/F1 scoring on neither pole named as legitimate",
+      "the 32-rows-over-30-features count reconciled where the judge is told to score"
+    ]
+  }
+}
