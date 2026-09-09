@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.4.1] - 2026-09-08
+
+Closes the item 1.4.0 recorded and deferred (#10). No watch-list or threshold changes.
+
+### Fixed
+
+- **`NEG-PARALLEL`'s reversed variant had no example separating it from comparative
+  preference.** "X rather than Y" was listed among the patterns to watch with nothing to
+  distinguish a straw rejected pole from a genuine choice between two real outcomes ("I
+  would rather wait for the data than publish something that gets revised"). Three
+  executors in `tests/evals/runs/2026-09-08/` hit the call independently -- e5-with,
+  e5-prev, e7-with -- and all three resolved it correctly by reasoning the skill did not
+  supply. Now stated as a deletion test, matching the tests `RULE-OF-3` and "undecided
+  connection" already use: cut the "rather than Y" clause, and if the sentence makes the
+  same claim without it, Y was a straw pole. A before/after pair and a preference left
+  unchanged sit under the test.
+
+  The variant is ungated by the density table, which is why an example was worth a release
+  on its own: a false positive there carries a verdict with no threshold to catch it.
+
+### Tests
+
+- `tests/cases/06-decision-note-{IN,OUT}.txt` -- negative case, byte-identical by
+  convention. A note whose point is a stated preference; the correct output is no change.
+  The scanner has no "rather than" regex, so this fixture is not a scanner regression test:
+  it holds the line for the executor reading the pattern list literally, which is the
+  failure mode the three eval arms were one judgment away from.
+
 ## [1.4.0] - 2026-09-08
 
 Source re-check against the live page on 2026-09-08, plus one pattern from outside it. The
@@ -186,7 +214,7 @@ Not patched, recorded instead: `NEG-PARALLEL`'s reversed "X rather than Y" varia
 example separating it from ordinary comparative preference ("I would rather wait than
 publish"). Three executors hit that judgment call and all three resolved it correctly, but
 the variant is ungated by the density table, so a false positive there flips a verdict on
-its own. Predates 1.4.0 and is out of scope for it. Open a ticket.
+its own. Predates 1.4.0 and is out of scope for it. Filed as #10, fixed in 1.4.1.
 
 ### Tooling
 

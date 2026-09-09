@@ -151,7 +151,11 @@ Then commit both the source and the rebuilt `.skill` file.
 
 `humanizer`, `farnsworth-rhetoric`, and `human-narrative` share one pipeline and reference each other by `humanizer`'s stable pattern IDs (the table at the top of `skills/humanizer/SKILL.md`). Two test aids exist:
 
-- **`scripts/scan-ai-tells.py`** — deterministic scan. Reads `humanizer`'s watch lists live from its SKILL.md, so word-list edits need no script change; the hand-derived `CONSTRUCTIONS` regexes and ID labels in the script do. Reports flag density, distinct patterns hit, em dash proximity, anaphora runs, triads, and word count against `farnsworth-rhetoric`'s figure budget. Text inside code, blockquotes, watch-list lines, and short quoted strings is ignored by default (`--keep-quotes` to include it), so a document that discusses a pattern is not scored as using it.
+- **`scripts/scan-ai-tells.py`** — deterministic scan. Reads `humanizer`'s watch lists and pattern IDs live from its SKILL.md, so word-list edits need no script change; the hand-derived `CONSTRUCTIONS` and `FORWARD_REF` regexes and ID labels in the script do. Reports flag density, distinct patterns hit, em dash proximity, anaphora runs, triads, forward references, and word count against `farnsworth-rhetoric`'s figure budget. Text inside code, blockquotes, watch-list lines, and short quoted strings is ignored by default (`--keep-quotes` to include it), so a document that discusses a pattern is not scored as using it.
+
+  Two filters, and they are separate. The **meta-quotation** filter above is off under `--keep-quotes`. The **pattern-ID commentary** filter runs in both modes and drops any line that labels a quotation with a `humanizer` pattern ID — a change summary cites the patterns it removed and quotes the text it removed them from, so without it the scan counts the citation as a commission. `--keep-summary` disables it. Scan the delivered text rather than a whole `result.md` where you can (`tests/evals/extract-delivered.py`); the filter is what keeps the whole-file number usable when you cannot.
+
+  The **forward-reference** check (`FORWARD-REF`) is `human-narrative` cluster E, not a `humanizer` pattern, so it is counted and reported on its own and stays out of density, the distinct-pattern count, and the hard-violation total — all three are calibrated on `humanizer`'s set. `humanizer` `SIGNPOSTING` already covers the lexical forms; these are the structural ones.
 - **`tests/cases/`** — smoke-test fixtures. `NN-name-IN.txt` is the input, `NN-name-OUT.txt` is the expected output. Negative cases have byte-identical IN and OUT because the correct output is no change. Not an automated suite.
 
 To re-run:
@@ -161,9 +165,22 @@ To re-run:
 # is indistinguishable from a broken scan
 ./scripts/scan-ai-tells.py tests/cases/00-control-v1.0.0-output.txt tests/cases/*-OUT.txt
 
-# self-check: humanizer's own prose should return 0 hits
+# positive control for the forward-reference check: expect 11 FORWARD-REF flags
+./scripts/scan-ai-tells.py --keep-quotes tests/cases/00-control-forward-ref.txt
+
+# self-check: humanizer's own prose should return 0 hits, and the pattern-ID
+# filter should drop none of it (word count unchanged by the filter)
 ./scripts/scan-ai-tells.py skills/humanizer/SKILL.md
+
+# regression case for the pattern-ID filter: a clean rewrite whose change summary
+# quotes the patterns it removed. Expect 0 constructions and 0 hard violations;
+# --keep-summary reproduces the 3 false-positive NEG-PARALLEL hits it used to show
+tests/evals/extract-delivered.py \
+  tests/evals/runs/2026-09-02-r3/humanizer/e1-with/outputs/result.md -o /tmp/r3.txt
+./scripts/scan-ai-tells.py --keep-quotes /tmp/r3.txt
 ```
+
+Both bundled copies (`skills/humanizer/scripts/`, `skills/farnsworth-rhetoric/scripts/`) must stay byte-identical to the root script; `cp` them and rebuild.
 
 After editing a `humanizer` pattern, grep the branch for the pattern's ID and check the scan's `CONSTRUCTIONS` table. Never insert, merge, or renumber a pattern without keeping its ID.
 

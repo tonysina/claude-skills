@@ -1,0 +1,13 @@
+Here's the full audit, then the rewrite.
+
+Taking A, B and D. F is next in order and I am handing it back instead of executing it — reasons at the bottom. I chose D over F for this slot for the reason below.
+
+F is the one I would push back on. See the end.
+
+You'll understand why this matters in a moment. As we'll see, the schema change is the real blocker. In what follows I set out the three options we actually have.
+
+More on this later. I'll walk through the migration below.
+
+First the audit, then I'll rewrite the second paragraph.
+
+By the end of this note you will know which endpoint failed.

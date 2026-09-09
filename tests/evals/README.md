@@ -89,6 +89,17 @@ In brief, per eval and per arm:
    file: the change summary quotes the patterns it removed, so a raw scan counts citations
    as commissions. On the 2026-09-08 control arm the whole file showed 10 em dashes and the
    delivered text showed 2.
+
+   Since #6 the scan also runs a **pattern-ID commentary filter** in both modes, dropping
+   lines that label a quotation with a `humanizer` pattern ID. It is a backstop, not a
+   replacement for this step: `extract-delivered.py` falls back to the whole file whenever
+   the result has fewer than two `---` fences, which is how the r3 arm's change summary got
+   scanned as prose in the first place. Extract first; the filter is what makes the fallback
+   survivable. Pass `--keep-summary` to see the unfiltered number.
+
+   The scan also reports `FORWARD-REF` (`human-narrative` cluster E) in its own column,
+   deliberately outside density, the distinct-pattern count and the violation total. Do not
+   fold it into a humanizer verdict.
 4. Spawn one grader subagent per eval with `agents/grader.md`, grading every arm against
    the same expectations, writing `grading.json` per arm.
 5. `tests/evals/aggregate.py runs/<date> --md runs/<date>/results-table.md`.
