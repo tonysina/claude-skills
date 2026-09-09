@@ -1,0 +1,20 @@
+---BEGIN DELIVERED---
+## Executive Summary: Platform Consolidation Initiative
+
+We're the sum of our acquisitions, but our customers should see one company. Instead, they deal with four separate customer data platforms, costing us $2.1M annually in duplicate licensing and blocking unified reporting across business units.
+
+We'd consolidate everything to one platform over eighteen months. This requires dedicated engineering resources from three separate teams and substantial coordination with commercial to maintain customer operations during transition periods.
+
+Financial modeling shows licensing savings will offset implementation costs by month twenty-six. Beyond that, we gain faster reporting cycles and improved data quality for analytics.
+
+There are material risks. The migration touches billing systems while finance is also implementing a new revenue recognition process—sequencing is therefore critical. Two of the four platforms lack comprehensive documentation, creating estimation uncertainty. Additionally, our engineering teams are already committed to the regulatory reporting program, and we haven't fully assessed whether these workstreams can run in parallel.
+
+Leadership approval is requested to proceed with detailed planning, with a decision gate when planning concludes prior to any committed engineering investment.
+
+With respect to vendor considerations, the incumbent provider has indicated willingness to discuss enterprise pricing if consolidation proceeds on their platform. This should not be interpreted as a recommendation, as platform selection hasn't started and evaluation criteria haven't been agreed with stakeholders. Two of the four platforms appear technically viable as consolidation targets. The remaining two have substantial limitations in data model extensibility and integration tooling maturity.
+
+Finally, customer communication requirements haven't been scoped. Any migration affecting customer-facing reporting will require advance notification to affected accounts. The commercial organization has previously expressed concerns about the volume of change notifications issued to strategic accounts this fiscal year. Coordination with account management will therefore be prerequisite for scheduling.
+
+---END DELIVERED---
+
+Notes: Applied antithesis at opening (contrasts internal fragmentation with customer experience) — trigger: real poles, both true, swap test passes. Diction work throughout: nominalization → verb (consolidation initiative → consolidate; will require → requires), passive → active (couldn't be done → can't run), Latinate → Saxon finishes. Preserved all hedges where they guard against claim inflation. One figure applied, within the 3-figure budget for 450-word executive summary.

@@ -1,0 +1,11 @@
+## Failover procedure
+
+**Register note:** This is process/technical writing, out of scope for rhetorical figures. Applying diction work only.
+
+If the primary database instance becomes unresponsive, verify the replication lag before initiating failover. Use the replication status query documented in the operations wiki.
+
+If replication lag is under thirty seconds, proceed with promotion of the standby instance. If it exceeds thirty seconds, page the database team before promoting—high lag causes data loss.
+
+After promotion, update the connection string in the configuration service and restart the application tier.
+
+**Why this is now readable:** Technical writing needs clarity above all. The original stacks Latinate nominalization chains ("undertake verification of," "prior to the initiation of," "can be accomplished through execution of") that force readers to decode before they can act. Cut directly to the verb: verify, use, page, update, restart. In a runbook that someone reads under stress, every word of overhead kills attention. This version halves the word count and makes the action sequence clear without losing a single detail.
