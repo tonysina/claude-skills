@@ -14,7 +14,7 @@ description: |
   Do NOT use for: general editing unrelated to AI patterns, grammar-only fixes,
   style preferences that don't involve AI detection.
 metadata:
-  version: 1.4.0
+  version: 1.4.1
 ---
 
 # Humanizer: Remove AI Writing Patterns
@@ -264,6 +264,20 @@ From mid-2026 the tell shifts from listed words to register. The older markers a
 
 **After:**
 > The heavy beat adds to the aggressive tone.
+
+**The reversed form is not every "rather than."** The reversed variant is a finding when the rejected pole is a straw one, and not when it is an option the writer actually weighed. Cut the "rather than Y" clause and read what is left: if the sentence makes the same claim without it, Y was there to make the claim feel earned, and this is a finding. If cutting it removes the point -- a choice between two things the writer could have done -- leave the sentence alone.
+
+**Before:**
+> The rewrite is about maintainability rather than performance.
+
+**After:**
+> The rewrite makes the module easier to change.
+
+Nobody had claimed the rewrite was about performance, and "The rewrite is about maintainability" says the same thing without the rejected pole. Compare a real preference, which survives the test and stays as written:
+
+> I would rather wait for the data than publish something that gets revised.
+
+Cut "than publish something that gets revised" and the sentence loses its subject matter: the trade-off *was* the statement. Both outcomes are available to the writer and one is being chosen. Ordinary comparative preference is not a rhetorical correction, and "would rather ... than" is a comparative construction, not the substitution this pattern describes. Because the reversed variant is a finding at any density (see "What the table does not gate"), a false positive here carries a verdict on its own, with no threshold to catch it.
 
 **Related: Tailing negations.** Watch for clipped negative fragments like "no guessing," "no wasted motion," or "no fuss" tacked onto the end of a sentence instead of written as a real clause.
 
