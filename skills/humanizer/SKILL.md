@@ -14,7 +14,7 @@ description: |
   Do NOT use for: general editing unrelated to AI patterns, grammar-only fixes,
   style preferences that don't involve AI detection.
 metadata:
-  version: 1.4.1
+  version: 1.4.2
 ---
 
 # Humanizer: Remove AI Writing Patterns
@@ -91,6 +91,16 @@ The word lists in this file carry about 180 literal flags, and many are ordinary
 | 2 or more per 100, or any density | 3 or more patterns | Rewrite. |
 
 Calibrated in v1.3.0 against the source page's own confirmed-AI examples and two human sets. No human block scored above 1.6 per 100 or above 2 patterns, which is the headroom these thresholds have. Corpus and method are in the changelog.
+
+**"If asked" includes a direct review request.** "Review this for AI tells" or "does this
+sound like AI?" is the user asking, even though it isn't phrased as a request for a number.
+A within-human-range verdict on that kind of prompt states the density and spread that
+produced it — "1 hit in 135 words, under 1 per 100" — not just the word "range." A verdict
+with no arithmetic behind it and lazy restraint that never measured anything read the same
+to the user; the number is what tells them apart. Any watch-list word named in that report
+is described as weak or context-dependent evidence, not as proof — that's what "under 1 per
+100" already means, and the report should say so rather than leave the word sitting there
+unqualified.
 
 **What the table does not gate.** Constructions and residue are findings on their own, at any density: a negative parallelism (`NEG-PARALLEL`), a generic closer (`GENERIC-CLOSER`), a challenges-formula section, three em dashes in a paragraph of pre-2025 text, a `[cite: 3]` marker. `UNDER-PUNCT` sits outside the table too, for a different reason: it is a rate measure rather than a construction, and a text can score zero on every word list while tripping it hard. No human block in the calibration set contained one. Equally, more than half the confirmed-AI blocks scored **zero** on word lists -- their tells were structural or markup. A clean word-list scan is not a clean bill; run Passes 2-4.
 
@@ -330,6 +340,8 @@ The output keeps a triad: three different things happen at the event, and droppi
 **This is a rate measure, not a word list.** Do not add "and" to any watch list and do not count it toward the density threshold in "When a flag is a finding" -- it is far too common to carry signal per instance, and any tool that reads these lists literally would flag every paragraph in every document. Measure by hand: commas per sentence, share of sentences over roughly 30 words, parentheses per 1,000 words. `scripts/scan-ai-tells.py` computes none of them, so a clean report from that script is not evidence against this pattern -- it will score an unreadable wall of "and" at zero. Check your arithmetic before quoting a rate back to the user. Where the user has supplied a writing sample, compare against their own baseline rather than a general one.
 
 **Joints, not series.** This signal covers "and" as a joint between two propositions. It never covers "and" between items in a list. A series with a conjunction before every item is polysyndeton, a deliberate figure that `farnsworth-rhetoric` prescribes and caps at one per piece; leave it alone. When it is not obvious which you are looking at, ask what the conjunctions separate: items of the same kind (series -- leave it) or two propositions (joint -- test it, see `VAGUE-CONNECT`).
+
+**"Leave it alone" means the series survives your edit, not just that you didn't target it.** When a sentence containing a polysyndeton series also needs an unrelated fix nearby -- a promotional word cut, a nominalization simplified -- rewriting that sentence is an easy way to lose the series as a side effect: "and X and Y and Z" collapses into "X, Y, and Z" as a matter of habit, not intent. After any edit that touches a sentence with a preserved polysyndeton in it, check the "and"s are still there before moving on. Silently losing the series reads as a finding, even though nothing flagged it and no rule told you to remove it.
 
 **Before:**
 > The programme expanded to three cities in 2019 and the council increased its funding the following year and by 2022 it was serving roughly 4,000 households and staff numbers had doubled.
