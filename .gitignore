@@ -9,3 +9,7 @@ skills/bluedolphin-collateral/
 .planning-scratch/
 HANDOFF.md
 *-REPORT.md
+
+# Python bytecode (build-skills.sh packages skill subdirectories verbatim)
+__pycache__/
+*.pyc
