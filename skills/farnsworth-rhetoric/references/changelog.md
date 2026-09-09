@@ -1,5 +1,45 @@
 # Changelog
 
+## [1.1.3] - 2026-09-08
+
+Ships alongside humanizer 1.4.0. All three changes are carve-outs and cross-references at
+the humanizer boundary; no figure, budget or diagnostic changes.
+
+### Added
+
+- **Polysyndeton carve-out against humanizer's new `UNDER-PUNCT`.** humanizer 1.4.0 adds a
+  pattern that treats "and" as a tell, and a cut-and-test under `VAGUE-CONNECT` that asks
+  whether cutting a conjunction changes the meaning. Run against the polysyndeton entry's
+  own worked example -- "The migration touched billing and provisioning and support tooling
+  and reporting" -- that test returns **decoration every time**, because cutting the
+  conjunctions leaves the enumeration intact and removes only the rhythm. Removing only the
+  rhythm is the figure working, not failing. Without a carve-out humanizer strips a figure
+  this skill just placed, and the two run back to back in the documented pipeline
+  (`humanizer -> farnsworth-rhetoric`), with the user free to re-run humanizer afterwards.
+
+  This is the same shape as the `RULE-OF-3` collision recorded in 1.1.0 and is resolved the
+  same way: one shared test, stated in matching terms on both sides. The line is **joint
+  versus series** -- "and" between two propositions is humanizer's; "and" between items of
+  the same kind is this skill's. It is stated three times, in humanizer's `UNDER-PUNCT`, in
+  its `VAGUE-CONNECT`, and here. If one is reworded, all three must be: a reader who finds
+  them disagreeing will resolve the conflict by deleting one.
+
+  The cap is unchanged and the note says so. An uncapped polysyndeton is a real failure,
+  and humanizer will not catch it.
+- **Note under the Forbidden constructions table on `EM-DASH`.** humanizer 1.4.0 loosened
+  that pattern -- em dash frequency turned out to be model-specific and now runs in both
+  directions -- while this table still forbids three or more dashes in close proximity. The
+  row is deliberately unchanged: this table governs what this skill *produces*, and a
+  generation constraint can be tighter than a detection threshold. Without the note the next
+  reader finds the two skills contradictory and "fixes" one of them.
+
+### Changed
+
+- **Saxon default gains an empirical clause.** Corpus comparison finds Latinate
+  polysyllables and nominalisations elevated in current model output, so the rule has
+  support beyond the craft argument. One clause; the study description stays in humanizer's
+  changelog, where humanizer's `AI-VOCAB` register note points at this rule.
+
 ## [1.1.2] - 2026-09-03
 
 Fix from the persuasion-triad skill review (`skills/persuasion-triad-review` branch).

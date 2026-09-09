@@ -1,0 +1,17 @@
+What the November migration taught us
+
+The migration was a pivotal moment in our platform's evolution, underscoring the
+importance of cross-team coordination and highlighting the value of early planning.
+It's not just a technical exercise, it's a test of how we work together.
+
+The cutover touched billing and provisioning and support tooling and reporting.
+Every one of those teams found something the runbook had missed.
+
+Key learnings:
+- **Communication:** Status updates were inconsistent across channels.
+- **Testing:** Staging did not match production configuration.
+- **Rollback:** The documented procedure had not been rehearsed.
+
+Despite these challenges, the team demonstrated remarkable resilience. Industry
+reports indicate that most migrations of this scale encounter similar friction.
+The road ahead is promising as we continue to refine our processes.

@@ -1,0 +1,71 @@
+{
+  "tool_calls": {
+    "Read": 2,
+    "Write": 0,
+    "Bash": 11,
+    "Edit": 0,
+    "Glob": 0,
+    "Grep": 0
+  },
+  "total_tool_calls": 13,
+  "total_steps": 13,
+  "files_created": [
+    "result.md",
+    "transcript.md",
+    "metrics.json",
+    "user_notes.md"
+  ],
+  "errors_encountered": 0,
+  "output_chars": 22184,
+  "transcript_chars": 12812,
+  "notes": {
+    "use_case": "Full rewrite",
+    "patterns_fixed": [
+      "UNDER-PUNCT",
+      "VAGUE-CONNECT"
+    ],
+    "patterns_flagged_not_fixed": [
+      "VAGUE-ATTRIB"
+    ],
+    "patterns_scanned_clean": [
+      "INFLATION",
+      "ING-ANALYSIS",
+      "AI-VOCAB",
+      "NO-COPULA",
+      "NEG-PARALLEL",
+      "RULE-OF-3",
+      "EM-DASH",
+      "CHALLENGES-FORMULA",
+      "FALSE-RANGE",
+      "BOLD-LISTS",
+      "FRAG-HEADER",
+      "DIDACTIC",
+      "GENERIC-CLOSER",
+      "GAP-SPECULATION",
+      "SIGNPOSTING",
+      "SYCOPHANCY",
+      "STYLE-SHIFT"
+    ],
+    "input_measurements": {
+      "words": 144,
+      "sentences": 3,
+      "sentences_over_30_words": 3,
+      "commas": 0,
+      "semicolons": 0,
+      "parentheses": 0,
+      "em_dashes": 0,
+      "and_count": 10,
+      "wordlist_density_per_100": 0.7,
+      "spread_patterns": 1
+    },
+    "output_measurements": {
+      "words": 126,
+      "sentences": 7,
+      "sentences_over_30_words": 0,
+      "commas": 5,
+      "semicolons": 1,
+      "em_dashes": 0,
+      "and_count": 4
+    }
+  }
+}

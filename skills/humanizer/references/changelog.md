@@ -1,5 +1,209 @@
 # Changelog
 
+## [1.4.0] - 2026-09-08
+
+Source re-check against the live page on 2026-09-08, plus one pattern from outside it. The
+page carries an August 2026 banner saying parts of it relating to the most recent models
+need updating -- the source flags its own currency limits, which is the argument for dating
+the vocabulary buckets rather than maintaining them as one list.
+
+### Fixed
+
+- **`EM-DASH` was one-directional and is no longer true.** The pattern claimed LLMs use em
+  dashes more than human writers, hedged only with "some vendors have tuned this down."
+  The July 2026 corpus study found the heuristic has inverted for most models: only one of
+  the four frontier models tested exceeds human writers on em dashes, and one sits below
+  every human baseline in the study. The folk rule has also changed human behaviour, with
+  writers stripping dashes from their own prose to avoid suspicion, so the signal is
+  contaminated in both directions. Retitled "Em dash overuse" -> "Em dash frequency", ID
+  unchanged. Now scoped to pre-2025 text or co-occurrence with other Pass 2 patterns, and
+  says explicitly that dash scarcity proves nothing on its own.
+
+  Per-model variance is the reason the pattern was scoped rather than deleted, and it is
+  recorded here rather than in SKILL.md: an executor holding text of unknown origin cannot
+  evaluate a per-model rule.
+
+  Upstream had already revised its em dash section and cites the same study; it carries a
+  September 2026 banner *proposing* relocation to Historical indicators. The proposal is
+  conditional and has not happened, so the pattern stays resident. This release catches up
+  to the source rather than diverging from it.
+- **Added the spacing discriminator `EM-DASH` never had.** AI-generated em dashes are
+  usually surrounded by spaces, against the convention most human dash-users follow. This
+  is a form tell rather than a frequency tell, so it survives the reversal above.
+- **`three em dashes in a paragraph` was an ungated finding.** Now scoped to pre-2025 text
+  in "What the table does not gate." The claim that no human block in the calibration set
+  contained one is left intact: that corpus predates the reversal and the statement remains
+  true of it.
+
+### Added
+
+- **`UNDER-PUNCT` -- punctuation scarcity.** Display 10, Pass 2. Current models
+  under-punctuate, which is the reverse of what this skill and its source both encode: fewer
+  commas and semicolons than human writers, parentheses nearly absent, longer sentences, and
+  "and" as the most overused word. Two causes given in the source -- longer sentences carry
+  fewer internal breaks, and the models do not quote real people, which removes quotation
+  marks and attributive commas. That second cause is why the pattern points at
+  `VAGUE-ATTRIB`.
+
+  **This is the one pattern in the skill not drawn from the Wikipedia page.** Punctuation
+  scarcity does not appear there at all; the only adjacent line runs the other way, that
+  humans use commas, parentheses and colons where models use dashes. Source: The Economist,
+  "How to spot AI writing," 30 July 2026 -- four frontier models prompted to rewrite
+  Economist articles without web access, compared across 55,940 sentences and 1.2m words,
+  checked against CNN/NYT/WaPo journalism and 1950-2022 bestseller fiction. Findings are
+  published as chart positions only: no effect sizes, no methodology appendix.
+
+  **Baseline caveat.** Economist house style is unusually short-sentenced and heavily
+  punctuated for a human baseline, which would widen every gap the study reports. This is
+  the main reason the pattern ships **un-thresholded**: there is no published calibration to
+  set a number from, and inventing one from a single source with no effect sizes would give
+  the threshold table a precision it has not earned.
+
+  Structural rather than lexical, so unlike the vocabulary layer it should not decay as
+  model vocabulary churns.
+- **Date check in "When a flag is a finding."** The source rules AI use out entirely for
+  text written before ChatGPT's public launch on 30 November 2022, and notes that older
+  writing sometimes displays these signs by coincidence. The skill had no date check
+  anywhere and would run a full scan on a 2015 draft with no cue that the exercise was
+  misconceived. Roughly 40 words, and it forecloses a whole class of false positive.
+- **`AI-VOCAB` mid-2026 bucket.** The tell shifts from listed words to register:
+  polysyllables, rare words, scientific vocabulary, nominalisations, Latinate suffixes over
+  Saxon roots. Orwell's "pretentious diction." Literal scanning cannot catch it, so the
+  entry routes to `farnsworth-rhetoric`'s Saxon default rather than duplicating the rule.
+
+  **Why the buckets are dated rather than maintained.** Juzek, quoted in the same article,
+  attributes vocabulary churn to models being tuned on human feedback and absorbing what
+  readers find impressive. A list maintained as current will always lag; a list dated by era
+  stays useful for older text as it ages out of currency. That reasoning is here rather than
+  in SKILL.md because it is addressed to whoever maintains the list, not to whoever is
+  editing a draft.
+- **Two `VAGUE-CONNECT` sub-patterns.** *Rotating connectors* (a small repeating set
+  carrying every transition in a piece) and *undecided connection* ("and" joining two ideas
+  whose relationship was never chosen), with a cut-and-test procedure for the second. Both
+  are vague expression of connection, so they extend an existing ID rather than adding two.
+
+  The cut-and-test is adapted from third-party commentary on the study, not from the study
+  itself, and is not attributed to The Economist.
+- **A drafting principle in Pass 1.** "The common root is the impulse to explain a thing's
+  significance instead of stating it." The only guidance in the file usable while drafting
+  rather than editing.
+
+### Changed
+
+- **`ELEGANT-VAR` moved to `extended-patterns.md`,** into the Historical indicators section
+  that already carried a pointer to it. The pointer now reverses direction. It keeps its
+  stable ID and leaves the SKILL.md pattern table entirely rather than staying as a stub:
+  nothing outside humanizer references it, verified by grep across the sibling skills and
+  the scan script. It has no watch list, so density and spread are unaffected.
+- **`DIDACTIC` stays resident, on revised grounds.** The 2026-09-08 check found both of its
+  halves demoted to the source's Historical indicators -- "Didactic disclaimers (November
+  2022-2024)" and "Section summaries" -- which reverses the reason it was kept resident
+  while `ELEGANT-VAR` moved. It stays anyway, for a different reason: `farnsworth-rhetoric`
+  and `human-narrative` both reference `DIDACTIC` by ID in their own tables, so it fails the
+  external-safety test that cleared `ELEGANT-VAR` to move. Relocating it would mean editing
+  two more skills to keep three cross-references resolving. Revisit if those references go.
+- **Display numbers.** `UNDER-PUNCT` enters at 10 and `ELEGANT-VAR` leaves, so the
+  insertion and the deletion cancel below row 11. `CHALLENGES-FORMULA` moves 10 -> 11 and is
+  the only number that changes; rows 12-20 are untouched. Twenty rows before, twenty after.
+  Second renumbering since the IDs were introduced.
+- **Pass 4 voice check absorbed "Signs of voiceless writing"** from Tone awareness. Same
+  diagnostic stated twice, in two places; it now lives where the executor is standing when
+  it needs it.
+- **Citations compressed to author and year** in `AI-VOCAB` and `NO-COPULA`. Venue names,
+  paper titles, the arXiv identifier, the effect size and the 10,000-abstract replication
+  detail are evidence, and evidence belongs here. Named attribution is kept rather than
+  dropped: this skill flags `VAGUE-ATTRIB`, and 1.3.0 records fixing a self-violation where
+  a pattern body said "studies have shown" in the skill's own voice. Author plus year is the
+  floor.
+- **Calibration derivation moved here.** The paragraph under the threshold table duplicated
+  the Calibration section below in less detail. SKILL.md keeps one clause -- that no human
+  block scored above 1.6 per 100 -- because it tells the executor how much headroom the
+  thresholds have.
+- **Deduplication pass.** The register-descriptor ruling stated in both "Full rewrite" and
+  "Edit with constraints" now states once with a pointer; "Ambiguous patterns" reduced to
+  the pointer and the one thing the density table does not carry; the `NEG-PARALLEL` example
+  dropped from "Meaning loss on rewrite," where the pattern's own section already covers it;
+  the `INFLATION` regression-to-the-mean mechanism cut to the clause an executor can apply
+  to a sentence.
+
+### Not adopted, with reasons
+
+Recorded so the next person diffing against the source does not re-open the argument.
+
+- **Per-model style profiles** ("Differences between LLMs" on the source page). Keyed to a
+  variable the executor cannot observe: it holds text of unknown origin, so a per-model
+  conditional is unevaluable at runtime. Also dated -- the page's examples are GPT-4o,
+  Grok-Beta, Gemini 1.5 and Claude 3.5. Model-specific *markup residue* stays in
+  `extended-patterns.md` and is not the same thing: residue is an observable artifact that
+  identifies the tool, whereas idiolect requires knowing the model before you can apply it.
+- **"Biases in content."** Political bias in model output is a content-integrity question
+  about what models say, not a tell for how they say it. Outside what a rewriting skill
+  does.
+- **Comment-specific indicators.** The page has a full section on AI-generated discussion
+  comments with its own sub-page. This skill targets prose -- posts, essays, reports,
+  emails -- and comments are a different genre with a different tell profile. Note that the
+  em dash tell is reportedly stronger in discussion text, which is now recorded in
+  `EM-DASH` itself.
+- **Detection-confidence calibration.** The page carries data on detector error rates and
+  on humans performing at chance level. "Review and flag" asks for a confidence number with
+  no calibration behind it. Deferred: "What residue proves" already governs the claims this
+  skill may make, and the skill never invokes a detector. Add only if an eval run shows
+  executors producing overconfident verdicts.
+- **The `writ` skill's vocabulary list.** Mixes source-derived flags with popular lore
+  (*moreover*, *realm*, *leverage*, *holistic*, *game-changer*, "in today's fast-paced
+  world"). `AI-VOCAB`'s take-the-list-literally rule exists to prevent exactly that drift.
+- **The article's closing advice** ("look for bland, pretentious prose lavished with
+  Latinate words") as a standalone rule. It is the same single-feature heuristic the article
+  itself spends three paragraphs warning against.
+- **Detection-accuracy claims.** The article quotes a vendor's 99.98% figure and
+  immediately notes detectors give false positives and no reasons.
+- **Recalibrating the density table.** Different corpus, different genre, no published
+  numbers, and a human baseline anchored on one publication's house style. The 1.3.0
+  calibration is unchanged.
+
+### Patches from the gate run
+
+`tests/evals/runs/2026-09-08/`. Five cases, six arms, all clean-context. Two patches landed
+before merge, both found by executors rather than by review.
+
+- **`UNDER-PUNCT` was missing from "What the table does not gate."** Its exemption was
+  stated one paragraph earlier, next to the density and spread bullets, but the paragraph
+  that actually enumerates table-bypassing findings did not list it. Two executors, on
+  unrelated fixtures, independently reported the same consequence: a reader applying the
+  table mechanically scores an unpunctuated text at density 0.0, spread 0, and ships it
+  unchanged. Both still caught it -- one cited the rate exemption, the other "a clean
+  word-list scan is not a clean bill" -- but both had to assemble the ruling from two
+  places. Now stated in the paragraph where the decision is made.
+- **The scanner caveat was too weak.** `UNDER-PUNCT` said the script "does not compute
+  these," which reads as a missing feature rather than a trap. It now says a clean report
+  from the script is not evidence against the pattern, because the script scores an
+  unpunctuated wall of "and" at zero. Added an instruction to check arithmetic before
+  quoting a rate: two executors reported hand-computed statistics that did not reconcile
+  with their own word counts. Neither error changed a verdict, but an un-thresholded
+  pattern rests entirely on hand measurement, which is the failure mode to watch.
+
+Not patched, recorded instead: `NEG-PARALLEL`'s reversed "X rather than Y" variant has no
+example separating it from ordinary comparative preference ("I would rather wait than
+publish"). Three executors hit that judgment call and all three resolved it correctly, but
+the variant is ungated by the density table, so a false positive there flips a verdict on
+its own. Predates 1.4.0 and is out of scope for it. Open a ticket.
+
+### Tooling
+
+The audit and brief behind this release both recorded `scripts/scan-ai-tells.py` as missing
+and treated its absence as an open question, because they were read against a packaged
+`.skill` bundle rather than the repo. The script was at the repo root the whole time, and
+as of #9 it ships inside the humanizer and farnsworth-rhetoric packages too, so the three
+`scripts/scan-ai-tells.py` references in SKILL.md now resolve for installed users and not
+only in-repo. No pattern text was written against tooling that does not exist.
+
+`scripts/scan-ai-tells.py` computes no rate measures -- commas per sentence, sentence
+length, parentheses per 1,000 words -- and does not count Latinate suffixes. Both
+`UNDER-PUNCT` and the `AI-VOCAB` register note are therefore written as manual reads and
+say so in the text, rather than promising tooling that does not exist. The script's
+auto-extraction reads `**... to watch:**` lines from SKILL.md; `UNDER-PUNCT` deliberately
+uses `**Signals:**` so that "and" is never pulled into the flag set.
+
 ## [1.3.1] - 2026-09-02
 
 Patches from the first clean-context eval (`tests/evals/runs/2026-09-02/REPORT.md`). No

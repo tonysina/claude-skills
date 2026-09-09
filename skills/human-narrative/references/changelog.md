@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.2] - 2026-09-08
+
+### Changed
+
+- **Stale pattern title in the humanizer hand-off note.** "em dash overuse" was humanizer's
+  title for `EM-DASH` before 1.4.0 renamed it "em dash frequency," on finding the tell had
+  inverted for most models. Prose only. This skill's "Violates" table references
+  `SIGNPOSTING`, `VAGUE-ATTRIB`, `DIDACTIC` and `GENERIC-CLOSER`, none of which humanizer
+  1.4.0 touches, so nothing structural depended on the old wording.
+
 ## [1.1.1] - 2026-09-02
 
 Patches from the first clean-context eval (`tests/evals/runs/2026-09-02/REPORT.md`). No

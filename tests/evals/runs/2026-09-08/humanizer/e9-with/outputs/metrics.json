@@ -1,0 +1,29 @@
+{
+  "tool_calls": {
+    "Read": 3,
+    "Write": 0,
+    "Bash": 6,
+    "Edit": 0,
+    "Glob": 0,
+    "Grep": 0
+  },
+  "total_tool_calls": 9,
+  "total_steps": 15,
+  "files_created": [
+    "result.md",
+    "transcript.md",
+    "user_notes.md",
+    "metrics.json"
+  ],
+  "errors_encountered": 1,
+  "patterns_found": [
+    "UNDER-PUNCT",
+    "VAGUE-CONNECT (undecided-connection sub-test)"
+  ],
+  "density_per_100_words": 0.0,
+  "spread_patterns": 0,
+  "input_words": 172,
+  "output_words": 165,
+  "output_chars": 18582,
+  "transcript_chars": 10932
+}

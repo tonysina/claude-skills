@@ -1,0 +1,32 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 754   figure budget: 5   (>600 words: 1 per 150, cap 6)
+
+  [CONSTRUCTIONS] forbidden-table violations: 0
+        none
+
+  [A] humanizer multi-word flags: 1 distinct
+        x1  "stands as"  [INFLATION]
+
+  [B] humanizer single-word flags (needs context): 0 distinct
+        none
+
+  em dashes: 0 total, max 0 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 0 word-level, 0 phrase-level
+
+  density: 1 flag hits / 754 words = 0.1 per 100   distinct patterns: 1 ['INFLATION']
+
+  HARD VIOLATIONS: 0
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     754   5     0   1   0    0   0/0   0   0.1   1     0

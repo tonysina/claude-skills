@@ -14,21 +14,21 @@ description: |
   Do NOT use for: general editing unrelated to AI patterns, grammar-only fixes,
   style preferences that don't involve AI detection.
 metadata:
-  version: 1.3.2
+  version: 1.4.0
 ---
 
 # Humanizer: Remove AI Writing Patterns
 
-Remove signs of AI-generated text to make writing sound natural and human-written. Based on Wikipedia's "Signs of AI writing" (WikiProject AI Cleanup), checked against the live page on 2026-09-02.
+Remove signs of AI-generated text to make writing sound natural and human-written. Based on Wikipedia's "Signs of AI writing" (WikiProject AI Cleanup), checked against the live page on 2026-09-08. `UNDER-PUNCT` is the one pattern not drawn from that page; its source is recorded in the changelog.
 
 ## How to use this skill
 
 Four passes, in order. Each pass is a section below.
 
 1. **Pass 1 -- high-signal patterns.** Significance inflation, -ing analyses, AI vocabulary, vague attribution. These cluster; one usually means others are nearby.
-2. **Pass 2 -- structural patterns.** Copula avoidance, vague connection, negative parallelism, rule of three, em dashes, formula sections, elegant variation, false ranges.
+2. **Pass 2 -- structural patterns.** Copula avoidance, vague connection, negative parallelism, rule of three, em dashes, punctuation scarcity, formula sections, false ranges.
 3. **Pass 3 -- formatting and surface.** Boldface and lists, fragmented headers, disclaimers, generic closers, gap speculation, signposting, chatbot residue.
-4. **Pass 4 -- document level.** Style shift between sections, then the voice check: read the result aloud. Does it sound like a person wrote it? Is rhythm varied? Are there specific details rather than vague claims? Would you still flag a tell if a stranger sent you this draft? If yes, fix it. If no, stop -- don't invent residual tells.
+4. **Pass 4 -- document level.** Style shift between sections, then the voice check: read the result aloud. Does it sound like a person wrote it, or like a press release? Is rhythm varied, or is every sentence the same length and shape? Are there specific details rather than vague claims, opinions rather than neutral reporting, acknowledged uncertainty rather than flat confidence? Would you still flag a tell if a stranger sent you this draft? If yes, fix it. If no, stop -- don't invent residual tells.
 
 Rewrite problematic sections while preserving meaning, and match the intended tone (see "Tone awareness"). Apply the threshold in "When a flag is a finding" before rewriting anything on the strength of word lists alone.
 
@@ -48,9 +48,9 @@ Every pattern has a stable ID and a display number. **Cross-reference by ID.** D
 | 6 | `VAGUE-CONNECT` | Vague expression of connection | 2 |
 | 7 | `NEG-PARALLEL` | Negative parallelisms | 2 |
 | 8 | `RULE-OF-3` | Rule of three | 2 |
-| 9 | `EM-DASH` | Em dash overuse | 2 |
-| 10 | `CHALLENGES-FORMULA` | Formulaic challenges-and-prospects sections | 2 |
-| 11 | `ELEGANT-VAR` | Elegant variation (declining) | 2 |
+| 9 | `EM-DASH` | Em dash frequency | 2 |
+| 10 | `UNDER-PUNCT` | Punctuation scarcity | 2 |
+| 11 | `CHALLENGES-FORMULA` | Formulaic challenges-and-prospects sections | 2 |
 | 12 | `FALSE-RANGE` | False ranges | 2 |
 | 13 | `BOLD-LISTS` | Boldface, inline-header lists, title-case headings | 3 |
 | 14 | `FRAG-HEADER` | Fragmented headers | 3 |
@@ -69,16 +69,20 @@ House style: this file writes `--` for every dash on purpose. Its own prose has 
 
 **Full rewrite:** User pastes text and says "humanize this" or "de-slop this." Scan, rewrite, and return clean text followed by a brief change summary naming the patterns fixed. If the scan is clean under the threshold below, return the text unchanged and say so. "Humanize this" is a request for a result, not an instruction to change something. A register descriptor attached to the request ("keep it professional," "keep it formal," "keep it casual") is not a constraint -- it names the tone "Tone awareness" below already targets for that register. This use case still applies, change summary included.
 
-**Edit with constraints:** User says "make this less AI but don't change the structure" or "clean up this draft but keep these two sentences exactly as written." The constraint limits *what may change* -- structure, length, or specific wording or facts to preserve -- not the register the result should read in; a register descriptor alone belongs to Full rewrite above. Apply pattern fixes within the stated constraints. Respect the user's boundaries over the skill's defaults. When "humanize" and a scope-limiting constraint arrive together, this use case wins. Include a change summary on request.
+**Edit with constraints:** User says "make this less AI but don't change the structure" or "clean up this draft but keep these two sentences exactly as written." The constraint limits *what may change* -- structure, length, or specific wording or facts to preserve. A register descriptor alone is not a constraint; see Full rewrite above. Apply pattern fixes within the stated constraints. Respect the user's boundaries over the skill's defaults. When "humanize" and a scope-limiting constraint arrive together, this use case wins. Include a change summary on request.
 
 **Voice calibration with sample:** User provides a sample of their own writing (inline or via file path) and asks for a humanized rewrite that matches their voice. Before rewriting, analyze the sample for sentence length patterns, word choice register (casual vs academic), paragraph openings, punctuation habits, transition style, and any recurring phrases. Then rewrite the target text using patterns drawn from the sample, not generic "human" defaults. If the sample uses short sentences, don't produce long ones. If the writer says "stuff" and "things," don't upgrade to "elements" and "components." If no sample is provided, fall back to the default behavior in "Tone awareness" below.
 
 ## When a flag is a finding
 
+**Date first.** Text written before 30 November 2022 predates public LLM access; AI use can be ruled out regardless of what the patterns say. Older writing does sometimes display these signs by coincidence. When the age of a draft is knowable, check it before scanning.
+
 The word lists in this file carry about 180 literal flags, and many are ordinary words (*key*, *valuable*, *enhance*, *features*). A hit is evidence, not a verdict. Two measures decide whether word-list hits justify a rewrite:
 
 - **Density:** watch-list hits from Passes 1 and 2, per 100 words.
 - **Spread:** how many distinct patterns those hits belong to.
+
+`UNDER-PUNCT` is measured by rate, not by word-list hits, and does not contribute to density or spread. Assess it separately.
 
 | Density | Spread | Verdict |
 |---|---|---|
@@ -86,9 +90,9 @@ The word lists in this file carry about 180 literal flags, and many are ordinary
 | 1-2 per 100, or any density | 2 patterns | Ambiguous. Flag each hit with its ID. Rewrite only hits the user confirms, or hits that co-occur in a single sentence. |
 | 2 or more per 100, or any density | 3 or more patterns | Rewrite. |
 
-Calibrated in v1.3.0 by scanning the source page's own confirmed-AI examples (84 blocks) against two human sets: the page's editorial prose and pre-2021 Wikipedia articles on the same subjects (60 blocks). No human block scored above 1.6 per 100 or above 2 patterns; three in ten AI blocks scored 2.0 or higher.
+Calibrated in v1.3.0 against the source page's own confirmed-AI examples and two human sets. No human block scored above 1.6 per 100 or above 2 patterns, which is the headroom these thresholds have. Corpus and method are in the changelog.
 
-**What the table does not gate.** Constructions and residue are findings on their own, at any density: a negative parallelism (`NEG-PARALLEL`), a generic closer (`GENERIC-CLOSER`), a challenges-formula section, three em dashes in a paragraph, a `[cite: 3]` marker. No human block in the calibration set contained one. Equally, more than half the confirmed-AI blocks scored **zero** on word lists -- their tells were structural or markup. A clean word-list scan is not a clean bill; run Passes 2-4.
+**What the table does not gate.** Constructions and residue are findings on their own, at any density: a negative parallelism (`NEG-PARALLEL`), a generic closer (`GENERIC-CLOSER`), a challenges-formula section, three em dashes in a paragraph of pre-2025 text, a `[cite: 3]` marker. `UNDER-PUNCT` sits outside the table too, for a different reason: it is a rate measure rather than a construction, and a text can score zero on every word list while tripping it hard. No human block in the calibration set contained one. Equally, more than half the confirmed-AI blocks scored **zero** on word lists -- their tells were structural or markup. A clean word-list scan is not a clean bill; run Passes 2-4.
 
 **What residue proves.** A citation marker or markup artifact proves a chatbot touched the citation or paragraph it sits in. It does not prove the chatbot wrote the prose; some writers use a chatbot only to find sources. Name the model the marker belongs to (`references/extended-patterns.md` lists them) and say "touched," not "drafted." When you strip markers that were the text's only sourcing, tell the user the figures and dates are now unsourced and need checking before publication.
 
@@ -104,11 +108,7 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 - Casual/thought leadership: Remove patterns AND add voice -- opinions, varied rhythm, specific feelings, first-person where it fits.
 - Creative: Remove formulaic patterns. Preserve or add distinctive voice, unexpected phrasing, real texture.
 
-**Signs of voiceless writing (even if technically "clean"):**
-- Every sentence is the same length and structure
-- No opinions or reactions, just neutral reporting
-- No acknowledgment of uncertainty or mixed feelings
-- Reads like a press release or tourism brochure
+Voiceless writing is diagnosed in the Pass 4 voice check above, not here.
 
 **For casual contexts, add voice by:**
 - Having opinions ("I keep coming back to..." rather than neutrally listing)
@@ -127,6 +127,8 @@ A LinkedIn post needs a different voice than a technical report. A sales email d
 
 *They cluster -- finding one usually means others are nearby.*
 
+*The common root is the impulse to explain a thing's significance instead of stating it. Cutting that impulse fixes more than any find-and-replace.*
+
 ### 1. INFLATION -- Significance inflation, promotional language, and authority tropes
 
 **Words to watch:** stands/serves as, is a testament/reminder, vital/significant/crucial/pivotal/key role/moment, underscores/highlights its importance/significance, reflects broader, symbolizing ongoing/enduring/lasting, setting the stage for, marks a shift, key turning point, evolving landscape, focal point, indelible mark, deeply rooted, boasts a, vibrant, rich (figurative), profound, showcasing, exemplifies, commitment to, natural beauty, nestled, in the heart of, groundbreaking (figurative), renowned, breathtaking
@@ -137,7 +139,7 @@ The lists above are drawn from the source and are not exhaustive for marketing c
 
 **Problem:** LLMs puff up importance by adding statements about how aspects of a topic represent or contribute to broader themes. They also default to promotional adjectives absorbed from marketing copy in training data. A related sub-pattern uses authority-claiming openers ("at its core, what really matters is") to imply the writer is revealing a deeper truth -- but the sentence that follows usually just restates an ordinary point with extra ceremony. Both patterns signal depth that isn't there. The difference: significance inflation adds importance to the *subject*; authority tropes claim insight for the *writer*.
 
-**Wikipedia insight:** This comes from statistical regression to the mean -- LLMs replace specific facts with generic, positive-sounding descriptions that could apply to many topics. As Wikipedia editors put it, the subject becomes "simultaneously less specific and more exaggerated."
+**The test:** the subject has become "simultaneously less specific and more exaggerated," in the source's phrase. Apply it to the sentence in front of you.
 
 **Before:**
 > The Statistical Institute of Catalonia was officially established in 1989, marking a pivotal moment in the evolution of regional statistics in Spain. This initiative was part of a broader movement to decentralize administrative functions and enhance regional governance.
@@ -169,11 +171,13 @@ The lists above are drawn from the source and are not exhaustive for marketing c
 
 ### 3. AI-VOCAB -- AI vocabulary words
 
-**Key words:** Additionally (especially starting a sentence), align with, boasts (meaning "has"), bolstered, crucial, deep dive, delve (pre-2025), emphasizing, enduring, enhance, fostering, garner, highlight (verb), interplay, intricate/intricacies, key (adjective), landscape (abstract noun), meticulous/meticulously, pivotal, robust, showcase, tapestry (abstract noun), testament, underscore (verb), valuable, vibrant
+**Key words:** Additionally (especially starting a sentence), align with, boasts (meaning "has"), bolstered, crucial, deep dive, delve (pre-2025), emphasizing, enduring, enhance, fostering, garner, highlight (verb), interplay, intricate/intricacies, key (adjective), landscape (abstract noun), meticulous/meticulously, pivotal, robust, showcase, tapestry (pre-2025 abstract noun), testament (pre-2025), underscore (verb), valuable, vibrant
 
-**Problem:** Corpus studies find these words far more frequent in text produced after 2022, when LLM chatbots became widely accessible, than before: Juzek and Ward (ACL Findings 2025, "Why Does ChatGPT 'Delve' So Much?"), Kobak et al. (*Science Advances* 2025, excess vocabulary in biomedical abstracts), Geng and Trotta (ACL Findings 2025). They co-occur -- where there is one, there are usually others. One or two may be coincidental; a cluster is one of the strongest tells for AI use. Take the list literally: a word being overused does not mean its synonyms are.
+**Problem:** Corpus studies find these words far more frequent in text produced after 2022, when LLM chatbots became widely accessible, than before: Juzek and Ward (2025), Kobak et al. (2025), Geng and Trotta (2025). They co-occur -- where there is one, there are usually others. One or two may be coincidental; a cluster is one of the strongest tells for AI use. Take the list literally: a word being overused does not mean its synonyms are.
 
 **Note:** Distribution varies by model and era. Roughly: *delve*, *tapestry*, *testament*, *intricate*, *garner* mark 2023 to mid-2024 output; *align with*, *fostering*, *showcasing*, *enhance* mark mid-2024 to mid-2025; from mid-2025 the list narrows to *emphasizing*, *enhance*, *highlighting*, *showcasing*. Grok overuses *causal*, *empirical*, *correlate* and still *underscore*. Context matters -- "underscore" can be a literal character; "key" can be a physical object.
+
+From mid-2026 the tell shifts from listed words to register. The older markers are largely gone -- models no longer *delve*, and *tapestry* is rare -- replaced by polysyllables (*significant*, *increasingly*, *consequences*), rare words (*interdependence*, *reindustrialisation*), scientific vocabulary (*parameter*, *methodology*), nominalisations (*expansion* for *expand*), and Latinate suffixes in preference to Saxon roots. Orwell's "pretentious diction." Literal scanning will not catch this and the scan script does not count it; it is a register judgment, so read for it. `farnsworth-rhetoric` already implements the detection and the fix: its Saxon default triggers on three or more Latinate polysyllables in one sentence, or a chain of abstract nouns, and turns the nominalizations back into verbs. Use that rule rather than a second one here.
 
 **Before:**
 > Additionally, a distinctive feature of Somali culinary tradition is the incorporation of camel meat. An enduring testament to Italian colonial influence is the widespread adoption of pasta in the local culinary landscape, showcasing how these dishes have integrated into the traditional diet.
@@ -215,7 +219,7 @@ The lists above are drawn from the source and are not exhaustive for marketing c
 
 **Words to watch:** serves as/stands as/marks/functions as/operates as/represents [a], boasts/features/maintains/offers [a], refers to
 
-**Problem:** LLMs substitute elaborate constructions for simple "is" and "are." Geng and Trotta (arXiv 2404.08627) documented an over 10% drop in "is" and "are" in academic abstracts during 2023, with no major change before that, and reproduced the drop by prompting GPT-3.5 to "revise the following sentence" across 10,000 abstracts. The same decline shows up on Wikipedia (Huang et al. 2026). It is especially visible in AI copyedits, which "improve" text by replacing copulas. Newer output does it more elaborately: "ventured into politics as a candidate" for "was a candidate."
+**Problem:** LLMs substitute elaborate constructions for simple "is" and "are." Geng and Trotta (2024) documented a sharp drop in "is" and "are" in academic abstracts during 2023; the same decline shows up on Wikipedia (Huang et al. 2026). It is especially visible in AI copyedits, which "improve" text by replacing copulas. Newer output does it more elaborately: "ventured into politics as a candidate" for "was a candidate."
 
 **Calibration note:** *features* and *offers* hit pre-2021 human articles at the same rate as AI text. This list is weak alone; it counts toward density, not as a finding by itself.
 
@@ -240,6 +244,12 @@ The lists above are drawn from the source and are not exhaustive for marketing c
 
 **After:**
 > The concerts marked the 50th anniversary of independence. He later taught violin and conducted local ensembles in the town.
+
+**Related: rotating connectors.** A small repeating set -- *moreover*, *furthermore*, *additionally*, *that said*, *on the other hand* -- carrying every transition in a piece reads as templated even when each instance is correct. Vary the strategy: sometimes no connector, sometimes a sentence that simply continues the thought. This is a monotony test, not a word list: an isolated *moreover* is on the source's ineffective-indicators list and is not a tell, so never flag a single instance. *Additionally* at the head of a sentence is already listed under `AI-VOCAB`; count it once.
+
+**Related: undecided connection.** "And" joining two ideas that stand in a stated relationship. Cut the connector and read the two sentences apart. If the relationship still holds, restore it and name it (*because*, *although*, *after*). If nothing changes, the joint was decoration. If the paragraph gets weaker without it, the argument was never written down -- that is a content problem, not a punctuation one, and should be reported to the user rather than patched.
+
+**Do not run this test on a series.** It applies to "and" joining two propositions only. On a list, the relation between items is plain enumeration, so cutting the conjunctions leaves the meaning intact and drops only the rhythm -- which is a figure working as intended, not decoration. Run on a series, the test returns "decoration" every time and strips deliberate polysyndeton. See `UNDER-PUNCT` and `farnsworth-rhetoric/references/figures.md`.
 
 ---
 
@@ -281,9 +291,11 @@ The output keeps a triad: three different things happen at the event, and droppi
 
 ---
 
-### 9. EM-DASH -- Em dash overuse
+### 9. EM-DASH -- Em dash frequency
 
-**Problem:** LLMs use em dashes more often than human writers, especially in formulaic, "punchy" ways that mimic sales writing. Multiple em dashes in close proximity is a strong tell. Some vendors have tuned this down since it became notorious, so its absence proves nothing.
+**Check spacing before counting.** AI-generated em dashes are usually surrounded by spaces, against the convention most human dash-users follow. That is a form tell, not a frequency tell, and it holds regardless of which direction the counts have moved. The dash tell is also far more common in comment and discussion text than in finished prose.
+
+**Problem:** Em dash frequency is model-specific and no longer points in one direction. Through roughly 2024, most models over-produced dashes, often in formulaic "punchy" rhythms that mimic sales writing, and multiple dashes in close proximity was a strong tell. That has since reversed unevenly: as of mid-2026, some models sit below every human baseline measured. Treat a dash cluster as a finding in text likely drafted before 2025, or where other Pass 2 patterns co-occur. Do not treat dash scarcity as evidence of anything on its own -- many human writers now strip dashes deliberately, precisely because the tell became well known.
 
 **Before:**
 > The term is primarily promoted by Dutch institutions -- not by the people themselves. You don't say "Netherlands, Europe" as an address -- yet this mislabeling continues -- even in official documents.
@@ -295,7 +307,25 @@ The output keeps a triad: three different things happen at the event, and droppi
 
 ---
 
-### 10. CHALLENGES-FORMULA -- Formulaic sections
+### 10. UNDER-PUNCT -- Punctuation scarcity
+
+**Signals:** long sentences carrying no internal punctuation; few commas or semicolons; parentheses nearly absent; no quoted speech, and none of the attributive punctuation that comes with it; "and" joining two ideas whose real relationship is causal, concessive, or sequential.
+
+**Problem:** Current models under-punctuate, which is the reverse of the pattern most checklists encode. They use fewer commas and semicolons than human writers and hardly any parentheses, write longer sentences, and reach for "and" more than any other word. Two causes. Longer sentences carry fewer internal breaks. And the models do not quote real people, which removes the quotation marks and attributive commas that sourced prose contains -- so an unpunctuated paragraph and an unsourced one often have the same origin. Check `VAGUE-ATTRIB` when this fires.
+
+**This is a rate measure, not a word list.** Do not add "and" to any watch list and do not count it toward the density threshold in "When a flag is a finding" -- it is far too common to carry signal per instance, and any tool that reads these lists literally would flag every paragraph in every document. Measure by hand: commas per sentence, share of sentences over roughly 30 words, parentheses per 1,000 words. `scripts/scan-ai-tells.py` computes none of them, so a clean report from that script is not evidence against this pattern -- it will score an unreadable wall of "and" at zero. Check your arithmetic before quoting a rate back to the user. Where the user has supplied a writing sample, compare against their own baseline rather than a general one.
+
+**Joints, not series.** This signal covers "and" as a joint between two propositions. It never covers "and" between items in a list. A series with a conjunction before every item is polysyndeton, a deliberate figure that `farnsworth-rhetoric` prescribes and caps at one per piece; leave it alone. When it is not obvious which you are looking at, ask what the conjunctions separate: items of the same kind (series -- leave it) or two propositions (joint -- test it, see `VAGUE-CONNECT`).
+
+**Before:**
+> The programme expanded to three cities in 2019 and the council increased its funding the following year and by 2022 it was serving roughly 4,000 households and staff numbers had doubled.
+
+**After:**
+> The programme expanded to three cities in 2019. After the council increased funding the next year, staff numbers doubled; by 2022 it was serving roughly 4,000 households.
+
+---
+
+### 11. CHALLENGES-FORMULA -- Formulaic sections
 
 **"Challenges and future prospects" formula:**
 Watch for "Despite its [positive words], [subject] faces challenges..." followed by vague optimism. This rigid formula, often with a separate "Future Outlook" section, is a strong AI tell. The problem is the formula, not simply mentioning challenges.
@@ -305,18 +335,6 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 **After:**
 > Traffic congestion increased after 2015 when three new IT parks opened. The municipal corporation began a stormwater drainage project in 2022.
-
----
-
-### 11. ELEGANT-VAR -- Elegant variation (synonym cycling)
-
-**Problem:** Older models carried a repetition penalty, producing excessive synonym substitution for the same referent (e.g., "the protagonist" then "the main character" then "the central figure" then "the hero"). The source moved this to its historical indicators in 2026; it still surfaces in older text and some current models. Non-native English writers taught to avoid repetition do this too.
-
-**Before:**
-> Vierny committed to supporting artists resisting the constraints of socialist realism. In the challenging climate of Soviet artistic constraints, Yankilevsky, alongside other non-conformist artists, faced obstacles in expressing their creativity freely.
-
-**After:**
-> Vierny supported artists working under Soviet censorship, including Yankilevsky, Kabakov, and Bulatov.
 
 ---
 
@@ -462,11 +480,11 @@ Watch for "Despite its [positive words], [subject] faces challenges..." followed
 
 ## Common issues
 
-**Ambiguous patterns:** Many AI patterns also appear in human writing (the Wikipedia source repeatedly warns about this). A single em dash, one use of "moreover," or a group of three is not proof of AI writing. Look for clusters -- multiple co-occurring patterns are a much stronger signal than any single one. Use the density and spread table above. When uncertain, flag the pattern for the user rather than silently rewriting.
+**Ambiguous patterns:** Apply the density and spread table above. The one thing it does not carry: when uncertain, flag the pattern for the user rather than silently rewriting.
 
 **Mixed AI/human text:** Users often edit AI output before asking for humanization. The text may be partly clean and partly formulaic. See `STYLE-SHIFT`: find the seam, work the suspect side.
 
-**Meaning loss on rewrite:** Some flagged patterns carry meaning the user intended. "It's not just X, it's Y" is a negative parallelism, but the user may want that contrast. When removing a pattern would lose a point the user clearly intended, restructure to preserve the point in a different form rather than deleting it.
+**Meaning loss on rewrite:** Some flagged patterns carry meaning the user intended. When removing a pattern would lose a point the user clearly intended, restructure to preserve the point in a different form rather than deleting it.
 
 **Removing human signs:** "There is a," "wrote," "very," "in order to," and superlatives like "was the first" are more common in human writing than in AI output. Stripping them for "polish" moves the text toward AI, not away from it. The full list is in `references/extended-patterns.md`.
 

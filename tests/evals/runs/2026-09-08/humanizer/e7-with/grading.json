@@ -1,0 +1,171 @@
+{
+  "eval_id": 7,
+  "name": "isolated-moreover",
+  "arm": "with",
+  "expectations": [
+    {
+      "text": "The response does not list the single 'Moreover' as a finding, a tell, or evidence of AI authorship. If it is mentioned at all, it is described as not a reliable indicator in isolation, or as requiring monotony across the piece before it counts",
+      "passed": true,
+      "evidence": "result.md line 13 places \"Moreover\" under a heading literally titled \"Checked and cleared\" and states: 'an isolated transition word is on the source's ineffective-indicators list. It's a tell only as monotony, a small set of connectors carrying nearly every transition in a piece. Here it's the only one of its kind. Not a finding.' It appears nowhere in the findings section (result.md lines 5-7, which contain only AI-VOCAB/showcases). This matches SKILL.md:248 ('an isolated *moreover* ... is not a tell, so never flag a single instance') and extended-patterns.md:165."
+    },
+    {
+      "text": "The response does not claim a rotating-connector, connector-monotony, or VAGUE-CONNECT finding against this text, which uses one connector in total",
+      "passed": true,
+      "evidence": "The string VAGUE-CONNECT does not appear in result.md at all, and no connector-related finding is asserted. The only connector discussion is the negative one at line 13 ('Here it's the only one of its kind. Not a finding.'). Transcript Step 7 shows the ruling out was deliberate: 'one \"Moreover\" and no other connectors of that family, so the monotony condition is not met'. Verified against the fixture: the text contains exactly one connector of that family."
+    },
+    {
+      "text": "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human, or is at most ambiguous leaning human",
+      "passed": true,
+      "evidence": "result.md opens: '**No, this doesn't read like AI wrote it. High confidence.**' and closes 'the patterns are the evidence, and they point human.' An entire section (lines 20-26) is titled 'What argues for a human author'. No hedge toward AI authorship anywhere. Matches ground truth (fixture is human-written)."
+    },
+    {
+      "text": "The response does not perform a rewrite of the text, in full or of any paragraph, even as an optional extra; it reports findings only, with at most a one-clause fix suggestion per finding",
+      "passed": true,
+      "evidence": "result.md contains no rewritten paragraph or full text. The only replacement offered is a single clause for the single finding: 'If you want it gone: \"publish early numbers that get revised later.\"' (line 7), and it closes 'I'd swap *showcases* if you want it gone. I wouldn't touch anything else.' (line 30). This is exactly the allowance in SKILL.md:68 ('A one-clause fix suggestion per finding is fine; a rewritten paragraph is not'). metrics.json also records rewrite_performed: false."
+    },
+    {
+      "text": "The response gives a reason for restraint, such as a hit count or rate relative to the text's length, the small number of distinct patterns, or the absence of structural tells",
+      "passed": true,
+      "evidence": "result.md line 3 supplies all three forms of reason: 'one word-list hit across 138 words: density 0.7 per 100, spread 1 pattern. That sits in the range the skill treats as human, and nothing fires on the structural or residue checks.' The 138-word count is correct (verified: wc -w = 138) and 1/138 = 0.72 per 100, which lands in the SKILL.md:89 row 'under 1 per 100 / 0-1 patterns -> Within human range'."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 3,
+      "Write": 0,
+      "Bash": 6,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 9,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 14509,
+    "transcript_chars": 8426,
+    "result_words": 514
+  },
+  "timing": {
+    "note": "No timing.json present in the run directory"
+  },
+  "claims": [
+    {
+      "claim": "The text is 138 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w on grant-update.txt returns 138. (The repo scanner reports 136 by its own tokenizer; the difference is hyphen/token handling and does not change the verdict.)"
+    },
+    {
+      "claim": "There is exactly one word-list hit, 'showcases' (AI-VOCAB), density 0.7 per 100, spread 1 pattern",
+      "type": "factual",
+      "verified": true,
+      "evidence": "'showcase' is on the AI-VOCAB key-word list at SKILL.md:174 and 'showcasing' at :134/:160, so the flag is legitimate. I re-read the fixture against the Pass 1/2 lists and found no second hit. 1/138 = 0.72 per 100, 1 pattern. Note: the repo scanner (scripts/scan-ai-tells.py) reports 0 hits on the fixture because it literal-matches 'showcase' and not the inflected 'showcases' — i.e. the executor's hand count is stricter than the tool, erring conservatively and still landing on 'human'."
+    },
+    {
+      "claim": "'Moreover' is not itself an AI-VOCAB list word; only sentence-initial 'Additionally' is",
+      "type": "factual",
+      "verified": true,
+      "evidence": "SKILL.md:174 lists 'Additionally (especially starting a sentence)' and does not list 'moreover'. SKILL.md:248 handles moreover only as a monotony test."
+    },
+    {
+      "claim": "Comma rate is 0.6 per sentence; nothing over 30 words",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Hand count of the fixture: 5 commas across 9 sentences = 0.56; longest sentence is 27 words."
+    },
+    {
+      "claim": "Sentence lengths run 4, 8, 9, 10, 12, 20, 24, 25, 27 words",
+      "type": "factual",
+      "verified": false,
+      "evidence": "My count gives 10, 24, 9, 24, 20, 8, 27, 12, 4 — i.e. 4, 8, 9, 10, 12, 20, 24, 24, 27. The executor's list contains a 25 where a second 24 belongs; its list sums to 139, one more than the 138 words it reports elsewhere in the same document. A one-word miscount in a supporting statistic; it does not move the UNDER-PUNCT assessment or the verdict, but it is an internal inconsistency in a quantitative claim the response presents as measured."
+    },
+    {
+      "claim": "'Text written before 30 November 2022 rules out AI regardless of what the patterns say'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "SKILL.md:78 'Date first' states exactly this. Applying it as a caveat on an undated draft is correct skill use, not invention."
+    },
+    {
+      "claim": "Copulas and plain verbs are listed by the source as more common in human writing",
+      "type": "factual",
+      "verified": true,
+      "evidence": "references/extended-patterns.md:144-149 'Signs of human writing (do not \"fix\" these)' lists simple is/has phrases and plain verbs."
+    },
+    {
+      "claim": "The correct use case is 'Review and flag': diagnose, do not rewrite automatically",
+      "type": "process",
+      "verified": true,
+      "evidence": "The eval prompt ('Review this for AI tells. Does it sound like AI wrote it?') matches SKILL.md:68 verbatim in shape. The deliverable follows that spec's required shape: one-line verdict plus confidence, then findings with pattern ID, quote, and fix."
+    },
+    {
+      "claim": "No scanner was run; all measurement was done by hand, per eval constraints",
+      "type": "process",
+      "verified": true,
+      "evidence": "metrics.json shows 6 Bash calls and 3 Reads, with the Bash calls described in the transcript as ls/cat/wc and a heredoc write. No scanner invocation appears. SKILL.md:316 itself notes the script cannot compute the UNDER-PUNCT rates, so the hand measurement was required regardless."
+    },
+    {
+      "claim": "The response's own prose is free of the patterns it audits",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The harness scan.txt (run with --keep-quotes on result.md) reports 2 'HARD VIOLATIONS' for NEG-PARALLEL plus VAGUE-ATTRIB and DIDACTIC hits. I checked each against result.md: every one is the executor quoting a pattern in order to clear it — 'not the \"it's not just X, it's Y\" move' (line 15), 'not \"experts argue\" or \"industry reports\"' (line 17), 'didactic \"worth noting\"' (line 18). The AI-VOCAB 'showcase' hit is the quoted fixture word. Zero of the six are the executor committing the pattern."
+    },
+    {
+      "claim": "'I would rather wait for it than publish' is not NEG-PARALLEL",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Justified. NEG-PARALLEL targets the balanced 'not X, but Y' construction correcting a misconception; this is an ordinary comparative preference between two available actions. The executor flagged its own uncertainty here in user_notes.md, which is the right disclosure since NEG-PARALLEL is ungated by the density table (SKILL.md:95). I agree with the ruling."
+    },
+    {
+      "claim": "'An admission against interest' and 'the ending' are evidence of human authorship",
+      "type": "quality",
+      "verified": false,
+      "evidence": "These are the executor's own inferences, not codified indicators in SKILL.md or extended-patterns.md. They are plausible and the executor disclosed exactly this in user_notes.md ('my reasoning about what a generated draft would avoid saying, not a pattern in the skill'). Flagged as reasoning presented alongside skill-grounded evidence without an in-answer marker distinguishing the two."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Draft is undated, so the skill's 'Date first' pre-30-Nov-2022 exclusion could not be applied; flagged in the answer rather than assumed",
+      "'showcases' is a genuine judgment call — a literal AI-VOCAB word, but ordinary English in nonprofit/funder writing; reported below threshold per the table",
+      "'I would rather wait ... than publish' sits close to the reversed 'X rather than Y' NEG-PARALLEL form, which is ungated by the density table; ruling it out was material to the verdict"
+    ],
+    "needs_review": [
+      "The 'admission against interest' argument is the executor's inference, not a codified skill indicator",
+      "UNDER-PUNCT was measured by hand on a 138-word sample; parenthesis-rate style measures are not meaningful at that length"
+    ],
+    "workarounds": [
+      "Per eval constraints scripts/scan-ai-tells.py was not run; density and spread were counted by reading"
+    ],
+    "skill_improvement_suggestions_from_executor": [
+      "The Review-and-flag use case says nothing about reporting *cleared* patterns, which is the most useful part of a clean report",
+      "The reversed 'X rather than Y' entry under NEG-PARALLEL has no worked example distinguishing it from ordinary comparative preference"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Four of the five assertions (1, 2, 3, 4) are satisfied by *absence*. A one-line reply — 'No, this reads human.' — would pass all four, and would arguably pass assertion 5 with a five-word gesture at length. The suite therefore cannot distinguish this genuinely substantive report from a terse non-answer. Add at least one positive-substance assertion, e.g. 'the response names the specific low-signal item it did find (showcases / AI-VOCAB) and marks it as below threshold rather than omitting it entirely' — that discriminates between correct restraint and lazy restraint, which is the actual failure mode this eval cares about."
+      },
+      {
+        "assertion": "The response gives a reason for restraint, such as a hit count or rate relative to the text's length, the small number of distinct patterns, or the absence of structural tells",
+        "reason": "The disjunction is so wide ('or ... or ...') that almost any hand-wave qualifies — 'there just aren't many tells here' satisfies 'a small number of distinct patterns' on a charitable read. Tighten to require a quantity actually tied to the skill's threshold table: a density figure per 100 words AND a pattern-spread count, or an explicit citation of the row of the threshold table being applied."
+      },
+      {
+        "reason": "No assertion checks the *accuracy* of the numbers the response cites, and this run contains a wrong one that went completely uncaught: the sentence-length list '4, 8, 9, 10, 12, 20, 24, 25, 27' sums to 139 while the same document reports 138 words (the correct series has two 24s). Since the whole verdict rests on hand-measured rates, an assertion like 'any word counts, comma rates, or sentence-length figures cited are correct for the source text' would catch fabricated or sloppy measurement — the most dangerous silent failure for this skill."
+      },
+      {
+        "reason": "No assertion covers over-flagging generally. Assertions 1 and 2 pre-name the two false positives the eval author anticipated (Moreover, VAGUE-CONNECT), but a response could invent a different bogus finding — INFLATION on 'held at 81 percent', GAP-SPECULATION on 'We have not yet analysed' — and still pass every assertion including 3, as long as it landed on 'human'. Add a catch-all: 'the response asserts no finding other than, at most, the single AI-VOCAB hit on showcases.'"
+      },
+      {
+        "assertion": "The response does not perform a rewrite of the text, in full or of any paragraph, even as an optional extra; it reports findings only, with at most a one-clause fix suggestion per finding",
+        "reason": "'One-clause fix suggestion' is left to grader judgment. The response here supplied a replacement phrase spanning most of a clause, which I judged compliant against SKILL.md:68's identical wording — but a grader without that line in hand could go either way. Cite the SKILL.md sentence in the assertion, or bound it mechanically (e.g. 'no proposed replacement exceeds one sentence, and none is offered for text that was not flagged')."
+      }
+    ],
+    "overall": "The suite correctly gates the behaviour this eval was built for — the isolated 'Moreover' false positive — and the run passes all five cleanly on strong, quotable evidence. The weakness is that the suite is almost entirely composed of negative assertions, so it measures what the response avoided saying and barely measures whether it did any real work. Two additions would fix that: one assertion on positive substance (the correctly-scoped low-signal finding) and one on numerical accuracy (which would have caught the sentence-length miscount in this very run)."
+  }
+}

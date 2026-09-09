@@ -125,8 +125,19 @@ These patterns were common in older AI models but are less frequent in 2025+ mod
 - **Abrupt cutoffs:** Text stopping mid-sentence due to token limits
 - **Didactic disclaimers:** "It's important to note..." (see main SKILL.md, `DIDACTIC`)
 - **Section summaries:** "In summary..." / "In conclusion..." (see main SKILL.md, `DIDACTIC`)
-- **Elegant variation:** synonym cycling from repetition penalties in older models (see main SKILL.md, `ELEGANT-VAR`). The source moved this to its historical section in 2026.
 - **Outdated access-dates:** citations dated well before the text was written; newer chatbots seldom do this, and copied citations produce it legitimately
+
+### `ELEGANT-VAR` -- Elegant variation (synonym cycling)
+
+Relocated here from SKILL.md in 1.4.0. The source moved it to historical indicators in 2026, and non-native English writers taught to avoid repetition trip it legitimately, so it costs a scan on every invocation and returns false positives. It keeps its stable ID and is no longer in the SKILL.md pattern table.
+
+**Problem:** Older models carried a repetition penalty, producing excessive synonym substitution for the same referent (e.g., "the protagonist" then "the main character" then "the central figure" then "the hero"). It still surfaces in older text and some current models.
+
+**Before:**
+> Vierny committed to supporting artists resisting the constraints of socialist realism. In the challenging climate of Soviet artistic constraints, Yankilevsky, alongside other non-conformist artists, faced obstacles in expressing their creativity freely.
+
+**After:**
+> Vierny supported artists working under Soviet censorship, including Yankilevsky, Kabakov, and Bulatov.
 
 ---
 
@@ -151,11 +162,11 @@ Per Wikipedia's guide, these are NOT reliable signs of AI writing. False accusat
 - A mix of casual and formal registers, or prose that is both "clinical" and "emotional" (a technical person writing casually, a young writer, a mixed-register preference, or several authors on one page)
 - "Bland" or "robotic" prose (LLMs actually tend toward effusive and verbose prose)
 - "Fancy," academic, or formal prose in general (the overused words are *specific words*; the correlation does not extend to all formal writing)
-- Transition words in isolation ("moreover," "furthermore," "additionally"): only a few are overused by AI, and essay-style human writing uses them too
+- Transition words in isolation ("moreover," "furthermore," "additionally"): only a few are overused by AI, and essay-style human writing uses them too. Never flag a single instance. What *is* a tell is monotony -- a small set of connectors carrying nearly every transition in a piece -- and that case belongs to `VAGUE-CONNECT` in SKILL.md, not here
 - Unsourced content (most unsourced text predates LLMs; modern chatbots cite, inaccurately)
 - Bizarre markup errors (more likely from browser extensions or editing tools)
 - Correct, complex markup (normal for anyone who has found the preview button)
 
 ## Source
 
-All patterns from [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), WikiProject AI Cleanup. Checked against the live page on 2026-09-02.
+All patterns from [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), WikiProject AI Cleanup. Checked against the live page on 2026-09-08.

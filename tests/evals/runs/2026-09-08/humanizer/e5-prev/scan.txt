@@ -1,0 +1,37 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 581   figure budget: 3   (300-600 words: 3)
+
+  [CONSTRUCTIONS] forbidden-table violations: 0
+        none
+
+  [A] humanizer multi-word flags: 0 distinct
+        none
+
+  [B] humanizer single-word flags (needs context): 0 distinct
+        none
+
+  em dashes: 10 total, max 2 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 1 weak (2)
+        weak   "migration window..." x2
+
+  triads: 3 word-level, 0 phrase-level
+        demand, readiness, and containable
+        amount, period, scope
+        Priya, Leeds, Saturday
+        -> run isocolon load-bearing test on each
+
+  density: 0 flag hits / 581 words = 0.0 per 100   distinct patterns: 0 []
+
+  HARD VIOLATIONS: 0
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     581   3     0   0   0    2   0/1   3   0.0   0     0
