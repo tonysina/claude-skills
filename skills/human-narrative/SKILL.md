@@ -15,7 +15,7 @@ description: |
   (use farnsworth-rhetoric), grammar or style-only fixes, technical documentation,
   runbooks, process instructions, data reporting, legal language, or RFP answers.
 metadata:
-  version: 1.1.1
+  version: 1.1.2
 ---
 
 # Human-Narrative: Structural AI Pattern Removal
@@ -439,7 +439,7 @@ restructuring.
 
 **Zero interventions is the expected result for short professional writing.** See Step 3.
 
-**This skill doesn't replace humanizer.** AI vocabulary, em dash overuse, promotional
+**This skill doesn't replace humanizer.** AI vocabulary, em dash frequency, promotional
 language, rule of three: not this skill's concern. Run `humanizer` after.
 
 ---

@@ -100,6 +100,14 @@ After: "The migration touched billing and provisioning and support tooling and r
 page when it isn't earned, because a reader who doesn't hear the rhythm just sees bad
 grammar.
 
+**Not a humanizer flag.** humanizer's `UNDER-PUNCT` treats "and" as a tell when it joins
+two propositions whose relationship the writer never decided. Polysyndeton is a series,
+and sits outside that pattern by design. The cut-and-test under humanizer's
+`VAGUE-CONNECT` does not apply here: cutting these conjunctions leaves the meaning intact
+and drops only the rhythm, so the test reports decoration when the figure is working. The
+cap still holds — an uncapped polysyndeton is a different failure, and humanizer will not
+catch it for you.
+
 ---
 
 ### Praeteritio — mentioning by refusing to mention

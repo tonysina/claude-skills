@@ -18,7 +18,7 @@ description: |
   or use start-with-why/strategic-persuasion-writing/bluedolphin-collateral,
   then return here to sharpen it).
 metadata:
-  version: 1.1.2
+  version: 1.1.3
 ---
 
 # Farnsworth Rhetoric: Memorable Writing
@@ -123,6 +123,8 @@ than adding it. Apply it everywhere, always:
 - **Saxon default.** Trigger: three or more Latinate polysyllables in one sentence, or a
   chain of abstract nouns. Move: turn nominalizations back into verbs. "The
   implementation of our transformation initiative will require" → "We will have to."
+  Corpus comparison finds Latinate polysyllables and nominalisations elevated in current
+  model output, so this rule has empirical support and not only a craft argument.
 - **Saxon finish.** Trigger: a sentence or paragraph ends on a Latinate polysyllable
   (`-tion`, `-ment`, `-ity`, `-ance`, `-ize`). Move: rebuild so the last word is a
   stressed Saxon monosyllable. The last word rings longest.
@@ -303,6 +305,9 @@ list. Producing them makes this skill actively counterproductive.
 | Three or more em dashes in close proximity | `EM-DASH` | Commas, colons, periods |
 | "The real question is" / "At its core" / "Fundamentally" | `INFLATION` (authority tropes) | Ask the real question, or state the point |
 | "we will lead" / "the future is bright" / "poised for growth" closers | `GENERIC-CLOSER` | A concrete claim, with a Saxon finish |
+
+`EM-DASH` is stricter here than in humanizer, deliberately: this table governs what this
+skill *produces*, and a generation constraint can be tighter than a detection threshold.
 
 Flags are humanizer's stable pattern IDs (see the table at the top of its SKILL.md), not
 display numbers, which can change between humanizer versions.
