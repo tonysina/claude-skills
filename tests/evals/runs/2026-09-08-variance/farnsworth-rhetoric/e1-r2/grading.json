@@ -1,0 +1,37 @@
+{
+  "expectations": [
+    {
+      "text": "Identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+      "passed": true,
+      "evidence": "'This is process/technical writing, out of scope for rhetorical figures.'"
+    },
+    {
+      "text": "No rhetorical figure is added",
+      "passed": true,
+      "evidence": "No traditional figures; diction work only."
+    },
+    {
+      "text": "If edited, only word-level substitutions; no sentences added/split, no new structural elements",
+      "passed": false,
+      "evidence": "Adds bold note '**Register note:**' which is a structural element not in input."
+    },
+    {
+      "text": "No em dashes; every procedural condition preserved with same logic",
+      "passed": false,
+      "evidence": "Em dash present: 'before promoting\u2014high lag causes data loss.'"
+    },
+    {
+      "text": "Preserves or flags 'exactly thirty seconds' gap; does not silently resolve it",
+      "passed": true,
+      "evidence": "'Under thirty seconds' and 'exceeds thirty seconds' preserve the gap."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "total": 5,
+    "pass_rate": 0.6
+  },
+  "notes": [
+    "e1-r2 introduces both a bold structural element and an em dash against expectations."
+  ]
+}

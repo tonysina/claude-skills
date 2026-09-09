@@ -1,0 +1,34 @@
+{
+  "expectations": [
+    {
+      "text": "No rewrite performed, even partial/optional; findings-only with at most a one-clause fix suggestion per finding",
+      "passed": true,
+      "evidence": "Findings-only approach"
+    },
+    {
+      "text": "Verdict is human or ambiguous-leaning-human, not AI-generated",
+      "passed": true,
+      "evidence": "Verdict leans human/ambiguous"
+    },
+    {
+      "text": "Watch-list words present, if flagged, described as weak/context-dependent, not proof",
+      "passed": false,
+      "evidence": "Unqualified watch words: ['boasts']"
+    },
+    {
+      "text": "Gives a reason for restraint (low hit count, few distinct patterns, no structural tells)",
+      "passed": false,
+      "evidence": "No restraint justification"
+    },
+    {
+      "text": "States a hit count or rate relative to length",
+      "passed": false,
+      "evidence": "No explicit count provided"
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "total": 5,
+    "pass_rate": 0.4
+  }
+}

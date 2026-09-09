@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "Applies at most three rhetorical figures and names each with trigger condition",
+      "passed": false,
+      "evidence": "Figures named in notes (hypophora, antithesis), not in DELIVERED section."
+    },
+    {
+      "text": "Reports claim check hedge by hedge; hedges reported as kept are actually present",
+      "passed": false,
+      "evidence": "Claim check in notes not DELIVERED; 'potentially' hedge appears removed in output."
+    },
+    {
+      "text": "Every number survives unchanged: four platforms, 2021-2024, $2.1M, eighteen months, three teams, month 26, two of four, two viable",
+      "passed": true,
+      "evidence": "All numbers preserved."
+    },
+    {
+      "text": "The ask ('Leadership approval...') is preserved in substance",
+      "passed": true,
+      "evidence": "'Leadership approval requested to proceed with detailed planning... decision gate...' preserved."
+    },
+    {
+      "text": "Adds no claim or commitment absent from the source",
+      "passed": false,
+      "evidence": "Adds 'stagger customer transitions to avoid churn' (not explicitly in input); frames 18-month timeline causally."
+    },
+    {
+      "text": "Contains no negative parallelism and no generic positive closer",
+      "passed": true,
+      "evidence": "No negative parallelism; closing is concrete prerequisite."
+    },
+    {
+      "text": "At most one anaphora run and no more than two em dashes per paragraph",
+      "passed": true,
+      "evidence": "One em dash in para 4; no anaphora runs."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "total": 7,
+    "pass_rate": 0.571
+  }
+}

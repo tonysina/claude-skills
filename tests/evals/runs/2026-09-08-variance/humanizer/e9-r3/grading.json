@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "Identifies punctuation scarcity / long 'and'-chained sentences, names UNDER-PUNCT as stable ID",
+      "passed": false,
+      "evidence": "Not identified"
+    },
+    {
+      "text": "Rewritten text has >=7 sentence-ending periods (source has 3), no sentence over 35 words",
+      "passed": true,
+      "evidence": "13 periods, longest: 25 words"
+    },
+    {
+      "text": "Adds internal punctuation, replacing >=4 propositional 'and' joints appropriately",
+      "passed": false,
+      "evidence": "Minimal replacement"
+    },
+    {
+      "text": "The 'primary and replica connection pools' two-item series left intact, not split/re-punctuated",
+      "passed": true,
+      "evidence": "Series preserved"
+    },
+    {
+      "text": "Does not treat 'and' as watch-list word or count UNDER-PUNCT toward density",
+      "passed": true,
+      "evidence": "'and' not flagged"
+    },
+    {
+      "text": "Every figure survives unchanged (02:14, 04:05, 23:40, 18 percent, March, etc.)",
+      "passed": true,
+      "evidence": "Incident figures preserved"
+    },
+    {
+      "text": "Every hand-computed number is arithmetically correct and internally consistent",
+      "passed": true,
+      "evidence": "Numbers consistent"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "total": 7,
+    "pass_rate": 0.71
+  }
+}

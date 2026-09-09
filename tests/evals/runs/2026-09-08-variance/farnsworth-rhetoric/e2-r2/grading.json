@@ -1,0 +1,34 @@
+{
+  "expectations": [
+    {
+      "text": "States a figure budget for the piece and adds at most one figure the author did not already have",
+      "passed": false,
+      "evidence": "No figure budget stated in DELIVERED section; no figures added (correct action but budget not stated)."
+    },
+    {
+      "text": "Concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved",
+      "passed": true,
+      "evidence": "All details preserved (note: 'about' hedge removed but the detail '4 hundred signups' is present)."
+    },
+    {
+      "text": "No claim inflated or generalized; 'about four hundred' keeps its hedge; no new maxims added",
+      "passed": false,
+      "evidence": "Removes 'about' hedge from 'about four hundred signups.'"
+    },
+    {
+      "text": "If a figure is applied, names it and trigger condition; if none, explains why",
+      "passed": false,
+      "evidence": "Explanation not in DELIVERED; only in notes: 'Zero is a valid spend.'"
+    },
+    {
+      "text": "Non-figure edits restrained; closing sentence preserved; at most one sentence split/merged",
+      "passed": true,
+      "evidence": "Closing sentence preserved; only word-level edit (removing 'about')."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "total": 5,
+    "pass_rate": 0.4
+  }
+}

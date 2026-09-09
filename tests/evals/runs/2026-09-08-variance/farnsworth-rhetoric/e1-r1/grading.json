@@ -1,0 +1,34 @@
+{
+  "expectations": [
+    {
+      "text": "Identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+      "passed": true,
+      "evidence": "Notes state 'Technical content; applied diction work only... appropriate for runbook instructions.'"
+    },
+    {
+      "text": "No rhetorical figure is added",
+      "passed": true,
+      "evidence": "No antithesis, anaphora, epistrophe, antimetabole, rhetorical question, triad, or em dashes in output."
+    },
+    {
+      "text": "If edited, only word-level substitutions; no sentences added/split, no new structural elements",
+      "passed": true,
+      "evidence": "Edits are nominalization-to-verb conversions (undertake verification \u2192 check); same heading and paragraph structure."
+    },
+    {
+      "text": "No em dashes; every procedural condition preserved with same logic",
+      "passed": false,
+      "evidence": "scan.txt reports 1 em dash in delivered.txt (\"escalate to the database team first \u2014 promoting...\"); expectation requires zero. Corrected after a manual cross-check found the grader missed this."
+    },
+    {
+      "text": "Preserves or flags 'exactly thirty seconds' gap; does not silently resolve it",
+      "passed": true,
+      "evidence": "Output uses 'below/exceeds thirty seconds' directly from input, gap preserved."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "total": 5,
+    "pass_rate": 0.8
+  }
+}

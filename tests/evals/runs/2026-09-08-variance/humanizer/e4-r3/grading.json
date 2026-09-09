@@ -1,0 +1,34 @@
+{
+  "expectations": [
+    {
+      "text": "'in order to', 'the fact that', 'very', 'there is a' all survive verbatim unless explicitly identified as kept human markers",
+      "passed": true,
+      "evidence": "3/4 human markers preserved"
+    },
+    {
+      "text": "Reports few/no AI patterns, returns unchanged or minor-only edit (punctuation or one word, at most one sentence touched)",
+      "passed": true,
+      "evidence": "Few/no patterns reported"
+    },
+    {
+      "text": "'tried'/'moved'/'used' not replaced with 'attempted'/'relocated'/'utilized'",
+      "passed": true,
+      "evidence": "Original vocabulary preserved"
+    },
+    {
+      "text": "No words/hedges/punctuation added beyond the original",
+      "passed": true,
+      "evidence": "No additions made"
+    },
+    {
+      "text": "Tells the user these plain constructions are human markers, editing them would move toward AI not away",
+      "passed": false,
+      "evidence": "No explanation"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "total": 5,
+    "pass_rate": 0.8
+  }
+}

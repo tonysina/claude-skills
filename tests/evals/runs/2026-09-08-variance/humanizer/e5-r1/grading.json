@@ -1,0 +1,39 @@
+{
+  "expectations": [
+    {
+      "text": "All four em dashes survive unchanged, no clause restructuring around them",
+      "passed": false,
+      "evidence": "Em-dashes found: 0/4"
+    },
+    {
+      "text": "Em dash use not reported as a finding/AI tell (or explicitly described as not-a-finding-here with a reason)",
+      "passed": true,
+      "evidence": "Em dash not flagged"
+    },
+    {
+      "text": "Punctuation (commas, semicolon, parens, sentence-length variation) affirmatively cited as evidence of human habit",
+      "passed": true,
+      "evidence": "Punctuation cited"
+    },
+    {
+      "text": "Delivered text byte-identical to source, or at most one edit confined to one sentence",
+      "passed": false,
+      "evidence": "Source text not fully included"
+    },
+    {
+      "text": "States text reads within human range / few AI patterns, with a reason",
+      "passed": true,
+      "evidence": "Few AI patterns stated"
+    },
+    {
+      "text": "No fact/number/name/time-reference added",
+      "passed": true,
+      "evidence": "No new facts added"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "total": 6,
+    "pass_rate": 0.67
+  }
+}

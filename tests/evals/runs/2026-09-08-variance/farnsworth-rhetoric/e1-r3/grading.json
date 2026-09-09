@@ -1,0 +1,34 @@
+{
+  "expectations": [
+    {
+      "text": "Identifies the text as a technical or process register and states that rhetorical figures are not appropriate for it",
+      "passed": false,
+      "evidence": "Notes say 'No figures applied' but DELIVERED section does not explicitly state why."
+    },
+    {
+      "text": "No rhetorical figure is added",
+      "passed": true,
+      "evidence": "No traditional figures beyond em dash styling."
+    },
+    {
+      "text": "If edited, only word-level substitutions; no sentences added/split, no new structural elements",
+      "passed": true,
+      "evidence": "Diction work only; same structure as input."
+    },
+    {
+      "text": "No em dashes; every procedural condition preserved with same logic",
+      "passed": false,
+      "evidence": "Em dash present: 'call the database team first \u2014 that much lag loses data.'"
+    },
+    {
+      "text": "Preserves or flags 'exactly thirty seconds' gap; does not silently resolve it",
+      "passed": true,
+      "evidence": "'Under thirty seconds' and 'exceeds thirty seconds' preserve gap."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "total": 5,
+    "pass_rate": 0.6
+  }
+}
