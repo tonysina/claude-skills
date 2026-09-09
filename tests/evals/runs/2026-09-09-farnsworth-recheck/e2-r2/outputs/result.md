@@ -1,0 +1,25 @@
+---BEGIN DELIVERED---
+
+This is a 91-word engineering-blog paragraph, so I'm working to a budget of at most 1 figure.
+
+I'm recommending **zero figures** here, and I want to be explicit about why this isn't a shortcut.
+
+The paragraph is already landing. It's clear — each detail earns its place (Tuesday, Wednesday, Thursday, step four, leading zero, American test team). It's correctly hedged — all numbers are present, "about" qualifies the signup count, and causal chains are stated without inflation. It ends on stress — "relearn" has a stressed final syllable and rings as a conclusion. The voice is appropriately conversational for a post-mortem without being folksy.
+
+The piece has a natural escalation: decision and rationale → escalating discovery → outcome and reflection. The strongest moment — "Nobody caught it in testing because everyone on the test team is American" — already contains implicit irony without needing rhetorical ornament. Adding a figure would mean choosing between overlaying the existing contrast (which would feel redundant) or finding a weaker spot to strengthen (which would pull attention from what's already working).
+
+**Claim and hedge check:** The piece preserves:
+- Specific timing (Tuesday through Thursday)
+- Specific technical failure (leading zero, phone-number field)
+- Specific root cause (US-only test team)
+- Quantified damage (about 400 signups)
+- Appropriate hedge on the signup figure ("about")
+- The personal lesson (kept as a pattern: "keep having to relearn")
+
+No hedge was dropped, no claim inflated, no unsupported framing added.
+
+**Final text (unchanged):**
+
+We shipped the new onboarding flow on a Tuesday because I wanted three clear days to watch it before the weekend. Good thing. By Wednesday afternoon the drop-off at step four had doubled, and it took us until Thursday to find out why: the phone-number field rejected the leading zero that half of Europe types by default. Nobody caught it in testing because everyone on the test team is American. We fixed it in an hour. It cost us about four hundred signups and a lesson I keep having to relearn.
+
+---END DELIVERED---

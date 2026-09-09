@@ -1,0 +1,25 @@
+**Triage: 91-word engineering blog paragraph. Budget: 1 figure maximum.**
+
+This paragraph is already excellent and needs no revision. The prose is clear, correctly hedged, ends on strength, and moves with natural narrative force. Adding a figure to already-working prose is the most common way this skill makes writing worse.
+
+**Figures withheld:** None. The text doesn't need a figure.
+
+**Why the text already lands:**
+
+The paragraph reads as human experience, not instruction. It has concrete detail (phone-number field, leading zero, step four), narrative momentum (Tuesday decision → Wednesday problem → Thursday diagnosis → Friday fix), and personality ("Good thing"). The ending lands hard: "It cost us about four hundred signups and a lesson I keep having to relearn." The final word "relearn" is a stressed Saxon monosyllable that carries the weight of the mistake—not overstated, but present.
+
+**Saxon finish check:** Paragraph endings are on stressed words—"weekend," "thing," "hour," "relearn"—all Germanic and strong. No Latinate drift.
+
+**Latinate pileup check:** The text avoids heavy nominalization. Where Latinate words appear ("onboarding," "phone-number," "default," "American," "testing"), they're balanced by Saxon verbs ("shipped," "fixed," "watch," "cost") and Germanic nouns ("flow," "field," "zero," "team," "hour," "lesson"). No chain of abstract nouns. No buried verb.
+
+**Claim and hedge check:** The hedge "about four hundred signups" is preserved—appropriately uncertain. The claim "It cost us about four hundred signups and a lesson I keep having to relearn" states consequence without inflating impact. No qualifier dropped, no date or number changed, no unsupported framing added.
+
+**Figures considered and withheld:**
+
+- **Antithesis:** The European problem / American team contrast is already implicit and clear. Making it explicit ("We faced a European problem with an American team") would feel forced against the natural narrative flow.
+- **Hypophora:** No implicit reader question that isn't already answered by the text's structure.
+- **Anaphora:** Text is 91 words; anaphora is forbidden under 300 words for exactly this reason—it reads as speechifying, not memoir.
+
+**Final text (unchanged):**
+
+We shipped the new onboarding flow on a Tuesday because I wanted three clear days to watch it before the weekend. Good thing. By Wednesday afternoon the drop-off at step four had doubled, and it took us until Thursday to find out why: the phone-number field rejected the leading zero that half of Europe types by default. Nobody caught it in testing because everyone on the test team is American. We fixed it in an hour. It cost us about four hundred signups and a lesson I keep having to relearn.

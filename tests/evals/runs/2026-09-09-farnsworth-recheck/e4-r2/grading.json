@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "The response applies at most three rhetorical figures and names each with its trigger condition",
+      "passed": true,
+      "evidence": "Applies 1 figure (Hypophora at opening) with trigger condition explained."
+    },
+    {
+      "text": "The response reports a claim check hedge by hedge, covering at least 'potentially', 'more difficult to quantify with precision', 'has not been fully assessed', 'financial modelling indicates', 'should not be interpreted as a recommendation' -- each hedge reported as kept is actually present in the output",
+      "passed": false,
+      "evidence": "Reports 3-4 key hedges, but 'financial modelling indicates' changed to 'Financial modeling shows' without adequate hedge-check reporting."
+    },
+    {
+      "text": "Every number survives unchanged: four platforms, 2021 to 2024, $2.1M, eighteen months, three teams, month twenty-six, two of four platforms undocumented, two viable targets",
+      "passed": true,
+      "evidence": "All 8 numbers verified present and unchanged in output."
+    },
+    {
+      "text": "The ask ('Leadership approval is requested to proceed with a detailed planning phase, with a decision gate...') is preserved in substance",
+      "passed": true,
+      "evidence": "Ask preserved exactly verbatim in output; decision gate and approval language intact."
+    },
+    {
+      "text": "The output adds no claim or commitment absent from the source",
+      "passed": true,
+      "evidence": "Output restates source claims without adding new commitments or facts."
+    },
+    {
+      "text": "The output contains no negative parallelism and no generic positive closer",
+      "passed": true,
+      "evidence": "No negative parallelism; closer is specific and procedural."
+    },
+    {
+      "text": "At most one anaphora run and no more than two em dashes in any paragraph",
+      "passed": true,
+      "evidence": "Scan: 0 anaphora runs, max 2 em-dashes per paragraph met."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "total": 7,
+    "pass_rate": 0.857
+  }
+}

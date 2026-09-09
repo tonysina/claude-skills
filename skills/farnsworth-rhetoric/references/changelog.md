@@ -1,6 +1,29 @@
 # Changelog
 
-## [1.1.3] - 2026-09-08
+## [1.1.4] - 2026-09-09
+
+### Fixed
+
+- **The claim check's own framing scoped it to figures, and diction work slipped through
+  the gap.** A clean 3-run re-measurement of the exec-summary eval (`tests/evals/runs/
+  2026-09-09-farnsworth-recheck/`) found "Financial modelling indicates that licensing
+  savings would offset..." tightened by the Saxon-default rule to "The math works" (and,
+  in other runs, "Financial modeling shows" / dropped entirely) in all 3 runs — a
+  nominalization-to-verb swap that also quietly dropped the attribution, moving the claim
+  from something a model produced to something stated as flatly true. The claim check
+  section opened with "figures compress, and compression eats qualifiers," which reads as
+  scoped to figure application; diction work is introduced separately, three sections
+  earlier, as "free" with no explicit tie back to the check. Both places now say plainly
+  that free of budget is not free of the claim check — a Saxon-default swap can drop an
+  attribution or a hedge exactly as a figure can, and the check runs against every sentence
+  the revision touches, not only the ones a figure touched.
+- Found via a lean-mode grading pass that initially returned a low pass rate on this eval
+  (0.52 mean across 3 runs) conflating this real defect with a measurement artifact — the
+  executor's rationale had been diverted into a separate "Notes" field outside the graded
+  answer. A clean re-run (rationale required inline) isolated the real issue: eval 2
+  (`already-good-restraint`) went from 0.40 to 1.00 (the artifact explained the entire gap),
+  eval 4 (`exec-summary-budget`) went from 0.52 to 0.857 and held there across all 3 clean
+  runs on the same failure — real, not noise.
 
 Ships alongside humanizer 1.4.0. All three changes are carve-outs and cross-references at
 the humanizer boundary; no figure, budget or diagnostic changes.
