@@ -1,0 +1,81 @@
+{
+  "expectations": [
+    {
+      "text": "The response identifies the text as a status update (short-form register) and applies no structural interventions",
+      "passed": true,
+      "evidence": "delivered.txt: \"This is a 48-word sprint status update, so the register puts only four clusters in scope — thematic over-determination, sensory/embodied performativity, reader engagement, and intertextual richness.\" transcript.md Step 3 records the register row and explicitly rules out the hard-stop row. metrics.json records \"interventions_taken\": 0, and no rewritten status update appears in any output file."
+    },
+    {
+      "text": "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+      "passed": true,
+      "evidence": "Declared unchanged in the first sentence: \"I ran the structural audit and there's nothing to change,\" closing with \"No interventions.\" transcript.md: \"No rewritten version of `status-update.txt` was produced, because the audit's verdict is that no intervention is warranted.\" The only follow-on is a conditional offer (\"If you want, I can still run a surface pass\"), which changes nothing."
+    },
+    {
+      "text": "The response says explicitly that zero interventions is the correct outcome, rather than listing findings and leaving the decision to the user",
+      "passed": true,
+      "evidence": "Asserted, not deferred: \"That leaves one cluster, which is inside the human structural range. No interventions.\" The response also argues why the two AI-side clusters should not be fixed: \"a sprint note that addressed you personally or cited an author would read worse, not more human.\" The zero was reached by doing the work, not by declining it: transcript.md Step 4 scores each of A, B, E, F at gate and corroborator level and Step 5 applies the E+F merge rule to land on the 0-1 threshold row."
+    },
+    {
+      "text": "The response is proportionate to the input: under 250 words, with no cluster table or corpus statistics for a 48-word status update",
+      "passed": true,
+      "evidence": "delivered.txt is 174 words (wc -w), two short paragraphs. No cluster table and no corpus percentages; the cluster-by-cluster detail is confined to transcript.md. transcript.md Step 7 shows the sizing rule was applied deliberately rather than by accident."
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  "claims": [
+    {
+      "claim": "The input is a 48-word sprint status update",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w on inputs/status-update.txt returns exactly 48. This is the only arm of the three that reported the count correctly; transcript.md Step 2 shows it ran `wc -w` rather than estimating."
+    },
+    {
+      "claim": "Clusters A and B did not fire; E and F fired and count as one under the short-form rule",
+      "type": "process",
+      "verified": true,
+      "evidence": "transcript.md Step 4 works each gate plus its corroborators (including corroborators for A and B even though their gates were human-side), and Step 5 applies the merge to reach effective count 1. metrics.json: clusters_fired_effective 1."
+    },
+    {
+      "claim": "The response's own prose is clean of the tells it audits",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Not claimed in delivered.txt, but worth recording: scan.txt reports 1 HARD VIOLATION on the delivered text — \"em dashes: 3 total, max 3 per paragraph / FLAG humanizer EM-DASH (3+ in proximity)\". Per the scan caveat I checked the fixture: inputs/status-update.txt contains zero em dashes, so this is the executor's own commission, not quoted input. It does not bear on any of the four expectations (none covers surface hygiene of the audit itself) and does not change any verdict, but it is the one arm whose audit prose carries a lexical tell."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Register call: classified as the in-scope <600-word status update row rather than the 'data reporting' hard stop; executor judged this unambiguous since 'status update' is named in the in-scope row",
+      "Cluster A gate on \"If it slips past Wednesday we lose the sprint\" read as factual consequence, not narratorial meaning; notes that A would still not fire for want of a corroborator",
+      "Cluster B's >60% rule has an empty denominator with zero emotional beats; treated absent signal as not-AI-side"
+    ],
+    "needs_review": [],
+    "workarounds": [
+      "Did not run scripts/scan-ai-tells.py or invoke the Skill tool per task constraint; loaded SKILL.md and references/features.md by reading them directly"
+    ]
+  },
+  "scan_notes": "scan.txt on delivered.txt: 1 hard violation (humanizer EM-DASH, 3 em dashes in one paragraph), 0 forbidden constructions, 0 multi-word or single-word humanizer flags, 0 forward references, density 0.0/100. The EM-DASH flag is a genuine commission by the executor, not a meta-quotation artifact: the input fixture has no em dashes. Outside the scope of all four expectations.",
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+        "reason": "Non-discriminating: a model that read nothing and answered \"looks fine\" passes it. Tie it to evidence of the audit having happened — e.g. require that the unchanged verdict be accompanied by the named in-scope clusters and a reason the AI-side ones do not warrant a fix in this register."
+      },
+      {
+        "assertion": "The response identifies the text as a status update (short-form register) and applies no structural interventions",
+        "reason": "The second half ('applies no structural interventions') is satisfied by inaction and carries no weight; the discriminating work is done entirely by the first half. Consider splitting it so the register identification is graded on its own and the no-intervention outcome is graded together with the reasoning that produced it."
+      },
+      {
+        "reason": "No assertion covers what the response appends after the stop verdict. Behavior varied across the arms: an unsolicited copyedit outside the structural remit, a one-line handoff offer to the surface-level tool, and nothing at all. An assertion on scope discipline after a report-and-stop verdict would make that spread visible."
+      },
+      {
+        "reason": "No assertion checks the audit's own prose for the tells it pronounces on. This arm's delivered text trips humanizer's EM-DASH hard violation (3 em dashes in one paragraph, none quoted from the fixture). A response that reads as AI while declaring text human-range is a failure mode the current set cannot see."
+      }
+    ],
+    "overall": "All four assertions pass in all three arms, so the set does not discriminate at this skill version. Two of the four are satisfiable by inaction. The set needs at least one assertion that a non-working 'looks fine to me' response would fail."
+  },
+  "variance_notes": null
+}

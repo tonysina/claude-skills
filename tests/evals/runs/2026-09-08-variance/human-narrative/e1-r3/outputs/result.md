@@ -1,47 +1,71 @@
----
-**Register: case study / customer story.** Clusters in scope: A, B, C1, E, F. Out of scope for this register: C2, D, G.
+---BEGIN DELIVERED---
+Register: **case study / customer-facing narrative**. Clusters in scope: A, B, E, F, C1. Out of scope for this register: C2, D, G.
 
 ## Cluster scan
 
 | Cluster | Gate | Corroborators | Fired |
 |---|---|---|---|
-| A — Thematic over-determination | States what the piece means: **yes** (AI-side) | Thematic unity 5 on a 1–5 scale (AI-side); moral/philosophical weighting 3 (human-side); dialogue as philosophical debate: no; intertextual gestures: none, not implicit echoes | ✅ |
-| B — Sensory / embodied | Mixed. One embodied beat ("felt the frustration in her chest"), one explicit in Chen's quote, one behavioral (drivers asking why you hadn't done this years ago). Embodied share of emotional beats: **1 of 3, 33%** — under the 60% rule | Setting as psychological mirror ~1; olfactory imagery: no; sensory density ~2; depth of interior access ~2; environmental prominence ~1. **All five human-side** | ❌ |
-| C1 — Structural streamlining | Main chain resolved **externally** — a scheduling platform and a six-week rollout, not a realization (human-side) | Not scored; gate is human-side | ❌ |
-| E — Reader engagement | **Never** addresses the reader (AI-side) | Fourth-wall permeability at the floor — nothing acknowledges the telling (AI-side) | ✅ |
-| F — Intertextual richness | Intertextual gestures: **none** (AI-side) | Names no specific text, author, work, or event (AI-side; explicit named reference runs 47% of published human stories vs 24% AI, a 23-point gap) | ✅ |
+| A — thematic over-determination | Narrator states what the piece means: **yes** ("The lesson from the rollout is clear…") | Thematic unity 5 on a 1–5 scale — every section serves the one idea; moral/philosophical weighting ~3 | ✅ |
+| B — sensory / embodied | Dominant emotional expression: embodied ("felt the frustration in her chest"), but only 1 of 2 emotional beats runs through the body — under the 60% rule | None AI-side: no olfactory imagery, no setting-as-mirror, sensory density ~2 and interior access ~2 on a 1–5 scale, natural environment barely present | ❌ |
+| C1 — structural streamlining | Mode of resolution: **internal understanding** (the piece closes on a realization, not on the numbers) | No subplots; causal chain continuity 4–5 on a 1–5 scale (chaos → platform → results → future, each causing the next); Chen introduced by external description ("Operations director Maria Chen") | ✅ |
+| E — reader engagement | Direct reader address: **never** | Fourth-wall permeability at the bottom of the range | ✅ |
+| F — intertextual richness | Reference explicitness: **none** | Names no text, author, work or outside event — Ridgeline, Chen and the March 2025 rollout are the subject, not a reference the piece is in conversation with | ✅ |
 
-**Verdict: 3 clusters fired — some AI-side clustering. Cap: 2 interventions.**
+**Verdict: 4 clusters fired — systematic AI-side clustering. Cap: 3 interventions.**
 
-E and F fire on almost every piece of short professional writing by construction, and they would normally count as one cluster between them. Here A also fires, so they count separately.
+Order for this register is A → B → F → E, with C1 after. B didn't fire, so: **A, F, E**. C1 fired but falls below the cap.
 
-The "too neat" feeling you have is A, and it is one paragraph. Everything else in the piece is behaving.
+For scale: narratorial thematic commentary appears in 77% of AI stories vs 52% of published human ones (−25 percentage points); internal-understanding resolution 47% vs 27% (−20 pp); explicit named reference 24% vs 47% (+23 pp human-side).
 
-## Interventions taken
+## Intervention 1 — A, thematic restraint
 
-### 1. A — thematic restraint (deletion)
-
-Cut from "Looking ahead":
+Deleted from "Looking ahead":
 
 > The lesson from the rollout is clear: when the people who do the work can see the same picture, coordination stops being a daily negotiation and becomes a habit. For Ridgeline, that shift has transformed not just its mornings but its entire operating rhythm.
 
-Nothing goes in its place. The narratorial thematic commentary gate goes yes → no, and thematic unity drops from 5 to about 4 — every section still points one way, but the piece no longer announces which way.
+Nothing added in its place. The subhead also stated the arc, so "From Spreadsheet Chaos to Coordinated Scheduling" becomes the concrete version.
 
-**Cost.** The piece loses its explicit takeaway line. If this case study is used as a leave-behind where someone skims the last paragraph for the point, you are trading skimmability for the neatness you asked me to remove. The metrics in "The results" carry the point on their own: forty minutes to six, 11 percent fuel, twelve hours of overtime to under two. A reader can reconstruct the lesson from those three numbers, which is guardrail 3 satisfied.
+**What changed structurally.** The narrator no longer delivers the verdict; the numbers in "The results" carry it. Gate: yes → no.
 
-### 2. F — name the reference
+**What it costs.** A case study is often a sales asset, and someone may want that takeaway line back. If it has to return, the honest home for it is Chen's mouth as a quote, not the narrator's.
 
-Added one paragraph naming a real study, placed where the deleted moral used to sit so it carries the idea without stating it. Reference explicitness: none → explicit named.
+## Intervention 2 — F, name the reference
 
-**Cost.** It is a register jump. A customer case study citing organizational research is unusual, and if Ridgeline signs off on this copy they may push back. It is also a factual claim about someone else's work, so it needs checking before it ships (see below).
+Added one paragraph at the end of "The challenge," placed early so the idea reads as premise rather than verdict — which is where cluster A wants it:
 
-## The rewrite
+> Peter Senge used the beer distribution game in *The Fifth Discipline* (1990) to show what happens when everyone in a chain can only see their own segment: each person corrects for a picture no one else has, and the corrections collide.
 
-Ridgeline Logistics: From Spreadsheet Chaos to Coordinated Scheduling
+**What changed structurally.** Reference explicitness: none → explicit named. The piece now has something outside itself to sit against.
+
+**What it costs.** It slows the challenge section, and it imports an outside voice into a customer story — some brand guidelines don't allow that in a case study. It also creates a fact-checking obligation: run `source-check` on the Senge characterization before this ships.
+
+## Intervention 3 — E, reader address
+
+One second-person claim in "The challenge," about the reader's own experience rather than about the structure of the piece:
+
+> If you have run a yard at six in the morning, you know what forty idle minutes does to a day that was already tight.
+
+**What changed structurally.** Direct reader address: never → occasional aside.
+
+**What it costs.** It assumes an operations reader. On a general marketing page that assumption is wrong and the line should go. Watch it in editing too — if it drifts toward "you might be wondering why this mattered," `humanizer` will delete it as signposting, and it should.
+
+## Not taken
+
+- **C1 (resolution mode)** fired and was next in order, but the cap was reached. Worth knowing: intervention A partly did C1's work by accident, because the sentence that stated the theme *was* the internal-understanding resolution. With it gone, the piece ends on "Ridgeline plans to extend the platform to its maintenance scheduling in 2026" — a real, concrete, genuinely unfinished thing, which is what C1's fix asks for. What C1 would still have addressed is the unbroken causal chain and Chen's introduction by job title. Those are untouched. I couldn't have gone further than the existing facts allow anyway: the truth constraint forbids inventing an open thread in a case study, and the only open thread the source text actually contains is the 2026 maintenance plan.
+- **B** did not fire. "Felt the frustration in her chest" is the one embodied beat, and on its own it's a gate flag without a corroborator — no smell imagery, no weather matching the mood, low sensory density. Converting it to "was frustrated" would be a fine edit, but it isn't a structural finding and I'm not spending an intervention slot on it.
+- **D (temporal) and G (moral ambiguity)** are out of scope for the case study register. Reordering this piece to open at the crisis, or complicating the moral center so the platform both solved and cost something, would both move it toward the human distribution — and both are things a customer-approved case study can't do without the customer's sign-off.
+
+***
+
+## Rewritten case study
+
+**Ridgeline Logistics: 140 Vans, Three Spreadsheets, One Board**
 
 **The challenge**
 
-Ridgeline Logistics runs 140 delivery vans across the Pacific Northwest. Until 2025, dispatch scheduling lived in a set of spreadsheets maintained by three regional coordinators. Every morning began the same way: coordinators phoned each other to reconcile overlapping routes, and drivers waited in the yard until the calls ended. On a typical day, vans left forty minutes late. Operations director Maria Chen felt the frustration in her chest every time she walked past the idle vans.
+Ridgeline Logistics runs 140 delivery vans across the Pacific Northwest. Until 2025, dispatch scheduling lived in a set of spreadsheets maintained by three regional coordinators. Every morning began the same way: coordinators phoned each other to reconcile overlapping routes, and drivers waited in the yard until the calls ended. On a typical day, vans left forty minutes late. If you have run a yard at six in the morning, you know what forty idle minutes does to a day that was already tight. Operations director Maria Chen felt the frustration in her chest every time she walked past the idle vans.
+
+Peter Senge used the beer distribution game in *The Fifth Discipline* (1990) to show what happens when everyone in a chain can only see their own segment: each person corrects for a picture no one else has, and the corrections collide. Ridgeline's three coordinators were each solving a real problem, on three separate boards.
 
 **The solution**
 
@@ -53,32 +77,19 @@ Within the first quarter, average morning departure delay fell from forty minute
 
 "Honestly, I didn't expect the drivers to take to it so quickly," Chen said. "By the second week they were asking why we hadn't done this years ago."
 
-In a 1993 study of flight-deck crews on aircraft carriers, Karl Weick and Karlene Roberts argued that what kept the deck safe was not individual skill but each person's running picture of what everyone else was doing. Ridgeline's coordinators had been assembling that picture by phone, one morning at a time.
-
 **Looking ahead**
 
 Ridgeline plans to extend the platform to its maintenance scheduling in 2026.
 
-## Not taken
+***
 
-**B** did not fire and I did not touch it. "Felt the frustration in her chest" is the sentence that probably set off your instinct, and it is a genuine embodied-emotion beat — but it is the only one in the piece, every one of B's five corroborators is human-side, and a gate without a corroborator is a flag, not a finding. Systematic reliance on the body is the AI signal; one instance is how humans write too. Say the word and I will convert it to a direct label ("Maria Chen was frustrated every time she walked past the idle vans") as a standalone change, but the scan does not justify it.
+Two things to watch downstream. The Senge claim is now a real citation and needs checking against the source before publication. And this was a structural pass only — I didn't touch sentences, so run `humanizer` next and `farnsworth-rhetoric` after that.
+---END DELIVERED---
 
-**C1** did not fire. The resolution is external — they bought and rolled out a platform — which is the human-side option. Worth noting anyway: the piece resolves completely, with no thread left open. If something is in fact still unresolved (the maintenance rollout slipping, the parallel-run overhead never fully going away, a region that resisted), ending on that instead of the 2026 plan would be the strongest remaining change. I can't make that edit because I don't have the fact and I'm not allowed to invent one.
+Executor commentary (not part of the delivered answer):
 
-**E** fired and sits below the cap of 2. The available fix is one second-person claim or an aside acknowledging the telling. It is the weakest of the three findings and the easiest to do badly in a case study, so it lost its slot to F.
-
-## Watch downstream
-
-The Weick and Roberts attribution is now a factual claim in your copy — run `source-check` on it before publishing (it is "Collective Mind in Organizations: Heedful Interrelating on Flight Decks," *Administrative Science Quarterly*, 1993). Do not let it get softened into "researchers have found" in review; that is vague attribution and worse than having no reference at all.
-
-I have not touched a single sentence for style. Run `humanizer` next for surface-level tells, then `farnsworth-rhetoric` if you want the closing line sharpened.
----
-
-Commentary (not part of the delivered answer):
-
-- Executed as a full audit + rewrite per the skill's Output format section, since the prompt asked for a change ("make it read more human"), not a diagnosis.
-- Register triage put this in the case study row: A, B, E, F, C1 in scope; C2, D, G excluded by register.
-- 3 clusters fired (A, E, F) → Step 3 cap of 2 interventions. Step 4 short-form order is A → B → F → E; B did not fire, so A and F were taken and E was reported as below-cap.
-- The E/F "by construction" rule in Step 3 was applied explicitly: because A also fired, E and F count separately rather than as one.
-- B was deliberately not fired despite the embodied-emotion sentence being the most conspicuous surface tell, because the gate is not dominant-AI-side (33% embodied, under the 60% quantitative rule) and all five corroborators are human-side. Offered to the author as an optional standalone change instead.
-- C1's truth constraint was respected: the unresolved-thread intervention was flagged and handed back rather than executed, because it depends on a fact the author has and the editor does not.
+- Register triage put this in the "case study / customer story" row: clusters A, B, E, F, C1 in scope; C2, D, G excluded.
+- The Step 3 "count E and F as one cluster" carve-out did not apply, because it is conditioned on A and B not firing, and A fired. So the count is 4 and the cap is 3.
+- Intervention selection followed the Step 4 short-form/case-study order (A → B → F → E) with B skipped as unfired; C1 sits after E in the long-form order and fell below the cap.
+- The C1 truth constraint was the binding limit on the ending: the only genuinely unresolved fact in the source is the 2026 maintenance extension, and no open thread was invented.
+- The F reference (Senge, *The Fifth Discipline*, 1990, beer distribution game) is a real work and a standard characterization of that exercise, but it is a claim about a source and is flagged for `source-check` in the delivered answer, per the skill.

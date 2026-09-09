@@ -2,13 +2,13 @@
   "tool_calls": {
     "Read": 2,
     "Write": 4,
-    "Bash": 3,
+    "Bash": 4,
     "Edit": 0,
     "Glob": 0,
     "Grep": 0
   },
-  "total_tool_calls": 9,
-  "total_steps": 9,
+  "total_tool_calls": 10,
+  "total_steps": 7,
   "files_created": [
     "result.md",
     "transcript.md",
@@ -16,8 +16,8 @@
     "metrics.json"
   ],
   "errors_encountered": 0,
-  "output_chars": 24793,
-  "transcript_chars": 11173,
+  "output_chars": 20165,
+  "transcript_chars": 8413,
   "clusters_in_scope": [
     "A",
     "B",
@@ -27,20 +27,15 @@
   ],
   "clusters_fired": [
     "A",
-    "C1",
     "E",
     "F"
   ],
-  "clusters_not_fired": [
-    "B"
-  ],
-  "intervention_cap": 3,
+  "intervention_cap": 2,
   "interventions_executed": [
     "A",
-    "F",
     "E"
   ],
-  "interventions_flagged_not_executed": [
-    "C1"
+  "interventions_blocked": [
+    "F"
   ]
 }

@@ -1,33 +1,47 @@
----
-Register: customer case study. Clusters in scope: A, B, E, F, C1. C2, D and G are out of scope for this register.
+---BEGIN DELIVERED---
+Register: **case study / customer story**. Clusters in scope: A, B, E, F, C1. Out of scope for this register: C2, D, G.
 
 ## Cluster scan
 
 | Cluster | Gate | Corroborators | Fired |
 |---|---|---|---|
-| A — thematic over-determination | Narrator states what the piece means: **yes** (AI-side; 77% AI vs 52% human, 25 pp) | thematic unity 5/5 — every section serves "shared visibility fixes coordination"; moralizing 3/5 | ✅ |
-| B — sensory / embodied performativity | Dominant mode: **behavioral cues** (human-side). Embodied beats 1 of 3 (33%), under the 60% rule | setting-as-mirror 1/5; no olfactory imagery; sensory density 2/5; inner-life depth 2/5; natural environment 1/5 — all human-side | ❌ |
-| C1 — structural streamlining | Event chain resolved **internally** — through Ridgeline's own decision (AI-side; protagonist-choice agency 69% AI vs 46% human, 23 pp) | causal continuity 5/5 (challenge → solution → results → future, each causing the next); Chen introduced by external description ("Operations director Maria Chen"), 52% AI vs 30% human | ✅ |
-| E — reader engagement | **Never** addresses the reader (AI-side; direct-address ordinal mean 0.28 human vs 0.07 AI on a zero-based never/occasional/frequent code) | fourth-wall permeability at the floor (1 on a 1–4 scale) | ✅ |
-| F — intertextual richness | **None** — no gesture toward any outside text or event (AI-side) | Names no specific text, author, work or event; explicit named reference is 47% human vs 24% AI (23 pp) | ✅ |
+| A — Thematic over-determination | states what the piece means: **yes** ("The lesson from the rollout is clear…") | thematic unity 5 of 5 — every section feeds one idea; moralizing 3 of 5 | ✅ |
+| B — Sensory / embodied | dominant emotional mode: **embodied** ("felt the frustration in her chest") | setting-as-mirror 1; olfactory none; sensory density 2 of 5; inner-life depth 2 of 5; natural environment 1 of 5 — **none AI-side** | ❌ |
+| C1 — Structural streamlining | resolution: **external** (a platform was deployed, outcomes measured) — human-side | causal continuity 5 of 5 is AI-side, but the gate is not | ❌ |
+| E — Reader engagement | direct reader address: **never** | fourth-wall permeability at the floor | ✅ |
+| F — Intertextual richness | reference explicitness: **none** | names no external work, author, standard, or event | ✅ |
 
-**Verdict: 4 clusters fired — systematic AI-side clustering. Cap: 3 interventions.**
+**Verdict: 3 clusters fired — some AI-side clustering. Cap: 2 interventions.**
 
-Case-study intervention order is A → B → F → E. B did not fire, so the three taken are **A, F, E**. C1 fired but is blocked; see "Not taken."
+Worth saying up front, because it changes what "too neat" means here: the challenge/solution/results/looking-ahead shape is the case-study genre, not an AI tell. What actually produces the tidiness is one sentence — the piece stops reporting and starts telling you what to conclude — plus the fact that it never once acknowledges a reader who has lived this.
 
-The "too neat" feeling you have is mostly A and C1: the piece explains its own meaning at the end, and every element in it points the same direction with nothing left over.
+## Intervention 1 — A (thematic restraint)
 
-## Rewrite
+Deleted from "Looking ahead":
 
-**Ridgeline Logistics: From Spreadsheet Chaos to Coordinated Scheduling**
+> The lesson from the rollout is clear: when the people who do the work can see the same picture, coordination stops being a daily negotiation and becomes a habit. For Ridgeline, that shift has transformed not just its mornings but its entire operating rhythm.
+
+Nothing replaces it. The section now ends on the 2026 maintenance-scheduling plan, which is a concrete fact rather than a verdict.
+
+**What it costs.** A skim-reader who reads only the last paragraph no longer gets the thesis handed to them. **What survives:** forty minutes to six, 11 percent fuel, twelve hours of overtime to under two, and Chen's quote already make the argument — the deleted sentences were restating numbers that had just been given. Gate: yes → no.
+
+## Intervention 2 — E (reader address)
+
+Added one second-person claim in "The challenge", after the spreadsheet sentence:
+
+> If you have ever kept a schedule in a spreadsheet that two other people also edit, you know what the first phone call of the morning is for.
+
+**What it costs.** It sacrifices some of the neutral third-person distance a case study conventionally holds, and it will read as a house-voice decision rather than a reporting one. **What to watch:** it is a claim about the reader's experience, not an announcement about the article's structure — do not let a later pass soften it into "you might be wondering why this matters," which is the form `humanizer` deletes.
+
+***
+
+## Revised piece
+
+Ridgeline Logistics: From Spreadsheet Chaos to Coordinated Scheduling
 
 **The challenge**
 
-Ridgeline Logistics runs 140 delivery vans across the Pacific Northwest. Until 2025, dispatch scheduling lived in a set of spreadsheets maintained by three regional coordinators. Every morning began the same way: coordinators phoned each other to reconcile overlapping routes, and drivers waited in the yard until the calls ended. On a typical day, vans left forty minutes late. Operations director Maria Chen felt the frustration in her chest every time she walked past the idle vans.
-
-If you have ever had to wait for someone else's phone call before your own day could start, you know what forty minutes of it costs by Friday.
-
-Eliyahu Goldratt's *The Goal* (1984) made the argument about a factory floor: when every station schedules itself, the plant spends its time waiting on itself. Three spreadsheets in three regions were the same argument in a dispatch yard.
+Ridgeline Logistics runs 140 delivery vans across the Pacific Northwest. Until 2025, dispatch scheduling lived in a set of spreadsheets maintained by three regional coordinators. If you have ever kept a schedule in a spreadsheet that two other people also edit, you know what the first phone call of the morning is for. Every morning began the same way: coordinators phoned each other to reconcile overlapping routes, and drivers waited in the yard until the calls ended. On a typical day, vans left forty minutes late. Operations director Maria Chen felt the frustration in her chest every time she walked past the idle vans.
 
 **The solution**
 
@@ -43,33 +57,27 @@ Within the first quarter, average morning departure delay fell from forty minute
 
 Ridgeline plans to extend the platform to its maintenance scheduling in 2026.
 
-## Interventions, in order
+***
 
-**A — thematic restraint (deletion).** Removed "The lesson from the rollout is clear: when the people who do the work can see the same picture, coordination stops being a daily negotiation and becomes a habit" and "For Ridgeline, that shift has transformed not just its mornings but its entire operating rhythm." Nothing added in their place. Gate: yes → no.
+## What I did not take, and why
 
-*What it costs:* the piece no longer tells the reader what to conclude, and the closing paragraph is now four lines shorter and flatter. That is the trade. The forty-minutes-to-six figure and the Goldratt line carry the same point without stating it; a reader can still reconstruct the thesis. If your stakeholders expect a case study to end on a stated benefit, this is the intervention to argue about — a stated takeaway may be the assignment here, in which case restore one sentence, not both.
+**F — name the reference.** Fired, and it is the highest value-per-effort move available: this piece is in conversation with something and names nothing. I could not execute it without inventing a fact. **Two things you can supply that would close it in one clause:** the actual product name (the piece says only "a shared scheduling platform"), and whatever Ridgeline was working from — a named methodology, a specific prior outage or peak season that triggered the project, a book or operator whose approach Chen was following. "Industry reports say" would not count; it is vague attribution and gets deleted downstream.
 
-**F — name the reference.** Added Goldratt and *The Goal* at the end of the challenge section. Reference explicitness: none → explicit named.
+**B.** The gate is AI-side — the one narratorial emotion runs through the body ("felt the frustration in her chest") — but not a single corroborator is: no smell imagery, no weather mirroring the mood, flat sensory density, no interiority. One embodied line in 330 words is not systematic reliance, so the cluster does not fire and I left the line alone.
 
-*What it costs:* one paragraph of length, and a factual dependency the original didn't have. It also shifts register slightly — the piece now has a narrator with a bookshelf, which reads as a considered case study rather than a template fill.
+**C1 — leave a thread unresolved.** Blocked by the truth constraint, not by the cap. The gate is human-side anyway (the resolution is external — software shipped, numbers moved), but the tidiness you are reacting to is partly here: every event causes the next and nothing is left open. In a case study I may only leave unresolved what is *actually* unresolved. If something real is still open — regions where departure delay did not move, coordinators who never took to the live board, what the six weeks cost — putting one of those in "The results" would do more for this piece than either edit above. That is a fact you have and I don't.
 
-**E — reader address.** Added one second-person claim about the reader's own experience ("If you have ever had to wait…"). Deliberately not a signposting move — no "you might be wondering," no "here's what this means."
+**D, G, C2.** Out of scope for this register.
 
-*What it costs:* very little, but it is the intervention most likely to be cut by a brand reviewer who wants third-person throughout. If it goes, E returns and the piece is back to three fired clusters.
+## Downstream
 
-## Not taken
+Run `humanizer` next for surface tells, then `farnsworth-rhetoric` if you want the sentences sharpened. If `humanizer` deletes the second-person line, it is right and I would not re-add it.
+---END DELIVERED---
 
-**C1 — resolution mode.** Fired, and it is the other half of why the piece feels too neat: the event chain closes entirely on Ridgeline's own decision, every event causes the next, and nothing is left open. The fix would be to leave one thread unresolved or make one outcome partial. **Blocked by the truth constraint** — I can't invent an open question in a customer story. If something is genuinely still unresolved (maintenance scheduling not yet scoped, a region that took longer to adopt, drivers who still call in), one honest sentence of that in "Looking ahead" would do more for the too-neat problem than any of the three edits above. That fact is yours, not mine. C1 is also below A/F/E in the case-study intervention order, so it would have hit the cap regardless.
+Executor commentary (not part of the delivered answer):
 
-**B — sensory/embodied.** Did not fire: the gate is human-side (emotions run mostly through behavior — drivers waiting, drivers asking) and every corroborator is human-side. "Felt the frustration in her chest" is the one embodied beat in the piece. One instance is not a finding, so I left it. If you want it changed anyway, "Maria Chen was frustrated every time she walked past the idle vans" is the direct-label version — but that is a preference, not a finding.
-
-**C2, D, G.** Out of scope for a case study.
-
-## Watch downstream
-
-- The piece now names a real book, so the Goldratt paraphrase has to be checked against *The Goal* before it ships — run `source-check`. If you'd rather not carry that dependency, F can be satisfied instead by naming a specific outside event Ridgeline was reacting to, if there was one.
-- Sentence-level cleanup is not this skill's job. Run `humanizer` next, then `farnsworth-rhetoric`. If `humanizer` deletes the second-person line as signposting, let it — don't re-add.
-- "Spreadsheet Chaos" in the title and "coordination stops being a daily negotiation" were doing overlapping work; with the second gone, the title now carries the framing alone. Fine as is, but it's the line a `humanizer` pass may flag as promotional.
----
-
-Executed per skill Steps 1–5. Register triage put the case study in the A/B/E/F/C1 row. Four clusters fired (A, C1, E, F), giving a cap of 3; B was scored honestly as not firing (gate human-side, zero AI-side corroborators). Interventions taken in the short-form order A → F → E; C1 reported and flagged rather than executed under the C1 truth constraint, with its slot not reassigned since it was last in order and the cap was already met. No forbidden constructions used: the reader address is a second-person experiential claim rather than a forward reference, the reference is a named author/work/year rather than vague attribution, and the thematic deletion added nothing in its place.
+- Skill loaded from SKILL.md plus references/features.md (scale note on the two Reader engagement features, consulted for E reporting).
+- Register triage put the piece in the case-study row, so C2, D and G were never scored.
+- Scan result: A, E, F fired; B and C1 did not (gate-plus-corroborator rule). Step 3's E/F merge rule did not apply because A fired.
+- Cap for 3 fired clusters is 2 interventions. Order for case study is A → B → F → E. B did not fire; F was blocked by the Step 5 truth guardrail (cannot invent a named reference), so per Step 5 it was reported rather than counted and E took the slot. Executed: A and E.
+- No bare `---` rules inside the delivered region; `***` used instead.

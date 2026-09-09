@@ -2,172 +2,86 @@
 
 ## Eval Prompt
 
-"This customer case study feels too neat. Can you make it read more human?"
+"This customer case study feels too neat. Can you make it read more human at the structural level?"
 
 ## Skill
 
 - Path: /Users/tonysina/Documents/claude-skills/skills/human-narrative
-- Name: human-narrative (version 1.1.2)
-- Description: Audits writing for AI-elevated narrative patterns and guides structural
-  rewrites at the scene/story-structure level (temporal order, thematic restraint,
-  resolution mode, emotional expression, intertextual reference). Complements `humanizer`
-  (surface/lexical) and `farnsworth-rhetoric` (sentence craft).
+- Name: human-narrative (metadata.version 1.1.2)
+- Description: Audits writing for AI-elevated narrative patterns and guides structural rewrites — scene/story structure level (temporal order, thematic restraint, resolution mode, emotional expression, intertextual reference). Complements `humanizer` (surface/lexical) and `farnsworth-rhetoric` (sentence craft).
 
 ## Input Files
 
-- `case-study-ridgeline.txt` (1.7 KB, ~330 words): a customer case study for "Ridgeline
-  Logistics," structured as headline / The challenge / The solution / The results / pull
-  quote / Looking ahead.
+- `case-study-ridgeline.txt` (1.7 KB, plain text): a ~330-word B2B customer case study — "Ridgeline Logistics: From Spreadsheet Chaos to Coordinated Scheduling" — with sections The challenge / The solution / The results / Looking ahead, one customer quote from operations director Maria Chen, and a closing "the lesson from the rollout is clear" paragraph.
 
 ## Execution
 
-### Step 0: Load the skill
+### Step 0: Load executor instructions
+**Action**: Read the Executor agent spec.
+**Tool**: Read `/Users/tonysina/.claude/skills/skill-builder/agents/executor.md`
+**Result**: Success. Confirmed required outputs: result.md (delivered answer, marker-wrapped), transcript.md, metrics.json, user_notes.md.
 
-**Action**: Read the executor spec, then loaded the skill from `skill_path` only — SKILL.md
-plus `references/features.md` (for the scale note on cluster E and the Table 16 gaps/units).
-Did not read `references/changelog.md` (version history, not needed to execute).
-**Tool**: Read (executor.md), Bash `cat`/`sed` for SKILL.md, features.md, and the input file.
-**Result**: Success. Did not invoke the Skill tool, did not read any other skill directory,
-did not run `scripts/scan-ai-tells.py`, and read nothing under `tests/evals/` outside the
-assigned inputs directory.
+### Step 1: Load the skill
+**Action**: Read SKILL.md in full, then the scale-reading section and Table 16 of `references/features.md` to report gaps with correct units.
+**Tool**: Bash (`cat` SKILL.md), Bash (`wc -c` + `sed -n '1,80p'` on references/features.md)
+**Result**: Success. Skill did not require reading `references/changelog.md` for execution; skipped. Per constraint, `scripts/scan-ai-tells.py` was NOT run and no other skill directory was read.
 
-### Step 1: Register triage
+### Step 2: Read the input
+**Action**: Read the staged case study.
+**Tool**: Bash (`cat case-study-ridgeline.txt`)
+**Result**: Success. ~330 words, customer-facing case study register.
 
-**Action**: Applied the Step 1 register table.
-**Result**: The piece is a customer-facing case study. Row 3 applies — clusters **A, B, E, F,
-C1** in scope; **C2, D, G** explicitly out of scope for this register. Not a hard stop, so
-the audit proceeds. Noted that length (~330 words) does not move it into the <600-word
-"executive summary / status update" row, because Step 1 says register is the mode, not
-length.
+### Step 3: Register triage (skill Step 1)
+**Action**: Matched the piece to the "Case study, customer story, customer-facing narrative" row.
+**Result**: In scope — A, B, E, F, C1. Never — C2, D, G. Not a hard stop, so the audit proceeded.
 
-### Step 2: Cluster scan
+### Step 4: Cluster scan (skill Step 2)
+**Action**: Scored each in-scope cluster gate + corroborators, using the option sets given.
 
-**Action**: Scored each in-scope cluster with its gate first, then corroborators, using the
-option sets given rather than prose. Applied the rule that a cluster fires only on
-gate-AI-side AND at least one AI-side corroborator.
+- **A — thematic over-determination.** Gate "does the narrator state what the piece means?" → **yes**: "The lesson from the rollout is clear: when the people who do the work can see the same picture, coordination stops being a daily negotiation and becomes a habit," reinforced by "that shift has transformed not just its mornings but its entire operating rhythm." Corroborator thematic unity = 5 on a 1–5 scale (challenge, solution, results and looking-ahead all serve the single visibility idea). Moral/philosophical weighting ~3 (not AI-side). Gate AI-side + ≥1 corroborator AI-side → **FIRED**.
+- **B — sensory / embodied.** Emotional beats counted: (1) "Maria Chen felt the frustration in her chest" — embodied; (2) Chen's quote "I didn't expect the drivers to take to it so quickly" — explicit/behavioral. 1 of 2 = 50%, below the >60% quantitative rule. Corroborators all human-side: no olfactory imagery, no setting-as-psychological-mirror, sensory density ~2 and depth of interior access ~2 on a 1–5 scale, natural environment barely present. Zero AI-side corroborators → **NOT FIRED** (per "a gate alone is not a finding"). Deliberately did not re-read hunting for a reason to fire it (Common issues: "don't hunt for gates").
+- **C1 — structural streamlining.** Gate "is the main event chain resolved through the protagonist's own choice or internal understanding?" → **internally**: the piece closes on a stated realization rather than on the metrics or an external event. Corroborators AI-side: no subplots; causal chain continuity 4–5 on a 1–5 scale; main character introduced by external description ("Operations director Maria Chen"). → **FIRED**.
+- **E — reader engagement.** Gate → **never** addresses the reader. Corroborator: fourth-wall permeability at the bottom of the code range. → **FIRED**.
+- **F — intertextual richness.** Gate → **none**. Corroborator: names no text, author, work or outside event; Ridgeline/Chen/March 2025 are the subject of the piece, not a reference it is in conversation with. → **FIRED**.
 
-**A — Thematic over-determination: FIRED**
-- Gate (does the narrator state what the piece means?): **yes** — "The lesson from the
-  rollout is clear: when the people who do the work can see the same picture, coordination
-  stops being a daily negotiation and becomes a habit." AI-side.
-- Corroborator, thematic unity: **5** on a 1–5 scale — every section (challenge, solution,
-  results, quote, closer) serves the single shared-visibility theme. AI-side (≥5).
-- Corroborators scored human-side: moral/philosophical weighting ~3 (needs ≥4); dialogue as
-  philosophical debate — no, Chen's quote is concrete and anecdotal; intertextual gestures
-  are *none*, not *implicit echoes*.
-- Gate + 1 corroborator → fires.
+### Step 5: Threshold (skill Step 3)
+**Action**: Counted fired clusters and checked the short-professional carve-out.
+**Result**: A, C1, E, F = **4 fired → "systematic AI-side clustering", cap 3 interventions.** The "count E and F as one cluster between them" rule was checked and found not to apply, because it is conditioned on neither A nor B firing and A fired. The piece is ~330 words but the register row (case study), not the length, governs cluster scope. Report length scaled to the input: full table kept, corpus figures quoted sparingly and with units.
 
-**B — Sensory and embodied performativity: DID NOT FIRE**
-- Gate (how are emotions most commonly conveyed?): mixed, no AI-side dominant mode.
-  Emotional beats counted: (1) "felt the frustration in her chest" — embodied; (2) "Honestly,
-  I didn't expect the drivers to take to it so quickly" — explicit, in Chen's voice;
-  (3) drivers "asking why we hadn't done this years ago" — behavioral cue.
-- Quantitative rule applied: embodied share = **1 of 3 (33%)**, well under the >60% threshold
-  that would force the gate AI-side regardless of the dominant-mode call.
-- All five corroborators human-side: setting as psychological mirror ~1 (no setting mirrors
-  anyone's state); olfactory imagery — none; sensory density ~2; depth of interior access ~2;
-  environmental/ecological prominence ~1.
-- Gate not AI-side and zero AI-side corroborators → does not fire. Recorded as a gate-level
-  flag only, per "a flag is not a finding," and offered to the author as an optional
-  standalone change rather than executed.
+### Step 6: Intervention order and selection (skill Step 4)
+**Action**: Applied the short-form / case-study order A → B → F → E, with C after E in the long-form order.
+**Result**: B skipped (did not fire). Slots filled by **A, F, E**. C1 fired but fell below the cap and was reported as not taken.
 
-**C1 — Structural streamlining: DID NOT FIRE**
-- Gate (is the main event chain resolved through the protagonist's own choice or internal
-  understanding?): **externally** — the chain resolves on a purchased platform and a six-week
-  rollout with two weeks of parallel running, not on a realization. Human-side.
-- Per "Don't hunt for gates," corroborators were not scored to try to force a fire.
-- Noted separately (not as a firing) that the piece resolves completely with no open thread,
-  and that the C1 truth constraint blocks inventing one.
+### Step 7: Execute interventions one at a time
+1. **A (thematic restraint).** Deleted the two closing sentences that state the meaning ("The lesson from the rollout is clear…" and "…transformed not just its mornings but its entire operating rhythm"). Added nothing in their place. Also replaced the arc-stating subtitle "From Spreadsheet Chaos to Coordinated Scheduling" with the concrete "140 Vans, Three Spreadsheets, One Board". Gate: yes → no.
+2. **F (name the reference).** Added one sentence naming Peter Senge, *The Fifth Discipline* (1990) and the beer distribution game, placed at the end of "The challenge" so the idea reads as premise rather than verdict — which also supports A. Reference explicitness: none → explicit named. Flagged `source-check` per the skill's constraint on naming real sources, and avoided `VAGUE-ATTRIB` forms.
+3. **E (reader address).** Added one second-person claim about the reader's own experience: "If you have run a yard at six in the morning, you know what forty idle minutes does to a day that was already tight." Checked against the Forbidden constructions table: no forward-reference announcement, no "you might be wondering" — so no `SIGNPOSTING` collision.
 
-**E — Reader engagement: FIRED**
-- Gate (how often does the text address the reader directly?): **never**. AI-side.
-- Corroborator, fourth-wall permeability: at the floor — nothing in the piece acknowledges
-  the telling. AI-side.
+### Step 8: Guardrail pass (skill Step 5)
+**Action**: Checked each accepted rewrite against the four guardrails.
+**Result**:
+1. *Still makes sense* — yes; no causal link was broken (C2 out of scope anyway).
+2. *Still true* — yes; every fact, figure and quote is unchanged from the source. No open thread was invented; the ending now rests on the 2026 maintenance-extension plan, which the source states as a plan, not an accomplishment. The one added external claim (Senge) is flagged for `source-check`.
+3. *Point survived* — yes; the results section still carries the outcome, and a reader can reconstruct the takeaway without being told it.
+4. *Author would recognize it* — yes; section structure, voice and the customer quote are intact. Noted in the delivered answer that a sales stakeholder may want the takeaway line back, and that the honest home for it is a customer quote rather than the narrator.
+No guardrail blocked an intervention, so no slot was returned to the queue.
 
-**F — Intertextual richness: FIRED**
-- Gate (are intertextual gestures explicit or diffuse?): **none**. AI-side.
-- Corroborator (does the piece name a specific text, author, work, or event?): **no**.
-  AI-side. Reported with units: explicit named reference occurs in 47% of published human
-  stories vs 24% of AI, a 23-percentage-point gap.
-
-### Step 3: Threshold
-
-**Action**: Counted fired clusters and applied the E/F-by-construction rule.
-**Result**: A, E, F fired = **3 clusters**. The Step 3 note says short professional text fires
-E and F by construction and they count as one cluster between them *unless A or B also
-fires*; A fired, so E and F count separately. Three fired → "some AI-side clustering" →
-**cap of 2 interventions**.
-
-### Step 4: Intervention order and execution
-
-**Action**: Applied the short-form / case study order: A → B → F → E. B did not fire, so the
-two slots went to A and F.
-
-**Intervention 1 — A (thematic restraint).** Deleted both sentences of the closing moral:
-"The lesson from the rollout is clear: when the people who do the work can see the same
-picture, coordination stops being a daily negotiation and becomes a habit. For Ridgeline,
-that shift has transformed not just its mornings but its entire operating rhythm." Added
-nothing in their place, per the fix and the Forbidden constructions table (no "In summary",
-no `GENERIC-CLOSER`). Narratorial thematic commentary: yes → no. Thematic unity: 5 → ~4.
-Cost stated: loses the skimmable takeaway line; the three metrics now carry the point.
-
-**Intervention 2 — F (name the reference).** Added one paragraph naming Karl Weick and
-Karlene Roberts' 1993 aircraft-carrier flight-deck study, placed in the slot the deleted
-moral vacated so it carries the idea without stating it (the same move as SKILL.md's worked
-example). Reference explicitness: none → explicit named. Avoided `VAGUE-ATTRIB` — named the
-authors, the year, and in the downstream note the journal and title. Flagged `source-check`
-as required before publishing.
-
-**Not taken, with reasons given in the deliverable:** B (did not fire — gate not AI-side,
-all corroborators human-side); C1 (did not fire — external resolution; the open-thread
-option additionally blocked by the truth constraint, so it was flagged and handed back rather
-than executed); E (fired but below the cap of 2; deliberately deprioritized because reader
-address is the easiest of the three to do badly in a case study and its default forms collide
-with `humanizer`'s `SIGNPOSTING`).
-
-### Step 5: Guardrails
-
-**Action**: Checked the rewrite against all four guardrails before accepting it.
-1. Still coherent — the sections still flow; no causal link was broken (C2 is out of scope
-   anyway).
-2. Still true — no fact invented. The Weick/Roberts claim is about real published work and is
-   flagged for `source-check`. The tempting C1 open-thread edit was refused precisely because
-   it would require inventing an unresolved fact about Ridgeline.
-3. The point survived — the reader can reconstruct "shared visibility fixed coordination"
-   from forty minutes → six, 11% fuel, and twelve hours → under two, plus Chen's quote.
-4. The author would recognize it — the voice, the section headers, the metrics, and the pull
-   quote are untouched. The F paragraph was noted in the deliverable as the one place that
-   risks a register jump the customer may push back on.
-
-### Step 6: Write outputs
-
-**Action**: Wrote the delivered answer to `result.md` between two `---` fences with
-commentary after the second fence, then this transcript, `user_notes.md`, and `metrics.json`.
-**Tool**: Write ×4, Bash for character counts.
+### Step 9: Write outputs
+**Action**: Wrote result.md (marker-wrapped delivered answer + executor commentary), then this transcript, metrics.json and user_notes.md.
+**Tool**: Write, Bash
+**Result**: Success.
 
 ## Output Files
 
-- `result.md` — the delivered answer (cluster table, verdict, two executed interventions with
-  costs, the full rewritten case study, "Not taken", downstream watch items), plus executor
-  commentary after the closing fence.
+- `result.md` — the delivered answer between `---BEGIN DELIVERED---` / `---END DELIVERED---`: cluster table, verdict, three interventions with what-changed / what-it-costs, a "not taken" section, and the full rewritten case study. Executor commentary follows the END marker.
 - `transcript.md` — this file.
+- `metrics.json` — tool usage and sizes.
 - `user_notes.md` — uncertainties and suggestions.
-- `metrics.json` — tool usage and size counts.
 
 ## Final Result
 
-Verdict: 3 clusters fired (A, E, F) → some AI-side clustering → cap of 2 interventions. Took
-A (deleted the two-sentence closing moral, added nothing) and F (named Weick & Roberts' 1993
-flight-deck study in the vacated slot). B and C1 did not fire and were reported as such; E
-fired but fell below the cap. The rewrite ends on the concrete 2026 maintenance-rollout fact
-rather than a thematic verdict. No sentences were edited for style; `humanizer` then
-`farnsworth-rhetoric` were named as the next passes.
+Verdict: 4 of 5 in-scope clusters fired (A, C1, E, F) — systematic AI-side clustering, cap 3 interventions. Executed A (deleted the stated lesson and the arc-stating subtitle), F (named Senge, *The Fifth Discipline*, 1990, the beer distribution game), and E (one second-person claim). Reported C1 as fired-but-over-cap, noting that A's deletion incidentally flipped the resolution from internal understanding to a concrete unfinished fact, and that the truth constraint limited any further C1 work to facts already in the source. B did not fire (gate flag without a corroborator). D and G declared out of scope for the case study register. Delivered the rewrite plus downstream notes: `source-check` the Senge claim, then `humanizer`, then `farnsworth-rhetoric`.
 
 ## Issues
 
-- None blocking. One judgment call worth surfacing: cluster B contains the piece's most
-  conspicuous surface tell ("felt the frustration in her chest"), and a reader's intuition
-  would likely reach for it first. The skill's own firing rule forbids acting on it — one
-  embodied beat out of three, zero AI-side corroborators — so it was flagged and offered
-  rather than executed. This is skill fidelity beating instinct, and it is the main place a
-  grader might expect a different answer.
+- None blocking. One judgment call worth flagging: cluster C1's gate could be argued either way — the event chain resolves externally in the metrics, but the piece's *narrative* resolution is a stated realization. Called it internal, which is what the "lesson is clear" close does. If a grader reads that gate as external, C1 would not fire, the count drops to 3, and the cap stays at 3 — the executed interventions (A, F, E) would be unchanged.

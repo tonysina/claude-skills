@@ -2,61 +2,23 @@
 
 ## Uncertainty
 
-- **Cluster B is the closest call in the scan.** "Operations director Maria Chen felt the
-  frustration in her chest" is the single most conspicuous AI-ish sentence in the piece, and
-  a human editor asked to make this "less neat" would very likely change it first. The skill
-  says not to: the gate needs a dominant AI-side emotional mode (embodied share here is 1 of
-  3 beats, 33%, under the 60% rule) and at least one AI-side corroborator (all five are
-  human-side). I followed the rule and offered the change rather than making it. If the
-  intended reading is that a single embodied beat plus a low-sensory piece should still fire,
-  the scan is wrong.
-- **Counting emotional beats is subjective.** I counted three: the chest line (embodied),
-  Chen's "I didn't expect" (explicit), and the drivers asking why they hadn't done this years
-  ago (behavioral). A stricter reading counts only one narrator-conveyed beat, which is 100%
-  embodied and would flip B's gate. The skill does not say whether beats inside a quoted
-  source count.
-- **Thematic unity scored 5 rather than 4.** That single judgment is what makes cluster A
-  fire on a corroborator. The gate is unambiguous, but if unity is really a 4 then A has a
-  gate and no corroborator, no cluster fires, and the correct answer becomes "reads within
-  human range, no changes."
-- **Whether the case study row or the <600-word row applies.** The piece is ~330 words. I
-  used the case study row (A, B, E, F, C1) because Step 1 says register is the mode, not
-  length. The <600-word row would have dropped C1 from scope, which changes nothing here
-  since C1 did not fire.
+- **C1's gate call is genuinely borderline.** The event chain resolves externally (the metrics fell), but the piece's narrative resolution is a stated realization. I scored it "internally" because the closing move is the lesson sentence. Reading it as "externally" would drop the fired count from 4 to 3 — which still leaves the cap at 3, so the executed interventions would be identical either way.
+- **The Senge reference is my choice, not the author's.** *The Fifth Discipline* (1990) and the beer distribution game are a real book and a real exercise, and "players who can only see their own segment overcorrect" is the standard characterization of it. But it is still a claim about a source, and I have not verified it against the text in this session. The delivered answer flags `source-check` before publication, per the skill's constraint on cluster F.
+- **Whether a case study may cite an outside author at all** is a house-style question I can't answer. Some B2B brand guidelines prohibit it. If Ridgeline's marketing team refuses, F is unavailable and C1 should take its slot.
 
 ## Needs Human Review
 
-- **The Weick & Roberts claim must be verified before publication.** I asserted that their
-  1993 aircraft-carrier flight-deck study ("Collective Mind in Organizations: Heedful
-  Interrelating on Flight Decks," *Administrative Science Quarterly*) argued that safety came
-  from each person's picture of what everyone else was doing rather than individual skill.
-  That is my recollection of the paper's argument; I did not open the source. The skill
-  requires `source-check` before shipping and I flagged it in the deliverable, but the
-  executor did not run it.
-- **Register fit of the F intervention.** A customer case study citing organizational
-  research is unusual. It is defensible — F is in scope for this register and the skill calls
-  it the highest value-per-effort cluster for professional writing — but the customer
-  (Ridgeline) may reject it at sign-off. Flagged in the deliverable as a cost.
-- **The C1 open-thread option is the strongest remaining change and I could not make it.**
-  The piece resolves with no loose ends. Ending on something genuinely unresolved would land
-  harder than either change I made, but it requires a fact only the author has, and the C1
-  truth constraint forbids inventing one. Handed back to the author.
+- **The E intervention assumes an operations-leader reader** ("if you have run a yard at six in the morning"). Correct for a case study distributed to fleet and logistics buyers; wrong for a general marketing page, where the line should simply be cut.
+- **Deleting the stated lesson removes the pull quote a sales team may be relying on.** This is the intended effect of cluster A, but it is a commercial decision, not an editorial one. The delivered answer proposes putting the takeaway in Chen's mouth as a quote if it has to return — that would require the customer's sign-off on new quoted words, which I can't obtain.
+- **All figures, names, dates and the Chen quote were carried over verbatim.** They should still be checked against the approved customer copy, since case studies are usually customer-approved artifacts and any structural edit can require re-approval.
 
 ## Workarounds
 
-- None. Every step of the skill executed as written on this input.
+- None needed. The skill's process ran end to end without gaps: register triage, gate/corroborator scan, threshold, ordered interventions, guardrail pass.
+- Per the eval constraints I did not run `scripts/scan-ai-tells.py` and did not read any other skill directory, so the downstream `humanizer` pass the skill prescribes was not performed. The delivered answer says so explicitly rather than implying the piece is finished.
 
 ## Suggestions
 
-- **Step 2 cluster B would benefit from an explicit floor on beat count.** The >60% rule is
-  unstable when a short professional piece has two or three emotional beats total — one beat
-  swings the ratio by 33 percentage points. A note like "with fewer than four emotional
-  beats, rely on corroborators rather than the ratio" would remove the judgment call that was
-  the hardest part of this run.
-- **The skill has no guidance on whether emotion inside a quoted source counts as a beat.**
-  Case studies and customer stories are full of pull quotes, so this comes up on every piece
-  in this register.
-- **Consider a worked example for the case study register.** The single worked example is
-  thought leadership, where D, G, and reader address are all live. A case study example would
-  demonstrate the narrower scope and, usefully, a "cluster did not fire despite an obvious
-  surface tell" call — the discipline that was hardest to hold here.
+- **Step 4's short-form order ("A → B → F → E") omits C1**, even though C1 is in scope for the case study register per Step 1. I inferred its position from the long-form order (C after E). Adding C1 to the tail of the short-form line — "A → B → F → E → C1" — would remove the inference.
+- **Cluster A has no explicit rule for titles and subheads.** A subtitle like "From Spreadsheet Chaos to Coordinated Scheduling" states the arc as plainly as the closing lesson does. I treated it as part of A's deletion, but the skill doesn't say whether display copy is in scope for the thematic-statement gate.
+- **The interaction I hit is worth naming in the skill.** In this piece one sentence was simultaneously A's thematic statement and C1's internal-understanding resolution, so a single deletion moved two gates. Step 3 warns that structural changes interact; a line noting that a fired cluster can be resolved as a side effect of an earlier intervention — and that this should be reported rather than claimed as a fourth intervention — would help.
