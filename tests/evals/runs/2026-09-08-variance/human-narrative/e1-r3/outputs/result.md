@@ -1,0 +1,84 @@
+---
+**Register: case study / customer story.** Clusters in scope: A, B, C1, E, F. Out of scope for this register: C2, D, G.
+
+## Cluster scan
+
+| Cluster | Gate | Corroborators | Fired |
+|---|---|---|---|
+| A — Thematic over-determination | States what the piece means: **yes** (AI-side) | Thematic unity 5 on a 1–5 scale (AI-side); moral/philosophical weighting 3 (human-side); dialogue as philosophical debate: no; intertextual gestures: none, not implicit echoes | ✅ |
+| B — Sensory / embodied | Mixed. One embodied beat ("felt the frustration in her chest"), one explicit in Chen's quote, one behavioral (drivers asking why you hadn't done this years ago). Embodied share of emotional beats: **1 of 3, 33%** — under the 60% rule | Setting as psychological mirror ~1; olfactory imagery: no; sensory density ~2; depth of interior access ~2; environmental prominence ~1. **All five human-side** | ❌ |
+| C1 — Structural streamlining | Main chain resolved **externally** — a scheduling platform and a six-week rollout, not a realization (human-side) | Not scored; gate is human-side | ❌ |
+| E — Reader engagement | **Never** addresses the reader (AI-side) | Fourth-wall permeability at the floor — nothing acknowledges the telling (AI-side) | ✅ |
+| F — Intertextual richness | Intertextual gestures: **none** (AI-side) | Names no specific text, author, work, or event (AI-side; explicit named reference runs 47% of published human stories vs 24% AI, a 23-point gap) | ✅ |
+
+**Verdict: 3 clusters fired — some AI-side clustering. Cap: 2 interventions.**
+
+E and F fire on almost every piece of short professional writing by construction, and they would normally count as one cluster between them. Here A also fires, so they count separately.
+
+The "too neat" feeling you have is A, and it is one paragraph. Everything else in the piece is behaving.
+
+## Interventions taken
+
+### 1. A — thematic restraint (deletion)
+
+Cut from "Looking ahead":
+
+> The lesson from the rollout is clear: when the people who do the work can see the same picture, coordination stops being a daily negotiation and becomes a habit. For Ridgeline, that shift has transformed not just its mornings but its entire operating rhythm.
+
+Nothing goes in its place. The narratorial thematic commentary gate goes yes → no, and thematic unity drops from 5 to about 4 — every section still points one way, but the piece no longer announces which way.
+
+**Cost.** The piece loses its explicit takeaway line. If this case study is used as a leave-behind where someone skims the last paragraph for the point, you are trading skimmability for the neatness you asked me to remove. The metrics in "The results" carry the point on their own: forty minutes to six, 11 percent fuel, twelve hours of overtime to under two. A reader can reconstruct the lesson from those three numbers, which is guardrail 3 satisfied.
+
+### 2. F — name the reference
+
+Added one paragraph naming a real study, placed where the deleted moral used to sit so it carries the idea without stating it. Reference explicitness: none → explicit named.
+
+**Cost.** It is a register jump. A customer case study citing organizational research is unusual, and if Ridgeline signs off on this copy they may push back. It is also a factual claim about someone else's work, so it needs checking before it ships (see below).
+
+## The rewrite
+
+Ridgeline Logistics: From Spreadsheet Chaos to Coordinated Scheduling
+
+**The challenge**
+
+Ridgeline Logistics runs 140 delivery vans across the Pacific Northwest. Until 2025, dispatch scheduling lived in a set of spreadsheets maintained by three regional coordinators. Every morning began the same way: coordinators phoned each other to reconcile overlapping routes, and drivers waited in the yard until the calls ended. On a typical day, vans left forty minutes late. Operations director Maria Chen felt the frustration in her chest every time she walked past the idle vans.
+
+**The solution**
+
+In March 2025, Ridgeline rolled out a shared scheduling platform across all three regions. Coordinators now see one live board. Route conflicts are flagged automatically, and drivers get their assignments on their phones the night before. The rollout took six weeks, including two weeks of parallel running with the old spreadsheets.
+
+**The results**
+
+Within the first quarter, average morning departure delay fell from forty minutes to six. Fuel spend dropped 11 percent because routes stopped overlapping. Coordinator overtime, which had run at roughly twelve hours a week per person, fell to under two.
+
+"Honestly, I didn't expect the drivers to take to it so quickly," Chen said. "By the second week they were asking why we hadn't done this years ago."
+
+In a 1993 study of flight-deck crews on aircraft carriers, Karl Weick and Karlene Roberts argued that what kept the deck safe was not individual skill but each person's running picture of what everyone else was doing. Ridgeline's coordinators had been assembling that picture by phone, one morning at a time.
+
+**Looking ahead**
+
+Ridgeline plans to extend the platform to its maintenance scheduling in 2026.
+
+## Not taken
+
+**B** did not fire and I did not touch it. "Felt the frustration in her chest" is the sentence that probably set off your instinct, and it is a genuine embodied-emotion beat — but it is the only one in the piece, every one of B's five corroborators is human-side, and a gate without a corroborator is a flag, not a finding. Systematic reliance on the body is the AI signal; one instance is how humans write too. Say the word and I will convert it to a direct label ("Maria Chen was frustrated every time she walked past the idle vans") as a standalone change, but the scan does not justify it.
+
+**C1** did not fire. The resolution is external — they bought and rolled out a platform — which is the human-side option. Worth noting anyway: the piece resolves completely, with no thread left open. If something is in fact still unresolved (the maintenance rollout slipping, the parallel-run overhead never fully going away, a region that resisted), ending on that instead of the 2026 plan would be the strongest remaining change. I can't make that edit because I don't have the fact and I'm not allowed to invent one.
+
+**E** fired and sits below the cap of 2. The available fix is one second-person claim or an aside acknowledging the telling. It is the weakest of the three findings and the easiest to do badly in a case study, so it lost its slot to F.
+
+## Watch downstream
+
+The Weick and Roberts attribution is now a factual claim in your copy — run `source-check` on it before publishing (it is "Collective Mind in Organizations: Heedful Interrelating on Flight Decks," *Administrative Science Quarterly*, 1993). Do not let it get softened into "researchers have found" in review; that is vague attribution and worse than having no reference at all.
+
+I have not touched a single sentence for style. Run `humanizer` next for surface-level tells, then `farnsworth-rhetoric` if you want the closing line sharpened.
+---
+
+Commentary (not part of the delivered answer):
+
+- Executed as a full audit + rewrite per the skill's Output format section, since the prompt asked for a change ("make it read more human"), not a diagnosis.
+- Register triage put this in the case study row: A, B, E, F, C1 in scope; C2, D, G excluded by register.
+- 3 clusters fired (A, E, F) → Step 3 cap of 2 interventions. Step 4 short-form order is A → B → F → E; B did not fire, so A and F were taken and E was reported as below-cap.
+- The E/F "by construction" rule in Step 3 was applied explicitly: because A also fired, E and F count separately rather than as one.
+- B was deliberately not fired despite the embodied-emotion sentence being the most conspicuous surface tell, because the gate is not dominant-AI-side (33% embodied, under the 60% quantitative rule) and all five corroborators are human-side. Offered to the author as an optional standalone change instead.
+- C1's truth constraint was respected: the unresolved-thread intervention was flagged and handed back rather than executed, because it depends on a fact the author has and the editor does not.

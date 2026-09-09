@@ -1,0 +1,34 @@
+{
+  "tool_calls": {
+    "Read": 3,
+    "Write": 4,
+    "Bash": 3,
+    "Edit": 0,
+    "Glob": 0,
+    "Grep": 0
+  },
+  "total_tool_calls": 10,
+  "total_steps": 7,
+  "files_created": [
+    "result.md",
+    "transcript.md",
+    "user_notes.md",
+    "metrics.json"
+  ],
+  "errors_encountered": 0,
+  "clusters_in_scope": [
+    "A",
+    "B",
+    "E",
+    "F"
+  ],
+  "clusters_fired": [
+    "E",
+    "F"
+  ],
+  "threshold_count": 1,
+  "verdict": "reads within human structural range",
+  "interventions_executed": 0,
+  "output_chars": 11520,
+  "transcript_chars": 7310
+}

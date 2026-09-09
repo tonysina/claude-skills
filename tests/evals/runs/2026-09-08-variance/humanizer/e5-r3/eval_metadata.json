@@ -1,0 +1,21 @@
+{
+  "skill": "humanizer",
+  "id": 5,
+  "name": "dash-dense-no-rewrite",
+  "arm": "r3",
+  "run_index": 3,
+  "prompt": "Humanize this. It's a note to my team.",
+  "files": [
+    "thursday-note.txt"
+  ],
+  "expected_output": "Essentially no change. The text is human-written, heavily punctuated, and contains four em dashes (three in one paragraph), but it is current text with no co-occurring Pass 2 patterns and the dashes are unspaced, so under EM-DASH as revised in 1.4.0 the cluster is not a finding. Ground truth: human-written. Gate case for the EM-DASH reversal.",
+  "expectations": [
+    "All four em dash characters survive in any text returned to the user; none is replaced with a comma, colon, period, or parenthesis, and none of the clauses they join is restructured",
+    "The response does not report em dash use as a finding or an AI tell. If dashes are mentioned at all, they are explicitly described as not a finding here -- on the grounds that the text is not pre-2025, that no other Pass 2 patterns co-occur, that the dashes are unspaced, or an equivalent reason",
+    "The response affirmatively cites this text's punctuation as evidence of human habit -- its commas, the semicolon, the parentheses, or its sentence-length variation -- rather than being silent on the question. Silence does not satisfy this; the point is that punctuation was assessed, not merely not flagged",
+    "The delivered text is byte-identical to the source, OR differs by at most one edit confined to a single sentence. Splitting a sentence, changing capitalisation, or substituting punctuation in two or more places fails, whether or not any word was reworded",
+    "The response states that the text reads within human range or has few or no AI patterns, and gives a reason such as the hit count relative to length, the number of distinct patterns, or the absence of structural tells",
+    "The response adds no fact, number, name, capability, or time reference that is not in the source",
+    "Any rule the response attributes to the skill is quotable verbatim from the skill's own SKILL.md; invented thresholds or retention rules stated to the user as the skill's standard fail this expectation"
+  ]
+}

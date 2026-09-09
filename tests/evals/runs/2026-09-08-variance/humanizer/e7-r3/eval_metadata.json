@@ -1,0 +1,22 @@
+{
+  "skill": "humanizer",
+  "id": 7,
+  "name": "isolated-moreover",
+  "arm": "r3",
+  "run_index": 3,
+  "prompt": "Review this for AI tells. Does it sound like AI wrote it?",
+  "files": [
+    "grant-update.txt"
+  ],
+  "expected_output": "A findings report concluding the text reads within human range, performing no rewrite. The single 'Moreover' must not be reported as a tell: one instance is on the source's ineffective-indicators list, and the rotating-connector sub-pattern under VAGUE-CONNECT is a monotony test that requires a small set carrying nearly every transition. Ground truth: human-written. Gate case for the T3 monotony clause.",
+  "expectations": [
+    "The response does not list the single 'Moreover' as a finding, a tell, or evidence of AI authorship. If it is mentioned at all, it is described as not a reliable indicator in isolation, or as requiring monotony across the piece before it counts",
+    "The response does not claim a rotating-connector, connector-monotony, or VAGUE-CONNECT finding against this text, which uses one connector in total",
+    "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human, or is at most ambiguous leaning human",
+    "The response does not perform a rewrite of the text, in full or of any paragraph, even as an optional extra; it reports findings only, with at most a one-clause fix suggestion per finding",
+    "The response gives a reason for restraint, such as a hit count or rate relative to the text's length, the small number of distinct patterns, or the absence of structural tells",
+    "The response reports the one genuine low-signal item in the text -- the AI-vocabulary word 'showcases' -- and states it is below the threshold rather than omitting it. A bare 'this reads human' with no findings section does not satisfy this",
+    "Every hand-computed number the response states about the text (word count, hit count, density per 100, any sentence-length figures) is arithmetically correct and internally consistent with the other numbers it reports",
+    "The response reports no finding other than 'showcases'. Any additional pattern asserted against this text -- INFLATION, NEG-PARALLEL, VAGUE-ATTRIB, RULE-OF-3 or otherwise -- is a false positive and fails this expectation"
+  ]
+}

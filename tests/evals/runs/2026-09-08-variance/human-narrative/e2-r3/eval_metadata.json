@@ -1,0 +1,18 @@
+{
+  "skill": "human-narrative",
+  "id": 2,
+  "name": "short-form-proportionality",
+  "arm": "r3",
+  "run_index": 3,
+  "prompt": "Audit the narrative structure of this and fix anything that reads as AI.",
+  "files": [
+    "status-update.txt"
+  ],
+  "expected_output": "A five-sentence status update is in the skill's short-form row (A, B, E, F in scope), not a hard stop. The correct outcome is zero interventions, stated explicitly, in a response proportionate to a 48-word input. The text is returned unchanged or declared unchanged.",
+  "expectations": [
+    "The response identifies the text as a status update (short-form register) and applies no structural interventions",
+    "The output text is unchanged from the input, either returned verbatim or explicitly declared unchanged",
+    "The response says explicitly that zero interventions is the correct outcome, rather than listing findings and leaving the decision to the user",
+    "The response is proportionate to the input: under 250 words, with no cluster table or corpus statistics for a 48-word status update"
+  ]
+}

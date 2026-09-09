@@ -1,0 +1,19 @@
+Ridgeline Logistics: From Spreadsheet Chaos to Coordinated Scheduling
+
+The challenge
+
+Ridgeline Logistics runs 140 delivery vans across the Pacific Northwest. Until 2025, dispatch scheduling lived in a set of spreadsheets maintained by three regional coordinators. Every morning began the same way: coordinators phoned each other to reconcile overlapping routes, and drivers waited in the yard until the calls ended. On a typical day, vans left forty minutes late. Operations director Maria Chen felt the frustration in her chest every time she walked past the idle vans.
+
+The solution
+
+In March 2025, Ridgeline rolled out a shared scheduling platform across all three regions. Coordinators now see one live board. Route conflicts are flagged automatically, and drivers get their assignments on their phones the night before. The rollout took six weeks, including two weeks of parallel running with the old spreadsheets.
+
+The results
+
+Within the first quarter, average morning departure delay fell from forty minutes to six. Fuel spend dropped 11 percent because routes stopped overlapping. Coordinator overtime, which had run at roughly twelve hours a week per person, fell to under two.
+
+"Honestly, I didn't expect the drivers to take to it so quickly," Chen said. "By the second week they were asking why we hadn't done this years ago."
+
+Looking ahead
+
+Ridgeline plans to extend the platform to its maintenance scheduling in 2026. The lesson from the rollout is clear: when the people who do the work can see the same picture, coordination stops being a daily negotiation and becomes a habit. For Ridgeline, that shift has transformed not just its mornings but its entire operating rhythm.

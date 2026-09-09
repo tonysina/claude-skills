@@ -1,0 +1,53 @@
+{
+  "tool_calls": {
+    "Read": 2,
+    "Write": 4,
+    "Bash": 4,
+    "Edit": 0,
+    "Glob": 0,
+    "Grep": 0
+  },
+  "total_tool_calls": 10,
+  "total_steps": 7,
+  "files_created": [
+    "result.md",
+    "transcript.md",
+    "user_notes.md",
+    "metrics.json"
+  ],
+  "errors_encountered": 0,
+  "output_chars": 23237,
+  "transcript_chars": 11115,
+  "skill": "human-narrative",
+  "skill_version": "1.1.2",
+  "register": "case study",
+  "clusters_in_scope": [
+    "A",
+    "B",
+    "E",
+    "F",
+    "C1"
+  ],
+  "clusters_fired": [
+    "A",
+    "E",
+    "F"
+  ],
+  "clusters_not_fired": [
+    "B",
+    "C1"
+  ],
+  "clusters_out_of_scope": [
+    "C2",
+    "D",
+    "G"
+  ],
+  "intervention_cap": 2,
+  "interventions_executed": [
+    "A",
+    "F"
+  ],
+  "interventions_reported_not_executed": [
+    "E"
+  ]
+}

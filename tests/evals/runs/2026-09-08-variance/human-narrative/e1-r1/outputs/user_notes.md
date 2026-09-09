@@ -1,0 +1,26 @@
+# User Notes
+
+## Uncertainty
+
+- **The Goldratt paraphrase is unverified.** Cluster F's fix required naming a real work, and I added *The Goal* (Eliyahu Goldratt, 1984) with a one-line paraphrase of the local-optima / bottleneck argument. I did not open the book or any source. The skill's own cluster-F constraint says to run `source-check` before publishing; I flagged that in the deliverable but could not act on it here.
+- **Cluster C's gate is ambiguous for non-fiction.** The gate asks whether the chain resolves "through the protagonist's own choice or internal understanding," with options externally / internally / unresolved. In a case study the company solves its own problem by a deliberate deployment: that is protagonist agency (AI-side) but not internal realization. I scored it "internally." The opposite reading would leave C1 unfired and drop the count from 4 to 3, which changes neither the cap (3 either way) nor the selection (A, F, E either way) — but it would change the "too neat" diagnosis I gave the user, since C1 is half of that answer.
+- **Emotional beat counting is subjective.** I counted three emotional beats and put embodied at 1/3 (33%), under the 60% rule, so B did not fire. If "drivers waited in the yard" counts as a beat the share drops further; if the two driver-reaction beats are treated as one, embodied hits 50% — still under the bar, but the margin is thinner than the clean "not fired" call suggests.
+- **Moralizing score.** I put cluster A's moralizing corroborator at 3/5, below the ≥4 bar. A different reader could put the "coordination stops being a daily negotiation" sentence at 4. It doesn't matter here — thematic unity at 5/5 already corroborates the gate — but the score is a judgment.
+
+## Needs Human Review
+
+- **Whether a stated takeaway is the assignment.** SKILL.md warns that "some AI patterns are the assignment" and says to flag rather than silently restructure. Marketing case studies frequently *require* a closing benefit statement. I executed intervention A (deleted both thematic sentences) rather than only flagging it, and noted in the deliverable that one sentence could be restored. If this eval's expectation is "flag and ask," I over-executed; if it is "make it read more human," the user's request authorised the rewrite. I read the prompt as authorising it.
+- **Adding a book reference to a customer-facing asset.** Whether a Goldratt paragraph belongs in a Ridgeline case study is a brand/editorial call I can't make. It is in scope per the register table, but a reviewer may cut it, and if they do, F returns.
+- **The C1 recommendation depends on facts I don't have.** I suggested that if something is genuinely unresolved (maintenance scoping, a slow-adopting region, drivers still calling in), one honest sentence of it would do more than my three edits. Those are illustrative possibilities, not claims about Ridgeline. The delivered text presents them as hypotheticals; a careless reader could mistake them for suggested copy.
+
+## Workarounds
+
+- **No slot reassignment for the blocked C1.** Step 5 says a blocked intervention is reported, not counted, and the next in order takes its slot. C1 was last in the applicable case-study sequence and the cap was already filled by A, F, E, so there was nothing to promote. Recorded this reasoning explicitly rather than leaving it implicit.
+- **B fired-but-not-fired reporting.** The single embodied line ("felt the frustration in her chest") is exactly the kind of thing a user expects a "make it more human" pass to catch, but the cluster does not fire and spending an intervention on it would exceed the cap and violate "do not manufacture findings." I reported it as a non-finding with the direct-label alternative offered as a preference. This felt like the right reading of the skill but sits close to the line the skill draws against hunting.
+
+## Suggestions
+
+- **Cluster C needs a non-fiction gate rubric.** For a case study, "protagonist's own choice" is almost always true — the customer bought the product and it worked — so C1 will fire on nearly every case study, and its only fix is then blocked by C1's own truth constraint. The skill could either give the gate a non-fiction phrasing that separates agency from internal realization, or note that C1 in the case-study row is expected to fire and be flagged rather than executed.
+- **The case-study intervention order omits C.** Step 4 lists "Short-form and case study: A → B → F → E" while the register table puts C1 in scope for case studies. A cluster can therefore fire with no position in its register's execution order. Worth stating explicitly that such a cluster is diagnosis-only.
+- **A worked example in a non-fiction register would help.** The only worked example is thought leadership with all seven clusters firing. A case-study example — where B doesn't fire, C1 fires and is blocked, and the useful answer is partly "ask the author for an open thread" — is the harder and more common shape.
+- **Cluster F needs a no-reference fallback.** For customer-facing collateral where naming a book is off-brand, an explicit alternative (name the real external event, regulation, competitor, or date the piece is reacting to) would keep the intervention available. I improvised this in the deliverable; the skill doesn't offer it.

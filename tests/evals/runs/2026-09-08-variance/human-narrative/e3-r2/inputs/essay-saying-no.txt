@@ -1,0 +1,15 @@
+The first time I said no to my manager, I was twenty-six and I had been at the company for eleven months.
+
+It started on a Monday. Dana walked over to my desk with the particular brightness she reserved for asking favours and told me the client wanted the reporting dashboard moved up by three weeks. Could I take it on? My stomach dropped. I already had the data pipeline rebuild, which was late, and the on-call rotation, which was mine that week. I heard myself say yes. My chest tightened as she walked away, and I stared at the calendar until the squares blurred.
+
+For the next two weeks I worked until nine most nights. The dashboard shipped on time. The pipeline slipped by a month. Nobody said anything about the pipeline, which was somehow worse. I told myself I had done the right thing, and I did not believe it.
+
+Then, on a Thursday in the third week, Dana came back. The client loved the dashboard. Could I add a second one, for the executive team, by the end of the month? I felt the familiar heat rise up my neck. I opened my mouth to say yes.
+
+Instead I said, "I can do that, or I can finish the pipeline. Which one do you want?"
+
+The silence lasted maybe two seconds. Dana blinked. Then she said, "The pipeline, obviously," and walked off to find someone else for the dashboard. That was it. No argument, no consequence. She had never wanted me to do both; she had just never been told I couldn't.
+
+I finished the pipeline the following week. The second dashboard went to a contractor, who did it better than I would have. At my next review Dana wrote that I had "developed strong prioritisation judgment," which made me laugh, because all I had done was ask a question.
+
+I think about that Thursday often. What I learned is that saying no is rarely a confrontation. Most of the time it is just information that the other person doesn't have yet. The fear I carried for eleven months was about a conflict that was never going to happen. Once I understood that, everything at work got easier, and I have never gone back.

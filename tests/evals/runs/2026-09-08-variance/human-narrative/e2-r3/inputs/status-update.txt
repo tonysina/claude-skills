@@ -1,0 +1,1 @@
+Sprint 14 status: the search reindex finished Friday. Two of the five reporting endpoints are migrated; the remaining three are blocked on the schema change that needs DBA review. I have asked for review by Wednesday. If it slips past Wednesday we lose the sprint. No other blockers.

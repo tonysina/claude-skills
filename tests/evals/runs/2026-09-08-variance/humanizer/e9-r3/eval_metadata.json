@@ -1,0 +1,21 @@
+{
+  "skill": "humanizer",
+  "id": 9,
+  "name": "under-punct-independent-domain",
+  "arm": "r3",
+  "run_index": 3,
+  "prompt": "Humanize this. It's the summary section of an incident writeup.",
+  "files": [
+    "incident-writeup.txt"
+  ],
+  "expected_output": "Punctuation scarcity identified as UNDER-PUNCT and fixed, on a fixture that shares no subject matter, vocabulary or move sequence with the worked UNDER-PUNCT example in SKILL.md. Companion to eval 8, which is retained as a regression case but cannot prove independent measurement because its subject matter resembles the skill's own example. Source: 3 sentences of 44/65/59 words, zero commas, zero semicolons, zero parentheses, zero word-list hits.",
+  "expectations": [
+    "The response identifies punctuation scarcity or long unpunctuated 'and'-chained sentences as the primary problem and names UNDER-PUNCT as a stable ID in uppercase hyphenated form",
+    "The rewritten text contains at least seven sentence-ending periods, against three in the source, and no sentence longer than 35 words",
+    "The rewritten text adds internal punctuation, replacing at least four of the source's propositional 'and' joints with a period, semicolon, comma plus a named relationship (because, after, although, when), or subordination",
+    "The two-item series 'the primary and replica connection pools' is left intact as a series and is not split, re-punctuated, or reported as an undecided connection",
+    "The response does not present 'and' as a watch-list or key word, and does not count UNDER-PUNCT toward a density or spread score; the source contains zero word-list hits, so any density figure above zero must be identified as coming from something other than the word lists",
+    "Every figure in the source survives with its value unchanged: 02:14, four minutes, 23:40, 03:30, 18 percent, March, 04:05, nine minutes, 06:00, 40, 120; and no new figure, cause, or remediation step is introduced",
+    "Every hand-computed number the response states about the text is arithmetically correct and internally consistent with the other numbers it reports"
+  ]
+}
