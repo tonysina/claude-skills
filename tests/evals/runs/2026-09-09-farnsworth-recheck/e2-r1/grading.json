@@ -1,0 +1,34 @@
+{
+  "expectations": [
+    {
+      "text": "The response states a figure budget for the piece and adds at most one figure the author did not already have",
+      "passed": true,
+      "evidence": "States budget (1 max), applies 0 figures."
+    },
+    {
+      "text": "The concrete details (Tuesday, three days, step four, leading zero, American test team, one hour, four hundred signups) are all preserved",
+      "passed": true,
+      "evidence": "All details verified: Tuesday, three days, step four, leading zero, American team, one hour, four hundred."
+    },
+    {
+      "text": "No claim is inflated or generalized: 'about four hundred' keeps its hedge, no new absolute/superlative/general maxim added, 'a lesson I keep having to relearn' is not turned into a promise or explicit moral",
+      "passed": true,
+      "evidence": "Hedge 'about four hundred' preserved, closing unchanged, no inflated claims."
+    },
+    {
+      "text": "If a figure is applied, the response names it and the trigger condition; if none, the response says so and explains why",
+      "passed": true,
+      "evidence": "States 'Figures withheld: None' with explanation of why text already lands."
+    },
+    {
+      "text": "Non-figure edits are restrained: the closing sentence is preserved, at most one sentence is split/merged/given a new subject",
+      "passed": true,
+      "evidence": "Final text unchanged; closing sentence preserved verbatim."
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}

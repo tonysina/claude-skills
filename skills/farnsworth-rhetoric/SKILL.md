@@ -18,7 +18,7 @@ description: |
   or use start-with-why/strategic-persuasion-writing/bluedolphin-collateral,
   then return here to sharpen it).
 metadata:
-  version: 1.1.3
+  version: 1.1.4
 ---
 
 # Farnsworth Rhetoric: Memorable Writing
@@ -118,7 +118,9 @@ Additional hard caps:
 **Q3: What is free?**
 
 Diction work does **not** count against the budget, because it removes ornament rather
-than adding it. Apply it everywhere, always:
+than adding it. Apply it everywhere, always — but free of budget is not free of the claim
+check below: a Saxon-default swap can drop an attribution or a hedge as easily as a figure
+can.
 
 - **Saxon default.** Trigger: three or more Latinate polysyllables in one sentence, or a
   chain of abstract nouns. Move: turn nominalizations back into verbs. "The
@@ -323,13 +325,21 @@ Both checks are mandatory before returning revised text.
 
 ### Claim check
 
-Figures compress, and compression eats qualifiers. Compare the claims in your revision
-against the original:
+Figures compress, and compression eats qualifiers — but diction work compresses too, and
+it is applied "everywhere, always" with no budget to make you pause over it. **Free does
+not mean unchecked.** "Financial modelling indicates that X" tightened to "The math works"
+is a Saxon-default move — three Latinate words replaced by three Saxon ones — that also
+quietly drops the attribution: the claim goes from something a model produced to something
+stated as flatly true. That is the same failure the claim check exists to catch, just
+arrived at through diction work instead of a figure. Run the claim check against every
+sentence your revision touches, whether the touch was a figure or diction alone. Compare
+the claims in your revision against the original:
 
 1. Did a hedge become a promise? ("an opportunity to improve" → "we will lead")
 2. Did a qualifier vanish? ("in most cases," "for enterprise accounts," "after year two")
 3. Did a number, date, or scope get dropped for rhythm?
-4. Did an attribution disappear?
+4. Did an attribution disappear? ("financial modelling indicates" collapsing into an
+   unattributed claim is exactly this, even when no figure was involved)
 
 If yes to any: restore it, even at the cost of the figure. **Flat prose that states the
 claim correctly beats a memorable sentence that overstates it.** If the original claim was

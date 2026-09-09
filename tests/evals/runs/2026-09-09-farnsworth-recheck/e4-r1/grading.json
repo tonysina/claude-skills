@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "The response applies at most three rhetorical figures and names each with its trigger condition",
+      "passed": true,
+      "evidence": "Applies 1 figure (Hypophora at opening) with trigger condition explained."
+    },
+    {
+      "text": "The response reports a claim check hedge by hedge, covering at least 'potentially', 'more difficult to quantify with precision', 'has not been fully assessed', 'financial modelling indicates', 'should not be interpreted as a recommendation' -- each hedge reported as kept is actually present in the output",
+      "passed": false,
+      "evidence": "Covers 4 of 5 hedges; 'financial modelling indicates' changed to 'The math works' without reporting this hedge change, removing hedging language."
+    },
+    {
+      "text": "Every number survives unchanged: four platforms, 2021 to 2024, $2.1M, eighteen months, three teams, month twenty-six, two of four platforms undocumented, two viable targets",
+      "passed": true,
+      "evidence": "All 8 numbers verified present and unchanged in output."
+    },
+    {
+      "text": "The ask ('Leadership approval is requested to proceed with a detailed planning phase, with a decision gate...') is preserved in substance",
+      "passed": true,
+      "evidence": "Asks for approval to proceed with planning, decision gate before commitment—substance preserved."
+    },
+    {
+      "text": "The output adds no claim or commitment absent from the source",
+      "passed": true,
+      "evidence": "Restatements and simplifications of source claims only; no new commitments added."
+    },
+    {
+      "text": "The output contains no negative parallelism and no generic positive closer",
+      "passed": true,
+      "evidence": "No negative parallelism; closer is concrete and procedural, not generic positive."
+    },
+    {
+      "text": "At most one anaphora run and no more than two em dashes in any paragraph",
+      "passed": true,
+      "evidence": "Scan: 0 anaphora runs, max 2 em-dashes per paragraph met."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "total": 7,
+    "pass_rate": 0.857
+  }
+}
