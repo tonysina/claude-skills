@@ -12,6 +12,7 @@ Usage:
     scripts/scan-ai-tells.py <target.txt> [target2.txt ...]
     scripts/scan-ai-tells.py --humanizer <path/to/SKILL.md> <target.txt> ...
     scripts/scan-ai-tells.py --keep-quotes <target.txt> ...
+    scripts/scan-ai-tells.py --keep-summary <target.txt> ...
 
 The humanizer path defaults to skills/humanizer/SKILL.md in this repo.
 
@@ -29,6 +30,25 @@ Meta-quotation filter (default on, disable with --keep-quotes):
   the skill quoting a pattern in order to explain it. Known-good answer for that
   file under v1.2.0 is 1 (a real "Studies have shown" self-violation, fixed in
   v1.3.0, after which the answer is 0).
+
+Pattern-ID commentary filter (default on, disable with --keep-summary):
+  A change summary names the patterns it removed and quotes the text it removed
+  them from, so a raw scan counts a citation as a commission. This runs in BOTH
+  modes, because the problem is not quoting: the citations sit in ordinary prose
+  bullets, and --keep-quotes is what the eval README requires for delivered text
+  (executors put rewritten prose in blockquotes), which switches quote filtering
+  off exactly when a change summary is present.
+
+  Keyed on humanizer's pattern IDs, not on a heading name -- executors invent the
+  heading ('Change summary', '## What changed', '**Change note**', '## What I
+  deliberately did not change' all appear across tests/evals/runs/). A block
+  naming an all-caps pattern ID is commentary by construction; delivered prose
+  does not cite pattern IDs. Case-sensitive, so 'inflation' the word is safe.
+
+  Known-good answer: runs/2026-09-02-r3/humanizer/e1-with delivered text scores 0
+  NEG-PARALLEL. Before this filter it scored 3, all three inside the one
+  '- `NEG-PARALLEL`: "It's not just a form to fill out..."' bullet, and every
+  grader in that run had to neutralise the number by hand.
 
 Two flag sources:
 
@@ -49,6 +69,19 @@ Also measures:
   - em dash total and max-per-paragraph (EM-DASH is about proximity, not count)
   - anaphora runs at sentence and clause level, ignoring leading conjunctions
   - word-level and phrase-level triads (isocolon load-bearing test / RULE-OF-3)
+  - forward references (FORWARD-REF), human-narrative cluster E: structural
+    announcements pointing the reader to somewhere else in the artifact. Reported
+    and counted SEPARATELY from humanizer's constructions, density and distinct-
+    pattern count, all of which are calibrated on humanizer's own pattern set --
+    folding a second skill's finding into them would move a calibrated number,
+    and would break comparison with every scan.txt already committed under
+    tests/evals/runs/. humanizer SIGNPOSTING covers the lexical forms and is
+    auto-extracted; these are the structural ones it misses. Patterns derive from
+    phrases graders caught by hand while the scan reported 0 flags:
+    runs/2026-09-02-r2 human-narrative e3-prev ("Here's the full audit, then the
+    rewrite", "F is the reason -- see the end") and e3-with ("reasons at the
+    bottom", "for the reason below"), plus human-narrative 1.0.0's own
+    SIGNPOSTING collision ("you'll understand why this matters in a moment").
   - word count vs farnsworth figure budget
   - flag density per 100 words and distinct patterns hit, which is what
     humanizer's threshold table is calibrated on
@@ -59,6 +92,14 @@ Known limits (need the LLM grader, not this script):
     count here is a floor, not a total.
   - Claim drift (a hedge becoming a promise, a dropped qualifier) is not checkable
     here at all. That is farnsworth-rhetoric's claim check, and it needs a grader.
+  - FORWARD-REF catches phrasings, not the structure itself. An announcement made
+    without a deictic word ("The audit comes first. The rewrite is separate.")
+    passes. A clean FORWARD-REF count is not evidence against the tell, the same
+    caveat UNDER-PUNCT carries; human-narrative's other 29 features are not
+    checked here at all and need the LLM grader.
+  - The pattern-ID filter is a whole-block drop, so a change summary that also
+    contains delivered prose loses that prose from the scan. Extract the
+    delivered text first, per tests/evals/README.md, and this does not arise.
 """
 
 import re
@@ -85,6 +126,46 @@ CONSTRUCTIONS = [
     ("NEG-PARALLEL", r"\bit'?s not about\b" + GAP + r"\bit'?s\b"),
     ("NEG-PARALLEL tailing negation", r",\s*no\s+\w+\.\s*$|,\s*no\s+\w+\s*$"),
     ("GENERIC-CLOSER", r"\bwe will lead\b|\bthe future is bright\b"),
+]
+
+# human-narrative cluster E. Kept OUT of CONSTRUCTIONS on purpose: humanizer's
+# density table and its distinct-pattern count are calibrated on humanizer's own
+# pattern set, so folding a second skill's finding into either would move a
+# calibrated number. Counted and reported separately; see FORWARD-REF in the
+# docstring.
+#
+# humanizer's SIGNPOSTING watch list already covers the lexical forms ("here's
+# what you need to know," "you might be wondering") and is auto-extracted. These
+# are the structural forms it misses -- a deictic pointer to somewhere else in
+# the artifact. Every pattern below is derived from a phrase a grader caught by
+# hand while the scan reported 0, cited by run in the docstring.
+FORWARD_REF = [
+    # "reasons at the bottom", "for the reason below", "details further down"
+    (r"\b(?:reasons?|details?|caveats?|notes?|context|rationale|the rest|more)\b"
+     r"[^.\n]{0,30}?\b(?:below|at the bottom|at the end|further down)\b"),
+    # "F is the reason -- see the end". Bare "see below" is deliberately absent:
+    # in a document with sections it is an ordinary editorial cross-reference,
+    # which is how the 2026-09-02 grader ruled on '(see "Not taken")', and it
+    # fires on good-presentations/SKILL.md's own option table. No evidenced
+    # positive needs it -- "reason below" is caught by the pointer pattern above.
+    r"\bsee\s+(?:the end|the bottom|further down)\b",
+    # "Here's the full audit, then the rewrite."
+    r"\bhere'?s\s+(?:the|what|why|how|my)\b[^.\n]{0,60}?,\s*then\b",
+    # "as we'll see", "in what follows", "by the end of this piece"
+    r"\bas\s+(?:we|you)'?(?:ll|d)\s+see\b",
+    r"\bin what follows\b",
+    r"\bwhat follows (?:is|are)\b",
+    r"\bby the end of this\b",
+    # "more on this below", "I'll come back to that later"
+    r"\bmore on (?:this|that|it)\b[^.\n]{0,20}?"
+    r"\b(?:below|later|in a (?:moment|second|bit|minute))\b",
+    (r"\b(?:i|we)'?(?:ll| will)\s+"
+     r"(?:explain|unpack|get to|come back to|return to|cover|walk through)\b"
+     r"[^.\n]{0,25}?\b(?:below|later|shortly|in a (?:moment|second|bit|minute))\b"),
+    # "first I'll audit, then I'll rewrite"
+    r"\bfirst\b[^.\n]{0,40}?,\s*then (?:i|we)'?(?:ll| will)\b",
+    # "you'll understand why this matters in a moment" -- 1.0.0's own defect
+    r"\byou'?ll (?:understand|see) why\b[^.\n]{0,40}?\bin a (?:moment|second|bit)\b",
 ]
 
 LEADING_STOPWORDS = {
@@ -154,6 +235,100 @@ def load_flags(humanizer_path):
             if len(variant) >= 3:
                 flags.setdefault(variant.lower(), pid)
     return flags
+
+
+def load_pattern_ids(humanizer_path):
+    """Every stable pattern ID in humanizer's '### N. ID -- ...' headings.
+
+    Read live for the same reason the flag lists are: an ID added, renamed or
+    retired in humanizer needs no change here.
+    """
+    text = Path(humanizer_path).read_text(encoding="utf-8")
+    ids = set()
+    for line in text.splitlines():
+        h = HEADING_RE.match(line.strip())
+        if h and h.group(2):
+            ids.add(h.group(2))
+    return ids
+
+
+ID_TOKEN_RE = re.compile(r"\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+\b|\b[A-Z]{4,}\b")
+QUOTED_SPAN_RE = re.compile(
+    r"\"[^\"\n]{3,}\"|\u201c[^\u201d\n]{3,}\u201d"
+    r"|(?<!\*)\*(?!\*)[^*\n]{2,40}\*(?!\*)"
+)
+LIST_MARKER_RE = re.compile(r"^\s*(?:[-*+]\s+|\d+[.)]\s+)?")
+LIST_ITEM_RE = re.compile(r"^\s*(?:[-*+]\s|\d+[.)]\s|#{1,6}\s|>)")
+CITATION_HEAD = 60
+
+
+def cites_pattern(line, ids):
+    """True when a line labels a quotation with a humanizer pattern ID.
+
+    Both halves are needed, and the label has to come first. A change-summary
+    bullet names the pattern and then quotes the text it was removed from:
+
+        - `NEG-PARALLEL`: "It's not just a form to fill out; it's ..."
+        **Negative parallelism (`NEG-PARALLEL`).** "rapidly evolving ..."
+
+    humanizer's own prose also names IDs, but as a cross-reference at the end of
+    a sentence about something else ("... is already listed under `AI-VOCAB`",
+    "See `UNDER-PUNCT` and farnsworth-rhetoric/references/figures.md"). Requiring
+    the ID inside the first CITATION_HEAD characters, past any list marker, and a
+    quoted span somewhere in the line, separates the two: across humanizer's
+    SKILL.md this drops nothing, and across tests/evals/runs/ it catches 44 of the
+    51 lines that pair an ID with a quotation.
+
+    The 7 it does not catch put the ID after the quotation. They are commentary,
+    but they quote no construction the scan matches, so they cost nothing today --
+    a looser rule that caught them also swallowed 50 lines of humanizer's own
+    prose, which would have gutted the self-check CONTRIBUTING.md documents.
+    """
+    body = LIST_MARKER_RE.sub("", line, count=1)
+    if not (ids & set(ID_TOKEN_RE.findall(body[:CITATION_HEAD]))):
+        return False
+    return bool(QUOTED_SPAN_RE.search(body))
+
+
+def strip_pattern_commentary(text, pattern_ids):
+    """Drop blocks that label a quotation with a humanizer pattern ID.
+
+    A change summary cites the patterns it removed and quotes the text it removed
+    them from, so a raw scan counts the citation as a commission. Blockquote and
+    short-quote filtering does not catch it: the citations sit in ordinary prose
+    bullets, and --keep-quotes -- which tests/evals/README.md requires for
+    delivered text, because executors put rewritten prose in blockquotes --
+    switches that filtering off exactly when a change summary is present.
+
+    Keyed on the pattern IDs rather than on a heading name because executors
+    invent the heading: 'Change summary', '## What changed', '**Change note**',
+    '**What I changed and why**' and '## What I deliberately did not change' all
+    appear across tests/evals/runs/. The IDs are the invariant, and they arrive
+    live from humanizer's own headings, so this cannot drift when the pattern set
+    is revised.
+
+    Matching is case-sensitive on an all-caps token: 'INFLATION' is a citation,
+    'inflation' is a word. A bullet's continuation lines go with it, since a
+    wrapped bullet holds the rest of the quotation.
+    """
+    if not pattern_ids:
+        return text
+    ids = set(pattern_ids)
+    kept, dropping = [], False
+    for line in text.splitlines():
+        if not line.strip():
+            dropping = False
+            kept.append(line)
+            continue
+        if cites_pattern(line, ids):
+            dropping = True
+            continue
+        # continuation of a dropped bullet: no new marker of its own
+        if dropping and not LIST_ITEM_RE.match(line):
+            continue
+        dropping = False
+        kept.append(line)
+    return "\n".join(kept)
 
 
 def strip_quoted(text):
@@ -257,9 +432,19 @@ def budget_for(wordcount):
     return 1, "<300 words: 1"
 
 
-def scan(path, flags, keep_quotes=False, quiet=False):
+def scan(path, flags, keep_quotes=False, keep_summary=False, quiet=False,
+         pattern_ids=()):
     raw_text = Path(path).read_text(encoding="utf-8")
-    text = raw_text if keep_quotes else strip_quoted(raw_text)
+    # Commentary filter runs FIRST and in both modes. It has to see the raw text:
+    # executors write the IDs as `NEG-PARALLEL`, and strip_quoted removes inline
+    # code spans, so running it second leaves it nothing to key on in default
+    # mode. Change-summary citation is a separate problem from blockquoting, and
+    # --keep-quotes -- required for delivered text -- switches quoting off anyway.
+    text = raw_text
+    if not keep_summary:
+        text = strip_pattern_commentary(text, pattern_ids)
+    if not keep_quotes:
+        text = strip_quoted(text)
     # Curly apostrophes defeat the it's/isn't regexes. Wikipedia's confirmed-AI
     # examples use them throughout, so without this the constructions check
     # fired on 2 of 84 known-positive blocks.
@@ -291,6 +476,14 @@ def scan(path, flags, keep_quotes=False, quiet=False):
             snippet = re.sub(r"\s+", " ", m.group(0))[:70]
             constructions.append((label, snippet))
             patterns_hit.add(label.split()[0])
+
+    # Separate from constructions: not a humanizer pattern, so it stays out of
+    # patterns_hit, total_hits, density and the violation count, all of which are
+    # calibrated on humanizer's set.
+    forward_refs = []
+    for pattern in FORWARD_REF:
+        for m in re.finditer(pattern, lower):
+            forward_refs.append(re.sub(r"\s+", " ", m.group(0))[:70])
 
     paragraphs = [p for p in re.split(r"\n\s*\n", text) if p.strip()]
     dash_total = text.count("—")
@@ -329,6 +522,7 @@ def scan(path, flags, keep_quotes=False, quiet=False):
         "strong": len(strong),
         "weak": len(weak),
         "triads": len(word_triads) + len(phrase_triads),
+        "fwd": len(forward_refs),
         "violations": verdict_flags,
         "density": density,
         "patterns": len(patterns_hit),
@@ -383,6 +577,12 @@ def scan(path, flags, keep_quotes=False, quiet=False):
     if word_triads or phrase_triads:
         print("        -> run isocolon load-bearing test on each")
 
+    print(f"\n  forward references (human-narrative cluster E): {len(forward_refs)}")
+    for snippet in forward_refs:
+        print(f"        FLAG FORWARD-REF: \"{snippet}\"")
+    if not forward_refs:
+        print("        none")
+
     print(f"\n  density: {total_hits} flag hits / {wc} words = {density:.1f} per 100"
           f"   distinct patterns: {len(patterns_hit)} {row['pattern_ids']}")
     print(f"\n  HARD VIOLATIONS: {verdict_flags}")
@@ -398,6 +598,7 @@ def main():
     args = sys.argv[1:]
     humanizer = DEFAULT_HUMANIZER
     keep_quotes = False
+    keep_summary = False
 
     while args and args[0].startswith("--"):
         if args[0] == "--humanizer":
@@ -409,6 +610,9 @@ def main():
             args = args[2:]
         elif args[0] == "--keep-quotes":
             keep_quotes = True
+            args = args[1:]
+        elif args[0] == "--keep-summary":
+            keep_summary = True
             args = args[1:]
         else:
             print(f"unknown option {args[0]}\n")
@@ -431,23 +635,33 @@ def main():
         sys.exit(1)
 
     flags = load_flags(humanizer)
+    pattern_ids = load_pattern_ids(humanizer)
+    notes = []
+    if keep_quotes:
+        notes.append("quotes kept")
+    if keep_summary:
+        notes.append("pattern-ID commentary kept")
     print(f"Loaded {len(flags)} literal flags from {humanizer.name} "
-          f"+ {len(CONSTRUCTIONS)} hand-derived constructions"
-          f"{'  (quotes kept)' if keep_quotes else ''}")
-    rows = [scan(p, flags, keep_quotes=keep_quotes) for p in args]
+          f"+ {len(CONSTRUCTIONS)} hand-derived constructions "
+          f"+ {len(FORWARD_REF)} forward-reference patterns"
+          f"{'  (' + ', '.join(notes) + ')' if notes else ''}")
+    rows = [scan(p, flags, keep_quotes=keep_quotes, keep_summary=keep_summary,
+                 pattern_ids=pattern_ids) for p in args]
 
     print(f"\n{'=' * 70}")
     print("SUMMARY")
     print(f"{'=' * 70}")
     hdr = (f"{'file':<28}{'wds':>5}{'bud':>4}{'CONS':>6}{'A':>4}{'B':>4}"
-           f"{'dash':>5}{'anaph':>6}{'tri':>4}{'/100':>6}{'pat':>4}{'VIOL':>6}")
+           f"{'dash':>5}{'anaph':>6}{'tri':>4}{'fwd':>4}{'/100':>6}{'pat':>4}"
+           f"{'VIOL':>6}")
     print(hdr)
     print("-" * len(hdr))
     for r in rows:
         print(f"{r['file']:<28}{r['words']:>5}{r['budget']:>4}{r['cons']:>6}"
               f"{r['tier_a']:>4}{r['tier_b']:>4}{r['dash']:>5}"
               f"{str(r['strong']) + '/' + str(r['weak']):>6}{r['triads']:>4}"
-              f"{r['density']:>6.1f}{r['patterns']:>4}{r['violations']:>6}")
+              f"{r['fwd']:>4}{r['density']:>6.1f}{r['patterns']:>4}"
+              f"{r['violations']:>6}")
 
 
 if __name__ == "__main__":
