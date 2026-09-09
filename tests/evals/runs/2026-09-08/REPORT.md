@@ -129,7 +129,17 @@ set** and should not be compared directly with future runs.
 - Executors: fresh general-purpose agents, one per arm, blocked from the Skill tool, other
   skills, `changelog.md` (which would have told them the answer), the scanner, and other
   eval directories.
-- The 1.3.2 control ran from a `git show` extract at `/tmp/humanizer-prev`, not from the
-  working tree.
+- The 1.3.2 control ran from an extract of this PR's base commit, `af18d29`, not from the
+  working tree. To reproduce the exact skill it executed against:
+
+  ```
+  mkdir -p /tmp/humanizer-prev/references
+  git show af18d29:skills/humanizer/SKILL.md > /tmp/humanizer-prev/SKILL.md
+  git show af18d29:skills/humanizer/references/extended-patterns.md \
+    > /tmp/humanizer-prev/references/extended-patterns.md
+  ```
+
+  The executor was given `SKILL.md` and `extended-patterns.md` only, and was blocked from
+  the changelog and from the installed skills directory, which held the newer version.
 - Scans in `<arm>/scan.txt` were run on whole `result.md` files and are **not reliable
   evidence**; see the extraction rule above. Retained as run artifacts only.
