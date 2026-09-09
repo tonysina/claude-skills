@@ -1,0 +1,37 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions + 11 forward-reference patterns  (quotes kept)
+
+======================================================================
+FILE: delivered.txt
+======================================================================
+  words: 60   figure budget: 1   (<300 words: 1)
+
+  [CONSTRUCTIONS] forbidden-table violations: 0
+        none
+
+  [A] humanizer multi-word flags: 0 distinct
+        none
+
+  [B] humanizer single-word flags (needs context): 1 distinct
+        x1  boasts  [AI-VOCAB]
+
+  em dashes: 0 total, max 0 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 1 word-level, 0 phrase-level
+        facilities, years, details
+        -> run isocolon load-bearing test on each
+
+  forward references (human-narrative cluster E): 0
+        none
+
+  density: 1 flag hits / 60 words = 1.7 per 100   distinct patterns: 1 ['AI-VOCAB']
+
+  HARD VIOLATIONS: 0
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri fwd  /100 pat  VIOL
+--------------------------------------------------------------------------------------
+delivered.txt                  60   1     0   0   1    0   0/0   1   0   1.7   1     0
