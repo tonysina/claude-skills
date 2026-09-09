@@ -5,7 +5,9 @@
       "id": 1,
       "name": "ai-heavy-rewrite",
       "prompt": "Humanize this. It's the opening of a product one-pager for our onboarding platform. Keep it professional.",
-      "files": ["files/ai-heavy-onboarding.txt"],
+      "files": [
+        "files/ai-heavy-onboarding.txt"
+      ],
       "expected_output": "A rewritten one-pager opening with the inflation, negative parallelism, bold inline-header list, vague attribution, challenges formula, and generic closers removed, followed by a change summary naming the patterns by ID. No facts added.",
       "expectations": [
         "The response contains a full rewritten text and a change summary, not just a list of findings",
@@ -22,7 +24,9 @@
       "id": 2,
       "name": "human-negative-review",
       "prompt": "Review this for AI tells. Does it sound like AI wrote it?",
-      "files": ["files/sample-b.txt"],
+      "files": [
+        "files/sample-b.txt"
+      ],
       "expected_output": "A findings report that concludes the text reads within human range (or at most ambiguous), performs no rewrite, states a hit count or rate relative to length, and treats the watch-list words present ('boasts', 'world-famous', 'premier', 'provides', 'officially opened') as weak evidence. Ground truth: pre-2021 Wikipedia text, human-written. The filename is neutral on purpose; do not rename it to anything that hints at the answer.",
       "expectations": [
         "The response does not perform a rewrite of the text, in full or of any paragraph, even as an optional extra; it reports findings only, with at most a one-clause fix suggestion per finding",
@@ -36,7 +40,9 @@
       "id": 3,
       "name": "gemini-residue",
       "prompt": "Can you clean this up? It's going into our company history page.",
-      "files": ["files/gemini-residue.txt"],
+      "files": [
+        "files/gemini-residue.txt"
+      ],
       "expected_output": "The [cite: N] and [span_N](start_span)/(end_span) markers identified as Gemini chatbot residue and removed; the surrounding sentences left as they are; a warning that the removed markers were the only sourcing for the figures; no claim that the prose itself was AI-written.",
       "expectations": [
         "The response commits to the [cite: N] markers and the [span_2](start_span)/(end_span) markers being chatbot or LLM citation residue, without offering a non-AI explanation as equally likely",
@@ -51,7 +57,9 @@
       "id": 4,
       "name": "human-signs-preserved",
       "prompt": "Humanize this paragraph from my blog post.",
-      "files": ["files/human-signs.txt"],
+      "files": [
+        "files/human-signs.txt"
+      ],
       "expected_output": "Little or no change. The text is human-written and its plain constructions (in order to, there is a, very, the fact that, tried, moved, used) are signs of human writing, not AI tells. The response says so.",
       "expectations": [
         "'in order to', 'the fact that', 'very', and 'there is a' all survive verbatim in any returned text; none is cut, contracted, or replaced for any stated reason, unless the response explicitly identifies them as human markers and then keeps them",
@@ -59,6 +67,102 @@
         "The plain verbs 'tried', 'moved', and 'used' are not replaced with 'attempted', 'relocated', or 'utilized'",
         "The response adds no words, hedges (such as 'mostly'), or punctuation to the paragraph that were not in the original, whatever the stated reason",
         "The response tells the user that these plain constructions are markers of human writing and that editing them would move the text toward AI, not away from it"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "dash-dense-no-rewrite",
+      "prompt": "Humanize this. It's a note to my team.",
+      "files": [
+        "files/thursday-note.txt"
+      ],
+      "expected_output": "Essentially no change. The text is human-written, heavily punctuated, and contains four em dashes (three in one paragraph), but it is current text with no co-occurring Pass 2 patterns and the dashes are unspaced, so under EM-DASH as revised in 1.4.0 the cluster is not a finding. Ground truth: human-written. Gate case for the EM-DASH reversal.",
+      "expectations": [
+        "All four em dash characters survive in any text returned to the user; none is replaced with a comma, colon, period, or parenthesis, and none of the clauses they join is restructured",
+        "The response does not report em dash use as a finding or an AI tell. If dashes are mentioned at all, they are explicitly described as not a finding here -- on the grounds that the text is not pre-2025, that no other Pass 2 patterns co-occur, that the dashes are unspaced, or an equivalent reason",
+        "The response affirmatively cites this text's punctuation as evidence of human habit -- its commas, the semicolon, the parentheses, or its sentence-length variation -- rather than being silent on the question. Silence does not satisfy this; the point is that punctuation was assessed, not merely not flagged",
+        "The delivered text is byte-identical to the source, OR differs by at most one edit confined to a single sentence. Splitting a sentence, changing capitalisation, or substituting punctuation in two or more places fails, whether or not any word was reworded",
+        "The response states that the text reads within human range or has few or no AI patterns, and gives a reason such as the hit count relative to length, the number of distinct patterns, or the absence of structural tells",
+        "The response adds no fact, number, name, capability, or time reference that is not in the source",
+        "Any rule the response attributes to the skill is quotable verbatim from the skill's own SKILL.md; invented thresholds or retention rules stated to the user as the skill's standard fail this expectation"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "polysyndeton-carveout",
+      "prompt": "Humanize this. It's an internal retro writeup.",
+      "files": [
+        "files/migration-retro.txt"
+      ],
+      "expected_output": "The genuine tells removed (significance inflation, -ing analyses, negative parallelism, bold inline-header list, vague attribution, challenges formula, generic closer) while the deliberate four-item polysyndeton in 'The cutover touched billing and provisioning and support tooling and reporting' survives intact. Gate case for the joint-versus-series carve-out: an executor that has just read UNDER-PUNCT must not strip the figure.",
+      "expectations": [
+        "The sentence listing what the cutover touched keeps a conjunction before every item after the first -- 'billing and provisioning and support tooling and reporting' -- with all three instances of 'and' intact; converting it to a comma-separated list, or to 'billing, provisioning, support tooling, and reporting', fails",
+        "The response does not flag that four-item series as UNDER-PUNCT, as 'and' overuse, as punctuation scarcity, or as an undecided or decorative connection",
+        "The response explicitly identifies the four-item 'and' series as a deliberate construction it chose to preserve -- naming it as a series, as polysyndeton, or as out of scope for the 'and' pattern. Leaving it untouched without acknowledging it does not satisfy this; the point is that the carve-out was reached, not merely not tripped",
+        "The negative parallelism \"It's not just a technical exercise, it's a test of how we work together\" is removed or restructured so that no negative parallelism remains in any form",
+        "The generic positive closer 'The road ahead is promising' is removed, and the rewritten text does not end on an equivalent vague upbeat sentence",
+        "The bold inline-header list (Communication/Testing/Rollback) is converted to prose or to a plain list with no bolded lead-in text of any kind",
+        "The vague attribution 'Industry reports indicate' is removed from the rewritten body or replaced with a specific named source; a note after the body does not count, and replacing it with an unsourced specific-sounding claim does not count",
+        "The response includes a change summary naming at least two patterns using stable IDs in uppercase hyphenated form (for example INFLATION, NEG-PARALLEL, BOLD-LISTS, GENERIC-CLOSER, VAGUE-ATTRIB, ING-ANALYSIS); descriptive names alone do not satisfy this",
+        "The rewritten text adds no fact, number, team name, date, or capability that is not in the source",
+        "The challenges formula 'Despite these challenges, the team demonstrated remarkable resilience' is removed, and no equivalent 'despite X, Y persevered' construction replaces it",
+        "All three distinct facts from the bullet list survive in the rewritten text -- inconsistent status updates, staging not matching production configuration, and the unrehearsed rollback procedure. Collapsing the list into a single sentence that drops any of the three fails, even though the bold lead-ins must go"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "isolated-moreover",
+      "prompt": "Review this for AI tells. Does it sound like AI wrote it?",
+      "files": [
+        "files/grant-update.txt"
+      ],
+      "expected_output": "A findings report concluding the text reads within human range, performing no rewrite. The single 'Moreover' must not be reported as a tell: one instance is on the source's ineffective-indicators list, and the rotating-connector sub-pattern under VAGUE-CONNECT is a monotony test that requires a small set carrying nearly every transition. Ground truth: human-written. Gate case for the T3 monotony clause.",
+      "expectations": [
+        "The response does not list the single 'Moreover' as a finding, a tell, or evidence of AI authorship. If it is mentioned at all, it is described as not a reliable indicator in isolation, or as requiring monotony across the piece before it counts",
+        "The response does not claim a rotating-connector, connector-monotony, or VAGUE-CONNECT finding against this text, which uses one connector in total",
+        "The response does not conclude that the text is AI-generated; its verdict is that the text reads as human, or is at most ambiguous leaning human",
+        "The response does not perform a rewrite of the text, in full or of any paragraph, even as an optional extra; it reports findings only, with at most a one-clause fix suggestion per finding",
+        "The response gives a reason for restraint, such as a hit count or rate relative to the text's length, the small number of distinct patterns, or the absence of structural tells",
+        "The response reports the one genuine low-signal item in the text -- the AI-vocabulary word 'showcases' -- and states it is below the threshold rather than omitting it. A bare 'this reads human' with no findings section does not satisfy this",
+        "Every hand-computed number the response states about the text (word count, hit count, density per 100, any sentence-length figures) is arithmetically correct and internally consistent with the other numbers it reports",
+        "The response reports no finding other than 'showcases'. Any additional pattern asserted against this text -- INFLATION, NEG-PARALLEL, VAGUE-ATTRIB, RULE-OF-3 or otherwise -- is a false positive and fails this expectation"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "under-punct-positive",
+      "prompt": "Humanize this. It's a summary paragraph for a service review.",
+      "files": [
+        "files/programme-summary.txt"
+      ],
+      "expected_output": "Punctuation scarcity identified as UNDER-PUNCT and fixed: the three long 'and'-chained sentences broken up and given internal punctuation, with every figure preserved. The word-list scan on this text is clean, so the finding must come from the rate measure, not from watch-list hits. Gate case for UNDER-PUNCT, which ships un-thresholded.",
+      "expectations": [
+        "The response identifies punctuation scarcity, long unpunctuated sentences, or 'and' used as a joint between propositions as the primary problem, and names UNDER-PUNCT as a stable ID in uppercase hyphenated form",
+        "The rewritten text breaks up the long chained sentences: it contains at least six sentence-ending periods, against three in the source",
+        "The rewritten text adds internal punctuation, replacing at least three of the source's propositional 'and' joints with a period, semicolon, comma plus a named relationship (because, after, although), or subordination",
+        "The response does not present 'and' as a watch-list or key word, and does not count UNDER-PUNCT toward a density or spread score; if it reports a density figure, UNDER-PUNCT is excluded from it or assessed separately",
+        "The response does not justify the rewrite by claiming word-list or AI-vocabulary hits that are not in the text; the source contains no watch-list hits, so any density claim above zero must be identified as coming from something other than the word lists",
+        "Every figure in the source survives in the rewritten text with its value unchanged: 2017, two boroughs, seven boroughs, 2020, four to nineteen staff, eleven weeks, under four weeks, three sites, 4000 referrals, two thirds, 2022; and no new figure is introduced",
+        "Any same-kind series in the source joined by 'and' is left as a series and not split into separate sentences; the joint/series distinction is applied rather than every 'and' being treated as a joint",
+        "The rewritten text introduces no new AI tell: no significance inflation, no -ing analysis tail, no negative parallelism, no generic positive closer, and no rule-of-three triad that fails the load-bearing test"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "under-punct-independent-domain",
+      "prompt": "Humanize this. It's the summary section of an incident writeup.",
+      "files": [
+        "files/incident-writeup.txt"
+      ],
+      "expected_output": "Punctuation scarcity identified as UNDER-PUNCT and fixed, on a fixture that shares no subject matter, vocabulary or move sequence with the worked UNDER-PUNCT example in SKILL.md. Companion to eval 8, which is retained as a regression case but cannot prove independent measurement because its subject matter resembles the skill's own example. Source: 3 sentences of 44/65/59 words, zero commas, zero semicolons, zero parentheses, zero word-list hits.",
+      "expectations": [
+        "The response identifies punctuation scarcity or long unpunctuated 'and'-chained sentences as the primary problem and names UNDER-PUNCT as a stable ID in uppercase hyphenated form",
+        "The rewritten text contains at least seven sentence-ending periods, against three in the source, and no sentence longer than 35 words",
+        "The rewritten text adds internal punctuation, replacing at least four of the source's propositional 'and' joints with a period, semicolon, comma plus a named relationship (because, after, although, when), or subordination",
+        "The two-item series 'the primary and replica connection pools' is left intact as a series and is not split, re-punctuated, or reported as an undecided connection",
+        "The response does not present 'and' as a watch-list or key word, and does not count UNDER-PUNCT toward a density or spread score; the source contains zero word-list hits, so any density figure above zero must be identified as coming from something other than the word lists",
+        "Every figure in the source survives with its value unchanged: 02:14, four minutes, 23:40, 03:30, 18 percent, March, 04:05, nine minutes, 06:00, 40, 120; and no new figure, cause, or remediation step is introduced",
+        "Every hand-computed number the response states about the text is arithmetically correct and internally consistent with the other numbers it reports"
       ]
     }
   ]

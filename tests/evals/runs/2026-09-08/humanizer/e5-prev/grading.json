@@ -1,0 +1,151 @@
+{
+  "eval_id": 5,
+  "name": "dash-dense-no-rewrite",
+  "arm": "prev",
+  "skill_version_under_test": "1.3.2 (/tmp/humanizer-prev)",
+  "expectations": [
+    {
+      "text": "All four em dash characters survive in any text returned to the user; none is replaced with a comma, colon, period, or parenthesis, and none of the clauses they join is restructured",
+      "passed": false,
+      "evidence": "I isolated the delivered text (result.md between the two '---' fences, lines 5-11) and counted em dash characters in that region myself: 2, against 4 in the source fixture. The other 8 em dashes in result.md are in the executor's commentary and quotations and do not count. Two source dashes were destroyed: 'the migration window—we had assumed' -> 'the migration window. We had assumed' (replaced with a period, clause split into a new sentence, 'we' recapitalized) and 'Neither needs deciding today—but I want both' -> 'Neither needs deciding today, but I want both' (replaced with a comma). Character-level diff of source vs delivered shows exactly two replacements: '—w' -> '. W' and '—' -> ', '. Both prohibited substitutions (period, comma) occurred, and the first also restructured the clause the dash joined."
+    },
+    {
+      "text": "The response does not report em dash use as a finding or an AI tell. If dashes are mentioned at all, they are explicitly described as not a finding here -- on the grounds that the text is not pre-2025, that no other Pass 2 patterns co-occur, that the dashes are unspaced, or an equivalent reason",
+      "passed": false,
+      "evidence": "Em dash use is reported as the sole finding, in three places. result.md line 1: 'I scanned all four passes and found exactly one thing worth touching: three em dashes stacked in the middle paragraph.' result.md line 17: '**EM-DASH** — the third paragraph carried three em dashes, which is the one construction the skill treats as a finding regardless of how clean the rest of the scan is.' metrics.json records it under 'ungated_findings': ['EM-DASH: three em dashes in paragraph 3']. Transcript Step 6 marks it '`EM-DASH`: **FINDING.**' Nowhere is it described as not a finding; the response argues the opposite. No exculpatory reason (unspaced dashes, no co-occurring Pass 2 patterns, provenance) is applied to clear it — the executor notes those signals but still fixes."
+    },
+    {
+      "text": "The response does not report punctuation scarcity or UNDER-PUNCT against this text, which carries commas, a semicolon, and parentheses throughout",
+      "passed": true,
+      "evidence": "No punctuation-scarcity, UNDER-PUNCT, or equivalent claim appears anywhere in result.md, transcript.md, metrics.json, or user_notes.md. The response moves in the opposite direction, treating the existing punctuation as adequate and native ('One per paragraph is normal punctuation', result.md line 22). Transcript Step 8 cites 'punctuation habits are uniform across all four paragraphs' as evidence against AI authorship. Note this passes partly by construction: v1.3.2 has no UNDER-PUNCT pattern to report."
+    },
+    {
+      "text": "The response returns the text unchanged or with minor edits, where minor means punctuation or a single word and at most one sentence touched; a 'light pass' that rewords two or more sentences fails, even if labeled optional",
+      "passed": false,
+      "evidence": "Two separate sentences in paragraph 3 were edited, exceeding the stated 'at most one sentence touched' cap. Sentence 1: 'First, the migration window—we had assumed a weekend, but Priya's team cannot cover the Saturday...' was split into two sentences at the dash. Sentence 2: 'Neither needs deciding today—but I want both on the agenda...' had its dash replaced with a comma. The edits are punctuation-only (no word was substituted, so the 'rewords two or more sentences' clause is not triggered), but the expectation's operative definition is conjunctive and caps the count at one sentence. Two were touched, and one had a sentence boundary inserted where the author had none. Graded strictly: FAIL. See eval_feedback — the two halves of this expectation give different answers on this output."
+    },
+    {
+      "text": "The response states that the text reads within human range or has few or no AI patterns, and gives a reason such as the hit count relative to length, the number of distinct patterns, or the absence of structural tells",
+      "passed": true,
+      "evidence": "result.md line 1: 'This note is already human writing.' Line 28 supplies the quantitative reason: 'No AI vocabulary hits at all. Zero watch-list words across Passes 1 and 2 in 157 words. Density 0 per 100, spread 0 patterns — well inside the human range.' Structural absence is also given: 'No boldface, no inline-header lists, no headings at all' (transcript Step 7) and 'No seam — register, sentence rhythm, and punctuation habits are uniform' (Step 8). metrics.json carries 'threshold_verdict': 'within human range - do not rewrite on word-list evidence alone'. Both the claim and a valid reason are present."
+    },
+    {
+      "text": "The response adds no fact, number, name, capability, or time reference that is not in the source",
+      "passed": true,
+      "evidence": "Word-for-word diff of the delivered region against thursday-note.txt shows the two punctuation replacements as the only differences — no inserted token. All entities and figures in the delivered text (48k, 39k, 35k, Priya, Leeds, Finance, Saturday, Thursday) are the source's own. The surrounding commentary introduces only process metrics about the scan itself (157 words, 0 hits, 'Passes 1 and 2', pattern IDs), which are statements about the editing procedure rather than facts asserted about the note's subject matter. No invented vendor detail, date, headcount, or capability appears."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 3,
+    "total": 6,
+    "pass_rate": 0.5
+  },
+  "em_dash_audit": {
+    "source_fixture_count": 4,
+    "source_distribution": "p1: 1 ('Team—quick'); p2: 0; p3: 3 ('window—we', 'first—I lean', 'today—but'); p4: 0",
+    "delivered_text_count": 2,
+    "delivered_distribution": "p1: 1; p2: 0; p3: 1; p4: 0",
+    "commentary_only_count": 8,
+    "whole_result_md_count": 10,
+    "delivered_region": "result.md lines 5-11, between the two '---' fences",
+    "note": "scan.txt reports 'em dashes: 10 total, max 2 per paragraph' because it scanned the whole result.md, commentary and quoted originals included, with --keep-quotes. That figure is not evidence about the delivered text and was not used for grading."
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 3,
+      "Write": 4,
+      "Bash": 4,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 11,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 19576,
+    "transcript_chars": 11554
+  },
+  "timing": null,
+  "claims": [
+    {
+      "claim": "Paragraph 3 of the source contains three em dashes",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Counted directly in thursday-note.txt: 'migration window—we', 'goes first—I lean yes', 'deciding today—but'. Three, all unspaced."
+    },
+    {
+      "claim": "Three em dashes in a paragraph is 'the one construction the skill treats as a finding regardless of how clean the rest of the scan is'",
+      "type": "process",
+      "verified": true,
+      "evidence": "/tmp/humanizer-prev/SKILL.md line 91: 'What the table does not gate. Constructions and residue are findings on their own, at any density: negative parallelism (NEG-PARALLEL), generic closer (GENERIC-CLOSER), challenges-formula section, three em dashes in a paragraph, [cite: 3] marker. No human block in the calibration set contained one.' The citation is accurate for v1.3.2, though the claim overstates 'the one construction' — the list names five. The em dash failure in this arm is genuine skill-version behavior, correctly followed, not executor error."
+    },
+    {
+      "claim": "The edit is 'punctuation only, no rewording, no facts moved'",
+      "type": "quality",
+      "verified": false,
+      "evidence": "No word was substituted and no fact moved, so the claim is nearly true. But 'punctuation only' understates the first edit: replacing the dash with a period created a new sentence boundary and forced 'we' -> 'We'. A sentence split is a structural change to the clause the dash joined, which is exactly what expectation 1 forbids."
+    },
+    {
+      "claim": "Zero watch-list words across Passes 1 and 2 in 157 words; density 0.0 per 100, spread 0 patterns",
+      "type": "factual",
+      "verified": true,
+      "evidence": "wc -w on thursday-note.txt returns 157. I found no Pass 1/Pass 2 word-list hits reading the note either. The threshold verdict quoted from the skill matches SKILL.md's clean row."
+    },
+    {
+      "claim": "'One per paragraph is normal punctuation' (the retention rule for the two dashes kept)",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Not a rule in /tmp/humanizer-prev/SKILL.md. The skill gives a paragraph-level trigger of three and replacement options, but no target count for the fixed text. The executor discloses this honestly in user_notes.md: 'so \"at most one per paragraph\" is my inference, not the skill's stated rule.' The retained count is therefore arbitrary — a stricter reading of the same rule would have removed all three from paragraph 3."
+    },
+    {
+      "claim": "The triad 'they asked for it, they have the appetite, and if it goes badly there...' is load-bearing and was correctly kept",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The three members carry distinct arguments (demand, readiness, containable blast radius) and the third is structurally unlike the first two. Keeping it is right, and the reasoning is surfaced rather than asserted."
+    },
+    {
+      "claim": "The extracted skill copy has no scripts/ directory despite SKILL.md referencing scripts/scan-ai-tells.py",
+      "type": "process",
+      "verified": true,
+      "evidence": "ls /tmp/humanizer-prev shows only SKILL.md and references/. No effect on this grade — the eval forbade running a scanner — but it means the extracted 1.3.2 copy is not self-contained."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Executor flagged the EM-DASH ruling as the whole judgement call, and explicitly named the alternative it did not take: 'the correct output was the text returned entirely unchanged with a note.' That alternative is what the eval expects.",
+      "'At most one em dash per paragraph' is the executor's own inference, not a rule in v1.3.2 — so the retained count of 2 is not derivable from the skill.",
+      "'I would rather... than' was ruled not NEG-PARALLEL by judgement; the executor notes a literal matcher would have flagged it and the skill does not distinguish the two constructions."
+    ],
+    "needs_review": [
+      "Executor pre-flagged the exact grading question: 'Whether the graded expectation for this case is unchanged or minimally edited... if the eval expects a strict no-change outcome, this counts as a partial miss.' It does, and it is.",
+      "result.md leads with a verdict line before the text, a deviation from the Full-rewrite ordering ('clean text followed by a brief change summary')."
+    ],
+    "workarounds": [
+      "No scripts/ directory in the extracted skill; all pattern matching done by reading.",
+      "First Bash read of SKILL.md came back stopword-compressed by the harness; re-read verbatim with Read before relying on wording. I hit the same compression grading and re-read the em dash sections verbatim for the same reason."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response does not report punctuation scarcity or UNDER-PUNCT against this text...",
+        "reason": "Gradeable, but vacuously satisfiable and it passed vacuously here. Any response that never discusses punctuation at all satisfies it, including one that silently deletes every dash — which is close to what this arm did while still passing. It is also unfalsifiable against v1.3.2, which has no UNDER-PUNCT pattern to emit, so the assertion cannot discriminate between the two arms and contributes a free point to both. Either fold it into expectation 2 as a negative clause, or make it positive and discriminating: require the response to name the note's existing commas, semicolon, and parentheses as evidence of human punctuation habit. That version cannot be satisfied by silence."
+      },
+      {
+        "assertion": "The response returns the text unchanged or with minor edits, where minor means punctuation or a single word and at most one sentence touched...",
+        "reason": "The two halves of this assertion disagree on this output and a grader could defensibly land either way. The definitional clause caps edits at one sentence (this output touched two) while the illustrative clause fails only a pass that 'rewords two or more sentences' (this output reworded none). I graded on the cap and failed it, but the ambiguity is real and would produce grader variance across runs. Split it: (a) no more than one sentence is modified, (b) no word is substituted, added, or removed. Both are mechanically checkable by diff."
+      },
+      {
+        "reason": "Expectation 1 is the load-bearing assertion and its phrase 'any text returned to the user' is doing dangerous work, because result.md mixes the deliverable with commentary that quotes the original. A naive grader counting em dashes over the whole file finds 10 and passes the arm that destroyed half the source's dashes; scan.txt in this run reports exactly that ('10 total, max 2 per paragraph'). Add a harness step that extracts the delivered region — or require the executor to write the deliverable to a separate file such as delivered.txt — and assert the character count there equals the source's 4."
+      },
+      {
+        "reason": "No assertion covers whether the response invents a rule it attributes to the skill. This arm's retention target ('one per paragraph is normal punctuation') appears nowhere in v1.3.2 and the executor admits inventing it in user_notes.md, but it is stated to the user as though it were the skill's standard. That is a failure mode worth catching directly: assert that any rule the response attributes to the skill is quotable from SKILL.md."
+      },
+      {
+        "reason": "Comparative observation, not a defect: this control did what it was supposed to do. The 'prev' arm reproduced 1.3.2's ungated em dash rule faithfully — the SKILL.md citation checks out verbatim — and failed expectations 1, 2, and 4 as a direct consequence. Against the 6/6 comparison arm, the eval is discriminating on exactly the behavior the release changed. The one soft spot is that half the passing points here (3, 5, 6) are ones a do-nothing response would also earn, so the effective discriminating width of this eval is 3 assertions, not 6."
+      }
+    ],
+    "overall": "The eval discriminates on the behavior that matters — expectations 1, 2, and 4 all fail on this arm for the right reason, and the failure traces cleanly to the v1.3.2 rule rather than to executor error. Two weaknesses: expectation 3 is vacuously satisfiable and unfalsifiable against this skill version, and expectation 4's definition contradicts its own illustration. Fix the delivered-text extraction so expectation 1 cannot be passed by counting commentary dashes."
+  }
+}

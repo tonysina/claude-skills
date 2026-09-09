@@ -1,0 +1,147 @@
+{
+  "eval_id": 8,
+  "name": "under-punct-positive",
+  "arm": "with",
+  "expectations": [
+    {
+      "text": "The response identifies punctuation scarcity, long unpunctuated sentences, or 'and' used as a joint between propositions as the primary problem, and names UNDER-PUNCT as a stable ID in uppercase hyphenated form",
+      "passed": true,
+      "evidence": "result.md change summary opens with: '**`UNDER-PUNCT` (punctuation scarcity) -- the whole finding.** The draft was three paragraphs and three sentences: 144 words, 46 to 52 words per sentence, and not one comma, semicolon or parenthesis anywhere in it.' Uppercase hyphenated ID, and it is framed as the primary (indeed sole decisive) finding: 'here it is the only one that matters.' Verified independently: the source is 3 sentences of 46/52/46 words with zero commas and zero semicolons."
+    },
+    {
+      "text": "The rewritten text breaks up the long chained sentences: it contains at least six sentence-ending periods, against three in the source",
+      "passed": true,
+      "evidence": "Counted directly on the DELIVERED text only (the block between the two '---' rules in result.md, excluding the 'What changed' summary): 7 sentence-ending periods, sentence lengths 12/30/11/26/10/14/23 words. Source: 3 sentence-ending periods, lengths 46/52/46. 7 >= 6. Executor's own claim of 'three sentences into seven' matches my independent count."
+    },
+    {
+      "text": "The rewritten text adds internal punctuation, replacing at least three of the source's propositional 'and' joints with a period, semicolon, comma plus a named relationship (because, after, although), or subordination",
+      "passed": true,
+      "evidence": "Delivered text contains 5 prose commas (6 including the separator in '4,000') and 1 semicolon, against 0 commas and 0 semicolons in the source; 'and' drops from 10 to 4. At least six joints replaced: 'two boroughs and it expanded' -> period; 'three years and the council increased ... in 2020 after the interim evaluation' -> comma-set plus subordinated 'after' clause; 'in that period and the referral pathway' -> period; 'redesigned twice and the second redesign' -> semicolon; 'under four weeks and this remains' -> period ('That remains the achievement most often cited'); 'each year and roughly two thirds' -> period; 'self-referral and the balance ... has been broadly stable' -> comma plus appositive ('a balance that has been broadly stable since 2022'). Far above the threshold of three."
+    },
+    {
+      "text": "The response does not present 'and' as a watch-list or key word, and does not count UNDER-PUNCT toward a density or spread score; if it reports a density figure, UNDER-PUNCT is excluded from it or assessed separately",
+      "passed": true,
+      "evidence": "result.md states explicitly: '`UNDER-PUNCT` is measured by rate rather than by word-list hits and sits outside that table, so it stands as a finding on its own.' The ten 'and's are handled under the VAGUE-CONNECT undecided-connection test (cut the connector, read the halves apart), never presented as a watch-list entry or key word; SKILL.md's own instruction ('Do not add \"and\" to any watch list and do not count it toward the density threshold') is honoured. The reported density (metrics.json: wordlist_density_per_100 = 0.7, spread_patterns = 1) excludes all ten 'and' instances and excludes UNDER-PUNCT entirely -- 0.7/100 over 144 words corresponds to the single borderline VAGUE-ATTRIB flag, not to punctuation or conjunctions."
+    },
+    {
+      "text": "The response does not justify the rewrite by claiming word-list or AI-vocabulary hits that are not in the text; the source contains no watch-list hits, so any density claim above zero must be identified as coming from something other than the word lists",
+      "passed": true,
+      "evidence": "I ran scripts/scan-ai-tells.py --keep-quotes on the source fixture: 'density: 0 flag hits / 140 words = 0.0 per 100  distinct patterns: 0 []' -- confirming zero literal watch-list hits. The response does not claim otherwise: it reports 'zero hits on `INFLATION`, `ING-ANALYSIS`, `AI-VOCAB`, `NO-COPULA`, `NEG-PARALLEL`, `RULE-OF-3`, `CHALLENGES-FORMULA` and `GENERIC-CLOSER`, and no markup residue', names no AI-vocabulary word as present, and explicitly refuses to lean on word-list evidence: 'Density is under 1 per 100 words across at most one pattern, which on the density-and-spread table alone would read \"within human range\" and justify no rewrite.' The rewrite is justified solely on the UNDER-PUNCT rate. The one sub-1 density unit is identified in the response by exact quoted source text -- 'the most cited achievement of the programme in subsequent reviews ... which is borderline `VAGUE-ATTRIB`' -- i.e. a construction judgement on a real sentence, not a claimed list word. CAVEAT recorded under claims: the transcript's Step 11 labels that same item 'Word-list hits from Passes 1 and 2: at most one', and metrics.json records wordlist_density_per_100 = 0.7 against a true literal-hit density of 0.0. That is a loose classification of a borderline construction match as a word-list hit. It is disclosed, hedged ('at most one', 'borderline'), traceable to text that genuinely exists in the source, and load-bearing for nothing -- so it does not amount to justifying the rewrite on fabricated hits. Passing on the response as delivered; the mislabel is flagged as an unverified claim."
+    },
+    {
+      "text": "Every figure in the source survives in the rewritten text with its value unchanged: 2017, two boroughs, seven boroughs, 2020, four to nineteen staff, eleven weeks, under four weeks, three sites, 4000 referrals, two thirds, 2022; and no new figure is introduced",
+      "passed": true,
+      "evidence": "Checked figure by figure against the delivered text only. Present and unchanged: 2017; 'a small pilot in two boroughs'; 'expanded to seven' (over 'the following three years'); '2020'; 'all three measured domains'; 'from four to nineteen'; 'redesigned twice'; 'from eleven weeks to under four'; 'three sites'; '4,000 referrals'; 'two thirds'; 'since 2022'. Numeral extraction: source ['2017','2020','4000','2022'] vs delivered ['2017','2020','4,000','2022'] -- identical values, one thousands separator added, which the response discloses. No numeral or spelled-out figure appears in the delivered text that is absent from the source. Two ellipses noted but not counted as changes: 'seven boroughs' -> 'seven' and 'under four weeks' -> 'under four'; both values are unchanged and both antecedents sit in the same or preceding clause. (Figures appearing in the 'What changed' summary -- 144 words, ten 'and's, a hypothetical '2023 commissioning review' -- are outside the delivered text and correctly excluded from this check.)"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2,
+      "Write": 0,
+      "Bash": 11,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 13,
+    "total_steps": 13,
+    "errors_encountered": 0,
+    "output_chars": 22184,
+    "transcript_chars": 12812
+  },
+  "timing": null,
+  "claims": [
+    {
+      "claim": "The source is 144 words, 3 sentences of 46 to 52 words, with zero commas, semicolons and parentheses, and 'and' appears ten times",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Independently recomputed: 144 whitespace tokens, 3 sentence-ending periods, sentence lengths exactly 46/52/46, 0 commas, 0 semicolons, 0 parentheses, 10 occurrences of 'and'."
+    },
+    {
+      "claim": "The rewrite splits three sentences into seven, varies length from 10 to 30 words, and adds five commas and a semicolon",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Delivered text: 7 sentences at 12/30/11/26/10/14/23 words (range 10-30), 5 prose commas plus the separator in '4,000', 1 semicolon, 126 words. Transcript's per-sentence list gives the first sentence as 10 rather than 12 -- a trivial off-by-two that does not affect the stated range."
+    },
+    {
+      "claim": "Nine of the ten 'and's are propositional joints; one ('schools and self-referral') is a two-item series exempt from the test; four 'and's remain in the output",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Confirmed by inspection of the source: the only same-kind series is 'schools and self-referral'. Delivered text contains exactly 4 'and's, matching the claim."
+    },
+    {
+      "claim": "The word-list scan came back clean -- zero hits on INFLATION, ING-ANALYSIS, AI-VOCAB, NO-COPULA, NEG-PARALLEL, RULE-OF-3, CHALLENGES-FORMULA, GENERIC-CLOSER, and no markup residue",
+      "type": "factual",
+      "verified": true,
+      "evidence": "scripts/scan-ai-tells.py --keep-quotes on programme-summary.txt: 0 multi-word flags, 0 single-word flags, 0 construction violations, 0 em dashes, 0 triads, density 0.0 per 100, 0 hard violations."
+    },
+    {
+      "claim": "Word-list density is 0.7 per 100 words / 'under 1 per 100 across at most one pattern' (metrics.json, result.md)",
+      "type": "factual",
+      "verified": false,
+      "evidence": "True literal watch-list density on the source is 0.0 per 100 (scanner output above). The 0.7 figure comes from counting the borderline VAGUE-ATTRIB judgement on 'in subsequent reviews' as a watch-list hit; that phrase is not on any VAGUE-ATTRIB list ('Industry reports', 'has been described as', 'several sources/publications', etc.). The executor itself calls it 'adjacent to the listed \"has been cited by several publications\" form' and 'borderline', so the reasoning is disclosed, but the figure and its 'Word-list hits from Passes 1 and 2' label in transcript Step 11 overstate the literal evidence. Immaterial to the decision -- the response says the table 'would justify no rewrite' either way."
+    },
+    {
+      "claim": "The rewrite kept every fact and figure constant; the only wording changes beyond the joins are the '4,000' separator and 'in that period' -> 'in the same period'",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Diffing source against delivered text confirms those two changes plus three undisclosed-but-minor ellipses/recasts the executor does partly own up to elsewhere: 'seven boroughs' -> 'seven' (flagged in user_notes), 'it receives' -> compound predicate 'operates ... and receives' (flagged in result.md), and 'this remains the most cited achievement of the programme' -> 'That remains the achievement most often cited'. No fact altered, no figure altered, nothing added."
+    },
+    {
+      "claim": "UNDER-PUNCT was measured on this input rather than pattern-matched to the worked example in SKILL.md",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 9 records a Bash python3 measurement pass producing input-specific numbers I was able to reproduce exactly (144/3/46-52/0/0/0/10), and Step 8 enumerates all ten 'and' joints individually with a per-joint relation and fix -- work the SKILL.md example could not have supplied. The executor also volunteered the resemblance in its own Issues section and user_notes. See eval_feedback for why the fixture still cannot discriminate."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "The density/spread table's top row says 'do not rewrite on word-list evidence alone'; the executor rewrote anyway on the UNDER-PUNCT rate carve-out, and flags that an executor reading only the table would have returned the text unchanged",
+      "Whether 'the most cited achievement ... in subsequent reviews' is really VAGUE-ATTRIB, or an internal-document convention where the author knows the reviews",
+      "Whether the three surviving plain 'and's should also have been converted",
+      "'in that period' -> 'in the same period' is a wording change not required by any pattern"
+    ],
+    "needs_review": [
+      "Input is described in the prompt as 'a summary paragraph' but is three paragraphs; paragraph breaks were kept",
+      "Figures were preserved verbatim, not fact-checked against any source",
+      "'seven boroughs' -> 'seven' moves the antecedent one sentence away, which matters if the text is excerpted again"
+    ],
+    "workarounds": [
+      "SKILL.md (37.6KB) exceeded the Bash output limit and had to be read from a persisted tool-results file",
+      "scan-ai-tells.py was off-limits for this eval; the executor notes the script does not compute UNDER-PUNCT rates at all, so a script-only run would have scored this text clean and produced no rewrite"
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "fixture selection (all expectations)",
+        "reason": "CONTAMINATED FIXTURE -- the headline issue. SKILL.md's worked UNDER-PUNCT 'Before' is 'The programme expanded to three cities in 2019 and the council increased its funding the following year and by 2022 it was serving roughly 4,000 households and staff numbers had doubled.' The fixture is its near-twin: a programme expanding, a council increasing funding, ~4,000 units, staff numbers growing, and 2022. Worse, the delivered rewrite reproduces the example's exact move sequence -- sentence break, then a subordinating 'after' clause, then a semicolon. My assessment of whether this run pattern-matched: the transcript contains real, reproducible evidence of independent measurement (a python count over the actual input that I recomputed exactly, and a per-joint table covering all ten 'and's with individually reasoned relations, neither derivable from the example), so this particular run did apply the rate measure. But the eval cannot prove that from the output: a model that simply recognised the shape would have produced a near-identical artefact and passed all six assertions. As a with/without discriminator this fixture is compromised. Re-fixture to a different domain and figure type -- a lab procurement log, a match report, a maintenance history -- with no 'programme/council/funding/thousands-of-units' vocabulary, and keep this one only as a regression case."
+      },
+      {
+        "assertion": "The rewritten text breaks up the long chained sentences: it contains at least six sentence-ending periods",
+        "reason": "A period count alone would pass for a butchered rewrite -- seven flat 8-word sentences with the connectives simply deleted would score identically to the graded output, which actually varies 10-30 words and names the relationships. Add an assertion on sentence-length variance (e.g. at least one sentence over 20 words survives, and the shortest and longest differ by 10+ words), which is exactly what the skill's 'do not over-correct' guidance is trying to protect and what nothing currently checks."
+      },
+      {
+        "assertion": "The rewritten text adds internal punctuation, replacing at least three of the source's propositional 'and' joints",
+        "reason": "Nothing checks the converse -- that the series 'and' ('schools and self-referral') was LEFT ALONE. SKILL.md devotes a whole 'Joints, not series' block plus a polysyndeton cross-reference to this failure mode, and an over-eager executor that splits every 'and' would still pass all six current assertions. Add: 'the two-item series \"schools and self-referral\" survives with its conjunction intact.'"
+      },
+      {
+        "reason": "No assertion covers whether the rewrite introduced NEW tells while fixing the old one -- the classic humanizer regression (added em dashes, a triad, a generic closer, a significance-inflation line). This run is clean on that front (0 em dashes, 0 triads, 0 hard violations on the delivered text; the scanner's single INFLATION hit, 'stands as', falls in the change-summary prose, not the deliverable), but nothing in the eval would have caught it. Worth an assertion, scoped explicitly to the delivered text."
+      },
+      {
+        "assertion": "The response does not justify the rewrite by claiming word-list or AI-vocabulary hits that are not in the text",
+        "reason": "The assertion catches fabricated word-list claims but not INFLATED ones sourced to real text. Here the executor reported density 0.7/100 (metrics.json) against a true literal-hit density of 0.0, by counting a borderline construction judgement as a 'word-list hit'. It passed because it named the source phrase and explicitly refused to rewrite on that basis -- but a sharper version of this assertion ('any reported word-list density must equal the scanner's literal-hit density, or the response must state that the figure includes non-literal construction judgements') would make the distinction testable instead of leaving it to grader judgement."
+      },
+      {
+        "reason": "The executor's user_notes flag a genuine skill defect the eval does not measure: scan-ai-tells.py cannot compute UNDER-PUNCT rates, so a script-first executor scores this input 0.0/100 clean and returns it unchanged. That is the single highest-value negative outcome available from this fixture, and no assertion touches it. Consider a companion eval where the executor is permitted to run the scanner, asserting that it does not stop at the clean scan."
+      }
+    ],
+    "overall": "6/6 pass, and the underlying work is genuinely strong -- independent measurement, correct carve-out of UNDER-PUNCT from the density table, every figure preserved, the series 'and' correctly spared, and honest self-disclosure of the fixture resemblance. The assertions themselves are the weak part: they are mostly countable-surface checks (period count, figure survival) that a wrong rewrite could also satisfy, they contain no negative controls (over-splitting, new tells introduced, series destroyed), and the fixture is close enough to SKILL.md's own worked example that this eval cannot discriminate rate-measurement from recall. Fix the fixture first."
+  }
+}

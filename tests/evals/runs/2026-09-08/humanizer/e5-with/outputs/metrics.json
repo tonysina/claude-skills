@@ -1,0 +1,30 @@
+{
+  "tool_calls": {
+    "Read": 2,
+    "Write": 0,
+    "Bash": 10,
+    "Edit": 0,
+    "Glob": 0,
+    "Grep": 0
+  },
+  "total_tool_calls": 12,
+  "total_steps": 11,
+  "files_created": [
+    "result.md",
+    "transcript.md",
+    "metrics.json",
+    "user_notes.md"
+  ],
+  "errors_encountered": 0,
+  "text_changed": false,
+  "density_per_100_words": 0.0,
+  "distinct_patterns_hit": 0,
+  "patterns_considered_and_declined": [
+    "EM-DASH",
+    "NEG-PARALLEL",
+    "RULE-OF-3",
+    "SIGNPOSTING"
+  ],
+  "output_chars": 18847,
+  "transcript_chars": 12420
+}

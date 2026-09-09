@@ -1,0 +1,37 @@
+{
+  "tool_calls": {
+    "Read": 3,
+    "Write": 0,
+    "Bash": 6,
+    "Edit": 0,
+    "Glob": 0,
+    "Grep": 0
+  },
+  "total_tool_calls": 9,
+  "total_steps": 11,
+  "files_created": [
+    "result.md",
+    "transcript.md",
+    "metrics.json",
+    "user_notes.md"
+  ],
+  "errors_encountered": 0,
+  "output_chars": 14509,
+  "transcript_chars": 8426,
+  "scan_findings": {
+    "verdict": "human",
+    "confidence": "high",
+    "density_per_100_words": 0.72,
+    "spread_patterns": 1,
+    "word_count": 138,
+    "flags": [
+      {
+        "id": "AI-VOCAB",
+        "text": "showcases",
+        "below_threshold": true
+      }
+    ],
+    "ungated_findings": 0,
+    "rewrite_performed": false
+  }
+}

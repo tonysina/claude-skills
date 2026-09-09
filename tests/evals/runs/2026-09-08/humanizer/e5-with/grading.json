@@ -1,0 +1,145 @@
+{
+  "eval_id": 5,
+  "name": "dash-dense-no-rewrite",
+  "arm": "with",
+  "skill_version": "1.4.0",
+  "expectations": [
+    {
+      "text": "All four em dash characters survive in any text returned to the user; none is replaced with a comma, colon, period, or parenthesis, and none of the clauses they join is restructured",
+      "passed": true,
+      "evidence": "Independently verified at the byte level. The delivered text is the region of result.md between the two '---' fences (lines 4-12); everything after the second fence is commentary under '## Why nothing changed'. Extracted that region, stripped the surrounding blank lines, and diffed it against the fixture: `diff` reports no differences and md5 matches exactly (c580534dfa58cbfddbc9d9a0b397ee31 for both, 875 bytes). Em dash count in the delivered region: 4, matching the source. All four survive unspaced ('Team—quick', 'window—we', 'first—I', 'today—but'), no clause is restructured. (The whole file contains 5 em dashes; the fifth is in the commentary and is correctly excluded.)"
+    },
+    {
+      "text": "The response does not report em dash use as a finding or an AI tell. If dashes are mentioned at all, they are explicitly described as not a finding here -- on the grounds that the text is not pre-2025, that no other Pass 2 patterns co-occur, that the dashes are unspaced, or an equivalent reason",
+      "passed": true,
+      "evidence": "Dashes are mentioned and explicitly ruled out, citing all three permitted grounds. result.md: 'Four em dashes (EM-DASH). Three of them fall in one paragraph, which is the shape of the classic tell. But they are unspaced, which is the human convention rather than the AI one, this is current text rather than pre-2025, and no other Pass 2 pattern co-occurs to corroborate. The dash cluster is only a finding when one of those conditions holds. Stripping them here would flatten the note's voice to satisfy a rule that isn't firing.' The scan summary line also reports '0 watch-list hits ... spread 0 patterns' and 'No ungated finding fired either'. Transcript Step 7 records EM-DASH as 'considered, ruled out'. metrics.json lists EM-DASH under 'patterns_considered_and_declined'."
+    },
+    {
+      "text": "The response does not report punctuation scarcity or UNDER-PUNCT against this text, which carries commas, a semicolon, and parentheses throughout",
+      "passed": true,
+      "evidence": "UNDER-PUNCT is mentioned only to clear it: 'punctuation doing real work (parentheses, a semicolon, a colon) ... `UNDER-PUNCT`, assessed separately from density, comes out well on the human side.' Transcript Step 7 reaches the same verdict: 'Result is strongly human: parentheses present, a semicolon, a colon, multiple commas per sentence ... No under-punctuation signal.' No scarcity claim is made anywhere in result.md."
+    },
+    {
+      "text": "The response returns the text unchanged or with minor edits, where minor means punctuation or a single word and at most one sentence touched; a 'light pass' that rewords two or more sentences fails, even if labeled optional",
+      "passed": true,
+      "evidence": "Zero edits. The delivered region is byte-identical to the fixture (md5 c580534dfa58cbfddbc9d9a0b397ee31, verified by diff). No alternative or 'optional light pass' version is offered anywhere in result.md; the only text block returned is the unchanged note. metrics.json records 'text_changed': false."
+    },
+    {
+      "text": "The response states that the text reads within human range or has few or no AI patterns, and gives a reason such as the hit count relative to length, the number of distinct patterns, or the absence of structural tells",
+      "passed": true,
+      "evidence": "Stated with all three kinds of reason. Opening: 'I ran the four passes over it and came back with nothing worth changing. The note is already human.' Then: 'Scan result: 0 watch-list hits across ~161 words. Density 0 per 100, spread 0 patterns. That sits under the bottom row of the threshold table, which says report and do not rewrite. No ungated finding fired either: no negative parallelism, no generic closer, no challenges-formula section, no chatbot residue.'"
+    },
+    {
+      "text": "The response adds no fact, number, name, capability, or time reference that is not in the source",
+      "passed": true,
+      "evidence": "The delivered text is byte-identical to the source, so nothing was added to it. The commentary cites only figures present in the note (48k, 39k, 35k) plus pattern IDs and scan statistics about the note itself. No invented vendor detail, no date, no participant, no capability. Cross-checked every proper noun in the commentary (Leeds, Priya implied via source, Finance) against the fixture; all present."
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 2,
+      "Write": 0,
+      "Bash": 10,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 12,
+    "total_steps": 11,
+    "errors_encountered": 0,
+    "output_chars": 18847,
+    "transcript_chars": 12420,
+    "text_changed": false,
+    "density_per_100_words": 0.0,
+    "distinct_patterns_hit": 0,
+    "patterns_considered_and_declined": ["EM-DASH", "NEG-PARALLEL", "RULE-OF-3", "SIGNPOSTING"]
+  },
+  "timing": null,
+  "claims": [
+    {
+      "claim": "The returned note is identical to the input",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Confirmed independently: md5 of the trimmed delivered region equals md5 of the fixture (c580534dfa58cbfddbc9d9a0b397ee31), diff empty, 875 bytes both."
+    },
+    {
+      "claim": "0 watch-list hits across ~161 words",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The hit count is right (0 confirmed by reading the note against the Pass 1-2 lists), but the length is not: `wc -w` on the fixture gives 157 words, not ~161. The executor disclosed the hand count in user_notes.md and the error does not move the verdict (density is 0 at either length). Minor inaccuracy, not a substantive failure."
+    },
+    {
+      "claim": "All four em dashes are unspaced",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Confirmed in the fixture: 'Team—quick', 'window—we', 'first—I', 'today—but'. No spaced em dash present."
+    },
+    {
+      "claim": "The EM-DASH ungated rule is conditioned on pre-2025 text, so it does not fire here",
+      "type": "process",
+      "verified": true,
+      "evidence": "Checked against the loaded skill. skills/humanizer/SKILL.md (version 1.4.0) line 95 reads: 'three em dashes in a paragraph of pre-2025 text'. The executor's reading is faithful to the skill it was given, not an invented justification."
+    },
+    {
+      "claim": "No scanner script was run and references/changelog.md was not read",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 2 states it explicitly and metrics.json shows 12 tool calls (2 Read, 10 Bash) consistent with reading SKILL.md and extended-patterns.md only. No scan output artifact appears in outputs/. (The scan.txt in the arm directory was produced by the harness over result.md after the fact, not by the executor.)"
+    },
+    {
+      "claim": "Both triads are load-bearing",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Justified. '(48k, annual, all-in)' carries amount/period/scope and the three Leeds reasons are distinct arguments; removing any member loses information. The observation that the third Leeds reason breaks parallel shape is correct and is genuine counter-evidence to an AI triad."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "The note carries no date; the EM-DASH gate turns on whether the text is pre-2025. The executor treated it as current. If it were pre-2025, the three-dash cluster would become an ungated finding and the ruling could flip.",
+      "'I would rather X than Y' was read as a comparative preference rather than NEG-PARALLEL. Because NEG-PARALLEL is ungated, this single judgment is the difference between 'return unchanged' and 'one finding'.",
+      "Word count was done by hand (~161) because no scanner was permitted; the true count is 157."
+    ],
+    "needs_review": [
+      "Executor flags that if the grader expects any edit, the skill's own thresholds forbid one here, and asks to be judged on the reasoning rather than edit volume."
+    ],
+    "workarounds": [
+      "SKILL.md (37.6 KB) exceeded the Bash output limit and was auto-persisted to a tool-results file, then read in full with Read. No content lost.",
+      "Per eval constraints, scripts/scan-ai-tells.py was not run and references/changelog.md was not read; all matching was done by reading."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response does not report em dash use as a finding or an AI tell. If dashes are mentioned at all, they are explicitly described as not a finding here...",
+        "reason": "This is the discriminating assertion of the whole eval and it works: it is the one that separates the arms, and it does so for the right reason. Worth keeping exactly as written. Note that it requires a stated reason, which correctly prevents a lucky pass from a response that simply never mentions dashes... except that it also permits one, since 'does not report em dash use as a finding' is satisfied vacuously by silence. Consider requiring the dashes to be affirmatively addressed, so that a response which never notices them cannot score the same as one that examined and cleared them."
+      },
+      {
+        "assertion": "The response does not report punctuation scarcity or UNDER-PUNCT against this text",
+        "reason": "Gradeable but weak: it is a pure negative and passes by default for any response that says nothing about punctuation at all. In this arm the executor happened to address UNDER-PUNCT affirmatively and clear it, which is a better outcome than silence, and the assertion cannot tell the two apart. Every plausible response passes this one, so it is not currently discriminating."
+      },
+      {
+        "assertion": "The response returns the text unchanged or with minor edits, where minor means punctuation or a single word and at most one sentence touched",
+        "reason": "The definition and the disqualifier are not aligned. The definition caps changes at 'at most one sentence touched'; the disqualifier only fails a pass that 'rewords two or more sentences'. A punctuation-only edit spanning two sentences (exactly what the prev arm produced) satisfies the disqualifier but violates the definition. Grading it required choosing which clause governs. Recommend one rule, stated once -- e.g. 'at most one sentence may differ from the source in any way'."
+      },
+      {
+        "reason": "No assertion checks the delivered text against the source as a whole. Expectation 1 checks em dashes and expectation 4 caps edit size, but neither would catch a dropped sentence, a reordered paragraph, or an altered number elsewhere in the note. A byte-identity or diff-based assertion would be cheap and would make expectations 1, 4, and 6 much harder to satisfy by accident."
+      },
+      {
+        "reason": "Expectation 6 ('adds no fact, number, name...') does not say whether it is scoped to the delivered text or to the whole response. The commentary in both arms necessarily introduces material not in the source -- pattern IDs, scan statistics, and in this arm a claim about the note being 'current text rather than pre-2025', which is a time reference the source does not carry. A literal whole-response reading would fail responses that are doing exactly what the skill asks. Scope it explicitly to the returned text."
+      },
+      {
+        "reason": "The delivered-text / commentary boundary is load-bearing for four of the six expectations and is currently implicit. A naive count of em dashes in this arm's result.md returns 5, not 4, which would fail expectation 1 on a correct output. The eval should specify the fence convention (or have the executor emit the delivered text as a separate file) so the count is unambiguous."
+      },
+      {
+        "reason": "The scan.txt in the arm directory is actively misleading and should be dropped or relabeled. It was run over result.md -- the executor's own commentary prose -- not over the delivered text, and it reports 'FLAG humanizer EM-DASH (3+ in proximity), HARD VIOLATIONS: 1' for the arm that is fully correct, while reporting 0 violations for the arm that damaged the source. Anyone grading from it would invert the result."
+      }
+    ],
+    "overall": "The suite is well-aimed -- expectation 2 is genuinely discriminating and isolates the exact behaviour the release changed. Three weaknesses are worth fixing: expectation 4's internal contradiction (definition vs disqualifier), the absence of any whole-text fidelity check, and the undefined delivered-text boundary that several expectations silently depend on. Expectations 3 and, to a lesser degree, 2 can be satisfied vacuously by silence."
+  }
+}

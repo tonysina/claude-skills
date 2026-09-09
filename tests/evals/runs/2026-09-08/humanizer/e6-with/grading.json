@@ -1,0 +1,152 @@
+{
+  "eval_id": 6,
+  "name": "polysyndeton-carveout",
+  "arm": "with",
+  "grading_note": "result.md has two regions. The DELIVERED REWRITE is lines 5-15, bounded by the '---' rules at lines 3 and 17 (88 words). Everything from line 19 ('## What changed') onward is change-summary commentary that quotes the ORIGINAL text. All expectations phrased about 'the rewritten text' were graded against lines 5-15 only. The scanner report at ../scan.txt was run with --keep-quotes over the whole file: every one of its hits ('pivotal moment', 'industry reports', 'the road ahead is promising', 'it's not just', underscoring/highlighting/key/pivotal, 9 em dashes) falls in the commentary as quoted original material. The delivered rewrite contains zero watch-list hits and zero em dashes (verified by rg over the extracted region).",
+  "expectations": [
+    {
+      "text": "The sentence listing what the cutover touched keeps a conjunction before every item after the first -- 'billing and provisioning and support tooling and reporting' -- with all three instances of 'and' intact; converting it to a comma-separated list, or to 'billing, provisioning, support tooling, and reporting', fails",
+      "passed": true,
+      "evidence": "Delivered rewrite (result.md line 7) reads verbatim: 'The cutover touched billing and provisioning and support tooling and reporting.' Byte-identical to the source line. rg counts 4 'and' in the 88-word delivered region: 3 in the series, 1 in 'Coordination and planning'. No commas were introduced into the series and no serial-comma form appears."
+    },
+    {
+      "text": "The response does not flag that four-item series as UNDER-PUNCT, as 'and' overuse, as punctuation scarcity, or as an undecided or decorative connection",
+      "passed": true,
+      "evidence": "The opposite: result.md has a dedicated section 'What I deliberately left alone' (line 33) defending it -- 'The repeated *and* is polysyndeton across a series, not a run-on joint between propositions... The under-punctuation rule covers *and* joining two ideas, never *and* between items in a list, so this stays exactly as written.' Transcript Step 6 records it as a 'Deliberate non-finding -- the protected construction' and states 'No under-punctuation finding.' UNDER-PUNCT and VAGUE-CONNECT are named only to say they do not apply. I verified this against SKILL.md: the 'Joints, not series' rule (line 318) and the VAGUE-CONNECT 'Do not run this test on a series' rule (line 252) say exactly what the executor claims they say."
+    },
+    {
+      "text": "The negative parallelism \"It's not just a technical exercise, it's a test of how we work together\" is removed or restructured so that no negative parallelism remains in any form",
+      "passed": true,
+      "evidence": "The sentence is absent from the delivered rewrite (lines 5-15). Its point is carried by 'Coordination and planning caused more trouble than the technology did.' -- a plain comparative, not a corrective negation. No 'not just X, it's Y', 'not only... but', 'more than just', 'no X, no Y, just Z', or the reversed 'X rather than Y' form (SKILL.md NEG-PARALLEL watch list, line 258) appears anywhere in the delivered text. The remaining negations ('Staging did not match production configuration', 'had never been rehearsed') are simple negative statements with no paired affirmative clause. The scanner's two NEG-PARALLEL hits are both the original sentence quoted in the change summary at line 24."
+    },
+    {
+      "text": "The generic positive closer 'The road ahead is promising' is removed, and the rewritten text does not end on an equivalent vague upbeat sentence",
+      "passed": true,
+      "evidence": "The phrase is gone from the delivered text. The rewrite ends: 'The team got it done, but by improvising past the runbook. Fixing those three things is the work before the next cutover.' That is a concessive self-assessment plus a pointer to specific named work (the three bullets above it), not vague optimism -- no 'promising', 'exciting', 'bright future', or 'continue to refine' language. The scanner's 'the road ahead is promising' hit is the quotation in the change summary at line 28."
+    },
+    {
+      "text": "The bold inline-header list (Communication/Testing/Rollback) is converted to prose or to a plain list with no bolded lead-in text of any kind",
+      "passed": true,
+      "evidence": "The delivered list (lines 11-13) is three plain bullets: '- Status updates were inconsistent across channels.' / '- Staging did not match production configuration.' / '- The documented rollback procedure had never been rehearsed.' rg counts zero '**' markers in the delivered region -- the bold lead-ins and colons are gone, and 'Rollback' survives only as an ordinary adjective inside the third bullet's sentence. The header 'Key learnings:' was also changed to 'Three things we got wrong:' (removing the AI-VOCAB 'key')."
+    },
+    {
+      "text": "The vague attribution 'Industry reports indicate' is removed from the rewritten body or replaced with a specific named source; a note after the body does not count, and replacing it with an unsourced specific-sounding claim does not count",
+      "passed": true,
+      "evidence": "The entire sentence is deleted from the delivered text; no substitute claim about other migrations appears anywhere in lines 5-15, so nothing was swapped in. The deletion is disclosed in the change summary (line 29: 'I deleted \"Industry reports indicate that most migrations of this scale encounter similar friction.\"') and in user_notes.md, but that disclosure is after-the-body commentary, not a retained sentence with a footnote -- which is the failure mode the expectation guards against. The first branch of the expectation (removed from the body) is satisfied outright."
+    },
+    {
+      "text": "The response includes a change summary naming at least two patterns using stable IDs in uppercase hyphenated form (for example INFLATION, NEG-PARALLEL, BOLD-LISTS, GENERIC-CLOSER, VAGUE-ATTRIB, ING-ANALYSIS); descriptive names alone do not satisfy this",
+      "passed": true,
+      "evidence": "The '## What changed' section uses ten stable IDs in code-span uppercase form: INFLATION, ING-ANALYSIS, NEG-PARALLEL, AI-VOCAB, BOLD-LISTS, RULE-OF-3, CHALLENGES-FORMULA, GENERIC-CLOSER, VAGUE-ATTRIB, plus UNDER-PUNCT referenced in the carve-out section. Each ID is attached to the specific quoted text it applies to and the fix made, not merely listed. Far past the two-ID bar."
+    },
+    {
+      "text": "The rewritten text adds no fact, number, team name, date, or capability that is not in the source",
+      "passed": true,
+      "evidence": "Line-by-line against migration-retro.txt: 'November migration' (source title), the four-system cutover list (verbatim), 'Every one of those teams found something the runbook had missed' (verbatim), the three bullet facts (verbatim content), 'Three things we got wrong' (a count of the source's own three items). No metric, percentage, team name, person, owner, date, tool, or capability appears that is not in the source; the one number, 'three', is the source's list length. Two sentences are compressions rather than transcriptions -- 'Coordination and planning caused more trouble than the technology did' (from the -ing analysis plus the 'not just a technical exercise' sentence) and 'The team got it done, but by improvising past the runbook' (from 'demonstrated remarkable resilience' plus the runbook-gap sentence). Both are interpretive rephrasings of claims the source makes, not new specifics, and the executor flagged the first as an interpretation in user_notes.md. 'The next cutover' presupposes future work, which the source's 'as we continue to refine our processes' also implies. Passing, with the caveat recorded under claims."
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "failed": 0,
+    "total": 8,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 3,
+      "Write": 0,
+      "Bash": 7,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 10,
+    "total_steps": 12,
+    "errors_encountered": 0,
+    "output_chars": 15776,
+    "transcript_chars": 9818
+  },
+  "timing": null,
+  "claims": [
+    {
+      "claim": "The draft scored 'roughly 4 word-list hits per 100 words across 8 distinct patterns'",
+      "type": "factual",
+      "verified": false,
+      "evidence": "The source is 124 words (not the ~130 stated -- immaterial). The spread number is internally inconsistent: transcript Step 8 asserts '8 distinct patterns' but the parenthetical immediately after it lists nine (INFLATION, ING-ANALYSIS, AI-VOCAB, VAGUE-ATTRIB, NEG-PARALLEL, RULE-OF-3, CHALLENGES-FORMULA, GENERIC-CLOSER, BOLD-LISTS). It also folds Pass 3 patterns (BOLD-LISTS, GENERIC-CLOSER) into a spread figure that SKILL.md line 82 defines as 'watch-list hits from Passes 1 and 2'. Neither error changes the verdict -- the rewrite threshold is 3+ patterns, and NEG-PARALLEL/GENERIC-CLOSER/CHALLENGES-FORMULA are each ungated -- but the stated figure is not reproducible as written."
+    },
+    {
+      "claim": "The under-punctuation rule covers 'and' joining two ideas, never 'and' between items in a list, so polysyndeton in a series is protected",
+      "type": "process",
+      "verified": true,
+      "evidence": "Confirmed against the loaded skill. SKILL.md line 318 ('Joints, not series. This signal covers \"and\" as a joint between two propositions. It never covers \"and\" between items in a list... leave it alone.') and line 252 under VAGUE-CONNECT ('Do not run this test on a series... Run on a series, the test returns \"decoration\" every time and strips deliberate polysyndeton.'). The executor cited both rules correctly and by name."
+    },
+    {
+      "claim": "RULE-OF-3 load-bearing test was applied and the three bullets kept, with only the BOLD-LISTS scaffolding removed",
+      "type": "quality",
+      "verified": true,
+      "evidence": "Justified. Each bullet carries a distinct non-recoverable fact (channel inconsistency, staging/prod config mismatch, unrehearsed rollback); deleting any one loses information, so the triad is content rather than ornament. The delivered output retains all three facts and strips only the bold-and-colon lead-ins -- the correct split. user_notes.md flags that the skill's BOLD-LISTS example collapses lists into prose, which would have been wrong here."
+    },
+    {
+      "claim": "No scanner script was run (eval constraint) and changelog.md was not read",
+      "type": "process",
+      "verified": true,
+      "evidence": "Consistent with metrics.json (3 Reads, 7 Bash, 0 Writes) and with the transcript's account of what was read (SKILL.md, references/extended-patterns.md, executor.md). Cannot be independently confirmed from the outputs alone, but nothing contradicts it and the hand-computed density figure is exactly what a no-scanner run would produce."
+    },
+    {
+      "claim": "'Length dropped from ~130 to ~90 words'",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Measured: source 124 words, delivered rewrite 88 words. Both within the stated approximation."
+    },
+    {
+      "claim": "'Coordination and planning caused more trouble than the technology did' is what the author meant",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Self-flagged by the executor in user_notes.md: 'it is an interpretation, not a transcription.' The source never ranks coordination against technology, and one of its own three findings (staging not matching production config) is technical. The compression is defensible and adds no invented specifics, but it asserts a comparison the source does not make."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "Density (~4 hits per 100 words) was computed by hand because the eval forbade running scripts/scan-ai-tells.py; the exact count depends on whether component words are counted separately from phrases.",
+      "'Coordination and planning caused more trouble than the technology did' is the executor's compression of two separate source assertions -- explicitly labelled an interpretation, not a transcription."
+    ],
+    "needs_review": [
+      "The deleted 'Industry reports indicate...' sentence -- should be restored with a name and year if a real benchmark exists; the author may object to its removal.",
+      "The closer was replaced with a pointer to the three fixes; a real retro closer needs owners and dates, which the executor would not invent.",
+      "'The team got it done, but by improvising past the runbook' is a sharper self-assessment than the original and is a judgment about the internal audience, not about AI tells."
+    ],
+    "workarounds": [
+      "None reported. The executor states the skill's rules resolved every case, including the one requiring no edit."
+    ],
+    "skill_suggestions_from_executor": [
+      "Keep the polysyndeton carve-out stated in both places (UNDER-PUNCT 'Joints, not series' and VAGUE-CONNECT 'Do not run this test on a series') -- the redundancy is what caught it.",
+      "BOLD-LISTS and RULE-OF-3 interact in a way SKILL.md does not spell out: the BOLD-LISTS before/after example collapses the list into a sentence, which would have destroyed load-bearing content here. A line saying the fix targets the scaffolding, not necessarily the list, would remove the ambiguity."
+    ]
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The response does not flag that four-item series as UNDER-PUNCT, as 'and' overuse, as punctuation scarcity, or as an undecided or decorative connection",
+        "reason": "This is the eval's central assertion and it is currently a pure negative -- a response that never mentions the series at all, or that leaves it untouched by accident while saying nothing about it, passes identically to this response, which explicitly recognised the polysyndeton, named the carve-out rule, and explained why it applies. Those are very different skill outcomes. Consider splitting it: keep the negative (no misflag) and add a positive assertion that the response identifies the construction as a deliberate series/polysyndeton and states that it was preserved on purpose. Without that, the 'with-skill' arm cannot demonstrate the carve-out was actually reached rather than merely not tripped."
+      },
+      {
+        "assertion": "The rewritten text adds no fact, number, team name, date, or capability that is not in the source",
+        "reason": "The enumerated categories (number, team name, date, capability) are checkable, but 'fact' is not -- and it is where the real risk sits. This output contains two interpretive claims the source does not make ('Coordination and planning caused more trouble than the technology did'; 'improvising past the runbook'), and I had to make a judgment call to pass it. Either narrow the assertion to invented specifics, or add a separate assertion about characterisation drift, e.g. 'the rewrite does not assert a cause, ranking, or evaluation that the source does not state'. As written, two graders could reasonably split on this item."
+      },
+      {
+        "assertion": "The vague attribution 'Industry reports indicate' is removed from the rewritten body or replaced with a specific named source",
+        "reason": "The 'a note after the body does not count' clause is ambiguous in a format where every response ends with a change summary. Here the phrase was deleted outright AND the deletion was disclosed in the summary -- correct behaviour under the skill's VAGUE-ATTRIB rule, but a literal reading of the clause could be argued either way. Reword to target the failure mode directly: the claim must not survive in the delivered text with its sourcing deferred to a note."
+      },
+      {
+        "reason": "No assertion covers the CHALLENGES-FORMULA sentence ('Despite these challenges, the team demonstrated remarkable resilience'), even though it is one of the source's most obvious planted tells and sits adjacent to the GENERIC-CLOSER that IS asserted. A response could delete the closer, keep 'Despite these challenges, the team demonstrated remarkable resilience' verbatim, and still pass all eight assertions. Worth adding."
+      },
+      {
+        "reason": "No assertion pins the load-bearing content of the three bullets. Assertion 5 only requires the bold lead-ins to be gone -- a response that collapsed the list into one vague sentence, or dropped one of the three distinct facts (the staging/production config mismatch, say), would pass it. Given that SKILL.md's own BOLD-LISTS example collapses lists into prose, this is a live failure mode, not a hypothetical: add an assertion that all three specific facts survive."
+      },
+      {
+        "reason": "The scanner report is actively misleading for this eval and every grader will have to be warned off it by hand. scan.txt reports 3 HARD VIOLATIONS and 7 patterns on result.md -- all of them commentary quoting the original. Consider running the scanner on the extracted delivered region (between the '---' rules) rather than the whole file, or having the executor write the rewrite to a separate result-text file, so the scan becomes usable evidence instead of noise the grading prompt has to neutralise."
+      }
+    ],
+    "overall": "The eval is well-targeted and the arm passed 8/8 cleanly, with the polysyndeton carve-out demonstrably reached (the executor cited both SKILL.md rules by name). Two structural weaknesses: the headline assertion is a pure negative that a do-nothing response would also satisfy, and two of the source's planted tells (CHALLENGES-FORMULA, the load-bearing three facts) are unasserted, leaving room for a partially-correct response to score 8/8. The 'adds no fact' assertion is the only item where I exercised grader judgment; it should be tightened before this eval is used for cross-arm comparison."
+  }
+}

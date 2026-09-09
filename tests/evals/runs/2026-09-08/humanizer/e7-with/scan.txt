@@ -1,0 +1,38 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 514   figure budget: 3   (300-600 words: 3)
+
+  [CONSTRUCTIONS] forbidden-table violations: 2
+        FLAG NEG-PARALLEL: "it's not just"
+        FLAG NEG-PARALLEL: "not just x, it's"
+
+  [A] humanizer multi-word flags: 3 distinct
+        x1  "industry reports"  [VAGUE-ATTRIB]
+        x1  "experts argue"  [VAGUE-ATTRIB]
+        x1  "worth noting"  [DIDACTIC]
+
+  [B] humanizer single-word flags (needs context): 1 distinct
+        x1  showcase  [AI-VOCAB]
+
+  em dashes: 0 total, max 0 per paragraph
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 2 word-level, 0 phrase-level
+        closers, signposting, or chatbot
+        February, Priya, the
+        -> run isocolon load-bearing test on each
+
+  density: 6 flag hits / 514 words = 1.2 per 100   distinct patterns: 4 ['AI-VOCAB', 'DIDACTIC', 'NEG-PARALLEL', 'VAGUE-ATTRIB']
+
+  HARD VIOLATIONS: 2
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     514   3     2   3   1    0   0/0   2   1.2   4     2

@@ -1,0 +1,39 @@
+Loaded 182 literal flags from SKILL.md + 8 hand-derived constructions  (quotes kept)
+
+======================================================================
+FILE: result.md
+======================================================================
+  words: 496   figure budget: 3   (300-600 words: 3)
+
+  [CONSTRUCTIONS] forbidden-table violations: 2
+        FLAG NEG-PARALLEL: "it's not just"
+        FLAG NEG-PARALLEL: "not just a technical exercise, it's"
+
+  [A] humanizer multi-word flags: 3 distinct
+        x1  "pivotal moment"  [INFLATION]
+        x1  "industry reports"  [VAGUE-ATTRIB]
+        x1  "the road ahead is promising"  [GENERIC-CLOSER]
+
+  [B] humanizer single-word flags (needs context): 4 distinct
+        x2  highlighting  [ING-ANALYSIS]
+        x2  underscoring  [ING-ANALYSIS]
+        x2  key  [AI-VOCAB]
+        x2  pivotal  [AI-VOCAB]
+
+  em dashes: 9 total, max 7 per paragraph
+        FLAG humanizer EM-DASH (3+ in proximity)
+
+  anaphora: 0 strong run(s) (>=3), 0 weak (2)
+
+  triads: 0 word-level, 0 phrase-level
+
+  density: 13 flag hits / 496 words = 2.6 per 100   distinct patterns: 7 ['AI-VOCAB', 'EM-DASH', 'GENERIC-CLOSER', 'INFLATION', 'ING-ANALYSIS', 'NEG-PARALLEL', 'VAGUE-ATTRIB']
+
+  HARD VIOLATIONS: 3
+
+======================================================================
+SUMMARY
+======================================================================
+file                          wds bud  CONS   A   B dash anaph tri  /100 pat  VIOL
+----------------------------------------------------------------------------------
+result.md                     496   3     2   3   8    7   0/0   0   2.6   7     3

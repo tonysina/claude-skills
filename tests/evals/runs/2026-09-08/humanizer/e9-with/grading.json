@@ -1,0 +1,153 @@
+{
+  "eval_id": 9,
+  "name": "under-punct-independent-domain",
+  "arm": "with",
+  "expectations": [
+    {
+      "text": "The response identifies punctuation scarcity or long unpunctuated 'and'-chained sentences as the primary problem and names UNDER-PUNCT as a stable ID in uppercase hyphenated form",
+      "passed": true,
+      "evidence": "result.md change summary opens: \"**`UNDER-PUNCT` (punctuation scarcity) -- the whole finding.**\" -- uppercase, hyphenated, backticked, and explicitly the sole/primary finding. It is characterised correctly: \"long sentences with no internal breaks, 'and' doing the work that named relationships should be doing.\" The transcript Step 7 marks it \"`UNDER-PUNCT`: **FIRES.**\" against every other Pass 2 pattern marked clean, and Step 9 is a dedicated rate measurement. No competing pattern is presented as the main problem."
+    },
+    {
+      "text": "The rewritten text contains at least seven sentence-ending periods, against three in the source, and no sentence longer than 35 words",
+      "passed": true,
+      "evidence": "Verified independently on the extracted delivered text (/tmp/e9-delivered.txt, 949 chars, 165 whitespace tokens): 10 periods, all sentence-ending (no abbreviations or decimals in the text). Sentence word counts: 14, 18, 9, 7, 18, 25, 17, 17, 10, 30 -- longest is 30, under the 35 limit. Source recomputed: 3 periods, 3 sentences of 44, 69 and 59 words. 10 >= 7."
+    },
+    {
+      "text": "The rewritten text adds internal punctuation, replacing at least four of the source's propositional 'and' joints with a period, semicolon, comma plus a named relationship (because, after, although, when), or subordination",
+      "passed": true,
+      "evidence": "I classified all 13 source 'and's by hand: 12 propositional joints, 1 series ('the primary and replica connection pools'). Eight of the 12 joints are replaced in the delivered text: five by a full stop (after 'within four minutes'; after 'the previous evening'; after 'did not resolve the errors'; after 'on the first of the month'; after 'within nine minutes'; after 'without incident' -- six by full stop in fact), one by a named concessive comma ('introduced in March, **but** it had never coincided'), and one by fronted subordination ('**After** the batch job was killed at 04:05, the error rate returned to baseline'). One more was restructured by fronting the source's causal clause ('**Because** a release had gone out at 23:40 the previous evening, the initial assumption was a bad deploy'). Only 3 'and' joints survive, each as a genuine additive/sequential link with a comma added before it. Internal punctuation rose from 0 commas / 0 semicolons in the source to 6 commas (0.6 per sentence). Threshold of 4 comfortably exceeded."
+    },
+    {
+      "text": "The two-item series 'the primary and replica connection pools' is left intact as a series and is not split, re-punctuated, or reported as an undecided connection",
+      "passed": true,
+      "evidence": "Delivered text contains verbatim: \"She found that the primary and replica connection pools had both been exhausted by a batch job that runs on the first of the month.\" No comma, no split, no rewording. The change summary handles it correctly and explicitly: \"plus one in the series 'primary and replica', which the pattern explicitly exempts.\" Transcript Step 8 states \"1 is a series pair ('the primary and replica connection pools') and is exempt. The remaining 12 are propositional joints\" -- so the undecided-connection test was deliberately NOT run on it. That 12/1 split is exactly right; I verified it clause by clause (3 joints in sentence 1, 5 joints + 1 series in sentence 2, 4 joints in sentence 3)."
+    },
+    {
+      "text": "The response does not present 'and' as a watch-list or key word, and does not count UNDER-PUNCT toward a density or spread score; the source contains zero word-list hits, so any density figure above zero must be identified as coming from something other than the word lists",
+      "passed": true,
+      "evidence": "Source verified to have zero word-list hits: scripts/scan-ai-tells.py on incident-writeup.txt reports 0 multi-word flags, 0 single-word flags, 0 constructions, 0 em dashes, 0 triads, density 0.0 per 100, 0 distinct patterns, 0 hard violations. The executor's reported figures match exactly -- 'Density 0.0 per 100 words, spread 0 patterns' -- so no hit was invented. 'and' is never placed on a watch list or called a key word anywhere in result.md or the transcript; result.md states the separation directly: \"`UNDER-PUNCT` is scored by rate, not by word-list hits, and doesn't feed that table -- it's assessed on its own, and on its own it fires.\" Transcript Step 6 reaches the same conclusion and names the skill's escape hatch (\"A clean word-list scan is not a clean bill\"). Note: result.md's enumeration of clean patterns omits VAGUE-CONNECT, EM-DASH and CHALLENGES-FORMULA, but the transcript covers all three and the scanner confirms all are genuinely zero, so nothing is claimed that is not present."
+    },
+    {
+      "text": "Every figure in the source survives with its value unchanged: 02:14, four minutes, 23:40, 03:30, 18 percent, March, 04:05, nine minutes, 06:00, 40, 120; and no new figure, cause, or remediation step is introduced",
+      "passed": true,
+      "evidence": "All eleven figures found intact in the delivered text, each exactly once with its original value and unit: 02:14, four minutes, 23:40, 03:30, 18 percent, March, 04:05, nine minutes, 06:00, 40, 120. The full set of numeric tokens in the delivered text is {02:14, 03:30, 04:05, 06:00, 18, 23:40, 40, 120} -- identical to the source's set, so nothing numeric was added or dropped. 'first of the month', 'the previous evening', 'that afternoon' and 'the following week' all survive. No new cause: the only causal statements are the source's own (bad-deploy assumption attributed to the 23:40 release; pool exhaustion attributed to the first-of-month batch job). No new remediation: the two remedies remain the 40->120 pool-limit raise and the scheduling guard. The one non-factual change is voice ('the rollback was started' -> 'The rollback started'), which alters no value."
+    },
+    {
+      "text": "Every hand-computed number the response states about the text is arithmetically correct and internally consistent with the other numbers it reports",
+      "passed": true,
+      "evidence": "I recomputed all 19 numeric claims; every one checks out. Source: 172 words (whitespace tokens) -- correct; 3 sentences, one per paragraph -- correct; 'averaging 57 words each' -- 172/3 = 57.33, and transcript Step 9 gives 57.3 -- correct and mutually consistent; zero commas / semicolons / parentheses -- correct; 'All three sentences ran past 30 words' -- 44, 69, 59 -- correct, and those three exact lengths are quoted correctly in result.md; 'Thirteen instances of \"and\"' -- correct; 'twelve of them as joints' -- correct (13 minus the one series), and consistent with the per-paragraph counts 3/6/4 in transcript Step 6. Rewrite: 165 words -- correct; ten sentences -- correct; '16.5 words each on average' -- 165/10 = 16.5 exactly; 'none over 30' -- max is 30, true as stated; 'six commas, 0.6 per sentence' -- 6 commas, 6/10 = 0.6, correct, and the per-sentence comma vector in transcript Step 13 (1,1,0,0,1,0,1,1,0,1) sums to 6; 'vary from 7 to 30 words' -- min 7, max 30, correct; 'Three \"and\"s survive ... plus one in the series' -- 4 'and' tokens total in the delivered text, correct and consistent with transcript Step 13's \"13 -> 4 'and'\". Density 0.0 / spread 0 confirmed by the scanner. 'No em dashes in either version' -- 0 in both. The word-count convention is consistent across both halves (whitespace tokens including the 8 numeric tokens; scan-ai-tells.py's 164 for the source is the same text minus those 8 numerals, so 172 is a defensible and consistently applied count, not an error). Nothing fails to reconcile."
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 3,
+      "Write": 0,
+      "Bash": 6,
+      "Edit": 0,
+      "Glob": 0,
+      "Grep": 0
+    },
+    "total_tool_calls": 9,
+    "total_steps": 15,
+    "errors_encountered": 1,
+    "output_chars": 18582,
+    "transcript_chars": 10932
+  },
+  "timing": {
+    "note": "No timing.json present in the run directory"
+  },
+  "claims": [
+    {
+      "claim": "The source is 172 words in three sentences of 44, 69 and 59 words, with zero commas, semicolons and parentheses and thirteen 'and's, twelve of them propositional joints",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Recomputed from the fixture: 172 whitespace tokens, 3 sentences (44/69/59), 0 commas, 0 semicolons, 0 parentheses, 13 'and'; hand-classified as 12 joints + 1 series ('primary and replica'). Exact match on every value."
+    },
+    {
+      "claim": "The rewrite runs 165 words in ten sentences, 16.5 average, none over 30, with six commas (0.6 per sentence), lengths 7 to 30",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Recomputed on the extracted delivered text: 165 tokens, 10 sentences (14/18/9/7/18/25/17/17/10/30), 6 commas. All figures exact."
+    },
+    {
+      "claim": "Zero word-list hits across Passes 1 and 2; density 0.0 per 100 words, spread 0 patterns",
+      "type": "factual",
+      "verified": true,
+      "evidence": "scripts/scan-ai-tells.py on the fixture returns 0 constructions, 0 multi-word flags, 0 single-word flags, 0 em dashes, 0 triads, density 0.0, 0 distinct patterns. No hit was fabricated."
+    },
+    {
+      "claim": "scan-ai-tells.py was not run and all rate measures were computed by hand with wc/python",
+      "type": "process",
+      "verified": true,
+      "evidence": "Transcript Step 9 and the Issues section both state the script was not run; metrics.json records Bash: 6 with no script invocation, and the transcript's inline count blocks are ad-hoc python output. Consistent with the skill's own note that the script computes none of the UNDER-PUNCT rates."
+    },
+    {
+      "claim": "The joints test recovered a causal relationship that 'the draft left ... to the reader' -- rendered as 'Because a release had gone out at 23:40'",
+      "type": "quality",
+      "verified": false,
+      "evidence": "Overstated. The source already contains that subordinator: 'the initial assumption was a bad deploy because a release had gone out at 23:40 the previous evening'. The rewrite fronts an existing 'because'; it does not name a relation the draft had hidden. The 'and' that actually preceded 'the rollback was started' was replaced by a full stop, with no relationship named. The delivered text is fine either way -- this is an inaccuracy in the change summary's narration, not in the rewrite. The other two bullets ('but' for the March concession, 'After' for the kill/recovery link) are accurate: both replaced a bare 'and'."
+    },
+    {
+      "claim": "Passive voice was retained deliberately as incident-writeup convention rather than missed",
+      "type": "quality",
+      "verified": true,
+      "evidence": "result.md and user_notes.md both argue it explicitly, and the skill's Tone awareness section does direct technical documentation toward 'precision matters more than personality'. No humanizer pattern flags passives with explicit subjects, so this is a correct read of scope."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "No date on the draft, so the skill's 'Date first' gate was inconclusive; executor notes a tired human writing at 06:00 could plausibly produce this style, making UNDER-PUNCT a prose-quality finding here as much as an AI-provenance one",
+      "Rewrite sentence 10 is exactly 30 words, sitting on the pattern's 'roughly 30' boundary; executor says splitting it would be equally valid",
+      "'introduced in March' carries no year in the original; ambiguity preserved rather than inferred"
+    ],
+    "needs_review": [
+      "Passive voice deliberately retained ('was paged', 'was killed', 'the limit was raised') -- flagged as a possible house-style conflict if the team's postmortem template requires named owners",
+      "Causal claims made explicit ('Because ...', 'After ...') were implicit in the original; the incident author should confirm the causality is what they meant, especially the 'After' sentence which now carries the root-cause conclusion"
+    ],
+    "workarounds": [
+      "First `cat` of the input returned compressed/mangled text; re-read with the Read tool before counting (harness artifact, not a skill problem)",
+      "scan-ai-tells.py was off-limits for this run, so word-list scanning was done by reading and rate measures with ad-hoc wc/python"
+    ],
+    "skill_suggestions_from_executor": [
+      "Name UNDER-PUNCT explicitly in the 'What the table does not gate' example list (it currently lists NEG-PARALLEL, GENERIC-CLOSER, the challenges formula, dash clusters and citation markers, but not this one)",
+      "The UNDER-PUNCT rate signals have a direction but no stated thresholds; a borderline draft would leave the judgment unanchored"
+    ]
+  },
+  "eval_feedback": {
+    "independence_verdict": "Independent. The e9 output could not have been produced by recalling the SKILL.md worked example.",
+    "independence_evidence": [
+      "The decisive evidence is the arithmetic, all of which is fixture-specific and all of which I verified correct: 172 words, 3 sentences of 44/69/59, 13 'and's split 12 joints / 1 series, 0 commas, and then 165 words / 10 sentences / 16.5 avg / 6 commas / 0.6 per sentence / range 7-30. The 12-vs-1 classification in particular required per-instance judgment on 13 tokens in a text the skill has never seen; I re-derived it clause by clause (3 joints in sentence 1; 5 joints plus the series in sentence 2; 4 joints in sentence 3) and it is exactly right. A recall-driven model reproduces a shape, not a correct measurement of an unseen text.",
+      "The rewrite structurally DIVERGES from the SKILL.md after-example. That example collapses four propositions into three units and uses a semicolon ('...staff numbers doubled; by 2022...'). e9 produced ten sentences with zero semicolons and six commas, and split along paragraph-local logic (3/4/3 sentences). If the model were reciting the example, the semicolon is the single most distinctive thing to carry over, and it did not appear.",
+      "e9 made calls the example cannot supply, because the example contains no analogue: exempting 'the primary and replica connection pools' as a series (the before/after in SKILL.md has no series at all); ruling 'raised from 40 to 120' a genuine range rather than FALSE-RANGE; refusing to read zero em dashes as evidence in either direction; retaining passive voice as postmortem genre convention under Tone awareness; and running the VAGUE-ATTRIB cross-check that the UNDER-PUNCT section prescribes when it fires.",
+      "It handled the density/spread interaction correctly and non-trivially: reported density 0.0 / spread 0, noted the table's verdict would be 'do not rewrite', then routed around it via the skill's 'What the table does not gate' branch. That is reasoning about the measure's place in the scoring system, not reproduction of a rewrite.",
+      "user_notes.md surfaces that sentence 10 lands exactly on the 'roughly 30' boundary and that the rate signals have direction but no thresholds. A run driven by recall of a worked example has no reason to notice that the measure is under-specified."
+    ],
+    "independence_counterevidence": [
+      "One lexical overlap: 'After' as a fronted subordinator appears in both the SKILL.md after-example ('After the council increased funding the next year') and in e9's rewrite ('After the batch job was killed at 04:05'). This is the only recall-shaped artefact I found. It is weak evidence -- 'after' is the obvious English subordinator for a kill-then-recovery sequence, the source already ordered those events that way, and e9 did not carry over the semicolon that follows it in the example.",
+      "The change summary's first bullet narrates the 'Because' fronting as recovering a relation 'the draft left ... to the reader', when 'because' was already in the source. That is the summary being fitted to the pattern's story rather than to what actually changed -- a write-up flaw, not evidence that the rewrite itself was recalled."
+    ],
+    "suggestions": [
+      {
+        "assertion": "The response does not present 'and' as a watch-list or key word, and does not count UNDER-PUNCT toward a density or spread score; the source contains zero word-list hits, so any density figure above zero must be identified as coming from something other than the word lists",
+        "reason": "The second clause is vacuous on this fixture -- actual density is 0.0, so the 'above zero' branch can only fire if the executor hallucinates a hit. That makes it a hallucination trap rather than a test of the density/spread separation. To test the separation itself, consider a variant fixture that is under-punctuated AND carries two or three real word-list hits, so the assertion can check that the reported density counts only those hits and excludes the thirteen 'and's."
+      },
+      {
+        "reason": "No assertion checks that the rate measures were computed by hand rather than taken from scan-ai-tells.py. The skill states outright that the script 'computes none of them, so a clean report from that script is not evidence against this pattern' -- an executor that ran the script, saw density 0.0 / 0 violations, and reported the text clean is exactly the failure mode this pattern exists to prevent. e9 got this right (transcript Step 9 and the Issues section both confirm the script was not run, and it reached the finding anyway), but nothing in the eval would have caught the opposite. Worth an explicit assertion: the response must reach UNDER-PUNCT despite a zero word-list scan, and must not cite the script's clean report as evidence of cleanliness."
+      },
+      {
+        "reason": "No assertion covers register preservation, which is a real risk on this fixture and which e9 handled well. 'Humanize this' plus an incident writeup invites a model to add first person, hedges, opinion or voice; the skill's Tone awareness section explicitly forbids that for technical documentation. The delivered text has no first person, no added evaluation, and no new voice. An assertion like 'the rewrite introduces no first-person pronoun, no evaluative adjective, and no hedge not present in the source' would be discriminating and easy to verify."
+      },
+      {
+        "reason": "Expectation 7 (arithmetic) worked exactly as intended and is worth keeping verbatim in future UNDER-PUNCT evals. It forced me to recompute 19 separate figures, and it is the assertion that actually settled the independence question -- correct fixture-specific arithmetic is the one thing recall cannot fake. Its value would rise further if it explicitly required the response to state the source's per-sentence word lengths, since that vector is the least recallable number in the set."
+      }
+    ],
+    "overall": "Clean 7/7, and every pass survived independent recomputation -- I re-derived the sentence-length vectors, comma counts, 'and' classification and word-list density myself rather than trusting the transcript, and found no discrepancy. On the question the eval was built to settle: this run measured independently. The arithmetic is fixture-specific and correct, including the 12-joints-plus-1-series classification that required judgment on each of 13 tokens; the rewrite diverges from the worked example's most distinctive move (the semicolon); and it resolved three questions the example does not cover (series exemption, FALSE-RANGE on 40-to-120, passive voice as genre convention). The single recall-shaped trace is the fronted 'After', which is over-determined by the source's own event order. One substantive flaw, uncaught by any assertion and not severe enough to fail one: the change summary claims the 'Because' fronting recovered a relation the draft had left implicit, when 'because' was already in the source."
+  }
+}
