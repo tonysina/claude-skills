@@ -1,0 +1,19 @@
+Northgate Dental Group: consolidating four practice-management systems
+
+Background
+
+Northgate Dental Group operates eleven clinics across Greater Manchester. The group grew by acquisition between 2019 and 2024, and each of the four practices it bought kept the software it arrived with. By early 2025 the finance team was pulling month-end figures out of four systems by hand, and a patient who moved between clinics had to be re-registered.
+
+What they did
+
+Northgate picked one of the four incumbent systems rather than buying a fifth. The deciding factor was that its supplier would export historical records in a documented format; two of the others would only provide PDFs. Migration ran clinic by clinic over nine months, oldest acquisition first, with the finance team keeping parallel month-end books for the first three.
+
+Two clinics missed their migration window. In both cases the cause was the same: appointment histories held in a free-text notes field that no export mapped cleanly. The group hired a temp for six weeks to retype them.
+
+Where it stands
+
+Month-end close now takes three days rather than eleven. Patients transfer between clinics without re-registration. The free-text problem was not solved so much as absorbed: about 4,000 historical notes were retyped, and roughly 600 that nobody could interpret were archived as scanned images and left out of the searchable record. Because the Care Quality Commission's Regulation 17 requires practices to keep accurate and complete records of care, the group treated those 600 as a governance item rather than a housekeeping one, and its clinical lead signed off the archive decision in writing.
+
+Practice manager Dev Raman put the cost plainly. "We spent about forty thousand pounds more than the business case said, almost all of it on the two clinics we got wrong. I would still do it, but I would sequence it differently."
+
+Northgate has not yet decided whether to migrate its imaging systems, which sit outside the practice-management platform and were left untouched.
