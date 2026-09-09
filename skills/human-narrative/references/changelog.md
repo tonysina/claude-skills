@@ -1,5 +1,39 @@
 # Changelog
 
+## [1.2.0] - 2026-09-09
+
+Four gaps found while building an LLM rubric grader from this skill for
+`tests/evals/human-narrative/` (#5), each recorded as an open question rather than silently
+repaired at the time. Resolved here.
+
+### Added
+
+- **`not_applicable` as a fourth (or fifth) option on the B, C1, and G gates.** *How are
+  emotions conveyed*, *is the event chain resolved*, and *does the piece frame the
+  protagonist's choices as clear or ambiguous* all presuppose narrative material — expressed
+  emotion, an event chain, a protagonist making a choice — that professional non-fiction
+  often simply doesn't have. Two of the three are gates. Without a null option, an executor
+  facing a status update with no emotional content was forced to round to the nearest label,
+  which can put the largest-gap gate in the taxonomy on the AI side of a distinction the text
+  never draws. `not_applicable` now explicitly does not fire.
+- **Cluster A corroborator: Thematic Explicitness & Moralizing.** 1–5 Likert, AI-side ≥4.
+  This carries cluster A's largest gap (−0.65) and was neither this cluster's gate nor a
+  corroborator anywhere in the skill — an oversight, not a judgment call; it wasn't on
+  `references/features.md`'s excluded-eight list either. Previously the strongest single
+  piece of evidence in the strongest cluster could not affect whether A fired.
+- **The E/F short-form construction rule now explicitly covers case studies.** Step 3 stated
+  the rule ("count E and F as one cluster unless A or B also fires") inside the under-600-word
+  row without a register condition, leaving case studies — a separate row with the same E/F
+  exposure — unstated. The argument holds identically there: a case study doesn't address its
+  reader and isn't in conversation with a book either. Extended explicitly.
+- **Non-narrative thought leadership no longer lets cluster D count toward the threshold by
+  default.** An explainer or framework post has no scene to move through, so D's gate and all
+  three corroborators come out AI-side even though nothing about the writing disrupted a
+  chronology that was never there. Unlike E/F, D had no merge partner and no carve-out, so a
+  fired D could consume the one free cluster the 0–1 threshold band allows on a piece with no
+  other real finding. D on a piece with no timeline at all now doesn't count toward the
+  Step 3 total; a genuinely narrated thought-leadership piece is unaffected.
+
 ## [1.1.2] - 2026-09-08
 
 ### Changed

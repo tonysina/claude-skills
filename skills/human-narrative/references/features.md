@@ -11,6 +11,11 @@ a different option value elevated. Table 16 reproduces all of them with means an
 `SKILL.md` uses 22 of the 30 inline as gates and corroborators. The remaining 8 are recorded
 here and marked ○.
 
+> **Thematic Explicitness & Moralizing** carries the largest gap in cluster A (−0.65) and,
+> until 1.2.0, was neither a gate nor a corroborator anywhere in `SKILL.md` — an omission,
+> not a judgment call; it isn't in the excluded-eight table below either. It is now a
+> cluster A corroborator. The counts above already assume its inclusion.
+
 ---
 
 ## Reading the scales

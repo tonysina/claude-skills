@@ -15,7 +15,7 @@ description: |
   (use farnsworth-rhetoric), grammar or style-only fixes, technical documentation,
   runbooks, process instructions, data reporting, legal language, or RFP answers.
 metadata:
-  version: 1.1.2
+  version: 1.2.0
 ---
 
 # Human-Narrative: Structural AI Pattern Removal
@@ -86,6 +86,9 @@ Largest cluster (6 features) and the strongest signal family.
 (77% AI vs 52% human)
 
 **Corroborators.**
+- *How explicitly is the theme stated or moralized?* 1–5. AI-side: ≥4 (3.94 / 3.28) — the
+  largest gap in the cluster (−0.65), and until 1.2.0 the one feature in this taxonomy that
+  was neither a gate nor a corroborator anywhere in the skill.
 - *How heavily does the piece foreground moral or philosophical questions?* 1–5. AI-side: ≥4
 - *Does dialogue function as philosophical debate?* → yes / no. AI-side: yes (59% / 34%)
 - *Do all elements serve one theme?* 1–5. AI-side: ≥5
@@ -105,8 +108,10 @@ standard, not just by distribution match.**
 Contains the single largest gap in the whole taxonomy (−42pp).
 
 **Gate.** *How are emotions most commonly conveyed?* → explicit labels / embodied metaphors
-/ behavioral cues / ambiguous. **AI-side: embodied metaphors** (81% AI vs 38% human).
-Human-side: explicit labels (29% human vs 8% AI).
+/ behavioral cues / ambiguous / **not applicable (no emotion is conveyed)**. **AI-side:
+embodied metaphors** (81% AI vs 38% human). Human-side: explicit labels (29% human vs 8%
+AI). **Not applicable does not fire** — don't force a piece with no expressed emotion onto
+the option set; a status update reporting a decision has nothing here to score.
 
 **Quantitative rule.** Count emotional beats. If **>60% run through the body**, the gate
 is AI-side regardless of the dominant-mode call.
@@ -133,8 +138,11 @@ name feelings more than three times as often as AI does. Apply it once, not ever
 Split by cost. **C1 is available in non-fiction; C2 is fiction and personal essay only.**
 
 **Gate.** *Is the main event chain resolved through the protagonist's own choice or internal
-understanding?* → externally / internally / unresolved. **AI-side: internally.**
-(protagonist-choice agency 69% / 46%; internal-understanding resolution 47% / 27%)
+understanding?* → externally / internally / unresolved / **not applicable (no event chain to
+resolve)**. **AI-side: internally.** (protagonist-choice agency 69% / 46%;
+internal-understanding resolution 47% / 27%) **Not applicable does not fire** — a piece with
+no chain of events to resolve (a status report, a policy explainer) has nothing here to
+score; don't round it to the nearest option.
 
 **Corroborators.**
 - *Do subplots echo the central theme?* → no subplots / thematically parallel / contrasting
@@ -221,8 +229,10 @@ it works at any length, and it improves the piece independent of any distributio
 ### G — Narrative diversity
 
 **Gate.** *Does the piece frame the protagonist's choices as morally clear or ambiguous?*
-→ clearly positive / ambivalent-mixed / clearly negative. **AI-side: clearly positive**
-(ambivalent 59% human vs 38% AI).
+→ clearly positive / ambivalent-mixed / clearly negative / **not applicable (no protagonist
+choice to moralize)**. **AI-side: clearly positive** (ambivalent 59% human vs 38% AI). **Not
+applicable does not fire** — a piece with no protagonist making a moral choice (a status
+update, a technical explainer) has nothing here to score.
 
 **Corroborators.**
 - *Subplot integration* → AI-side: no subplots; human-side: thematically parallel (42% / 21%)
@@ -260,6 +270,20 @@ E and F come out AI-side on almost every piece. Together they do not reach the i
 bar on their own: for the threshold, count E and F as one cluster between them unless A or
 B also fires. Then a status update with only E and F scores 1, which is "within human
 range," which is the answer the paragraph above already gives.
+
+**The same construction applies to case studies.** They share the under-600-word row's E/F
+problem (a case study almost never addresses the reader or names an outside work either) and
+the same fix: count E and F as one cluster between them unless A or B also fires.
+
+**Non-narrative thought leadership fires D by construction.** An explainer or framework piece
+— the kind that walks through how something works rather than telling a story about it — has
+no scene to move through, so D's gate and all three corroborators come out AI-side even
+though there is no chronology in the piece for the narrative to disrupt in the first place.
+Unlike E/F, there is no partner cluster to merge D into; instead, if the piece has no
+timeline at all — nothing a flashback or a reordering could apply to — **D does not count
+toward the Step 3 cluster count.** Score it, note that it fired on absence rather than
+evidence, and move on. A thought-leadership piece that is genuinely narrated (it tells a
+story, not just an argument) still gets D at full weight.
 
 **Report in proportion to the input.** Under 100 words, a one-paragraph verdict with the
 clusters named in a sentence. No table, no corpus percentages.
