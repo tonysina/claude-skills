@@ -1,0 +1,15 @@
+Executive Summary: Platform Consolidation Initiative
+
+The organization maintains four customer data platforms across three acquisitions from 2021 to 2024. The cost: $2.1M annually in duplicate licensing. The consequence: we cannot report as one company to our customers.
+
+Consolidate to a single platform over eighteen months. Why eighteen months? The finance team is rolling out a new revenue recognition system this year. We must sequence the migration after their close, and stagger customer transitions to avoid churn. Discipline takes time.
+
+Implementation requires engineering from three teams and coordination with sales. The math is clean: implementation costs hit upfront; licensing savings start month twenty-six. Six months of pain for years of gain.
+
+Three real risks stand in the way. The billing system is in scope during finance's transition — sequencing is everything. Two of our four platforms lack documentation, making effort uncertain. Our engineering teams are already committed to the regulatory reporting programme, and we have not assessed whether we can run both in parallel.
+
+Leadership approval is requested to proceed with detailed planning. We propose a decision gate at planning's end, before any committed engineering investment.
+
+One vendor note: the largest platform's provider will discuss enterprise pricing if we consolidate onto their system. This is not a recommendation. Platform selection and evaluation criteria remain open. Two platforms appear technically viable as targets; two present constraints that matter.
+
+Finally: customer communication is critical. We must notify affected accounts before their data moves. Account management flagged concerns about change notification volume to strategic customers this year. Coordination is prerequisite. We cannot move without alignment here.

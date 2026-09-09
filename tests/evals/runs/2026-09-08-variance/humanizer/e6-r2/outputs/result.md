@@ -1,0 +1,14 @@
+---BEGIN DELIVERED---
+What the November migration taught us
+
+The November migration exposed gaps in how we coordinate between teams and plan for cutover. The cutover touched billing and provisioning, support tooling, and reporting. Each team found something the runbook had missed.
+
+Key issues:
+- Communication: Status updates went out on different channels and at different intervals.
+- Testing: The staging environment didn't match production configuration.
+- Rollback: We'd documented the procedure but never actually rehearsed it.
+
+The team moved quickly and kept systems running. For next time, we need documented run-throughs and a single communication channel during cutover.
+---END DELIVERED---
+
+Notes: Removed formulaic language ("pivotal moment," "underscoring importance," "remarkable resilience"), vague attribution ("industry reports"), and generic closer. Kept specific technical details (the systems touched, the actual issues found). Restructured the conclusion to focus on concrete next steps rather than vague resilience language.

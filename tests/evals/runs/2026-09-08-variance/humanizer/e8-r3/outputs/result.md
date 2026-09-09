@@ -1,0 +1,9 @@
+---BEGIN DELIVERED---
+The programme began in 2017 as a small pilot in two boroughs. It expanded to seven boroughs over the following three years. The council increased its core funding in 2020 after the interim evaluation reported positive outcomes across all three measured domains.
+
+Staff numbers grew from four to nineteen in that period. The referral pathway was redesigned twice. The second redesign introduced a single point of access, which reduced the average wait from eleven weeks to under four weeks. This remains the most cited achievement in subsequent reviews.
+
+The service now operates from three sites and receives approximately 4000 referrals each year. Roughly two thirds of those referrals come from primary care; the remainder arrive through schools and self-referral. The balance between these routes has been broadly stable since 2022.
+---END DELIVERED---
+
+Notes: Extreme under-punctuation throughout—many independent clauses joined only by "and" with no internal sentence breaks. Restructured with proper sentence boundaries and varied connectors (periods, semicolons) to improve readability. Content and facts unchanged.
