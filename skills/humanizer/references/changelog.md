@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.4.2] - 2026-09-09
+
+Two defects found by issue #4's variance run, confirmed real across all 3 repeat runs of
+their evals (not measurement noise), from `tests/evals/runs/2026-09-08-variance/humanizer/`.
+
+### Fixed
+
+- **A direct review request wasn't recognized as "asking" for a hit count.** The density
+  table's "within human range" row says to report hits "if asked," but three independent
+  runs of a "review this for AI tells, does it sound like AI?" prompt each declined to
+  intervene without ever stating a density or rate -- reasonable restraint, but with no
+  arithmetic behind the verdict a reader can't tell it apart from restraint that never
+  measured anything. The table note now says a direct review request already is the ask,
+  and a watch-list word named in that report is described as weak evidence, not proof.
+- **Polysyndeton preservation didn't survive an unrelated edit to the same sentence.**
+  Three independent runs, given a sentence with both a promotional-language problem and a
+  deliberate "billing and provisioning and support tooling and reporting" series, fixed the
+  promotional language and lost the series as a side effect -- "and X and Y and Z" collapsing
+  into "X, Y, and Z" as an editing reflex, not a rule anyone applied. `UNDER-PUNCT`'s
+  joints-not-series note said to leave the series alone but didn't say to check it survived
+  an edit made for a different reason. Now explicit: after any edit to a sentence containing
+  a preserved series, confirm the series is still there before moving on.
+
 ## [1.4.1] - 2026-09-08
 
 Closes the item 1.4.0 recorded and deferred (#10). No watch-list or threshold changes.
