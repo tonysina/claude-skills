@@ -11,10 +11,10 @@ description: >
   shallow comprehension. Do NOT use for documents under ~15 pages — read those
   directly.
 compatibility: Requires Bash (pdftotext, pdfinfo from poppler), Read, Write, WebSearch, WebFetch
-allowed-tools: Bash(pdftotext*), Bash(pdfinfo*), Bash(curl*), Bash(wget*), Bash(ls*), Read, Write, Edit, WebSearch, WebFetch, Agent, SendMessage
+allowed-tools: Bash(pdftotext*), Bash(pdfinfo*), Bash(curl*), Bash(wget*), Bash(ls*), Bash(mkdir*), Bash(mv*), Read, Write, Edit, WebSearch, WebFetch, Agent, SendMessage
 attribution: Based on https://github.com/scunning1975/MixtapeTools/tree/main/skills/split-pdf
 metadata:
-  version: 2.1.0
+  version: 2.1.1
 ---
 
 # Split-PDF: Deep-Read Any Document
@@ -29,17 +29,28 @@ See `references/why-splitting-works.md` for the reasoning behind this constraint
 
 **Local file path provided:**
 - Verify the file exists
-- Proceed to Step 2
+- Put it in its own folder (below), then proceed to Step 2
 
 **URL or search query provided:**
 - Use WebSearch to locate the paper if only a title or query is given
-- Use WebFetch or `curl`/`wget` to download the PDF to the working directory
+- Use WebFetch or `curl`/`wget` to download the PDF straight to `<basename>/<basename>.pdf` in the working directory
 - Proceed to Step 2
 
 **If the user provides neither a path nor enough detail to find the paper:**
 Ask before proceeding. Do not guess.
 
-**Always preserve the original PDF.** Never delete, move, or overwrite it. The original is permanent.
+**Put the PDF in its own folder.** Every document lives in a folder named after the PDF's basename, holding the PDF and its extract:
+
+```
+<parent>/<basename>/<basename>.pdf
+<parent>/<basename>/<basename>_text.md
+```
+
+- **Already inside a folder named `<basename>`:** leave it where it is.
+- **Otherwise:** create `<basename>/` next to the PDF and move the PDF into it. If a `<basename>_text.md` from an earlier read sits next to the PDF, move it in too. Tell the user the new path.
+- **If `<basename>/` already holds a different `<basename>.pdf`:** stop and ask. Never overwrite.
+
+**Always preserve the original PDF.** Never delete or overwrite it. Moving it into its own folder is the only change allowed.
 
 ---
 
@@ -160,7 +171,7 @@ On the final round, set status to complete and write the Summary section.
 
 | Step | Action |
 |------|--------|
-| Acquire | Download or locate file; never modify the original |
+| Acquire | Download or locate file; move it into `<basename>/` if it isn't already; never delete or overwrite it |
 | Check | `<basename>_text.md` status: complete → reuse; in progress → resume or restart |
 | Inspect | `pdfinfo` + `pdftotext` (text only): page count, scanned warning, document type |
 | Read | 4 pages/call, 3 calls/round via `pages`; pause after each round |

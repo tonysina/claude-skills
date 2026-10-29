@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.1.1] - 2026-10-29
+
+### Fixed
+
+- **Extract landed loose next to the PDF.** 2.1.0 dropped 2.0.0's per-document subfolder, so a loose
+  PDF and its extract ended up side by side in a shared folder. Every document now lives in
+  `<basename>/` holding the PDF and `<basename>_text.md`: downloads are saved there directly, and a
+  loose local PDF (plus any earlier `_text.md` next to it) is moved in. The PDF is still never
+  deleted or overwritten; this move is the only change allowed. `mkdir` and `mv` added to
+  `allowed-tools`.
+
 ## [2.1.0] - 2026-10-29
 
 Review against the upstream skill (scunning1975/MixtapeTools) and its open issues and PRs.
