@@ -23,13 +23,13 @@ You have minimal context: industry, company, possibly job title. You can't run a
 
 Procedure:
 
-1. Pick the Situation Slide and Illustration most likely to resonate based on what little you know.
+1. Pick the screen most likely to resonate based on what little you know.
 2. Show it. Ask: "Is this what you want to see?"
 3. Three outcomes:
    - "I have that exact problem" — go deeper into that scenario.
    - "Not exact, but similar" — go deeper.
    - "Don't have that problem" — move to the next item on the menu.
-4. Present up to three to five Situation Slides and Illustrations before concluding there's no fit. Each takes about two minutes; three to five fits in ten minutes.
+4. Show up to three to five screens before concluding there's no fit. Each takes about two minutes; three to five fits in ten minutes.
 
 The Menu Approach is essentially a catalog. It saves time for both parties and increases the probability that something lands.
 
@@ -63,9 +63,9 @@ Procedure:
 5. Two columns alongside the list: "product has this" and "will demo today."
 6. Bias prioritization toward the needs of your initial contacts and high-ranking audience members.
 7. Use generic demo material for segments where you have no customer-specific data; use prepared data where you do.
-8. Treat it like a multi-solution demo: show ALL Illustrations first to hook every segment of the audience, then work through each capability segment.
+8. Treat it like a multi-solution demo: open with a quick screen for each segment of the audience so everyone sees something that matters to them, then work through each capability segment.
 9. Checkmark each To Do List item as completed. Same tracking mechanism as the Not Now List.
-10. Final summary covers every item demonstrated.
+10. Before closing, confirm every item is checked off or acknowledged.
 
 The To Do List anecdote from the book: author arrived expecting two to three people, found 30+. While setting up, he casually polled the room. Then methodically asked each person what they wanted to see and built the whiteboard list. Walked the list with circle bullets for "will demo" and lines through "won't demo." Invited lined-out attendees to leave. Used a separate area of the whiteboard for the Not Now List. Checked off each item after demonstrating. Offered an optional Q&A stay. Some audience members asked to "run some searches" with their real data. Thirty minutes of ad-hoc problem-solving with their actual data. Result: got the order, substantially larger than originally expected.
 
@@ -114,7 +114,7 @@ The name of the game in Remote Demos is INTERACTIVITY. The better you engage, th
 - Move the mouse very slowly. There is lag. Fast movements appear ragged on the customer's screen.
 - Ask questions as you go to test whether the audience is still with you.
 - Do not point at your own screen with your finger. The customer cannot see your hand.
-- Summarize early and often. Use the Demonstration Roadmap as a structured opportunity for summary.
+- Check in at each Demonstration Roadmap transition to confirm the audience is still with you.
 
 ## Scripted RFP Demos
 
@@ -128,11 +128,11 @@ First move: try to renegotiate the script to better match product flow. Rarely s
 
 If the customer insists on the script as written:
 
-1. Use the Introduction time to present Situation Slides and Illustrations addressing the real business objectives. Cut the corporate overview short to free up this time.
-2. Create the vision first; then follow the script religiously in the body.
-3. The Situation Slide and Illustration plant the why before the what. The script then plays out as proof points against an established frame.
+1. Use the Introduction time to put the real business objectives on screen with a short walk-through of the capability that addresses them. Cut the corporate overview short to free up this time.
+2. Frame the business value first; then follow the script as written in the body.
+3. The opening plants the why before the what. The script then plays out as proof points against an established frame.
 
-The book's noted outcome: vendors who used intro time for a complete Situation Slide, Illustration, and Do It sequence, then followed the script religiously, won in several cases against vendors who only followed the script.
+The book's noted outcome: vendors who used intro time to frame the real business objectives, then followed the script as written, won in several cases against vendors who only followed the script.
 
 ## Deployment Demos
 
@@ -144,7 +144,7 @@ Three root causes:
 2. Sales team moved on after close, never handed CBI/Reason/Specific Capability context to implementation and training teams. **Fix:** ensure this context is explicitly transferred at handoff.
 3. Training delivers generic "how-to" with no regard for specific user needs. **Fix:** apply the Great Demo! method to training. Start with "what" the software does for users before "how-to."
 
-Deployment demos must show clear value up-front. Users need motivation before they'll invest energy in learning mechanics. Open with the Illustration. Connect every "how-to" segment back to the user's CBI.
+Deployment demos must show clear value up-front. Users need motivation before they'll invest energy in learning mechanics. Open with the result the user cares about. Connect every "how-to" segment back to the user's CBI.
 
 Post-sale deployment success drives future expansion sales and reference stories. As important as the initial demo.
 
@@ -168,10 +168,10 @@ Web-based: create a range of demos organized by CBI/Reason/Specific Capability. 
 
 Canned demo structure:
 
-- At minimum: steps 1 and 2 (Illustration with summary, Do It with summary).
-- Add steps 3 and 4 (Do It Again and Q&A) only if someone from your company will be present to control playback.
-- Summarize, summarize, summarize. Since you aren't there, every summary is critical for keeping the unsupervised audience on track.
-- Include a call to action in the summary: contact form link, phone number, URL for next step.
+- At minimum: the result the viewer cares about, then the path to it.
+- Add depth and Q&A only if someone from your company will be present to control playback.
+- Since you aren't there, close each section by saying what the viewer just saw and which of their needs it addresses. Nobody is present to keep an unsupervised audience on track.
+- Include a call to action at the end: contact form link, phone number, URL for next step.
 
 ### Warnings
 
@@ -185,10 +185,10 @@ A demo to an unqualified audience. Always carries more risk than a qualified dem
 
 When you must give one (trade shows, product launches, broad webinars):
 
-1. Lead with multiple Situation Slides covering the most common CBIs for your typical buyer. Treat it as a Menu Approach.
-2. Build Illustrations matched to each Situation Slide.
-3. Run a multi-solution structure: present all Illustrations upfront to hook every audience segment, then walk each capability segment in turn.
+1. Lead with short framings of the most common CBIs for your typical buyer. Treat it as a Menu Approach.
+2. Build a screen to match each CBI.
+3. Run a multi-solution structure: show a screen for each CBI up front so every audience segment sees something that matters to them, then walk each capability segment in turn.
 4. Use show-of-hands or chat polls to surface which segments matter most to the audience in front of you.
 5. Always close with a call to action and contact information.
 
-A Generic Demo that converts is one that gets unqualified audience members to self-identify which Situation Slide describes them. Use that signal to triage the most engaged participants for follow-up.
+A Generic Demo that converts is one that gets unqualified audience members to self-identify which CBI describes them. Use that signal to triage the most engaged participants for follow-up.

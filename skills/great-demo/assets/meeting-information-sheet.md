@@ -28,9 +28,7 @@ Captures the logistics, agenda, and roles for a demo meeting. The Salesperson ow
 |---|---|---|
 | | Introduction | |
 | | Review of Objectives, CBIs, Specific Capabilities | |
-| | Demonstration: Illustration | |
-| | Demonstration: Do It | |
-| | Demonstration: Do It Again | |
+| | Demonstration | |
 | | Q&A (Not Now List items) | |
 | | Summary | |
 | | Next Steps and Wrap-Up | |

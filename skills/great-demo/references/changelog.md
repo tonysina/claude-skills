@@ -1,5 +1,55 @@
 # Changelog
 
+## [2.0.0] - 2026-11-02
+
+The skill no longer prescribes a demo flow. It keeps the parts of Cohan's
+method that diagnose and plan (CBI/Reason/Specific Capability, the Chain of
+Pain, the Delta, the Not Now List) and drops the parts that dictate how a
+demo is structured and delivered.
+
+### Removed
+- Prescribed flow: Situation Slide, Illustration, Do It, Do It Again, the
+  recap Summary, and the read-aloud Outline Introduction. Removed from
+  `SKILL.md`, `references/design.md`, `references/critique.md`,
+  `references/delivery.md`, `references/special-cases.md`,
+  `references/qualify.md`, `references/glossary.md` and the assets.
+- `assets/situation-slide-template.md`.
+- The Cohan timing table (15 to 30 minutes) in `references/design.md`.
+- Delivery word-swap table ("show" vs "share", "allow" vs "enable", "but" vs
+  "and") and scripted humor, including the reward joke, the "three engineers
+  in a car" anecdote and the pile-of-books prop story, in
+  `references/delivery.md`.
+- Glossary entries for Do It, Do It Again, Illustration, Situation Slide,
+  Outline and Introduction, and the "Same content as the Outline" wording in
+  the Demonstration Roadmap entry.
+- Pointers to the retired `good-presentations` skill.
+
+### Changed
+- "Do the last thing first" is now a lens, not a required order. The first
+  principle reads: put something that matters to the audience in front of
+  them early.
+- `references/design.md`: new sections "The Screen Map" (stakeholder, CBI,
+  Reason, Specific Capability, screen to show, Delta), "Showing the Path",
+  "Questions and Meeting Check" and "Timing". The worked example is rewritten.
+- `references/critique.md`: rubric reduced from 13 items to 8 (early
+  relevance, capability-to-CBI tie, quantified Delta, buzzwords, question
+  handling, file names, keyboard shortcuts, timing). The worked example is
+  rewritten.
+- Output norms: concrete time estimates per section against the user's
+  budget. Over budget, trim depth first, then drop capabilities tied to the
+  least important pain.
+- Vendor voice routing: this skill builds the plan (CBI mapping, screens,
+  time per section) and hands it to the vendor skill to apply voice and
+  fact-sourcing when a script is needed.
+- Special cases, qualification and the asset checklists now say "screen" or
+  "screenshot" where they said Situation Slide or Illustration.
+
+### Kept
+- CBI/Reason/Specific Capability mapping, the Chain of Pain, the Delta, the
+  Not Now List and To Do List, question handling, mouse discipline, bug and
+  crash recovery, the buzzword test, and the file name and keyboard shortcut
+  rules.
+
 ## [1.0.2] - 2026-09-03
 
 ### Added

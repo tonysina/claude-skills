@@ -146,7 +146,7 @@ FORWARD_REF = [
     # "F is the reason -- see the end". Bare "see below" is deliberately absent:
     # in a document with sections it is an ordinary editorial cross-reference,
     # which is how the 2026-09-02 grader ruled on '(see "Not taken")', and it
-    # fires on good-presentations/SKILL.md's own option table. No evidenced
+    # fires on the option tables in skill files. No evidenced
     # positive needs it -- "reason below" is caught by the pointer pattern above.
     r"\bsee\s+(?:the end|the bottom|further down)\b",
     # "Here's the full audit, then the rewrite."

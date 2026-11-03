@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.1] - 2026-11-02
+
+### Removed
+
+- The pointer to `good-presentations` in the description's "Do NOT use for"
+  clause, and the Workflow Position paragraph that sent slide requests to it.
+  That skill was retired from the repo. "Slides or decks" stays as an
+  exclusion in the description, with no replacement named. No other change to
+  the skill.
+
 ## [1.1.0] - 2026-09-03
 
 Fixes from the persuasion-triad skill review (`skills/persuasion-triad-review` branch).

@@ -80,7 +80,7 @@ Divide every item into Required (the demo cannot work without it) and Optional (
 
 | Item | Required / Optional | Status | Notes |
 |---|---|---|---|
-| Paper copies of Illustrations | | | Critical backup if live demo fails |
+| Printed screenshots of key screens | | | Critical backup if live demo fails |
 | Brochures, fact sheets, FAQs | O | | |
 | White papers, reference stories | O | | |
 | Give-aways (branded merchandise, samples) | O | | |
@@ -102,7 +102,7 @@ Divide every item into Required (the demo cannot work without it) and Optional (
 | Item | Required / Optional | Status | Notes |
 |---|---|---|---|
 | Canned demo recording (in case live demo fails) | R | | |
-| Printed Illustrations | R | | Final fallback if all tech fails |
+| Printed screenshots of key screens | R | | Final fallback if all tech fails |
 | Phone numbers for tech support (vendor and customer IT) | R | | |
 
 ## Pre-Meeting Confirmation
@@ -124,7 +124,7 @@ Divide every item into Required (the demo cannot work without it) and Optional (
 - [ ] Handouts and props laid out
 - [ ] Laptop screen cleaned
 - [ ] File Open windows cleaned (don't expose other companies' names)
-- [ ] Best Illustration screen ready and visible the moment sharing begins (Remote Demos especially)
+- [ ] Opening screen ready and visible the moment sharing begins (Remote Demos especially)
 
 ## Notes
 

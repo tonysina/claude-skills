@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.5] - 2026-11-02
+
+### Removed
+
+- The pointer to `good-presentations` in the description's "Do NOT use for"
+  list. That skill was retired from the repo. "Deck structure" stays as an
+  exclusion, with no replacement named.
+
 ## [1.1.4] - 2026-09-09
 
 ### Fixed
