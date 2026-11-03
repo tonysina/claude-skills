@@ -37,7 +37,7 @@ Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 | [beyond-obvious](skills/beyond-obvious/) | Generates diverse options beyond predictable defaults using verbalized sampling | ✅ | ✅ | [.skill](dist/beyond-obvious.skill) |
 | [beyond-the-summary](skills/beyond-the-summary/) | Extracts non-obvious insights, tensions, and actionable implications from documents | ✅ | ✅ | [.skill](dist/beyond-the-summary.skill) |
 | [farnsworth-rhetoric](skills/farnsworth-rhetoric/) | Applies classical rhetorical figures to existing writing under a strict dosage budget — antithesis, isocolon, antimetabole, hypophora, Saxon finish | ✅ | ✅ | [.skill](dist/farnsworth-rhetoric.skill) |
-| [great-demo](skills/great-demo/) | Apply Peter Cohan's Great Demo! method to design, critique, and qualify software demonstrations | ✅ | ⚠️ | [.skill](dist/great-demo.skill) |
+| [great-demo](skills/great-demo/) | Applies the diagnose-and-plan parts of Peter Cohan's Great Demo! method — qualifying, Chain of Pain, Specific Capabilities, the Delta — to design and critique software demos, without prescribing a demo flow | ✅ | ⚠️ | [.skill](dist/great-demo.skill) |
 | [human-narrative](skills/human-narrative/) | Audits narrative structure for AI patterns that survive surface editing — thematic over-explanation, embodied emotion, tidy resolution, linear time | ✅ | ✅ | [.skill](dist/human-narrative.skill) |
 | [humanizer](skills/humanizer/) | Removes AI writing patterns from text — 20 source-checked patterns with stable IDs, a measured finding threshold, and model-residue detection | ✅ | ✅ | [.skill](dist/humanizer.skill) |
 | [intelligence-flow-architecture](skills/intelligence-flow-architecture/) | Designs how humans and AI collaborate in products, workflows, and processes | ✅ | ✅ | [.skill](dist/intelligence-flow-architecture.skill) |
@@ -49,20 +49,6 @@ Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 | [strategic-persuasion-writing](skills/strategic-persuasion-writing/) | Generates persuasive language scripts using behavioral influence models (FATE, PCP, Six-Axis) from Chase Hughes' The Behavior Ops Manual | ✅ | ✅ | [.skill](dist/strategic-persuasion-writing.skill) |
 
 ✅ Full support · ⚠️ Partial (some features require Claude Code tools) · ❌ Claude Code only
-
----
-
-## Retired skills
-
-### good-presentations (removed November 2026)
-
-This skill built decks around a fixed rhetorical framework: every title a claim, a three-act arc, a Devil's Advocate slide, and a one-sentence closing line. It was retired for these reasons:
-
-- **The prescribed patterns pushed slide copy toward slogans.** A title that must be a claim, a closing that must be one memorable sentence, and a rule to break the pattern once for effect produce the clipped, dramatic style that reads badly when spoken in a live demo.
-- **It conflicted with the demo skills.** It said never to open with an agenda, while great-demo reads an outline aloud. It said to close on one sentence with no summary, while great-demo requires a recap of each capability.
-- **Nothing was left for it to own.** It excluded brand-specific decks, so BlueDolphin decks never fell under it. The pptx skill already covers the build mechanics, and farnsworth-rhetoric covers sharpening an individual title or closing line.
-
-For deck work, use the pptx skill for mechanics and plan the argument directly. The last version is in git history before the commit that removed it.
 
 ---
 
