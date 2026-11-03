@@ -114,7 +114,7 @@ What you'll learn:
 - Time per step
 - Other processes impacted
 - Vocabulary and acronyms specific to that customer
-- How workflow output is reported (this often becomes the Illustration)
+- How workflow output is reported (this often becomes the screen you show)
 
 Workflow mapping doubles as relationship-building. The customer feels heard. The Champion gets stronger.
 
@@ -162,7 +162,7 @@ Some customers refuse to share. Reasons vary: NDA concerns, internal politics, c
 Options:
 
 1. Lean on Indirect Research and propose a Reference Story (a sanitized situation from a similar customer at a different company). Watch their reaction; if they engage, the Reference Story is doing the qualification work for you.
-2. Use the Menu Approach (covered in special-cases.md): present three to five Situation Slides drawn from likely scenarios for their industry and job title; let them pick the one that resonates.
+2. Use the Menu Approach (covered in special-cases.md): show three to five screens drawn from likely scenarios for their industry and job title; let them pick the one that resonates.
 3. Decline the demo. If you genuinely can't establish a CBI, an Information demo is high-risk and Cohan recommends against it. Surface the gap to the Salesperson and propose more discovery before committing to a demo slot.
 
 ## Worked Example: Building a Chain from Sparse Notes

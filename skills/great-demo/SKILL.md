@@ -7,29 +7,28 @@ description: >
   build a Chain of Pain, calculate the Delta, or handle special-case demos
   (trade show, large unqualified group, remote, scripted RFP). Triggers on
   "design a demo", "critique this demo", "is this demo any good", "Chain
-  of Pain", "what is their CBI", "Specific Capability", "Illustration",
-  "Situation Slide", "Do It / Do It Again", "Not Now List", "To Do List",
-  "do the last thing first", "remote demo", "trade show demo". Product-
-  agnostic. Do NOT use for general slide decks or thought leadership (use
-  good-presentations); do NOT use for evaluation management or Sequence
-  of Events work.
+  of Pain", "what is their CBI", "Specific Capability", "Not Now List",
+  "To Do List", "do the last thing first", "remote demo", "trade show
+  demo". Product-agnostic. Do NOT use for general slide decks or thought
+  leadership; do NOT use for evaluation management or Sequence of Events
+  work.
 metadata:
-  version: 1.0.2
+  version: 2.0.0
 ---
 
 # Great Demo
 
 Apply the Great Demo! method to plan, sharpen, and recover software demos.
 
-## Two Non-Negotiable Principles
+## Two Principles
 
 These are the bedrock. Every recommendation in this skill ties back to them.
 
-**1. Do The Last Thing First.** Show the most compelling result in the first two minutes. Then walk through how you got there in under four minutes. Then let the audience pull you into depth. The newspaper-article structure: headline first, summary lead next, deep body last. The audience self-selects depth. You don't have to show everything.
+**1. Do The Last Thing First.** Put something that matters to the audience in front of them early, then let them pull you into depth. Ask of any plan: when does the audience first see something that matters to them? The audience self-selects depth. You don't have to show everything.
 
 **2. CBI to Reason to Specific Capability.** Every capability shown must trace back to a customer's Critical Business Issue. A capability with no CBI behind it is a feature parade, and feature parades lose deals. Pain flows down the org chart. Gain flows up. If you can't name the CBI a screen addresses, cut the screen.
 
-If a request would violate either principle, say so plainly before producing the work the user asked for.
+If a request would violate the second principle, say so plainly before producing the work the user asked for.
 
 ## Mode Detection
 
@@ -42,7 +41,7 @@ Read the user's request and route to the right mode. If it spans modes, name the
 | Pre-demo qualification | "qualify this prospect", "build a Chain of Pain", "what's their CBI", "what's the Delta", "Demo Information Sheet" | `references/qualify.md` |
 | Live-demo delivery questions | "Not Now List", "To Do List", "handle a Stupid Question", "buzzwords", "mouse movement", "recover from a crash", "what to do when X happens mid-demo" | `references/delivery.md` |
 | Special-case demo | "trade show demo", "large unqualified group", "remote demo", "scripted RFP demo", "deployment demo", "canned demo", "Generic Demo" | `references/special-cases.md` |
-| Term lookup | "what does CBI mean", "define Specific Capability", "what's an Illustration in Great Demo!" | `references/glossary.md` |
+| Term lookup | "what does CBI mean", "define Specific Capability", "what's the Delta" | `references/glossary.md` |
 
 If unsure: ask one question to disambiguate. Don't guess silently when the request is ambiguous between modes.
 
@@ -51,11 +50,10 @@ If unsure: ask one question to disambiguate. Don't guess silently when the reque
 This skill is product-agnostic by design — it owns qualification and structure,
 not brand voice or product facts. If a brand-specific content skill exists for
 the vendor in question (e.g. `bluedolphin-collateral` for BlueDolphin), use this
-skill to build the structure (Outline, CBI mapping, Illustration → Do It → Do It
-Again) and hand the drafted narration to that skill to apply voice and
-fact-sourcing. If that vendor skill's own "demo" mode already defers to this
-skill for structure, don't duplicate the qualification work — check its routing
-first.
+skill to build the plan (CBI mapping, which screens, time per section) and hand
+it to that skill to apply voice and fact-sourcing when a script is needed. If
+that vendor skill's own "demo" mode already defers to this skill for structure,
+don't duplicate the qualification work — check its routing first.
 
 ## Universal Pre-Work
 
@@ -73,19 +71,7 @@ Gaps are normal. Flag the gap, propose an assumption, proceed if the user confir
 
 Different modes produce different output, but a few rules apply across all of them.
 
-State concrete time estimates against Cohan's targets, not vague ranges. Cohan's single-solution timeline:
-
-| Segment | Target |
-|---|---|
-| Introduction | 1-2 min |
-| Illustration | 1-2 min |
-| Do It | 1-2 min |
-| Do It Again | 5-10 min |
-| Q&A | 5-10 min |
-| Summary | 2-4 min |
-| **Total** | **15-30 min** |
-
-If a draft exceeds 30 minutes for a single solution, name it and recommend the cut.
+State concrete time estimates for each section and the total against the budget the user gave, not vague ranges. If a draft exceeds the budget, name it and recommend the cut: trim depth first, then drop capabilities tied to the least important pain.
 
 Quantify the Delta whenever possible: in money, time, or people. Not in features. "3 days with 4 people becomes 1 day with 1 person, 11 person-days saved per cycle, 20 cycles per year, 220 person-days saved per year" beats "much faster" every time. If the user has no numbers yet, surface the missing measurement and suggest the question that would extract it.
 
@@ -98,7 +84,6 @@ The `assets/` directory holds reusable templates from the book's appendices. Pul
 | Asset | Use when |
 |---|---|
 | `assets/demo-information-sheet.md` | Capturing CBI/Reason/Specific Capability per stakeholder, plus the Delta and meeting objective |
-| `assets/situation-slide-template.md` | Building the slide that precedes the Illustration |
 | `assets/meeting-information-sheet.md` | Logging meeting logistics, agenda, and roles |
 | `assets/infrastructure-checklist.md` | Pre-demo hardware, software, network, AV verification |
 
@@ -117,8 +102,6 @@ The `assets/` directory holds reusable templates from the book's appendices. Pul
 ## Critical Habits
 
 A few habits matter enough to repeat at the top level.
-
-**Always end every segment with the strongest Illustration screen on display.** It's the last image the audience takes home. If a demo ends on a settings page or a default view, the audience remembers the settings page.
 
 **Never use keyboard shortcuts in a live demo.** The audience needs to see menu choices to envision themselves doing it. Shortcuts break the vision.
 

@@ -26,17 +26,13 @@ Definitions of Cohan's terms. Use this when the user asks what a term means or w
 
 **Demonstration**: a presentation of the set of Specific Capabilities needed to solve a customer's CBI.
 
-**Demonstration Roadmap**: a slide or set of slides identifying the overall pathway and current section of a complex demo. Same content as the Outline; rephrased for the audience. Used heavily in Remote Demos to maintain orientation.
+**Demonstration Roadmap**: a slide or set of slides identifying the overall pathway and current section of a complex demo. Used heavily in Remote Demos to maintain orientation.
 
 **Direct Research**: gathering information through direct contact with the customer.
 
-**"Do It"**: the most concise, rational pathway from the start of a demonstration to the Illustration. The fewest mouse clicks required to reach the Illustration screen.
-
-**"Do It Again"**: a second pass through the same pathway as the Do It, with more detail and richer explanation.
-
 **Earned Reputation**: the trust, demonstrated competence, and efficacy a person achieves in the minds of customers. Built by handling customer information well over time.
 
-**Elevator Demo**: a concise, clear description of the solutions and applications your product enables. The best ones include one or more Illustrations as a take-away.
+**Elevator Demo**: a concise, clear description of the solutions and applications your product enables.
 
 **Evaluation**: hands-on technical proof, performed by the customer using the actual software. Out of scope for this skill.
 
@@ -50,19 +46,13 @@ Definitions of Cohan's terms. Use this when the user asks what a term means or w
 
 **Great Question**: a question that supports or reinforces the value of a Specific Capability, or that helps the demonstration flow forward. Answer right away, briefly.
 
-**Illustration**: a concise, visual artifact that communicates the reality or proof of a Solution. The "wow" screen. Shown first in the demo.
-
 **Indirect Research**: gathering information through channels that don't involve direct customer contact: papers, publications, websites, patents, product documentation.
 
 **Infrastructure Checklist**: list of all hardware, software, network, audio-visual, and facilities requirements for a demonstration.
 
 **Interdependency**: a linkage between people or events such that one or more people's actions positively or negatively impact others in the same organization.
 
-**Introduction**: provides the audience with the outline of the demo. The demonstration agenda, read aloud.
-
 **Not Now List**: a method of queuing and organizing audience questions during a demo. Gives the demonstrator control over questions, answers, pace, and audience attention.
-
-**Outline**: defines the presence and order of the building blocks of a demo. Provides the basic text for the Introduction.
 
 **Project**: a specific sales process, more accurate than "deal." Has identified players, project management parameters, a beginning, and an end.
 
@@ -72,7 +62,7 @@ Definitions of Cohan's terms. Use this when the user asks what a term means or w
 
 **Recorded Demo**: same as Canned Demo.
 
-**Reference Story**: a Situation Slide drawn from a past success, used to generate hope and curiosity in Vision Generation demos and Qualification meetings. Usually sanitized to protect the original customer's confidentiality.
+**Reference Story**: a description of a past success, used to generate hope and curiosity in Vision Generation demos and Qualification meetings. Usually sanitized to protect the original customer's confidentiality.
 
 **Remote Demo**: a demonstration where the audience is physically separated from the presenter, delivered via collaboration tools.
 
@@ -89,8 +79,6 @@ Definitions of Cohan's terms. Use this when the user asks what a term means or w
 **Sequence of Events**: a tool for evaluations and other multi-step sales processes that organizes and orchestrates players, tasks, timing, and responsibilities. Out of scope for this skill.
 
 **Serious Bug**: a defect that impacts functionality enough to make the software unusable for the affected task.
-
-**Situation Slide**: a slide presented immediately before the Illustration. For Technical Proof: contains Company, Job Title, CBI, Reason, Specific Capabilities, and Delta from Qualification. For Vision Generation: may be a Reference Story.
 
 **Solution**: the set of Specific Capabilities provided by your company, in context, that solves a customer's CBI. May span products and services.
 

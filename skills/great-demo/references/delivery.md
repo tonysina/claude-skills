@@ -10,7 +10,7 @@ Every question that comes up during a live demo falls into one of three categori
 
 - Action: answer right away. Briefly. A simple "Yes" or "No" is often what the customer wants. Clamp your mouth shut if a one-word answer satisfies them.
 - Tell: if a question needs more than two sentences to answer, it's not a Great Question. It's a Good Question. You can feel the difference.
-- Reward: praise good questions and crack a joke if the moment fits. ("I'm really glad you asked that. That's the next capability I'd planned to share. And that's another twenty bucks I owe you!")
+- Reward: acknowledge a good question in a few words and keep moving.
 
 **Good Questions**: meaningful but not relevant to what's on screen now. The risk isn't difficulty; the risk is the chain reaction. Answering pulls you off pathway. Side discussions break out. Other audience members re-ignite internal debates ("Does it run on Oracle?" can trigger an Oracle-vs-Postgres argument that derails the entire room).
 
@@ -43,9 +43,9 @@ By the end of the demo you may have six or more questions queued. That's good. T
 
 ## The Q&A Section
 
-Address Not Now List questions in the formal Q&A, after the final summary of the last Do It Again.
+Address Not Now List questions in the formal Q&A, after the main walk-through.
 
-If the demo is the last item on the meeting agenda: announce after the final summary that you'll now address the Not Now List. Invite interested parties to stay; let others leave. This triages the audience naturally. The most engaged stay. Hostile questioners often leave at this point. Plan this option in advance with the Selling Team.
+If the demo is the last item on the meeting agenda: announce after the walk-through that you'll now address the Not Now List. Invite interested parties to stay; let others leave. This triages the audience naturally. The most engaged stay. Hostile questioners often leave at this point. Plan this option in advance with the Selling Team.
 
 Process for answering each question:
 
@@ -61,11 +61,11 @@ After all Not Now List items are addressed, ask if there are further questions. 
 
 A Not Now List item that asks for a live demonstration. Two paths.
 
-**You can.** Run a mini-Great Demo: Illustration, brief summary, Do It, brief summary, Do It Again if needed, summary, Q&A. May only be one to two minutes total. Test at each step whether the Illustration alone closes the question. If yes, summarize and return to the Not Now List.
+**You can.** Show the screen that answers the question and nothing else. It may only take one to two minutes. Check after the first screen whether it closes the question. If yes, return to the Not Now List.
 
 **You can't.** Two sub-cases.
 
-- The software has the capability but you can't demo it now. Say so. Verbal confirmation may suffice. If not, use static materials (printed Illustrations, web pages, whiteboard sketch). If a live demo is truly required to close the issue, schedule a follow-up.
+- The software has the capability but you can't demo it now. Say so. Verbal confirmation may suffice. If not, use static materials (screenshots, web pages, whiteboard sketch). If a live demo is truly required to close the issue, schedule a follow-up.
 - The software doesn't have the capability. Say so honestly. Liars are always caught out. Offer an alternative if available. If it's a "nice to have," offer to sponsor the request with Development. If it's a Specific Capability genuinely needed to close the sale: tell the Salesperson immediately, document the requirement carefully, and report it to Development.
 
 A missing capability isn't necessarily a loss. If the customer trusts you to deliver it, they may still buy. Investing time to define the requirement with them is competitive differentiation.
@@ -85,15 +85,6 @@ Counterintuitive note: a search returning no results can be a positive. Three re
 Match technical level to the audience. Too high alienates. Too low undermines perceived competence.
 
 Acronyms: state the full term first three times, then use the acronym. If the audience clearly doesn't know the terms, avoid them entirely.
-
-Subtle word choices that matter:
-
-| Avoid | Prefer |
-|---|---|
-| "I'll show you..." | "I'd like to share with you..." (collaborative) |
-| "This will allow you to..." | "This will enable you to..." (stronger) |
-| "I showed..." (in summary) | "We explored..." (received more favorably) |
-| "but" | "and" ("but" is heard as "no, I disagree") |
 
 ## The Buzzword List
 
@@ -138,8 +129,6 @@ If using a laser pointer and you're nervous: use two hands, move deliberately, l
 
 Props illustrate, ground the abstract, keep audiences awake, and differentiate you from competitors. Software companies rarely think about them.
 
-The book's best example: an SE walked into a meeting carrying a large pile of books, sat down, sighed, said "I really hate having to search through all these books to find the information I need. I wish there was a better way..." Then looked up and said "Hey, I wonder if this new software can do what they claim?" Then did exactly that.
-
 Exercise: for each product, develop at least one prop for each key application.
 
 ## Recovering from Bugs and Crashes
@@ -158,14 +147,14 @@ Three bug categories.
 **Serious bugs**: functionality is unusable. Broken searches, error messages, unimplemented features.
 
 - A serious bug WILL repeat if you retry the same path. Don't retry. Retrying proves you don't know the software AND it doesn't work.
-- Action: (1) acknowledge the bug matter-of-factly, short and concise; (2) show what should have happened using your printed Illustration or other proof; (3) pick up the demo at a point immediately after the bug and continue.
+- Action: (1) acknowledge the bug matter-of-factly, short and concise; (2) show what should have happened using a screenshot or other proof; (3) pick up the demo at a point immediately after the bug and continue.
 - "Insanity is doing the same thing over and over again and expecting a different result." Don't be insane.
 - After the demo: privately test the offending capability during Q&A. If it now works, decide whether to revisit. If not, schedule a brief Remote Demo follow-up.
 
 **Crashes**: handle like a serious bug, but also fill the reboot time productively.
 
 - In a Selling Team: the Salesperson takes the lead. Returns to the Roadmap, summarizes, addresses Not Now List questions. The SE quietly restores the system. Blank the display while rebooting (don't lock the cable down — being able to pull it or kill the wireless cast quickly prevents the audience from watching the boot sequence). SE signals readiness. Clean handoff back.
-- Solo: shift to printed materials. Talk through the Illustration and the Delta. Do not narrate the reboot.
+- Solo: shift to printed materials. Talk through the screenshots and the Delta. Do not narrate the reboot.
 
 Stay calm in all bug and crash situations. Even if you're sweating, don't let them see you sweat. Confidence under pressure neutralizes hostile audience members; visible nerves attract them.
 
@@ -181,7 +170,7 @@ Safe targets, in order:
 2. Your Selling Team colleagues
 3. Generally, never the audience (exception: long, trusted relationship with established give-and-take)
 
-Best moment for humor: a crash, bug, or hardware problem. It fills dead air. The book's anecdote: a presenter's PC froze, he calmly started the reboot, told the "three engineers in a car" software joke, and the computer was ready by the punch line.
+Best moment for humor: a crash, bug, or hardware problem. It fills dead air.
 
 ## Confidence and Poise
 
