@@ -12,7 +12,7 @@ description: |
   ending is flat", "speech writing", "key message", "tagline", "farnsworth"
 
   Do NOT use for: generating a message from scratch (use strategic-persuasion-writing),
-  deck structure (use good-presentations), message architecture (use start-with-why),
+  deck structure, message architecture (use start-with-why),
   removing AI tells (use humanizer), narrative structure (use human-narrative),
   technical documentation, process instructions, data reporting, or legal language.
 metadata:
