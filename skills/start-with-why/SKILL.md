@@ -10,14 +10,13 @@ description: >
   for content that leads with belief/purpose. Also use when user
   wants to diagnose why their messaging feels flat or commodity-like.
   Do NOT use for: product or feature copy, SEO content, or technical
-  writing. Also not for: slides or decks (use good-presentations --
-  bring the WHY statement with you as the deck's central claim),
-  sharpening a line that already exists such as a tagline or a closing
+  writing. Also not for: slides or decks, sharpening a line that
+  already exists such as a tagline or a closing
   sentence (use farnsworth-rhetoric), or a high-stakes message aimed at
   one named individual in a live decision (use
   strategic-persuasion-writing, and read its scope gate first).
 metadata:
-  version: 1.1.0
+  version: 1.1.1
 ---
 
 # Start with Why Writing Skill
@@ -216,8 +215,6 @@ This skill generates prose, and generated prose carries AI tells:
 Run `humanizer` on the draft before delivering it. When one line carries the piece -- a keynote's last sentence, a tagline, a post's closing invitation -- run `farnsworth-rhetoric` last, at its 1-figure budget. Never run farnsworth first: figures applied before humanizer get stripped by it.
 
 At Step 2a, if the user has no WHY and the first candidate passes the validation checklist, consider chaining `beyond-obvious` for 3-5 distinct candidates before committing -- the first statement that passes validation is rarely the truest one.
-
-If the request turns out to be slides rather than prose, stop and use `good-presentations` instead -- bring the WHY statement with you as the deck's central claim.
 
 ## Examples of Inside-Out vs Outside-In
 
