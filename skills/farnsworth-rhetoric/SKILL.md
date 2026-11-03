@@ -11,14 +11,14 @@ description: |
   this line", "this ending is flat", "speech writing", "key message",
   "tagline", "farnsworth"
 
-  Do NOT use for: deck structure (good-presentations), purpose-led messaging
+  Do NOT use for: deck structure, purpose-led messaging
   (start-with-why), removing AI tells (humanizer), narrative structure
   (human-narrative), technical docs, process instructions, data reporting,
   legal language, or writing a message from scratch (write it plainly first,
   or use start-with-why/strategic-persuasion-writing/bluedolphin-collateral,
   then return here to sharpen it).
 metadata:
-  version: 1.1.4
+  version: 1.1.5
 ---
 
 # Farnsworth Rhetoric: Memorable Writing
