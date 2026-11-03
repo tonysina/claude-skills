@@ -36,7 +36,7 @@ for skill in $SKILLS_TO_BUILD; do
   # Only SKILL.md and subdirectories get packaged (see the zip below), so a
   # file left at the skill root would be dropped from the .skill bundle
   # without any error. Fail loudly instead.
-  STRAY=$(find "$SKILL_DIR" -maxdepth 1 -type f ! -name 'SKILL.md' ! -name '.*' -exec basename {} \;)
+  STRAY=$(find "$SKILL_DIR" -maxdepth 1 -type f ! -name 'SKILL.md' ! -name 'README.md' ! -name '.*' -exec basename {} \;)
   if [ -n "$STRAY" ]; then
     echo "❌ $skill: these files sit at the skill root and would not be packaged."
     echo "   Move them into a subdirectory (references/, scripts/, assets/):"
