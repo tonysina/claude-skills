@@ -46,6 +46,7 @@ Invoke with a slash command: `/humanizer`, `/split-pdf`, etc.
 | [source-check](skills/source-check/) | Verifies factual claims against primary sources — one isolated agent per claim, consolidated into a report and a corrected draft | ✅ | ⚠️ | [.skill](dist/source-check.skill) |
 | [split-pdf](skills/split-pdf/) | Downloads, splits, and deeply reads PDFs — producing structured notes for implementation and content | ✅ | ❌ | [.skill](dist/split-pdf.skill) |
 | [start-with-why](skills/start-with-why/) | Creates inspiring content using Simon Sinek's Golden Circle (WHY → HOW → WHAT) | ✅ | ✅ | [.skill](dist/start-with-why.skill) |
+| [ste-ifier](skills/ste-ifier/) | Writes and checks ASD-STE100 Simplified Technical English (Issue 9) against the bundled dictionary, with Git/GitHub and per-project term lists | ✅ | ✅ | [.skill](dist/ste-ifier.skill) |
 | [strategic-persuasion-writing](skills/strategic-persuasion-writing/) | Generates persuasive language scripts using behavioral influence models (FATE, PCP, Six-Axis) from Chase Hughes' The Behavior Ops Manual | ✅ | ✅ | [.skill](dist/strategic-persuasion-writing.skill) |
 
 ✅ Full support · ⚠️ Partial (some features require Claude Code tools) · ❌ Claude Code only
